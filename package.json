@@ -1,0 +1,19 @@
+{
+  "name": "bb-strap",
+  "version": "0.2.7",
+  "devDependencies": {
+    "grunt": "0.4.5",
+    "grunt-contrib-jshint": "0.10.0",
+    "karma": "0.12.16",
+    "grunt-karma": "0.8.3",
+    "karma-chrome-launcher": "0.1.4",
+    "bower": "1.3.5",
+    "karma-jasmine": "~0.1.5",
+    "karma-phantomjs-launcher": "~0.1.4",
+    "load-grunt-tasks": "0.4.0",
+    "grunt-bump": "0.0.14"
+  },
+  "engines": {
+    "node": ">=0.9.0"
+  }
+}
