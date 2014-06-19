@@ -129,8 +129,13 @@
     return message;
   };
 
-  var equals = function(arg1, arg2) {
-    this.env.equals_(arg1, arg2);
+  var isSorted = function(array, equalsFunction, comparator) {
+    if (array.length <= 1) {
+      return true;
+    }
+    var clone = array.slice();
+    clone.sort(comparator);
+    return equalsFunction(clone, array);
   };
 
   var matchers = {
@@ -264,6 +269,10 @@
       return isNumber(this.actual) && this.actual % 2 === 0 ? null : pp('Expect {{%0}} {{not}} to be a odd number', this.actual);
     },
 
+    toBeSorted: function(comparator) {
+      return isArray(this.actual) && isSorted(this.actual, this.equals, comparator) ? null : pp('Expect {{%0}} {{not}} to be sorted', this.actual);
+    },
+
     toVerify: function(iterator) {
       return every(this.actual, iterator) ? null : pp('Expect {{%0}} {{not}} to verify condition');
     },
@@ -280,9 +289,15 @@
 
   var toMatcherJasmine1 = function(fn) {
     return function() {
+      var env = this.env;
+      var equals_ = this.env.equals_;
+
       var ctx = {
         actual: this.actual,
-        isNot: this.isNot
+        isNot: this.isNot,
+        equals: function() {
+          return equals_.apply(env, arguments);
+        }
       };
 
       var message = fn.apply(ctx, arguments);

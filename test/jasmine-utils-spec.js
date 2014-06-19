@@ -346,4 +346,71 @@ describe('jasmine-utils', function() {
       expect('').not.toBeFalse();
     });
   });
+
+  describe('toBeSorted', function() {
+    it('should pass with an array of numbers', function() {
+      expect([0, 1, 2, 3]).toBeSorted();
+      expect([0, 1, 3, 2]).not.toBeSorted();
+    });
+
+    it('should pass with an array of strings', function() {
+      expect(['bar', 'foo']).toBeSorted();
+      expect(['foo', 'bar']).not.toBeSorted();
+    });
+
+    it('should pass with an array of booleans', function() {
+      expect([false, false, true, true]).toBeSorted();
+      expect([true, true, false, false]).not.toBeSorted();
+    });
+
+    it('should pass with an array of object sorted by id', function() {
+      var comparator = function(obj1, obj2) {
+        return obj1.id - obj2.id;
+      };
+
+      var obj1 = {
+        id: 1
+      };
+
+      var obj2 = {
+        id: 2
+      };
+
+      var obj3 = {
+        id: 3
+      };
+
+      expect([obj1, obj2, obj3]).toBeSorted(comparator);
+      expect([obj3, obj2, obj1]).not.toBeSorted(comparator);
+    });
+
+    it('should pass with an array of object sorted by id with same ids', function() {
+      var comparator = function(obj1, obj2) {
+        return obj1.id - obj2.id;
+      };
+
+      var obj1 = {
+        id: 1
+      };
+
+      var obj2_1 = {
+        id: 2,
+        name: 'foo'
+      };
+
+      var obj2_2 = {
+        id: 2,
+        name: 'bar'
+      };
+
+      var obj3 = {
+        id: 3
+      };
+
+      for (var i = 0; i < 100; ++i) {
+        expect([obj1, obj2_1, obj2_2, obj3]).toBeSorted(comparator);
+        expect([obj1, obj2_2, obj2_1, obj3]).toBeSorted(comparator);
+      }
+    });
+  });
 });
