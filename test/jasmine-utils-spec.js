@@ -242,24 +242,24 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeADateCloseTo', function() {
+  describe('toBeDateCloseTo', function() {
     it('should pass', function() {
       var date1 = new Date(2014, 6, 6, 10, 0, 0, 0);
       var date2 = new Date(2014, 6, 6, 10, 0, 0, 1000);
 
-      expect(date1).toBeADateCloseTo(date2, 1000);
-      expect(date1).toBeADateCloseTo(date2);
-      expect(date1).not.toBeADateCloseTo(date2, 999);
+      expect(date1).toBeDateCloseTo(date2, 1000);
+      expect(date1).toBeDateCloseTo(date2);
+      expect(date1).not.toBeDateCloseTo(date2, 999);
     });
   });
 
-  describe('toBeADateCloseToNow', function() {
+  describe('toBeDateCloseToNow', function() {
     it('should pass', function() {
       var date = new Date(new Date().getTime() + 900);
 
-      expect(date).toBeADateCloseToNow(1000);
-      expect(date).toBeADateCloseToNow();
-      expect(date).not.toBeADateCloseToNow(890);
+      expect(date).toBeDateCloseToNow(1000);
+      expect(date).toBeDateCloseToNow();
+      expect(date).not.toBeDateCloseToNow(890);
     });
   });
 
@@ -282,6 +282,42 @@ describe('jasmine-utils', function() {
       expect(date1).toBeDateBeforeNow();
       expect(date1).toBeDateBefore(date2);
       expect(date2).not.toBeDateBefore(date1);
+    });
+  });
+
+  describe('toBeABoolean', function() {
+    it('should pass', function() {
+      expect(true).toBeABoolean();
+      expect(false).toBeABoolean();
+
+      expect(0).not.toBeABoolean();
+      expect(null).not.toBeABoolean();
+      expect(undefined).not.toBeABoolean();
+      expect('').not.toBeABoolean();
+    });
+  });
+
+  describe('toBeTrue', function() {
+    it('should pass', function() {
+      expect(true).toBeTrue();
+
+      expect(false).not.toBeTrue();
+      expect(0).not.toBeTrue();
+      expect(null).not.toBeTrue();
+      expect(undefined).not.toBeTrue();
+      expect('').not.toBeTrue();
+    });
+  });
+
+  describe('toBeFalse', function() {
+    it('should pass', function() {
+      expect(false).toBeFalse();
+
+      expect(true).not.toBeFalse();
+      expect(0).not.toBeFalse();
+      expect(null).not.toBeFalse();
+      expect(undefined).not.toBeFalse();
+      expect('').not.toBeFalse();
     });
   });
 });

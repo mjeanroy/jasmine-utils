@@ -38,6 +38,10 @@
     return typeof obj === 'string';
   };
 
+  var isBoolean = function(obj) {
+    return typeof obj === 'boolean';
+  };
+
   var isFunction = function(obj) {
     return typeof obj === 'function';
   };
@@ -176,13 +180,13 @@
       return isDate(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a date', this.actual);
     },
 
-    toBeADateCloseTo: function(date, maxDiff) {
+    toBeDateCloseTo: function(date, maxDiff) {
       var max = arguments.length > 1 ? maxDiff : 1000;
       var diff = dateAbsDiff(this.actual, date);
       return diff > max ? pp('Expect date {{%0}} {{not}} to be close to {{%1}}', this.actual, date) : null;
     },
 
-    toBeADateCloseToNow: function(maxDiff) {
+    toBeDateCloseToNow: function(maxDiff) {
       var max = arguments.length > 0 ? maxDiff : 1000;
       var diff = dateAbsDiff(this.actual, new Date());
       return diff > max ? pp('Expect date {{%0}} {{not}} to be close to now', this.actual) : null;
@@ -210,6 +214,18 @@
 
     toBeANumber: function() {
       return isNumber(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a number', this.actual);
+    },
+
+    toBeABoolean: function() {
+      return isBoolean(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a boolean', this.actual);
+    },
+
+    toBeTrue: function() {
+      return this.actual === true ? null : pp('Expect {{%0}} {{not}} to be true', this.actual);
+    },
+
+    toBeFalse: function() {
+      return this.actual === false ? null : pp('Expect {{%0}} {{not}} to be false', this.actual);
     },
 
     toBeAString: function() {
