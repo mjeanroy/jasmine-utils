@@ -160,6 +160,32 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toBeOddNumber', function() {
+    it('should pass', function() {
+      expect(1).toBeOddNumber();
+      expect(3).toBeOddNumber();
+      expect(5).toBeOddNumber();
+
+      expect(0).not.toBeOddNumber();
+      expect(2).not.toBeOddNumber();
+      expect(4).not.toBeOddNumber();
+      expect('4').not.toBeOddNumber();
+    });
+  });
+
+  describe('toBeEvenNumber', function() {
+    it('should pass', function() {
+      expect(0).toBeEvenNumber();
+      expect(2).toBeEvenNumber();
+      expect(4).toBeEvenNumber();
+
+      expect(1).not.toBeEvenNumber();
+      expect(3).not.toBeEvenNumber();
+      expect(5).not.toBeEvenNumber();
+      expect('2').not.toBeEvenNumber();
+    });
+  });
+
   describe('toBePositive', function() {
     it('should pass', function() {
       expect(1).toBePositive();

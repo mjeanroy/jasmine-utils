@@ -256,6 +256,14 @@
       return isNumber(this.actual) && this.actual < 0 ? null : pp('Expect {{%0}} {{not}} to be a negative number', this.actual);
     },
 
+    toBeOddNumber: function() {
+      return isNumber(this.actual) && this.actual % 2 !== 0 ? null : pp('Expect {{%0}} {{not}} to be a odd number', this.actual);
+    },
+
+    toBeEvenNumber: function() {
+      return isNumber(this.actual) && this.actual % 2 === 0 ? null : pp('Expect {{%0}} {{not}} to be a odd number', this.actual);
+    },
+
     toVerify: function(iterator) {
       return every(this.actual, iterator) ? null : pp('Expect {{%0}} {{not}} to verify condition');
     },
