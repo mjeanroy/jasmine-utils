@@ -25,28 +25,37 @@
 describe('jasmine-utils', function() {
 
   describe('toHaveLength', function() {
-    beforeEach(function() {
-      this.array = [1, 2, 3];
-    });
-
     it('should pass with an array', function() {
       expect([1, 2, 3]).toHaveLength(3);
       expect([1, 2, 3]).not.toHaveLength(1);
     });
 
-    it('should pass with a string of expected length', function() {
+    it('should pass with a string', function() {
       expect('123').toHaveLength(3);
       expect('123').not.toHaveLength(1);
     });
   });
 
+  describe('toHaveSameLengthAs', function() {
+    it('should pass with an array', function() {
+      expect([1, 2, 3]).toHaveSameLengthAs([3, 2, 1]);
+      expect([1, 2, 3]).not.toHaveSameLengthAs([1]);
+    });
+
+    it('should pass with a string', function() {
+      expect('123').toHaveSameLengthAs('321');
+      expect('123').not.toHaveSameLengthAs('1');
+    });
+  });
+
+
   describe('toHaveSize', function() {
-    it('should pass with an array of expected size', function() {
+    it('should pass with an array', function() {
       expect([1, 2, 3]).toHaveSize(3);
       expect([1, 2, 3]).not.toHaveSize(1);
     });
 
-    it('should pass with an object of expected size', function() {
+    it('should pass with an object', function() {
       var obj = {
         'one': 1,
         'two': 2,
@@ -57,9 +66,40 @@ describe('jasmine-utils', function() {
       expect(obj).not.toHaveSize(1);
     });
 
-    it('should pass with a string of expected size', function() {
+    it('should pass with a string', function() {
       expect('123').toHaveSize(3);
       expect('123').not.toHaveSize(1);
+    });
+  });
+
+  describe('toHaveSameSizeAs', function() {
+    it('should pass with an array', function() {
+      expect([1, 2, 3]).toHaveSameSizeAs([3, 2, 1]);
+      expect([1, 2, 3]).not.toHaveSameSizeAs([1]);
+    });
+
+    it('should pass with an object', function() {
+      var obj = {
+        'one': 1,
+        'two': 2,
+        'three': 3
+      };
+
+      var obj2 = {
+        1: 'one',
+        2: 'two',
+        3: 'three'
+      };
+
+      expect(obj).toHaveSameSizeAs(obj2);
+      expect(obj).not.toHaveSameSizeAs({
+        1: 'one'
+      });
+    });
+
+    it('should pass with a string', function() {
+      expect('123').toHaveSameSizeAs('321');
+      expect('123').not.toHaveSameSizeAs('1');
     });
   });
 

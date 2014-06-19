@@ -166,6 +166,18 @@
     return equalsFunction(clone, array);
   };
 
+  var sizeOf = function(obj) {
+    var size = -1;
+    if (obj === null || obj === undefined) {
+      size = 0;
+    } else if (isString(obj) || isArray(obj)) {
+      size = obj.length;
+    } else if (isObject(obj) && obj !== null) {
+      size = sizeOfObject(obj);
+    }
+    return size;
+  };
+
   var matchers = {
     toHaveKeys: function() {
       var actualKeys = keys(this.actual);
@@ -183,26 +195,30 @@
     },
 
     toHaveSize: function(expectedSize) {
-      var size = isArray(this.actual) ? this.actual.length : sizeOfObject(this.actual);
+      var size = sizeOf(this.actual);
       return size !== expectedSize ? pp('Expect size of {{%0}} {{not}}to be {{%1}} but was {{%2}}', this.actual, expectedSize, size) : null;
     },
 
     toBeEmpty: function() {
-      var size = -1;
-      var actual = this.actual;
-      if (actual === null || actual === undefined) {
-        size = 0;
-      } else if (isString(actual) || isArray(actual)) {
-        size = actual.length;
-      } else if (isObject(actual) && actual !== null) {
-        size = sizeOfObject(actual);
-      }
-      return size === 0 ? null : pp('Expect {{%0}} {{not}} to be empty', actual);
+      var size = sizeOf(this.actual);
+      return size === 0 ? null : pp('Expect {{%0}} {{not}} to be empty', this.actual);
     },
 
     toHaveLength: function(expectedLength) {
       var length = this.actual.length;
       return length !== expectedLength ? pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedLength, length) : null;
+    },
+
+    toHaveSameLengthAs: function(expected) {
+      var length = this.actual.length;
+      var expectedLength = expected.length;
+      return length !== expectedLength ? pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedLength, length) : null;
+    },
+
+    toHaveSameSizeAs: function(expected) {
+      var size = sizeOf(this.actual);
+      var expectedSize = sizeOf(expected);
+      return size !== expectedSize ? pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedSize, size) : null;
     },
 
     toBeAnArray: function() {
