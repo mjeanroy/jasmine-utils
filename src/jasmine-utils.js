@@ -58,6 +58,14 @@
     return obj instanceof Klass;
   };
 
+  var isTruthy = function(obj) {
+    return !!obj;
+  };
+
+  var isFalsy = function(obj) {
+    return !obj;
+  };
+
   var keys = function(obj) {
     var ks = [];
     for (var i in obj) {
@@ -274,7 +282,15 @@
     },
 
     toVerify: function(iterator) {
-      return every(this.actual, iterator) ? null : pp('Expect {{%0}} {{not}} to verify condition');
+      return every(this.actual, iterator) ? null : pp('Expect {{%0}} {{not}} to verify condition', this.actual);
+    },
+
+    toContainsOnlyTruthyValues: function() {
+      return isArray(this.actual) && every(this.actual, isTruthy) ? null : pp('Expect {{%0}} {{not}} to contains only truthy values', this.actual);
+    },
+
+    toContainsOnlyFalsyValues: function() {
+      return isArray(this.actual) && every(this.actual, isFalsy) ? null : pp('Expect {{%0}} {{not}} to contains only falsy values', this.actual);
     },
 
     toHaveSome: function(iterator) {

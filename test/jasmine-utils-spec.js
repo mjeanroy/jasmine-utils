@@ -413,4 +413,26 @@ describe('jasmine-utils', function() {
       }
     });
   });
+
+  describe('toContainsOnlyTruthyValues', function() {
+    it('should pass', function() {
+      expect([1, 2, true, 'foo', {}, []]).toContainsOnlyTruthyValues();
+
+      expect([1, 2, false, 'foo', {}, []]).not.toContainsOnlyTruthyValues();
+      expect([1, 2, true, '', {}, []]).not.toContainsOnlyTruthyValues();
+      expect([0, 2, true, 'foo', {}, []]).not.toContainsOnlyTruthyValues();
+    });
+  });
+
+  describe('toContainsOnlyFalsyValues', function() {
+    it('should pass', function() {
+      expect([0, false, null, undefined, '']).toContainsOnlyFalsyValues();
+
+      expect([1, false, null, undefined, '']).not.toContainsOnlyFalsyValues();
+      expect([0, true, null, undefined, '']).not.toContainsOnlyFalsyValues();
+      expect([0, false, {}, undefined, '']).not.toContainsOnlyFalsyValues();
+      expect([0, false, null, [], '']).not.toContainsOnlyFalsyValues();
+      expect([0, false, null, undefined, 'foo']).not.toContainsOnlyFalsyValues();
+    });
+  });
 });
