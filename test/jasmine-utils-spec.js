@@ -347,6 +347,15 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toBeInRange', function() {
+    it('should pass', function() {
+      expect(2).toBeInRange(1, 3);
+
+      expect(1).not.toBeInRange(1, 3);
+      expect(3).not.toBeInRange(1, 3);
+    });
+  });
+
   describe('toBeSorted', function() {
     it('should pass with an array of numbers', function() {
       expect([0, 1, 2, 3]).toBeSorted();

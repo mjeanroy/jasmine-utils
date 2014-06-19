@@ -297,6 +297,10 @@
       return isNumber(this.actual) && this.actual % 2 === 0 ? null : pp('Expect {{%0}} {{not}} to be a odd number', this.actual);
     },
 
+    toBeInRange: function(lower, upper) {
+      return isNumber(this.actual) && this.actual > lower && this.actual < upper ? null : pp('Expect {{%0}} {{not}} to be between {{%1}} and {{%2}}', this.actual, lower, upper);
+    },
+
     toBeSorted: function(comparator) {
       return isArray(this.actual) && isSorted(this.actual, this.equals, comparator) ? null : pp('Expect {{%0}} {{not}} to be sorted', this.actual);
     },
