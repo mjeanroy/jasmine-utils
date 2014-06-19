@@ -196,7 +196,7 @@
 
     toHaveSize: function(expectedSize) {
       var size = sizeOf(this.actual);
-      return size !== expectedSize ? pp('Expect size of {{%0}} {{not}}to be {{%1}} but was {{%2}}', this.actual, expectedSize, size) : null;
+      return size !== expectedSize ? pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedSize, size) : null;
     },
 
     toBeEmpty: function() {
@@ -283,6 +283,10 @@
 
     toBeAnEmptyString: function() {
       return isString(this.actual) && this.actual === '' ? null : pp('Expect {{%0}} {{not}} to be an empty string', this.actual);
+    },
+
+    toEqualsIgnoringCase: function(string) {
+      return isString(string) && isString(this.actual) && this.actual.toLowerCase() === string.toLowerCase() ? null : pp('Expect {{%0}} {{not}} to be equals to {{%1}} (case insensitive)', this.actual, string);
     },
 
     toBeAFunction: function() {

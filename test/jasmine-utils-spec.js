@@ -527,4 +527,12 @@ describe('jasmine-utils', function() {
       expect([obj1, obj2_1, obj3, obj2_2]).not.toContainsDistinctValues();
     });
   });
+
+  describe('toContainsDistinctValues', function() {
+    it('should pass', function() {
+      expect('foo').toEqualsIgnoringCase('foo');
+      expect('foo').toEqualsIgnoringCase('FOO');
+      expect('foo').not.toEqualsIgnoringCase('bar');
+    });
+  });
 });
