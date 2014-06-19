@@ -435,4 +435,47 @@ describe('jasmine-utils', function() {
       expect([0, false, null, undefined, 'foo']).not.toContainsOnlyFalsyValues();
     });
   });
+
+  describe('toContainsDistinctValues', function() {
+    it('should pass with an array of integers', function() {
+      expect([0, 1, 2, 3]).toContainsDistinctValues();
+      expect([0, 1, 2, 3, 0]).not.toContainsDistinctValues();
+    });
+
+    it('should pass with an array of strings', function() {
+      expect(['true', 'false']).toContainsDistinctValues();
+      expect(['true', 'false', 'false']).not.toContainsDistinctValues();
+    });
+
+    it('should pass with an array of booleans', function() {
+      expect([true, false]).toContainsDistinctValues();
+      expect([true, false, false]).not.toContainsDistinctValues();
+    });
+
+    it('should pass with an array of booleans', function() {
+      expect([true, false]).toContainsDistinctValues();
+      expect([true, false, false]).not.toContainsDistinctValues();
+    });
+
+    it('should pass with an array of objects', function() {
+      var obj1 = {
+        id: 1
+      };
+
+      var obj2_1 = {
+        id: 2
+      };
+
+      var obj2_2 = {
+        id: 2
+      };
+
+      var obj3 = {
+        id: 3
+      };
+
+      expect([obj1, obj2_1, obj3]).toContainsDistinctValues();
+      expect([obj1, obj2_1, obj3, obj2_2]).not.toContainsDistinctValues();
+    });
+  });
 });

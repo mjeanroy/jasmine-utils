@@ -127,6 +127,26 @@
     return Math.abs(dateDiff(d1, d2));
   };
 
+  var countOccurence = function(array, occ, from, equalsFunction) {
+    var areEquals = equalsFunction || function(obj1, obj2) {
+      return obj1 === obj2;
+    };
+
+    var count = 0;
+    for (var i = from, size = array.length; i < size; ++i) {
+      if (equalsFunction(array[i], occ)) {
+        count++;
+      }
+    }
+    return count;
+  };
+
+  var containsDistinct = function(array, equalsFunction) {
+    return every(array, function(item, idx) {
+      return countOccurence(array, item, idx, equalsFunction) <= 1;
+    });
+  };
+
   var pp = function(message) {
     var placeholders = [].slice.call(arguments, 1);
     for (var i = 0, size = placeholders.length; i < size; ++i) {
@@ -283,6 +303,10 @@
 
     toVerify: function(iterator) {
       return every(this.actual, iterator) ? null : pp('Expect {{%0}} {{not}} to verify condition', this.actual);
+    },
+
+    toContainsDistinctValues: function() {
+      return isArray(this.actual) && containsDistinct(this.actual, this.equals) ? null : pp('Expect {{%0}} {{not}} to contains only distinct values', this.actual);
     },
 
     toContainsOnlyTruthyValues: function() {
