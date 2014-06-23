@@ -392,6 +392,48 @@
     // TODO
   }
 
+  // Add utils functions to jasmine framework
+
+  // Spy methods if and only given method is not alreay a spy
+  // Spy is returned
+  jasmine.spyIf = function(obj, method) {
+    if (!jasmine.isSpy(obj[method])) {
+      spyOn(obj, method);
+    }
+    return obj[method];
+  };
+
+  // Spy all methods on given object
+  jasmine.spyAll = function(obj) {
+    jasmine.spyAllExcept(obj, []);
+  };
+
+  // Spy all methods on given object, except method in given array
+  jasmine.spyAllExcept = function(obj, excepts) {
+    if (!isArray(excepts)) {
+      excepts = [excepts];
+    }
+
+    var spy = function(obj, i) {
+      var current = obj[i];
+      if (isFunction(current) && !jasmine.isSpy(current) && excepts.indexOf(i) < 0) {
+        spyOn(obj, i).andCallThrough();
+      }
+    };
+
+    var i;
+
+    for (i in obj) {
+      spy(obj, i);
+    }
+
+    if (obj.prototype) {
+      for (i in obj.prototype) {
+        spy(obj.prototype, i);
+      }
+    }
+  };
+
   beforeEach(function() {
     this.addMatchers(jasmineMatchers);
   });

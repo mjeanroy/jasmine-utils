@@ -24,6 +24,96 @@
 
 describe('jasmine-utils', function() {
 
+  describe('spyIf', function() {
+    it('should spy a method that is not already a spy', function() {
+      var obj = {
+        foo: function() {
+        }
+      };
+
+      var spy = jasmine.spyIf(obj, 'foo');
+
+      expect(jasmine.isSpy(obj.foo)).toBeTruthy();
+      expect(spy).toBeDefined();
+      expect(spy).toBe(obj.foo);
+    });
+
+    it('should not spy a method that is already a spy', function() {
+      var obj = {
+        foo: function() {
+        }
+      };
+
+      spyOn(obj, 'foo');
+
+      var spy = jasmine.spyIf(obj, 'foo');
+
+      expect(jasmine.isSpy(obj.foo)).toBeTruthy();
+      expect(spy).toBeDefined();
+      expect(spy).toBe(obj.foo);
+    });
+  });
+
+  describe('spyAll and spyAllExcept', function() {
+    beforeEach(function() {
+      this.Klass = function() {
+        this.id = 0;
+      };
+
+      this.Klass.prototype = {
+        foo: function() {
+        },
+
+        bar: function() {
+        }
+      };
+    });
+
+    it('should spy all methods', function() {
+      var obj = new this.Klass();
+
+      jasmine.spyAll(obj);
+
+      expect(jasmine.isSpy(obj.foo)).toBeTruthy();
+      expect(jasmine.isSpy(obj.bar)).toBeTruthy();
+    });
+
+    it('should spy all methods except bar', function() {
+      var obj = new this.Klass();
+
+      jasmine.spyAllExcept(obj, 'bar');
+
+      expect(jasmine.isSpy(obj.foo)).toBeTruthy();
+      expect(jasmine.isSpy(obj.bar)).toBeFalsy();
+    });
+
+    it('should spy all methods except foo and bar', function() {
+      var obj = new this.Klass();
+
+      jasmine.spyAllExcept(obj, ['foo', 'bar']);
+
+      expect(jasmine.isSpy(obj.foo)).toBeFalsy();
+      expect(jasmine.isSpy(obj.bar)).toBeFalsy();
+    });
+
+    it('should not spy a method that is already a spy', function() {
+      var obj = new this.Klass();
+      spyOn(obj, 'foo').andReturn(true);
+
+      jasmine.spyAll(obj);
+
+      expect(jasmine.isSpy(obj.foo)).toBeTruthy();
+      expect(jasmine.isSpy(obj.bar)).toBeTruthy();
+    });
+
+    it('should spy class methods', function() {
+      jasmine.spyAll(this.Klass);
+
+      expect(jasmine.isSpy(this.Klass.prototype.foo)).toBeTruthy();
+      expect(jasmine.isSpy(this.Klass.prototype.bar)).toBeTruthy();
+    });
+  });
+
   describe('toHaveLength', function() {
     it('should pass with an array', function() {
       expect([1, 2, 3]).toHaveLength(3);
