@@ -343,6 +343,22 @@
 
     toHaveSome: function(iterator) {
       return some(this.actual, iterator) ? null : pp('Expect {{%0}} {{not}} to have at least one element that verify condition');
+    },
+
+    toHaveBeenCalledOnce: function() {
+      var callCount = this.actual.callCount || 0;
+      return callCount === 1 ? null : pp('Expect spy to have been called once but was called {{%0}} time(s)', callCount);
+    },
+
+    toHaveBeenCalledOnceWith: function() {
+      var actual = this.actual;
+      var args = [].slice.call(arguments);
+      var callCount = actual.callCount || 0;
+      var wasCalledOnce = callCount === 1;
+      var ok = wasCalledOnce && this.equals(actual.argsForCall[0], args);
+      var msg = wasCalledOnce && !ok ? ' with different arguments' : '';
+      var error = 'Expect spy to have been called once but was called {{%0}} time(s)' + msg;
+      return ok ? null : pp(error, callCount);
     }
   };
 

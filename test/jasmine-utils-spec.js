@@ -625,4 +625,31 @@ describe('jasmine-utils', function() {
       expect('foo').not.toEqualsIgnoringCase('bar');
     });
   });
+
+  describe('toHaveBeenCalledOnce', function() {
+    it('should pass', function() {
+      var spy = jasmine.createSpy('foo');
+      expect(spy).not.toHaveBeenCalledOnce();
+
+      spy();
+      expect(spy).toHaveBeenCalledOnce();
+
+      spy();
+      expect(spy).not.toHaveBeenCalledOnce();
+    });
+  });
+
+  describe('toHaveBeenCalledOnceWitg', function() {
+    it('should pass', function() {
+      var spy = jasmine.createSpy('foo');
+      expect(spy).not.toHaveBeenCalledOnce();
+
+      spy('foo');
+      expect(spy).toHaveBeenCalledOnceWith('foo');
+      expect(spy).not.toHaveBeenCalledOnceWith('bar');
+
+      spy();
+      expect(spy).not.toHaveBeenCalledOnce();
+    });
+  });
 });
