@@ -334,6 +334,25 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toBeNumeric', function() {
+    it('should pass', function() {
+      expect(1).toBeNumeric();
+      expect('1').toBeNumeric();
+
+      expect(-1).toBeNumeric();
+      expect('-1').toBeNumeric();
+
+      expect(0).toBeNumeric();
+      expect('0').toBeNumeric();
+
+      expect(1.5).toBeNumeric();
+      expect('1.5').toBeNumeric();
+
+      expect('foo').not.toBeNumeric();
+      expect(true).not.toBeNumeric();
+    });
+  });
+
   describe('toBeAFunction', function() {
     it('should pass', function() {
       var myFunc = function() {};

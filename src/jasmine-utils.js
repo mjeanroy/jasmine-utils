@@ -202,6 +202,10 @@
     return isSameYear && isSameMonth && isSameDate;
   };
 
+  var isNumeric = function(n) {
+    return !isNaN(parseFloat(n)) && isFinite(n);
+  };
+
   var matchers = {
     toHaveKeys: function() {
       var actualKeys = keys(this.actual);
@@ -362,6 +366,10 @@
 
     toBeEvenNumber: function() {
       return isNumber(this.actual) && this.actual % 2 === 0 ? null : pp('Expect {{%0}} {{not}} to be a odd number', this.actual);
+    },
+
+    toBeNumeric: function() {
+      return isNumeric(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a numeric value', this.actual);
     },
 
     toBeInRange: function(lower, upper) {
