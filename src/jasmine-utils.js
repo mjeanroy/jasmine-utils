@@ -287,6 +287,15 @@
       return dateDiff(this.actual, new Date()) > 0 ? pp('Expect date {{%0}} {{not}} to be before now', this.actual) : null;
     },
 
+    toBeSameDay: function(day) {
+      var date = isDate(day) ? day : new Date(day);
+      var actualDate = isDate(this.actual) ? this.actual : new Date(this.actual);
+      var isSameYear = date.getFullYear() === actualDate.getFullYear();
+      var isSameMonth = date.getMonth() === actualDate.getMonth();
+      var isSameDay = date.getDate() === actualDate.getDate();
+      return isSameYear && isSameMonth && isSameDay ? null : pp('Expect date {{%0}} {{not}} to be same day as {{%1}}', actualDate, date);
+    },
+
     toBeNull: function() {
       return this.actual === null ? null : pp('Expect {{%0}} {{not}} to be null', this.actual);
     },

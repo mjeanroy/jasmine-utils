@@ -458,6 +458,24 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toBeSameDay', function() {
+    it('should pass with dates', function() {
+      var date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
+      var date2 = new Date(2014, 5, 5, 15, 0, 0, 0);
+      var date3 = new Date(2014, 5, 6, 10, 0, 0, 0);
+
+      expect(date1).toBeSameDay(date2);
+      expect(date1).not.toBeSameDay(date3);
+    });
+
+    it('should pass with strings', function() {
+      var date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
+
+      expect(date1).toBeSameDay('2014-06-05');
+      expect(date1).not.toBeSameDay('2014-06-06');
+    });
+  });
+
   describe('toBeABoolean', function() {
     it('should pass', function() {
       expect(true).toBeABoolean();
