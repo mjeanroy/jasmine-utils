@@ -206,6 +206,10 @@
     return !isNaN(parseFloat(n)) && isFinite(n);
   };
 
+  var isInteger = function(n) {
+    return isNumeric(n) && n % 1 === 0;
+  };
+
   var matchers = {
     toHaveKeys: function() {
       var actualKeys = keys(this.actual);
@@ -373,7 +377,11 @@
     },
 
     toBeInteger: function() {
-      return isNumeric(this.actual) && this.actual %1 === 0 ? null : pp('Expect {{%0}} {{not}} to be an integer', this.actual);
+      return isNumeric(this.actual) && isInteger(this.actual) ? null : pp('Expect {{%0}} {{not}} to be an integer', this.actual);
+    },
+
+    toBeFloat: function() {
+      return isNumeric(this.actual) && !isInteger(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a float', this.actual);
     },
 
     toBeInRange: function(lower, upper) {

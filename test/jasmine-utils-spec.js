@@ -364,6 +364,18 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toBeFloat', function() {
+    it('should pass', function() {
+      expect(1.5).toBeFloat();
+      expect('1.5').toBeFloat();
+
+      expect(1.0).not.toBeFloat();
+      expect('1.0').not.toBeFloat();
+      expect(1).not.toBeFloat();
+      expect('1').not.toBeFloat();
+    });
+  });
+
   describe('toBeAFunction', function() {
     it('should pass', function() {
       var myFunc = function() {};
