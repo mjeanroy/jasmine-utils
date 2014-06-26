@@ -229,6 +229,22 @@
       };
     },
 
+    toHaveFunctions: function() {
+      var actual = this.actual;
+      var methods = [].slice.call(arguments);
+      var ok = true;
+      for (var i = 0, size = methods.length; i < size; ++i) {
+        if (!isFunction(actual[methods[i]])) {
+          ok = false;
+        }
+      }
+
+      return {
+        pass: ok,
+        message: pp('Expect object {{%0}} {{not}} to contain functions {{%1}}', actual, methods)
+      };
+    },
+
     toHaveValues: function() {
       var actualValues = values(this.actual);
       var vals = [].slice.call(arguments);

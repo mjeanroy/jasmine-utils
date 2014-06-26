@@ -408,6 +408,20 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toHaveFunctions', function() {
+    it('should pass', function() {
+      var obj = {
+        id: 1,
+        name: 'foo',
+        foo: jasmine.createSpy('foo'),
+        bar: jasmine.createSpy('bar')
+      };
+
+      expect(obj).toHaveFunctions('foo', 'bar');
+      expect(obj).not.toHaveFunctions('id', 'name');
+    });
+  });
+
   describe('toHaveValues', function() {
     it('should pass', function() {
       var obj = {
