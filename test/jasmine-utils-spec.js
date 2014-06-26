@@ -476,6 +476,17 @@ describe('jasmine-utils', function() {
     });
   });
 
+   describe('toBeToday', function() {
+    it('should pass', function() {
+      var date1 = new Date();
+      var date2 = new Date();
+      date2.setDate(date1.getDate() - 1);
+
+      expect(date1).toBeToday();
+      expect(date2).not.toBeToday();
+    });
+  });
+
   describe('toBeABoolean', function() {
     it('should pass', function() {
       expect(true).toBeABoolean();

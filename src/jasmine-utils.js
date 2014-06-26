@@ -193,6 +193,15 @@
     return size;
   };
 
+  var isSameDay = function(date1, date2) {
+    var d1 = isDate(date1) ? date1 : new Date(date1);
+    var d2 = isDate(date2) ? date2 : new Date(date2);
+    var isSameYear = d1.getFullYear() === d2.getFullYear();
+    var isSameMonth = d1.getMonth() === d2.getMonth();
+    var isSameDate = d1.getDate() === d2.getDate();
+    return isSameYear && isSameMonth && isSameDate;
+  };
+
   var matchers = {
     toHaveKeys: function() {
       var actualKeys = keys(this.actual);
@@ -288,12 +297,11 @@
     },
 
     toBeSameDay: function(day) {
-      var date = isDate(day) ? day : new Date(day);
-      var actualDate = isDate(this.actual) ? this.actual : new Date(this.actual);
-      var isSameYear = date.getFullYear() === actualDate.getFullYear();
-      var isSameMonth = date.getMonth() === actualDate.getMonth();
-      var isSameDay = date.getDate() === actualDate.getDate();
-      return isSameYear && isSameMonth && isSameDay ? null : pp('Expect date {{%0}} {{not}} to be same day as {{%1}}', actualDate, date);
+      return isSameDay(this.actual, day) ? null : pp('Expect date {{%0}} {{not}} to be same day as {{%1}}', new Date(this.actual), new Date(day));
+    },
+
+    toBeToday: function() {
+      return isSameDay(this.actual, new Date()) ? null : pp('Expect date {{%0}} {{not}} to be today', new Date(this.actual), new Date());
     },
 
     toBeNull: function() {
