@@ -435,6 +435,20 @@
       };
     },
 
+    toStartsWith: function(prefix) {
+      return {
+        pass: isString(prefix) && isString(this.actual) && this.actual.indexOf(prefix) === 0,
+        message: pp('Expect {{%0}} {{not}} to starts with {{%1}}', this.actual, prefix)
+      };
+    },
+
+    toEndsWith: function(suffix) {
+      return {
+        pass: isString(suffix) && isString(this.actual) && this.actual.indexOf(suffix, this.actual.length - suffix.length) !== -1,
+        message: pp('Expect {{%0}} {{not}} to ends with {{%1}}', this.actual, suffix)
+      };
+    },
+
     toBeAFunction: function() {
       return {
         pass: isFunction(this.actual),

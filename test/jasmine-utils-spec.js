@@ -275,6 +275,30 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toStartsWith', function() {
+    it('should pass', function() {
+      expect('foo').toStartsWith('foo');
+      expect('foo').toStartsWith('fo');
+      expect('foo').toStartsWith('f');
+
+      expect('foo').not.toStartsWith('o');
+      expect('foo').not.toStartsWith('oo');
+      expect('foo').not.toStartsWith('bar');
+    });
+  });
+
+  describe('toEndsWith', function() {
+    it('should pass', function() {
+      expect('foo').toEndsWith('foo');
+      expect('foo').toEndsWith('oo');
+      expect('foo').toEndsWith('o');
+
+      expect('foo').not.toEndsWith('f');
+      expect('foo').not.toEndsWith('fo');
+      expect('foo').not.toEndsWith('bar');
+    });
+  });
+
   describe('toBeZero', function() {
     it('should pass', function() {
       expect(0).toBeZero();
