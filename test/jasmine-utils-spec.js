@@ -367,6 +367,23 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toHaveValues', function() {
+    it('should pass', function() {
+      var obj = {
+        id: 1,
+        name: 'foo',
+        array: [1, 2, 3],
+        o: {
+          id: 10
+        }
+      };
+
+      expect(obj).toHaveValues(1, 'foo', [1, 2, 3], { id: 10 });
+      expect(obj).not.toHaveValues(2, 'bar');
+      expect(obj).not.toHaveValues({ id: 11 });
+    });
+  });
+
   describe('toBeADate', function() {
     it('should pass', function() {
       expect(new Date()).toBeADate();

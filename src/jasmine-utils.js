@@ -76,17 +76,32 @@
     return ks;
   };
 
-  var indexOfStrict = function(array, obj) {
+  var values = function(obj) {
+    var vals = [];
+    for (var i in obj) {
+      if (obj.hasOwnProperty(i)) {
+        vals.push(obj[i]);
+      }
+    }
+    return vals;
+  };
+
+  var strictEquals = function(a, b) {
+    return a === b;
+  };
+
+  var indexOf = function(array, obj, equalsFunction) {
+    var areEquals = equalsFunction || strictEquals;
     for (var i = 0, size = array.length; i < size; ++i) {
-      if (array[i] === obj) {
+      if (areEquals(array[i], obj)) {
         return i;
       }
     }
     return -1;
   };
 
-  var containsStrict = function(array, obj) {
-    return indexOfStrict(array, obj) >= 0;
+  var contains = function(array, obj, equalsFunction) {
+    return indexOf(array, obj, equalsFunction) >= 0;
   };
 
   var every = function(array, iterator, ctx) {
@@ -184,14 +199,29 @@
       var ks = [].slice.call(arguments);
 
       var error = false;
-      for (var i = 0, size = ks.length; i < ks.length; ++i) {
-        if (!containsStrict(actualKeys, ks[i])) {
+      for (var i = 0, size = ks.length; i < size; ++i) {
+        if (!contains(actualKeys, ks[i])) {
           error = true;
           break;
         }
       }
 
       return error ? pp('Expect object {{%0}} to contain keys {{%1}}', this.actual, ks) : null;
+    },
+
+    toHaveValues: function() {
+      var actualValues = values(this.actual);
+      var vals = [].slice.call(arguments);
+
+      var error = false;
+      for (var i = 0, size = vals.length; i < size; ++i) {
+        if (!contains(actualValues, vals[i], this.equals)) {
+          error = true;
+          break;
+        }
+      }
+
+      return error ? pp('Expect object {{%0}} to contain values {{%1}}', this.actual, vals) : null;
     },
 
     toHaveSize: function(expectedSize) {
