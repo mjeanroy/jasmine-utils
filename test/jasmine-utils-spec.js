@@ -98,7 +98,7 @@ describe('jasmine-utils', function() {
 
     it('should not spy a method that is already a spy', function() {
       var obj = new this.Klass();
-      spyOn(obj, 'foo').andReturn(true);
+      spyOn(obj, 'foo').and.returnValue(true);
 
       jasmine.spyAll(obj);
 
@@ -137,7 +137,6 @@ describe('jasmine-utils', function() {
       expect('123').not.toHaveSameLengthAs('1');
     });
   });
-
 
   describe('toHaveSize', function() {
     it('should pass with an array', function() {
@@ -518,7 +517,7 @@ describe('jasmine-utils', function() {
     });
   });
 
-   describe('toBeToday', function() {
+  describe('toBeToday', function() {
     it('should pass', function() {
       var date1 = new Date();
       var date2 = new Date();
@@ -706,7 +705,7 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toContainsDistinctValues', function() {
+  describe('toEqualsIgnoringCase', function() {
     it('should pass', function() {
       expect('foo').toEqualsIgnoringCase('foo');
       expect('foo').toEqualsIgnoringCase('FOO');
@@ -727,7 +726,7 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toHaveBeenCalledOnceWitg', function() {
+  describe('toHaveBeenCalledOnceWith', function() {
     it('should pass', function() {
       var spy = jasmine.createSpy('foo');
       expect(spy).not.toHaveBeenCalledOnce();

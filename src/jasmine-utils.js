@@ -215,264 +215,453 @@
       var actualKeys = keys(this.actual);
       var ks = [].slice.call(arguments);
 
-      var error = false;
+      var ok = true;
       for (var i = 0, size = ks.length; i < size; ++i) {
         if (!contains(actualKeys, ks[i])) {
-          error = true;
+          ok = false;
           break;
         }
       }
 
-      return error ? pp('Expect object {{%0}} to contain keys {{%1}}', this.actual, ks) : null;
+      return {
+        pass: ok,
+        message: pp('Expect object {{%0}} to contain keys {{%1}}', this.actual, ks)
+      };
     },
 
     toHaveValues: function() {
       var actualValues = values(this.actual);
       var vals = [].slice.call(arguments);
 
-      var error = false;
+      var ok = true;
       for (var i = 0, size = vals.length; i < size; ++i) {
         if (!contains(actualValues, vals[i], this.equals)) {
-          error = true;
+          ok = false;
           break;
         }
       }
 
-      return error ? pp('Expect object {{%0}} to contain values {{%1}}', this.actual, vals) : null;
+      return {
+        pass: ok,
+        message: pp('Expect object {{%0}} to contain values {{%1}}', this.actual, vals)
+      };
     },
 
     toHaveSize: function(expectedSize) {
       var size = sizeOf(this.actual);
-      return size !== expectedSize ? pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedSize, size) : null;
+      return {
+        pass: size === expectedSize,
+        message: pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedSize, size)
+      };
     },
 
     toBeEmpty: function() {
       var size = sizeOf(this.actual);
-      return size === 0 ? null : pp('Expect {{%0}} {{not}} to be empty', this.actual);
+      return {
+        pass: size === 0,
+        message: pp('Expect {{%0}} {{not}} to be empty', this.actual)
+      };
     },
 
     toHaveLength: function(expectedLength) {
       var length = this.actual.length;
-      return length !== expectedLength ? pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedLength, length) : null;
+      return {
+        pass: length === expectedLength,
+        message: pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedLength, length)
+      };
     },
 
     toHaveSameLengthAs: function(expected) {
       var length = this.actual.length;
       var expectedLength = expected.length;
-      return length !== expectedLength ? pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedLength, length) : null;
+      return {
+        pass: length === expectedLength,
+        message: pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedLength, length)
+      };
     },
 
     toHaveSameSizeAs: function(expected) {
       var size = sizeOf(this.actual);
       var expectedSize = sizeOf(expected);
-      return size !== expectedSize ? pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedSize, size) : null;
+      return {
+        pass: size === expectedSize,
+        message: pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', this.actual, expectedSize, size)
+      };
     },
 
     toBeAnArray: function() {
-      return isArray(this.actual) ? null : pp('Expect {{%0}} {{not}} to be an array', this.actual);
+      return {
+        pass: isArray(this.actual),
+        message: pp('Expect {{%0}} {{not}} to be an array', this.actual)
+      };
     },
 
     toBeADate: function() {
-      return isDate(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a date', this.actual);
+      return {
+        pass: isDate(this.actual),
+        message: pp('Expect {{%0}} {{not}} to be a date', this.actual)
+      };
     },
 
     toBeDateCloseTo: function(date, maxDiff) {
       var max = arguments.length > 1 ? maxDiff : 1000;
       var diff = dateAbsDiff(this.actual, date);
-      return diff > max ? pp('Expect date {{%0}} {{not}} to be close to {{%1}}', this.actual, date) : null;
+      return {
+        pass: diff <= max,
+        message: pp('Expect date {{%0}} {{not}} to be close to {{%1}}', this.actual, date)
+      };
     },
 
     toBeDateCloseToNow: function(maxDiff) {
       var max = arguments.length > 0 ? maxDiff : 1000;
       var diff = dateAbsDiff(this.actual, new Date());
-      return diff > max ? pp('Expect date {{%0}} {{not}} to be close to now', this.actual) : null;
+      return {
+        pass: diff <= max,
+        message: pp('Expect date {{%0}} {{not}} to be close to now', this.actual)
+      };
     },
 
     toBeDateAfter: function(lower) {
-      return dateDiff(this.actual, lower) < 0 ? pp('Expect date {{%0}} {{not}} to be after {{%1}}', this.actual, lower) : null;
+      return {
+        pass: dateDiff(this.actual, lower) >= 0,
+        message: pp('Expect date {{%0}} {{not}} to be after {{%1}}', this.actual, lower)
+      };
     },
 
     toBeDateAfterNow: function() {
-      return dateDiff(this.actual, new Date()) < 0 ? pp('Expect date {{%0}} {{not}} to be after now', this.actual) : null;
+      return {
+        pass: dateDiff(this.actual, new Date()) >= 0,
+        message: pp('Expect date {{%0}} {{not}} to be after now', this.actual)
+      };
     },
 
     toBeDateBefore: function(upper) {
-      return dateDiff(this.actual, upper) > 0 ? pp('Expect date {{%0}} {{not}} to be before {{%1}}', this.actual, upper) : null;
+      return {
+        pass: dateDiff(this.actual, upper) <= 0,
+        message: pp('Expect date {{%0}} {{not}} to be before {{%1}}', this.actual, upper)
+      };
     },
 
     toBeDateBeforeNow: function() {
-      return dateDiff(this.actual, new Date()) > 0 ? pp('Expect date {{%0}} {{not}} to be before now', this.actual) : null;
+      return {
+        pass: dateDiff(this.actual, new Date()) <= 0,
+        message: pp('Expect date {{%0}} {{not}} to be before now', this.actual)
+      };
     },
 
     toBeSameDay: function(day) {
-      return isSameDay(this.actual, day) ? null : pp('Expect date {{%0}} {{not}} to be same day as {{%1}}', new Date(this.actual), new Date(day));
+      return {
+        pass: isSameDay(this.actual, day),
+        message: pp('Expect date {{%0}} {{not}} to be same day as {{%1}}', new Date(this.actual), new Date(day))
+      };
     },
 
     toBeToday: function() {
-      return isSameDay(this.actual, new Date()) ? null : pp('Expect date {{%0}} {{not}} to be today', new Date(this.actual), new Date());
+      return {
+        pass: isSameDay(this.actual, new Date()),
+        message: pp('Expect date {{%0}} {{not}} to be today', new Date(this.actual), new Date())
+      };
     },
 
     toBeNull: function() {
-      return this.actual === null ? null : pp('Expect {{%0}} {{not}} to be null', this.actual);
+      return {
+        pass: this.actual === null,
+        message: pp('Expect {{%0}} {{not}} to be null', this.actual)
+      };
     },
 
     toBeANumber: function() {
-      return isNumber(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a number', this.actual);
+      return {
+        pass: isNumber(this.actual),
+        message: pp('Expect {{%0}} {{not}} to be a number', this.actual)
+      };
     },
 
     toBeABoolean: function() {
-      return isBoolean(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a boolean', this.actual);
+      return {
+        pass: isBoolean(this.actual),
+        message: pp('Expect {{%0}} {{not}} to be a boolean', this.actual)
+      };
     },
 
     toBeTrue: function() {
-      return this.actual === true ? null : pp('Expect {{%0}} {{not}} to be true', this.actual);
+      return {
+        pass: this.actual === true,
+        message: pp('Expect {{%0}} {{not}} to be true', this.actual)
+      };
     },
 
     toBeFalse: function() {
-      return this.actual === false ? null : pp('Expect {{%0}} {{not}} to be false', this.actual);
+      return {
+        pass: this.actual === false,
+        message: pp('Expect {{%0}} {{not}} to be false', this.actual)
+      };
     },
 
     toBeAString: function() {
-      return isString(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a string', this.actual);
+      return {
+        pass: isString(this.actual),
+        message: pp('Expect {{%0}} {{not}} to be a string', this.actual)
+      };
     },
 
     toBeAnEmptyString: function() {
-      return isString(this.actual) && this.actual === '' ? null : pp('Expect {{%0}} {{not}} to be an empty string', this.actual);
+      return {
+        pass: isString(this.actual) && this.actual === '',
+        message: pp('Expect {{%0}} {{not}} to be an empty string', this.actual)
+      };
     },
 
     toEqualsIgnoringCase: function(string) {
-      return isString(string) && isString(this.actual) && this.actual.toLowerCase() === string.toLowerCase() ? null : pp('Expect {{%0}} {{not}} to be equals to {{%1}} (case insensitive)', this.actual, string);
+      return {
+        pass: isString(string) && isString(this.actual) && this.actual.toLowerCase() === string.toLowerCase(),
+        message: pp('Expect {{%0}} {{not}} to be equals to {{%1}} (case insensitive)', this.actual, string)
+      };
     },
 
     toBeAFunction: function() {
-      return isFunction(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a function', this.actual);
+      return {
+        pass: isFunction(this.actual),
+        message: pp('Expect {{%0}} {{not}} to be a function', this.actual)
+      };
     },
 
     toBeInstanceOf: function(Klass) {
-      return isInstanceOf(this.actual, Klass) ? null : pp('Expect {{%0}} {{not}} to be an instance of {{%1}}', this.actual, Klass);
+      return {
+        pass: isInstanceOf(this.actual, Klass),
+        message: pp('Expect {{%0}} {{not}} to be an instance of {{%1}}', this.actual, Klass)
+      };
     },
 
     toBeZero: function() {
-      return this.actual === 0 ? null : pp('Expect {{%0}} {{not}} to be zero', this.actual);
+      return {
+        pass: this.actual === 0,
+        message: pp('Expect {{%0}} {{not}} to be zero', this.actual)
+      };
     },
 
     toBePositive: function() {
-      return isNumber(this.actual) && this.actual > 0 ? null : pp('Expect {{%0}} {{not}} to be a positive number', this.actual);
+      return {
+        pass: isNumber(this.actual) && this.actual > 0,
+        message: pp('Expect {{%0}} {{not}} to be a positive number', this.actual)
+      };
     },
 
     toBeNegative: function() {
-      return isNumber(this.actual) && this.actual < 0 ? null : pp('Expect {{%0}} {{not}} to be a negative number', this.actual);
+      return {
+        pass: isNumber(this.actual) && this.actual < 0,
+        message: pp('Expect {{%0}} {{not}} to be a negative number', this.actual)
+      };
     },
 
     toBeOddNumber: function() {
-      return isNumber(this.actual) && this.actual % 2 !== 0 ? null : pp('Expect {{%0}} {{not}} to be a odd number', this.actual);
+      return {
+        pass: isNumber(this.actual) && this.actual % 2 !== 0,
+        message: pp('Expect {{%0}} {{not}} to be a odd number', this.actual)
+      };
     },
 
     toBeEvenNumber: function() {
-      return isNumber(this.actual) && this.actual % 2 === 0 ? null : pp('Expect {{%0}} {{not}} to be a odd number', this.actual);
+      return {
+        pass: isNumber(this.actual) && this.actual % 2 === 0,
+        message: pp('Expect {{%0}} {{not}} to be a odd number', this.actual)
+      };
     },
 
     toBeNumeric: function() {
-      return isNumeric(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a numeric value', this.actual);
+      return {
+        pass: isNumeric(this.actual),
+        message: pp('Expect {{%0}} {{not}} to be a numeric value', this.actual)
+      };
     },
 
     toBeInteger: function() {
-      return isNumeric(this.actual) && isInteger(this.actual) ? null : pp('Expect {{%0}} {{not}} to be an integer', this.actual);
+      return {
+        pass: isNumeric(this.actual) && isInteger(this.actual),
+        message: pp('Expect {{%0}} {{not}} to be an integer', this.actual)
+      };
     },
 
     toBeFloat: function() {
-      return isNumeric(this.actual) && !isInteger(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a float', this.actual);
+      return {
+        pass: isNumeric(this.actual) && !isInteger(this.actual),
+        message: pp('Expect {{%0}} {{not}} to be a float', this.actual)
+      };
     },
 
     toBeInRange: function(lower, upper) {
-      return isNumber(this.actual) && this.actual > lower && this.actual < upper ? null : pp('Expect {{%0}} {{not}} to be between {{%1}} and {{%2}}', this.actual, lower, upper);
+      return {
+        pass: isNumber(this.actual) && this.actual > lower && this.actual < upper,
+        message: pp('Expect {{%0}} {{not}} to be between {{%1}} and {{%2}}', this.actual, lower, upper)
+      };
     },
 
     toBeSorted: function(comparator) {
-      return isArray(this.actual) && isSorted(this.actual, this.equals, comparator) ? null : pp('Expect {{%0}} {{not}} to be sorted', this.actual);
+      return {
+        pass: isArray(this.actual) && isSorted(this.actual, this.equals, comparator),
+        message: pp('Expect {{%0}} {{not}} to be sorted', this.actual)
+      };
     },
 
     toVerify: function(iterator) {
-      return every(this.actual, iterator) ? null : pp('Expect {{%0}} {{not}} to verify condition', this.actual);
+      return {
+        pass: every(this.actual, iterator),
+        message: pp('Expect {{%0}} {{not}} to verify condition', this.actual)
+      };
     },
 
     toContainsDistinctValues: function() {
-      return isArray(this.actual) && containsDistinct(this.actual, this.equals) ? null : pp('Expect {{%0}} {{not}} to contains only distinct values', this.actual);
+      return {
+        pass: isArray(this.actual) && containsDistinct(this.actual, this.equals),
+        message: pp('Expect {{%0}} {{not}} to contains only distinct values', this.actual)
+      };
     },
 
     toContainsOnlyTruthyValues: function() {
-      return isArray(this.actual) && every(this.actual, isTruthy) ? null : pp('Expect {{%0}} {{not}} to contains only truthy values', this.actual);
+      return {
+        pass: isArray(this.actual) && every(this.actual, isTruthy),
+        message: pp('Expect {{%0}} {{not}} to contains only truthy values', this.actual)
+      };
     },
 
     toContainsOnlyFalsyValues: function() {
-      return isArray(this.actual) && every(this.actual, isFalsy) ? null : pp('Expect {{%0}} {{not}} to contains only falsy values', this.actual);
+      return {
+        pass: isArray(this.actual) && every(this.actual, isFalsy),
+        message: pp('Expect {{%0}} {{not}} to contains only falsy values', this.actual)
+      };
     },
 
     toHaveSome: function(iterator) {
-      return some(this.actual, iterator) ? null : pp('Expect {{%0}} {{not}} to have at least one element that verify condition');
+      return {
+        pass: some(this.actual, iterator),
+        message: pp('Expect {{%0}} {{not}} to have at least one element that verify condition')
+      };
     },
 
     toHaveBeenCalledOnce: function() {
-      var callCount = this.actual.callCount || 0;
-      return callCount === 1 ? null : pp('Expect spy to have been called once but was called {{%0}} time(s)', callCount);
+      var callCount = this.callCount(this.actual) || 0;
+      return {
+        pass: callCount === 1,
+        message: pp('Expect spy to have been called once but was called {{%0}} time(s)', callCount)
+      };
     },
 
     toHaveBeenCalledOnceWith: function() {
       var actual = this.actual;
       var args = [].slice.call(arguments);
-      var callCount = actual.callCount || 0;
+      var callCount = this.callCount(actual) || 0;
       var wasCalledOnce = callCount === 1;
-      var ok = wasCalledOnce && this.equals(actual.argsForCall[0], args);
+      var ok = wasCalledOnce && this.equals(this.argsFor(actual, 0), args);
       var msg = wasCalledOnce && !ok ? ' with different arguments' : '';
       var error = 'Expect spy to have been called once but was called {{%0}} time(s)' + msg;
-      return ok ? null : pp(error, callCount);
+      return {
+        pass: ok,
+        message: pp(error, callCount)
+      };
     }
   };
 
   // Check version
-  var version = jasmine.version_.major;
+  var version = jasmine.version_ || jasmine.version;
+  if (version.major) {
+    version = version.major;
+  } else {
+    version = parseInt(version.split('.')[0], 10);
+  }
+
+  var isJasmine1 = version === 1;
+  var isJasmine2 = version === 2;
 
   var jasmineMatchers = {};
 
-  var toMatcherJasmine1 = function(fn) {
-    return function() {
-      var env = this.env;
-      var equals_ = this.env.equals_;
-
-      var ctx = {
-        actual: this.actual,
-        isNot: this.isNot,
-        equals: function() {
-          return equals_.apply(env, arguments);
-        }
-      };
-
-      var message = fn.apply(ctx, arguments);
-
-      var isNot = this.isNot;
-      var notKey = isNot ? '{{not}}' : '{{not}} ';
-      var notValue = isNot ? 'not' : '';
-
-      if (message) {
-        this.message = function() {
-          return message.replace(notKey, notValue);
-        };
-      }
-
-      return !message;
-    };
+  var parseNegateMessage = function(isNot, message) {
+    var notKey = isNot ? '{{not}}' : '{{not}} ';
+    var notValue = isNot ? 'not' : '';
+    return (message || '').replace(notKey, notValue);
   };
 
-  if (version === 1) {
-    for (var matcher in matchers) {
-      if (matchers.hasOwnProperty(matcher)) {
-        jasmineMatchers[matcher] = toMatcherJasmine1(matchers[matcher]);
-      }
-    }
-  }
+  var toJasmineMatcher = {
+    1: function(fn) {
+      return function() {
+        var env = this.env;
+        var equals_ = this.env.equals_;
 
-  if (version === 2) {
-    // TODO
+        var ctx = {
+          actual: this.actual,
+          isNot: this.isNot,
+          callCount: function(spy) {
+            return spy.callCount;
+          },
+          argsFor: function(spy, call) {
+            return spy.argsForCall[call];
+          },
+          equals: function() {
+            return equals_.apply(env, arguments);
+          }
+        };
+
+        var result = fn.apply(ctx, arguments);
+
+        var isNot = this.isNot;
+
+        if (!result.pass) {
+          this.message = function() {
+            return parseNegateMessage(isNot, result.message);
+          };
+        }
+
+        return result.pass;
+      };
+    },
+
+    2: function(fn) {
+      return function(util, customEqualityTesters) {
+        var ctx = {
+          callCount: function(spy) {
+            return spy.calls.count();
+          },
+          argsFor: function(spy, call) {
+            return spy.calls.argsFor(call);
+          },
+          equals: function(a, b) {
+            return util.equals(a, b, customEqualityTesters);
+          }
+        };
+
+        return {
+          compare: function(actual) {
+            ctx.actual = actual;
+            ctx.isNot = false;
+
+            var args = [].slice.call(arguments, 1);
+            var result = fn.apply(ctx, args);
+            return {
+              pass: result.pass,
+              message: parseNegateMessage(false, result.message)
+            };
+          },
+
+          negativeCompare: function(actual) {
+            ctx.actual = actual;
+            ctx.isNot = true;
+
+            var args = [].slice.call(arguments, 1);
+            var result = fn.apply(ctx, args);
+
+            return {
+              pass: !result.pass,
+              message: parseNegateMessage(true, result.message)
+            };
+          }
+        };
+      };
+    }
+  };
+
+  for (var matcher in matchers) {
+    if (matchers.hasOwnProperty(matcher)) {
+      jasmineMatchers[matcher] = toJasmineMatcher[version](matchers[matcher]);
+    }
   }
 
   // Add utils functions to jasmine framework
@@ -500,7 +689,12 @@
     var spy = function(obj, i) {
       var current = obj[i];
       if (isFunction(current) && !jasmine.isSpy(current) && excepts.indexOf(i) < 0) {
-        spyOn(obj, i).andCallThrough();
+        var spy = spyOn(obj, i);
+        if (isJasmine1) {
+          spy.andCallThrough();
+        } else {
+          spy.and.callThrough();
+        }
       }
     };
 
@@ -518,7 +712,11 @@
   };
 
   beforeEach(function() {
-    this.addMatchers(jasmineMatchers);
+    if (isJasmine1) {
+      this.addMatchers(jasmineMatchers);
+    } else {
+      jasmine.addMatchers(jasmineMatchers);
+    }
   });
 
 })(void 0);
