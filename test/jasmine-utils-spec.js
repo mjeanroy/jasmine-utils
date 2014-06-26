@@ -353,6 +353,17 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toBeInteger', function() {
+    it('should pass', function() {
+      expect(1).toBeInteger();
+      expect(1.0).toBeInteger();
+      expect('1').toBeNumeric();
+      expect('1.0').toBeNumeric();
+
+      expect(1.5).not.toBeInteger();
+    });
+  });
+
   describe('toBeAFunction', function() {
     it('should pass', function() {
       var myFunc = function() {};

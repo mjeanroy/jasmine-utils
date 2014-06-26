@@ -372,6 +372,10 @@
       return isNumeric(this.actual) ? null : pp('Expect {{%0}} {{not}} to be a numeric value', this.actual);
     },
 
+    toBeInteger: function() {
+      return isNumeric(this.actual) && this.actual %1 === 0 ? null : pp('Expect {{%0}} {{not}} to be an integer', this.actual);
+    },
+
     toBeInRange: function(lower, upper) {
       return isNumber(this.actual) && this.actual > lower && this.actual < upper ? null : pp('Expect {{%0}} {{not}} to be between {{%1}} and {{%2}}', this.actual, lower, upper);
     },
