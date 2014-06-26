@@ -1,6 +1,6 @@
 {
-  "name": "bb-strap",
-  "version": "0.2.7",
+  "name": "jasmine-utils",
+  "version": "0.1.0",
   "devDependencies": {
     "grunt": "0.4.5",
     "grunt-contrib-jshint": "0.10.0",
