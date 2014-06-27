@@ -487,14 +487,14 @@
     toBeOddNumber: function() {
       return {
         pass: isNumber(this.actual) && this.actual % 2 !== 0,
-        message: pp('Expect {{%0}} {{not}} to be a odd number', this.actual)
+        message: pp('Expect {{%0}} {{not}} to be an odd number', this.actual)
       };
     },
 
     toBeEvenNumber: function() {
       return {
         pass: isNumber(this.actual) && this.actual % 2 === 0,
-        message: pp('Expect {{%0}} {{not}} to be a odd number', this.actual)
+        message: pp('Expect {{%0}} {{not}} to be an even number', this.actual)
       };
     },
 
