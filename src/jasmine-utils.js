@@ -225,7 +225,7 @@
 
       return {
         pass: ok,
-        message: pp('Expect object {{%0}} to contain keys {{%1}}', this.actual, ks)
+        message: pp('Expect object {{%0}} {{not}} to contain keys {{%1}}', this.actual, ks)
       };
     },
 
@@ -259,7 +259,7 @@
 
       return {
         pass: ok,
-        message: pp('Expect object {{%0}} to contain values {{%1}}', this.actual, vals)
+        message: pp('Expect object {{%0}} {{not}} to contain values {{%1}}', this.actual, vals)
       };
     },
 
