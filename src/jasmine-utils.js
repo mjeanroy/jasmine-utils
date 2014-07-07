@@ -710,33 +710,76 @@
     jasmine.spyAllExcept(obj, []);
   };
 
+  var spyIfAndCallThrough = function(obj, i) {
+    var current = obj[i];
+    if (isFunction(current) && !jasmine.isSpy(current)) {
+      var spy = spyOn(obj, i);
+      if (isJasmine1) {
+        spy.andCallThrough();
+      } else {
+        spy.and.callThrough();
+      }
+    }
+  };
+
+  var arrayToMap = function(array) {
+    var map = {};
+    for (var i = 0, size = array.length; i < size; ++i) {
+      map[array[i]] = true;
+    }
+    return map;
+  };
+
+  jasmine.spyEach = function(obj, methods) {
+    var excepts = [];
+
+    if (!methods) {
+      methods = [];
+    }
+
+    if (!isArray(methods)) {
+      methods = [methods];
+    }
+
+    var i;
+    var isEmpty = methods.length === 0;
+    var map = arrayToMap(methods);
+
+    for (i in obj) {
+      if (isEmpty || map[i]) {
+        spyIfAndCallThrough(obj, i);
+      }
+    }
+
+    if (obj.prototype) {
+      for (i in obj.prototype) {
+        if (isEmpty || map[i]) {
+          spyIfAndCallThrough(obj.prototype, i);
+        }
+      }
+    }
+  };
+
   // Spy all methods on given object, except method in given array
   jasmine.spyAllExcept = function(obj, excepts) {
     if (!isArray(excepts)) {
       excepts = [excepts];
     }
 
-    var spy = function(obj, i) {
-      var current = obj[i];
-      if (isFunction(current) && !jasmine.isSpy(current) && excepts.indexOf(i) < 0) {
-        var spy = spyOn(obj, i);
-        if (isJasmine1) {
-          spy.andCallThrough();
-        } else {
-          spy.and.callThrough();
-        }
-      }
-    };
-
+    var map = arrayToMap(excepts);
     var i;
 
     for (i in obj) {
-      spy(obj, i);
+      if (!map[i]) {
+        spyIfAndCallThrough(obj, i);
+      }
     }
 
     if (obj.prototype) {
       for (i in obj.prototype) {
-        spy(obj.prototype, i);
+        if (!map[i]) {
+          spyIfAndCallThrough(obj.prototype, i);
+        }
       }
     }
   };

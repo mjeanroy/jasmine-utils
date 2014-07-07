@@ -96,6 +96,24 @@ describe('jasmine-utils', function() {
       expect(jasmine.isSpy(obj.bar)).toBeFalsy();
     });
 
+    it('should spy each methods with one argument', function() {
+      var obj = new this.Klass();
+
+      jasmine.spyEach(obj, 'bar');
+
+      expect(jasmine.isSpy(obj.foo)).toBeFalsy();
+      expect(jasmine.isSpy(obj.bar)).toBeTruthy();
+    });
+
+    it('should spy each methods', function() {
+      var obj = new this.Klass();
+
+      jasmine.spyEach(obj, ['bar', 'foo']);
+
+      expect(jasmine.isSpy(obj.foo)).toBeTruthy();
+      expect(jasmine.isSpy(obj.bar)).toBeTruthy();
+    });
+
     it('should not spy a method that is already a spy', function() {
       var obj = new this.Klass();
       spyOn(obj, 'foo').and.returnValue(true);

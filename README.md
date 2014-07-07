@@ -65,6 +65,26 @@ it('should spy selected method', function() {
 });
 ```
 
+- `jasmine.spyEach(object, [only])`
+  - Spy all functions of given object that are specified in array as second arguments.
+  - Spies are configured with `callThrough`
+
+```javascript
+it('should spy selected method', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    },
+    method3: function() {
+    }
+  };
+
+  jasmine.spyEach(obj, ['method1', 'method2');
+});
+```
+
 ## Matchers
 
 ### Booleans
