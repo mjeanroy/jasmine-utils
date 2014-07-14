@@ -568,6 +568,38 @@
       };
     },
 
+    toBePartiallyEqualsTo: function(obj) {
+      var actual = this.actual;
+      var equalsFunction = this.equals;
+
+      var checkArray = function(a, b) {
+        if (a.length !== b.length) {
+          return false;
+        }
+
+        return every(b, function(current, i) {
+          return equalsFunction(a[i], jasmine.objectContaining(current));
+        });
+      };
+
+      var checkObject = function(a, b) {
+        return equalsFunction(a, jasmine.objectContaining(b));
+      };
+
+      var pass = false;
+
+      if (isArray(obj) && isArray(actual)) {
+        pass = checkArray(actual, obj);
+      } else if (isObject(obj) && isObject(actual)) {
+        pass = checkObject(actual, obj);
+      }
+
+      return {
+        pass: pass,
+        message: pp('Expect {{%0}} {{not}} to be partially equals to {{%1}}', actual, obj)
+      };
+    },
+
     toHaveBeenCalledOnce: function() {
       var callCount = this.callCount(this.actual) || 0;
       return {

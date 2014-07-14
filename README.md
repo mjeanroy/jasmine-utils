@@ -677,6 +677,47 @@ it('should check that an array contains only falsy values', function() {
 });
 ```
 
+- `toBePartiallyEqualsTo(array)`
+  - Check that two arrays are equals using only item properties properties of array in parameter (ignoring other properties).
+  - Error message: 'Expect actual (not) to be partially equals to param'
+
+```javascript
+it('should check that an object is partially equals to an other object', function() {
+  var a1 = {
+    id: 1,
+    foo: 'bar'
+  };
+
+  var a2 = {
+    id: 2,
+    foo: 'bar'
+  };
+
+  var b1 = {
+    id: 1
+  };
+
+  var b2 = {
+    id: 2,
+  };
+
+  var c1 = {
+    id: 2
+  };
+
+  var c2 = {
+    id: 2
+  };
+
+  var array1 = [a1, a2];
+  var array2 = [b1, b2];
+  var array3 = [c1, c2];
+
+  expect(array1).toBePartiallyEqualsTo(array2);
+  expect(array1).not.toBePartiallyEqualsTo(array3);
+});
+```
+
 ### Objects
 
 - `toBeInstanceOf(Klass)`
@@ -790,6 +831,32 @@ it('should check that an object has same size as an other object', function() {
 it('should check that an object is empty', function() {
   expect({}).toBeEmpty();
   expect({ id: 1 }).not.toBeEmpty();
+});
+```
+
+- `toBePartiallyEqualsTo(object)`
+  - Check that two objects are equals using only properties of parameter object (ignoring other properties).
+  - Error message: 'Expect actual (not) to be partially equals to param'
+
+```javascript
+it('should check that an object is partially equals to an other object', function() {
+  var a = {
+    id: 1,
+    foo: 'bar',
+    bar: 'foo'
+  };
+
+  var b = {
+    id: 1,
+    foo: 'bar'
+  };
+
+  var c = {
+    id: 2
+  };
+
+  expect(a).toBePartiallyEqualsTo(b);
+  expect(a).not.toBePartiallyEqualsTo(c);
 });
 ```
 

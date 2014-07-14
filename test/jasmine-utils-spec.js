@@ -761,12 +761,65 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toEqualsIgnoringCase', function() {
-    it('should pass', function() {
-      expect('foo').toEqualsIgnoringCase('foo');
-      expect('foo').toEqualsIgnoringCase('FOO');
-      expect('foo').not.toEqualsIgnoringCase('bar');
+  describe('toBePartiallyEqualsTo', function() {
+    it('should pass with objects', function() {
+      var a = {
+        id: 1,
+        foo: 'bar',
+        bar: 'foo'
+      };
+
+      var b = {
+        id: 1,
+        foo: 'bar'
+      };
+
+      var c = {
+        id: 2
+      };
+
+      expect(a).toBePartiallyEqualsTo(b);
+      expect(a).not.toBePartiallyEqualsTo(c);
     });
+
+    it('should pass with arrays', function() {
+      var a1 = {
+        id: 1,
+        foo: 'bar'
+      };
+
+      var a2 = {
+        id: 2,
+        foo: 'bar'
+      };
+
+      var b1 = {
+        id: 1
+      };
+
+      var b2 = {
+        id: 2,
+      };
+
+      var c1 = {
+        id: 2
+      };
+
+      var c2 = {
+        id: 2
+      };
+
+      var array1 = [a1, a2];
+      var array2 = [b1, b2];
+      var array3 = [c1, c2];
+
+      expect(array1).toBePartiallyEqualsTo(array2);
+      expect(array1).not.toBePartiallyEqualsTo(array3);
+    });
+  });
+
+  describe('toContainsDistinctValues', function() {
+
   });
 
   describe('toHaveBeenCalledOnce', function() {
