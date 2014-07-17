@@ -132,6 +132,73 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('resetAll, resetEach and resetAllExcept', function() {
+    beforeEach(function() {
+      this.Klass = function() {
+        this.id = 0;
+      };
+
+      this.Klass.prototype = {
+        foo: function() {
+        },
+
+        bar: function() {
+        }
+      };
+    });
+
+    it('should reset all methods', function() {
+      var obj = new this.Klass();
+      spyOn(obj, 'foo');
+      spyOn(obj, 'bar');
+
+      obj.foo();
+      obj.bar();
+
+      expect(obj.foo).toHaveBeenCalled();
+      expect(obj.bar).toHaveBeenCalled();
+
+      jasmine.resetAll(obj);
+
+      expect(obj.foo).not.toHaveBeenCalled();
+      expect(obj.bar).not.toHaveBeenCalled();
+    });
+
+    it('should reset each specified methods', function() {
+      var obj = new this.Klass();
+      spyOn(obj, 'foo');
+      spyOn(obj, 'bar');
+
+      obj.foo();
+      obj.bar();
+
+      expect(obj.foo).toHaveBeenCalled();
+      expect(obj.bar).toHaveBeenCalled();
+
+      jasmine.resetEach(obj, ['foo']);
+
+      expect(obj.foo).not.toHaveBeenCalled();
+      expect(obj.bar).toHaveBeenCalled();
+    });
+
+    it('should reset all methods except specified', function() {
+      var obj = new this.Klass();
+      spyOn(obj, 'foo');
+      spyOn(obj, 'bar');
+
+      obj.foo();
+      obj.bar();
+
+      expect(obj.foo).toHaveBeenCalled();
+      expect(obj.bar).toHaveBeenCalled();
+
+      jasmine.resetAllExcept(obj, ['foo']);
+
+      expect(obj.foo).toHaveBeenCalled();
+      expect(obj.bar).not.toHaveBeenCalled();
+    });
+  });
+
   describe('toHaveLength', function() {
     it('should pass with an array', function() {
       expect([1, 2, 3]).toHaveLength(3);

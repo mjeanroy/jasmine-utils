@@ -85,6 +85,93 @@ it('should spy selected method', function() {
 });
 ```
 
+- `jasmine.resetAll(object)`
+  - Reset all spy of given object.
+
+```javascript
+it('should reset all methods', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    }
+  };
+
+  spyOn(obj, 'method1');
+  spyOn(obj, 'method2');
+
+  obj.method1();
+  obj.method2();
+
+  expect(obj.method1).toHaveBeenCalled();
+  expect(obj.method2).toHaveBeenCalled();
+
+  jasmine.resetAll(obj);
+
+  expect(obj.method1).not.toHaveBeenCalled();
+  expect(obj.method2).not.toHaveBeenCalled();
+});
+```
+
+- `jasmine.resetEach(object, [methods])`
+  - Reset each specified spies of given object.
+
+```javascript
+it('should reset all methods', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    }
+  };
+
+  spyOn(obj, 'method1');
+  spyOn(obj, 'method2');
+
+  obj.method1();
+  obj.method2();
+
+  expect(obj.method1).toHaveBeenCalled();
+  expect(obj.method2).toHaveBeenCalled();
+
+  jasmine.resetEach(obj, ['method1']);
+
+  expect(obj.method1).not.toHaveBeenCalled();
+  expect(obj.method2).toHaveBeenCalled();
+});
+```
+
+- `jasmine.resetAllExcept(object, [methods])`
+  - Reset all spies of given object except specified methods.
+
+```javascript
+it('should reset all methods', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    }
+  };
+
+  spyOn(obj, 'method1');
+  spyOn(obj, 'method2');
+
+  obj.method1();
+  obj.method2();
+
+  expect(obj.method1).toHaveBeenCalled();
+  expect(obj.method2).toHaveBeenCalled();
+
+  jasmine.resetAllExcept(obj, ['method1']);
+
+  expect(obj.method1).toHaveBeenCalled();
+  expect(obj.method2).not.toHaveBeenCalled();
+});
+```
+
 ## Matchers
 
 ### Booleans

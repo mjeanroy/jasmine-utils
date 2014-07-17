@@ -737,11 +737,6 @@
     return obj[method];
   };
 
-  // Spy all methods on given object
-  jasmine.spyAll = function(obj) {
-    jasmine.spyAllExcept(obj, []);
-  };
-
   var spyIfAndCallThrough = function(obj, i) {
     var current = obj[i];
     if (isFunction(current) && !jasmine.isSpy(current)) {
@@ -754,12 +749,39 @@
     }
   };
 
+  var reset = function(spy) {
+    if (isJasmine1) {
+      spy.reset();
+    } else {
+      spy.calls.reset();
+    }
+  };
+
   var arrayToMap = function(array) {
     var map = {};
     for (var i = 0, size = array.length; i < size; ++i) {
       map[array[i]] = true;
     }
     return map;
+  };
+
+  var eachOfObj = function(obj, iterator) {
+    var i;
+
+    for (i in obj) {
+      iterator.call(null, obj, i);
+    }
+
+    if (obj.prototype) {
+      for (i in obj.prototype) {
+        iterator.call(null, obj.prototype, i);
+      }
+    }
+  };
+
+  // Spy all methods on given object
+  jasmine.spyAll = function(obj) {
+    jasmine.spyAllExcept(obj, []);
   };
 
   jasmine.spyEach = function(obj, methods) {
@@ -771,23 +793,14 @@
       methods = [methods];
     }
 
-    var i;
     var isEmpty = methods.length === 0;
     var map = arrayToMap(methods);
 
-    for (i in obj) {
+    eachOfObj(obj, function(target, i) {
       if (isEmpty || map[i]) {
-        spyIfAndCallThrough(obj, i);
+        spyIfAndCallThrough(target, i);
       }
-    }
-
-    if (obj.prototype) {
-      for (i in obj.prototype) {
-        if (isEmpty || map[i]) {
-          spyIfAndCallThrough(obj.prototype, i);
-        }
-      }
-    }
+    });
   };
 
   // Spy all methods on given object, except method in given array
@@ -797,21 +810,42 @@
     }
 
     var map = arrayToMap(excepts);
-    var i;
 
-    for (i in obj) {
+    eachOfObj(obj, function(target, i) {
       if (!map[i]) {
-        spyIfAndCallThrough(obj, i);
+        spyIfAndCallThrough(target, i);
       }
-    }
+    });
+  };
 
-    if (obj.prototype) {
-      for (i in obj.prototype) {
-        if (!map[i]) {
-          spyIfAndCallThrough(obj.prototype, i);
-        }
+  jasmine.resetAll = function(obj) {
+    jasmine.resetAllExcept(obj, []);
+  };
+
+  jasmine.resetEach = function(obj, methods) {
+    var arg = methods || [];
+    var array = isArray(arg) ? arg : [arg];
+    var map = arrayToMap(array);
+
+    eachOfObj(obj, function(target, i) {
+      var spy = target[i];
+      if (jasmine.isSpy(spy) && map[i]) {
+        reset(spy);
       }
-    }
+    });
+  };
+
+  jasmine.resetAllExcept = function(obj, methods) {
+    var arg = methods || [];
+    var array = isArray(arg) ? arg : [arg];
+    var map = arrayToMap(array);
+
+    eachOfObj(obj, function(target, i) {
+      var spy = target[i];
+      if (jasmine.isSpy(spy) && !map[i]) {
+        reset(spy);
+      }
+    });
   };
 
   beforeEach(function() {
