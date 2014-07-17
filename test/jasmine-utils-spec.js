@@ -435,6 +435,11 @@ describe('jasmine-utils', function() {
       var value = new Klass();
 
       expect(value).toBeInstanceOf(Klass);
+      expect(null).not.toBeInstanceOf(Klass);
+      expect(undefined).not.toBeInstanceOf(Klass);
+
+      expect(1).not.toBeInstanceOf(Klass);
+      expect('foo').not.toBeInstanceOf(Klass);
     });
   });
 

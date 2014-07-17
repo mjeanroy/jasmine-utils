@@ -55,7 +55,7 @@
   };
 
   var isInstanceOf = function(obj, Klass) {
-    return obj instanceof Klass;
+    return obj !== undefined && obj !== null && obj instanceof Klass;
   };
 
   var isTruthy = function(obj) {
