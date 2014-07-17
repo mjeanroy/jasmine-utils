@@ -763,8 +763,6 @@
   };
 
   jasmine.spyEach = function(obj, methods) {
-    var excepts = [];
-
     if (!methods) {
       methods = [];
     }
