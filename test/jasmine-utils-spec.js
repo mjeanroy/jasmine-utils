@@ -360,8 +360,17 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toStartsWith', function() {
+  describe('toStartWith', function() {
     it('should pass', function() {
+      expect('foo').toStartWith('foo');
+      expect('foo').toStartWith('fo');
+      expect('foo').toStartWith('f');
+
+      expect('foo').not.toStartWith('o');
+      expect('foo').not.toStartWith('oo');
+      expect('foo').not.toStartWith('bar');
+
+      // Deprecated matcher
       expect('foo').toStartsWith('foo');
       expect('foo').toStartsWith('fo');
       expect('foo').toStartsWith('f');
@@ -372,8 +381,17 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toEndsWith', function() {
+  describe('toEndWith', function() {
     it('should pass', function() {
+      expect('foo').toEndWith('foo');
+      expect('foo').toEndWith('oo');
+      expect('foo').toEndWith('o');
+
+      expect('foo').not.toEndWith('f');
+      expect('foo').not.toEndWith('fo');
+      expect('foo').not.toEndWith('bar');
+
+      // Deprecated matcher
       expect('foo').toEndsWith('foo');
       expect('foo').toEndsWith('oo');
       expect('foo').toEndsWith('o');
@@ -381,6 +399,23 @@ describe('jasmine-utils', function() {
       expect('foo').not.toEndsWith('f');
       expect('foo').not.toEndsWith('fo');
       expect('foo').not.toEndsWith('bar');
+    });
+  });
+
+  describe('toEqualIgnoringCase', function() {
+    it('should pass', function() {
+      expect('foo').toEqualIgnoringCase('Foo');
+      expect('foo').toEqualIgnoringCase('FOO');
+      expect('foo').toEqualIgnoringCase('foo');
+
+      expect('foo').not.toEqualIgnoringCase('bar');
+
+      // Deprecated matcher
+      expect('foo').toEqualsIgnoringCase('Foo');
+      expect('foo').toEqualsIgnoringCase('FOO');
+      expect('foo').toEqualsIgnoringCase('foo');
+
+      expect('foo').not.toEqualsIgnoringCase('bar');
     });
   });
 
@@ -833,7 +868,7 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBePartiallyEqualsTo', function() {
+  describe('toBePartiallyEqualTo', function() {
     it('should pass with objects', function() {
       var a = {
         id: 1,
@@ -850,6 +885,10 @@ describe('jasmine-utils', function() {
         id: 2
       };
 
+      expect(a).toBePartiallyEqualTo(b);
+      expect(a).not.toBePartiallyEqualTo(c);
+
+      // Deprecated matcher
       expect(a).toBePartiallyEqualsTo(b);
       expect(a).not.toBePartiallyEqualsTo(c);
     });
@@ -885,6 +924,10 @@ describe('jasmine-utils', function() {
       var array2 = [b1, b2];
       var array3 = [c1, c2];
 
+      expect(array1).toBePartiallyEqualTo(array2);
+      expect(array1).not.toBePartiallyEqualTo(array3);
+
+      // Deprecated matcher
       expect(array1).toBePartiallyEqualsTo(array2);
       expect(array1).not.toBePartiallyEqualsTo(array3);
     });

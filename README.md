@@ -309,41 +309,41 @@ it('should check that size are equals', function() {
 });
 ```
 
-- `toEqualsIgnoringCase(string)`
-  - Check that a given string is equals to an other string ignoring case
-  - Error message: 'Expect actual (not) to be equals to string (case insensitive)'
+- `toEqualIgnoringCase(string)`
+  - Check that a given string is equal to an other string ignoring case
+  - Error message: 'Expect actual (not) to be equal to string (case insensitive)'
 
 ```javascript
-it('should check that strings are equals ignoring case', function() {
-  expect('foo').toEqualsIgnoringCase('foo');
-  expect('foo').toEqualsIgnoringCase('FOO');
-  expect('foo').not.toEqualsIgnoringCase('bar');
+it('should check that strings are equal ignoring case', function() {
+  expect('foo').toEqualIgnoringCase('foo');
+  expect('foo').toEqualIgnoringCase('FOO');
+  expect('foo').not.toEqualIgnoringCase('bar');
 });
 ```
 
-- `toStartsWith(prefix)`
-  - Check that a given string starts with given prefix
-  - Error message: 'Expect actual (not) to starts with prefix'
+- `toStartWith(prefix)`
+  - Check that a given string start with given prefix
+  - Error message: 'Expect actual (not) to start with prefix'
 
 ```javascript
-it('should check that string starts with expected prefix', function() {
-  expect('foo').toStartsWith('f');
-  expect('foo').toStartsWith('fo');
-  expect('foo').toStartsWith('foo');
-  expect('foo').not.toStartsWith('bar');
+it('should check that string start with expected prefix', function() {
+  expect('foo').toStartWith('f');
+  expect('foo').toStartWith('fo');
+  expect('foo').toStartWith('foo');
+  expect('foo').not.toStartWith('bar');
 });
 ```
 
-- `toEndsWith(suffix)`
-  - Check that a given string ends with given suffix
-  - Error message: 'Expect actual (not) to ends with suffix'
+- `toEndWith(suffix)`
+  - Check that a given string end with given suffix
+  - Error message: 'Expect actual (not) to end with suffix'
 
 ```javascript
-it('should check that string ends with expected suffix', function() {
-  expect('foo').toEndsWith('o');
-  expect('foo').toEndsWith('oo');
-  expect('foo').toEndsWith('foo');
-  expect('foo').not.toEndsWith('bar');
+it('should check that string end with expected suffix', function() {
+  expect('foo').toEndWith('o');
+  expect('foo').toEndWith('oo');
+  expect('foo').toEndWith('foo');
+  expect('foo').not.toEndWith('bar');
 });
 ```
 
@@ -764,12 +764,12 @@ it('should check that an array contains only falsy values', function() {
 });
 ```
 
-- `toBePartiallyEqualsTo(array)`
+- `toBePartiallyEqualTo(array)`
   - Check that two arrays are equals using only item properties properties of array in parameter (ignoring other properties).
   - Error message: 'Expect actual (not) to be partially equals to param'
 
 ```javascript
-it('should check that an object is partially equals to an other object', function() {
+it('should check that an object is partially equal to an other object', function() {
   var a1 = {
     id: 1,
     foo: 'bar'
@@ -800,8 +800,8 @@ it('should check that an object is partially equals to an other object', functio
   var array2 = [b1, b2];
   var array3 = [c1, c2];
 
-  expect(array1).toBePartiallyEqualsTo(array2);
-  expect(array1).not.toBePartiallyEqualsTo(array3);
+  expect(array1).toBePartiallyEqualTo(array2);
+  expect(array1).not.toBePartiallyEqualTo(array3);
 });
 ```
 

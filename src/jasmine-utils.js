@@ -428,24 +428,24 @@
       };
     },
 
-    toEqualsIgnoringCase: function(string) {
+    toEqualIgnoringCase: function(string) {
       return {
         pass: isString(string) && isString(this.actual) && this.actual.toLowerCase() === string.toLowerCase(),
-        message: pp('Expect {{%0}} {{not}} to be equals to {{%1}} (case insensitive)', this.actual, string)
+        message: pp('Expect {{%0}} {{not}} to be equal to {{%1}} (case insensitive)', this.actual, string)
       };
     },
 
-    toStartsWith: function(prefix) {
+    toStartWith: function(prefix) {
       return {
         pass: isString(prefix) && isString(this.actual) && this.actual.indexOf(prefix) === 0,
-        message: pp('Expect {{%0}} {{not}} to starts with {{%1}}', this.actual, prefix)
+        message: pp('Expect {{%0}} {{not}} to start with {{%1}}', this.actual, prefix)
       };
     },
 
-    toEndsWith: function(suffix) {
+    toEndWith: function(suffix) {
       return {
         pass: isString(suffix) && isString(this.actual) && this.actual.indexOf(suffix, this.actual.length - suffix.length) !== -1,
-        message: pp('Expect {{%0}} {{not}} to ends with {{%1}}', this.actual, suffix)
+        message: pp('Expect {{%0}} {{not}} to end with {{%1}}', this.actual, suffix)
       };
     },
 
@@ -568,7 +568,7 @@
       };
     },
 
-    toBePartiallyEqualsTo: function(obj) {
+    toBePartiallyEqualTo: function(obj) {
       var actual = this.actual;
       var equalsFunction = this.equals;
 
@@ -596,7 +596,7 @@
 
       return {
         pass: pass,
-        message: pp('Expect {{%0}} {{not}} to be partially equals to {{%1}}', actual, obj)
+        message: pp('Expect {{%0}} {{not}} to be partially equal to {{%1}}', actual, obj)
       };
     },
 
@@ -622,6 +622,12 @@
       };
     }
   };
+
+  // Deprecated matchers
+  matchers.toEndsWith = matchers.toEndWith;
+  matchers.toStartsWith = matchers.toStartWith;
+  matchers.toEqualsIgnoringCase = matchers.toEqualIgnoringCase;
+  matchers.toBePartiallyEqualsTo = matchers.toBePartiallyEqualTo;
 
   // Check version
   var version = jasmine.version_ || jasmine.version;
