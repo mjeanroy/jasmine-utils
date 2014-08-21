@@ -489,7 +489,7 @@ it('should check if object is a date object', function() {
 });
 ```
 
-- `toBeADateCloseTo(date, maxDiff)`
+- `toBeDateCloseTo(date, maxDiff)`
   - Check that a given value is a date object close to an other date.
   - Default `maxDiff` value is 1000 ms.
   - Error message: 'Expect date actual (not) to be close to date'
@@ -505,7 +505,7 @@ it('should check if a date is close to another date', function() {
 });
 ```
 
-- `toBeADateCloseToNow(maxDiff)`
+- `toBeDateCloseToNow(maxDiff)`
   - Check that a given value is a date object close to current timestamp.
   - Default `maxDiff` value is 1000 ms.
   - Error message: 'Expect date actual (not) to be close to now'
