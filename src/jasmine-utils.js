@@ -66,6 +66,10 @@
     return !obj;
   };
 
+  var isDOMElement = function(obj) {
+    return !!(obj && obj.nodeType === 1);
+  };
+
   var keys = function(obj) {
     var ks = [];
     for (var i in obj) {
@@ -453,6 +457,28 @@
       return {
         pass: isFunction(this.actual),
         message: pp('Expect {{%0}} {{not}} to be a function', this.actual)
+      };
+    },
+
+    toBeDOMElement: function(tagName) {
+      var msg = 'Expect {{%0}} {{not}} to be a dom element';
+
+      var isElement = isDOMElement(this.actual);
+
+      var arg1 = '';
+      var arg2 = '';
+      if (arguments.length === 1) {
+        msg = 'Expect {{%0}} {{not}} to be {{%1}} element';
+        arg1 = tagName.toUpperCase();
+        if (isElement) {
+          msg += ' but was {{%2}}';
+          arg2 = this.actual.tagName.toUpperCase();
+        }
+      }
+
+      return {
+        pass: isElement && (!tagName || tagName.toUpperCase() === this.actual.tagName.toUpperCase()),
+        message: pp(msg, this.actual, arg1, arg2)
       };
     },
 

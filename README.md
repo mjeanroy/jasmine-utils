@@ -947,6 +947,24 @@ it('should check that an object is partially equals to an other object', functio
 });
 ```
 
+### DOM
+
+- `toBeDOMElement(tagName)`
+  - Check that a given object is a dom element (and check tag name if an argument is provided)
+  - Error message: - 'Expect actual (not) to be a dom element'
+
+```javascript
+it('should check that an object is a dom element', function() {
+  var span = document.createElement('span');
+  expect(span).toBeDOMElement();
+  expect(span).toBeDOMElement('span');
+  expect(span).not.toBeDOMElement('p');
+
+  expect([]).not.toBeDOMElement();
+  expect({}).not.toBeDOMElement();
+});
+```
+
 ### Functions
 
 - `toBeAFunction()`
