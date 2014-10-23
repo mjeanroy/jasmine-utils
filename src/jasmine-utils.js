@@ -482,6 +482,22 @@
       };
     },
 
+    toBeDOMElementWithId: function(id) {
+      var msg = 'Expect {{%0}} {{not}} to be a dom element';
+
+      var isElement = isDOMElement(this.actual);
+      var actualId = '';
+      if (isElement) {
+        msg += ' with id {{%1}} but was {{%2}}';
+        actualId = this.actual.getAttribute('id');
+      }
+
+      return {
+        pass: isElement && actualId === id,
+        message: pp(msg, this.actual, id, actualId)
+      };
+    },
+
     toBeInstanceOf: function(Klass) {
       return {
         pass: isInstanceOf(this.actual, Klass),

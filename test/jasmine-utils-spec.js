@@ -352,6 +352,22 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toBeDOMElementWithId', function() {
+    it('should pass', function() {
+      var actualId = 'foo';
+      var element = document.createElement('span');
+      element.setAttribute('id', actualId);
+
+      expect(element).toBeDOMElementWithId(actualId);
+      expect(element).not.toBeDOMElementWithId('bar');
+
+      expect(null).not.toBeDOMElementWithId();
+      expect(undefined).not.toBeDOMElementWithId();
+      expect(0).not.toBeDOMElementWithId();
+      expect('foo').not.toBeDOMElementWithId();
+    });
+  });
+
   describe('toBeANumber', function() {
     it('should pass', function() {
       expect(1).toBeANumber();
