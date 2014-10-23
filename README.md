@@ -965,6 +965,60 @@ it('should check that an object is a dom element', function() {
 });
 ```
 
+- `toBeDOMElementWithId(id)`
+  - Check that a given object is a dom element with expected id
+  - Error message: - 'Expect actual (not) to be a dom element with id expectedId but was actualId'
+
+```javascript
+it('should check that an object is a dom element', function() {
+  var span = document.createElement('span');
+  span.setAttribute('id', 'foo');
+
+  expect(span).toBeDOMElementWithId('foo');
+  expect(span).not.toBeDOMElementWithId('bar');
+});
+```
+
+- `toBeDOMElementWithAttributes(attributes)`
+  - Check that a given object is a dom element with expected attributes
+  - Error message: - 'Expect actual (not) to be a dom element with attributes expectedAttributes but was actualAttributes'
+
+```javascript
+it('should check that an object is a dom element', function() {
+  var span = document.createElement('span');
+  span.setAttribute('foo', 'foo');
+  span.setAttribute('bar', 'bar');
+
+  expect(span).toBeDOMElementWithAttributes({
+    foo: 'foo',
+    bar: 'bar'
+  });
+
+  expect(span).not.toBeDOMElementWithAttributes({
+    foo: 'bar',
+    bar: 'foo'
+  });
+});
+```
+
+- `toBeDOMElementWithClasses(classes)`
+  - Check that a given object is a dom element with expected css classes
+  - Error message: - 'Expect actual (not) to be a dom element with classes expectedClasses but was actualClasses'
+
+```javascript
+it('should check that an object is a dom element', function() {
+  var span = document.createElement('span');
+  span.className = 'foo bar'
+
+  expect(span).toBeDOMElementWithClasses('foo');
+  expect(span).toBeDOMElementWithClasses('bar');
+  expect(span).toBeDOMElementWithClasses(['foo', 'bar']);
+  expect(span).toBeDOMElementWithClasses('foo bar');
+
+  expect(span).not.toBeDOMElementWithClasses('foobar');
+});
+```
+
 ### Functions
 
 - `toBeAFunction()`

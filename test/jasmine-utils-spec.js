@@ -407,6 +407,9 @@ describe('jasmine-utils', function() {
       expect(element).toBeDOMElementWithClasses(['bar', ' foo ']);
       expect(element).toBeDOMElementWithClasses(['bar', ' foo ', 'quix']);
 
+      expect(element).toBeDOMElementWithClasses('bar foo');
+      expect(element).toBeDOMElementWithClasses('bar foo quix');
+
       expect(element).not.toBeDOMElementWithClasses(['bar', ' foo ', 'quix', 'fake']);
       expect(element).not.toBeDOMElementWithClasses('fake');
     });
