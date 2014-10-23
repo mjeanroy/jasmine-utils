@@ -26,6 +26,14 @@
 
   var toString = Object.prototype.toString;
 
+  var trim = function (str) {
+    if (String.prototype.trim) {
+      return str.trim();
+    } else {
+      return str.replace(/^\s+|\s+$/g, '');
+    }
+  };
+
   var isArray = function(obj) {
     return toString.call(obj) === '[object Array]';
   };
@@ -106,6 +114,24 @@
 
   var contains = function(array, obj, equalsFunction) {
     return indexOf(array, obj, equalsFunction) >= 0;
+  };
+
+  var mapBy = function (array, iterator, ctx) {
+    var newArray = [];
+    for (var i = 0, size = array.length; i < size; ++i) {
+      newArray[i] = iterator.call(ctx, array[i], i);
+    }
+    return newArray;
+  };
+
+  var filterBy = function (array, iterator, ctx) {
+    var newArray = [];
+    for (var i = 0, size = array.length; i < size; ++i) {
+      if (iterator.call(ctx, array[i], i)) {
+        newArray.push(array[i]);
+      }
+    }
+    return newArray;
   };
 
   var every = function(array, iterator, ctx) {
@@ -517,6 +543,41 @@
       return {
         pass: isElement && equalsFunction(attributes, actualAttributes),
         message: pp(msg, this.actual, attributes, actualAttributes)
+      };
+    },
+
+    toBeDOMElementWithClasses: function(classes) {
+      var toClassArray = function (classes) {
+        var array = isArray(classes) ? classes : classes.split(' ');
+
+        array = mapBy(array, function (className) {
+          return trim(className);
+        });
+
+        return filterBy(array, function (className) {
+          return className !== '';
+        });
+      };
+
+      var classArray = toClassArray(classes);
+      var msg = 'Expect {{%0}} {{not}} to be a dom element';
+
+      var isElement = isDOMElement(this.actual);
+      var containsAll = false;
+      var actualClassArray = [];
+      if (isElement) {
+        msg += ' with classes {{%1}} but was {{%2}}';
+        actualClassArray = toClassArray(this.actual.className);
+
+        // Check that every classes is inside real classes
+        containsAll = every(classArray, function (className) {
+          return contains(actualClassArray, className);
+        });
+      }
+
+      return {
+        pass: isElement && containsAll,
+        message: pp(msg, this.actual, classArray, actualClassArray)
       };
     },
 

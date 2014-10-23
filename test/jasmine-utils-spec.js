@@ -393,6 +393,25 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toBeDOMElementWithClasses', function() {
+    it('should pass', function() {
+      var actualId = 'foo';
+      var element = document.createElement('span');
+      element.className = 'foo  bar quix ';
+
+      expect(element).toBeDOMElementWithClasses('foo');
+      expect(element).toBeDOMElementWithClasses('bar');
+      expect(element).toBeDOMElementWithClasses('quix');
+
+      expect(element).toBeDOMElementWithClasses(['foo', 'bar']);
+      expect(element).toBeDOMElementWithClasses(['bar', ' foo ']);
+      expect(element).toBeDOMElementWithClasses(['bar', ' foo ', 'quix']);
+
+      expect(element).not.toBeDOMElementWithClasses(['bar', ' foo ', 'quix', 'fake']);
+      expect(element).not.toBeDOMElementWithClasses('fake');
+    });
+  });
+
   describe('toBeANumber', function() {
     it('should pass', function() {
       expect(1).toBeANumber();
