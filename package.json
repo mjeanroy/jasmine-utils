@@ -13,7 +13,7 @@
     "karma-jasmine": "~0.2.2",
     "karma-phantomjs-launcher": "~0.1.4",
     "load-grunt-tasks": "1.0.0",
-    "grunt-bump": "0.0.14"
+    "grunt-bump": "0.0.16"
   },
   "engines": {
     "node": ">=0.9.0"
