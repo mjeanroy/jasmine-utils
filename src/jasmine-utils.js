@@ -498,6 +498,28 @@
       };
     },
 
+    toBeDOMElementWithAttributes: function(attributes) {
+      var equalsFunction = this.equals;
+      var msg = 'Expect {{%0}} {{not}} to be a dom element';
+
+      var isElement = isDOMElement(this.actual);
+      var actualAttributes = {};
+      if (isElement) {
+        var attrs = keys(attributes);
+        for (var i = 0, size = attrs.length; i < size; ++i) {
+          var key = attrs[i];
+          actualAttributes[key] = this.actual.getAttribute(key);
+        }
+
+        msg += ' with attributes {{%1}} but was {{%2}}';
+      }
+
+      return {
+        pass: isElement && equalsFunction(attributes, actualAttributes),
+        message: pp(msg, this.actual, attributes, actualAttributes)
+      };
+    },
+
     toBeInstanceOf: function(Klass) {
       return {
         pass: isInstanceOf(this.actual, Klass),
