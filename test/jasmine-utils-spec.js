@@ -229,6 +229,13 @@ describe('jasmine-utils', function() {
       expect([1, 2, 3]).not.toHaveSize(1);
     });
 
+    it('should pass with an array like object', function() {
+      // arguments object is an "array like" object
+      var nodes = document.getElementsByTagName('foo');
+      expect(nodes).toHaveSize(0);
+      expect(nodes).not.toHaveSize(1);
+    });
+
     it('should pass with an object', function() {
       var obj = {
         'one': 1,

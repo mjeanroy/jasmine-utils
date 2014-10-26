@@ -78,6 +78,23 @@
     return !!(obj && obj.nodeType === 1);
   };
 
+  var isArraylike = function(obj) {
+    if (isArray(obj)) {
+      return true;
+    }
+
+    if (isFunction(obj) && obj !== window) {
+        return false;
+    }
+
+    if (isDOMElement(obj) && obj.length) {
+        return true;
+    }
+
+    var length = obj.length;
+    return length === 0 || isNumber(length) && length > 0 && (length - 1) in obj;
+  }
+
   var keys = function(obj) {
     var ks = [];
     for (var i in obj) {
@@ -153,13 +170,7 @@
   };
 
   var sizeOfObject = function(obj) {
-    var nbKeys = 0;
-    for (var i in obj) {
-      if (obj.hasOwnProperty(i)) {
-        nbKeys++;
-      }
-    }
-    return nbKeys;
+    return keys(obj).length;
   };
 
   var dateDiff = function(d1, d2) {
@@ -215,9 +226,9 @@
     var size = -1;
     if (obj === null || obj === undefined) {
       size = 0;
-    } else if (isString(obj) || isArray(obj)) {
+    } else if (isString(obj) || isArraylike(obj)) {
       size = obj.length;
-    } else if (isObject(obj) && obj !== null) {
+    } else if (isObject(obj)) {
       size = sizeOfObject(obj);
     }
     return size;
