@@ -20,7 +20,7 @@
     "grunt-bump": "0.3.0"
   },
   "engines": {
-    "node": ">=0.9.0"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "test": "grunt test",
