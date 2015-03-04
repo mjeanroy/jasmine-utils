@@ -93,7 +93,7 @@
 
     var length = obj.length;
     return length === 0 || isNumber(length) && length > 0 && (length - 1) in obj;
-  }
+  };
 
   var keys = function(obj) {
     var ks = [];
