@@ -703,6 +703,16 @@ describe('jasmine-utils', function() {
       expect([2, 4, 6, 8]).toVerify(iterator);
       expect([2, 4, 6, 8, 9]).not.toVerify(iterator);
     });
+
+    fit('should pass with a custom message', function() {
+      var message = 'foo bar';
+      var iterator = function(item) {
+        return item % 2 === 0;
+      };
+
+      expect([2, 4, 6, 8]).toVerify(message, iterator);
+      expect([2, 4, 6, 8, 9]).not.toVerify(message, iterator);
+    });
   });
 
   describe('toHaveSome', function() {

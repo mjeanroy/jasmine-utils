@@ -677,10 +677,12 @@
       };
     },
 
-    toVerify: function(iterator) {
+    toVerify: function(message, iterator) {
+      var $message = isFunction(message) ? 'condition' : '"' + message + '"';
+      var $iterator = isFunction(message) ? message : iterator;
       return {
-        pass: every(this.actual, iterator),
-        message: pp('Expect {{%0}} {{not}} to verify condition', this.actual)
+        pass: every(this.actual, $iterator),
+        message: pp('Expect {{%0}} {{not}} to verify ' + $message, this.actual)
       };
     },
 
