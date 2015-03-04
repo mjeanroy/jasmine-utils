@@ -34,24 +34,24 @@
     }
   };
 
-  var isArray = function(obj) {
+  var isArray = Array.isArray || function(obj) {
     return toString.call(obj) === '[object Array]';
   };
 
   var isNumber = function(obj) {
-    return typeof obj === 'number';
+    return toString.call(obj) === '[object Number]';
   };
 
   var isString = function(obj) {
-    return typeof obj === 'string';
+    return toString.call(obj) === '[object String]';
   };
 
   var isBoolean = function(obj) {
-    return typeof obj === 'boolean';
+    return obj === true || obj === false || toString.call(obj) === '[object Boolean]';
   };
 
   var isFunction = function(obj) {
-    return typeof obj === 'function';
+    return toString.call(obj) === '[object Function]';
   };
 
   var isDate = function(obj) {
@@ -78,8 +78,16 @@
     return !!(obj && obj.nodeType === 1);
   };
 
+  var isNodeList = function(obj) {
+    return toString.call(obj) === '[object NodeList]';
+  };
+
   var isArraylike = function(obj) {
     if (isArray(obj)) {
+      return true;
+    }
+
+    if (isNodeList(obj)) {
       return true;
     }
 

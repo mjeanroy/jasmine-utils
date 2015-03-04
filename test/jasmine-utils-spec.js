@@ -230,7 +230,7 @@ describe('jasmine-utils', function() {
     });
 
     it('should pass with an array like object', function() {
-      // arguments object is an "array like" object
+      // HTMLCollection is an array like object
       var nodes = document.getElementsByTagName('foo');
       expect(nodes).toHaveSize(0);
       expect(nodes).not.toHaveSize(1);
