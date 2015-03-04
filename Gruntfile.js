@@ -52,13 +52,17 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('test', [
-    'karma'
+    'karma:continuous'
+  ]);
+
+  grunt.registerTask('tdd', [
+    'karma:unit'
   ]);
 
   // Default task(s).
   grunt.registerTask('build', [
     'jshint',
-    'karma:continuous'
+    'test'
   ]);
 
   grunt.registerTask('release', function(level) {
