@@ -225,9 +225,17 @@
     if (array.length <= 1) {
       return true;
     }
+
     var clone = array.slice();
     clone.sort(comparator);
-    return equalsFunction(clone, array);
+
+    for (var i = 0, size = clone.length; i < size; ++i) {
+      if (!equalsFunction(clone[i], array[i])) {
+        return false;
+      }
+    }
+
+    return true;
   };
 
   var sizeOf = function(obj) {

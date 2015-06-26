@@ -908,6 +908,13 @@ describe('jasmine-utils', function() {
         expect([obj1, obj2_2, obj2_1, obj3]).toBeSorted(comparator);
       }
     });
+
+    it('should pass with an array with custom properties', function() {
+      var array = [0, 1, 2, 3];
+      array.$prop = true;
+
+      expect(array).toBeSorted();
+    });
   });
 
   describe('toContainsOnlyTruthyValues', function() {
