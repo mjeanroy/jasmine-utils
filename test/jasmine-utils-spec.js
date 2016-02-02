@@ -78,6 +78,42 @@ describe('jasmine-utils', function() {
       expect(jasmine.isSpy(obj.bar)).toBeTruthy();
     });
 
+    if (Object.getOwnPropertyNames) {
+      it('should spy all methods with non-enumerable writable property', function() {
+        var obj = new this.Klass();
+
+        Object.defineProperty(obj, 'nonEnumerableProperty', {
+          value: function() {},
+          enumerable: false,
+          writable: true
+        });
+
+        expect(obj.nonEnumerableProperty).toBeDefined();
+        expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
+
+        jasmine.spyAll(obj);
+
+        expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeTruthy();
+      });
+
+      it('should not try to spy non-enumerable methods and non writable property', function() {
+        var obj = new this.Klass();
+
+        Object.defineProperty(obj, 'nonEnumerableProperty', {
+          value: function() {},
+          enumerable: false,
+          writable: false
+        });
+
+        expect(obj.nonEnumerableProperty).toBeDefined();
+        expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
+
+        jasmine.spyAll(obj);
+
+        expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
+      });
+    }
+
     it('should spy all methods except bar', function() {
       var obj = new this.Klass();
 

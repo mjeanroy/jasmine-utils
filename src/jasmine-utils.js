@@ -926,16 +926,38 @@
   };
 
   var eachOfObj = function(obj, iterator) {
-    var i;
+    if (!obj) {
+      return;
+    }
 
-    for (i in obj) {
+    var foundProps = {};
+
+    // First, use the for .. in loop.
+    for (var i in obj) {
+      foundProps[i] = true;
       iterator.call(null, obj, i);
     }
 
-    if (obj.prototype) {
-      for (i in obj.prototype) {
-        iterator.call(null, obj.prototype, i);
+    // Spy non enumerable properties.
+    // Object.getOwnPropertyNames is supported since IE9.
+    if (Object.getOwnPropertyNames) {
+      var props = Object.getOwnPropertyNames(obj);
+      for (var k = 0, size = props.length; k < size; ++k) {
+        var propName = props[k];
+
+        // Handle property if it is as not been seen yet.
+        if (foundProps[propName] !== true) {
+          var descriptor = Object.getOwnPropertyDescriptor(obj, propName);
+          if (descriptor.writable) {
+            iterator.call(null, obj, props[k]);
+          }
+        }
       }
+    }
+
+    // Go up in the prototype chain.
+    if (obj.prototype) {
+      eachOfObj(obj.prototype, iterator);
     }
   };
 
