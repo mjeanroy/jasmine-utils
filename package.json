@@ -28,6 +28,8 @@
   },
   "scripts": {
     "test": "grunt test",
-    "build": "grunt build"
+    "build": "grunt build",
+    "release": "grunt release",
+    "release:patch": "grunt release:patch"
   }
 }
