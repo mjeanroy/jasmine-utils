@@ -12,24 +12,31 @@
     "jasmine-core": ">=1.3.0"
   },
   "devDependencies": {
-    "grunt": "0.4.5",
-    "grunt-contrib-jshint": "0.11.2",
-    "karma": "0.12.37",
-    "grunt-karma": "0.11.1",
-    "karma-chrome-launcher": "0.2.0",
-    "bower": "1.4.1",
-    "karma-jasmine": "0.3.5",
-    "karma-phantomjs-launcher": "~0.2.0",
-    "load-grunt-tasks": "3.2.0",
-    "grunt-bump": "0.3.1"
+    "bower": "1.7.7",
+    "jasmine-core": ">=1.3.0",
+    "karma": "0.13.21",
+    "karma-jasmine": "0.3.7",
+    "karma-phantomjs-launcher": "1.0.0",
+    "phantomjs-prebuilt": "2.1.4",
+    "jshint": "2.9.1",
+    "gulp": "3.9.1",
+    "gulp-jshint": "2.0.0",
+    "gulp-git": "1.7.0",
+    "gulp-bump": "1.0.0",
+    "gulp-filter": "3.0.1",
+    "gulp-tag-version": "1.3.0"
   },
   "engines": {
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt test",
-    "build": "grunt build",
-    "release": "grunt release",
-    "release:patch": "grunt release:patch"
+    "lint": "gulp lint",
+    "test": "gulp test",
+    "tdd": "gulp tdd",
+    "build": "gulp build",
+    "release": "gulp release",
+    "release:patch": "gulp release:patch",
+    "release:minor": "gulp release:minor",
+    "release:major": "gulp release:major"
   }
 }

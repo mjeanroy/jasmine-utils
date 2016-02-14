@@ -21,6 +21,7 @@
   "globals": {
     "jasmine": true,
     "spyOn": true,
-    "beforeEach": true
+    "beforeEach": true,
+    "describe": true
   }
 }
