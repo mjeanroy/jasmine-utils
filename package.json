@@ -2,7 +2,7 @@
   "name": "jasmine-utils",
   "author": "mickael.jeanroy@gmail.com",
   "main": "src/jasmine-utils.js",
-  "version": "0.2.6",
+  "version": "0.2.7",
   "license": "MIT",
   "repository": {
     "type": "git",
