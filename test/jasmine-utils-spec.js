@@ -571,6 +571,18 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('toContainIgnoringCase', function() {
+    it('should pass', function() {
+      expect('some other foO stuff').toContainIgnoringCase('Foo');
+      expect('Some other foO stuff').toContainIgnoringCase('FOO');
+      expect('foo').toContainIgnoringCase('foo');
+
+      expect('foo').not.toContainIgnoringCase('bar');
+      expect('Some other foO stuff').not.toContainIgnoringCase('BAR');
+    });
+  });
+
+
   describe('toBeZero', function() {
     it('should pass', function() {
       expect(0).toBeZero();

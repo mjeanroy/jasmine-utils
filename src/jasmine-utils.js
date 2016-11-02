@@ -492,6 +492,13 @@
       };
     },
 
+    toContainIgnoringCase: function(string) {
+      return {
+        pass: isString(string) && isString(this.actual) && this.actual.toLowerCase().indexOf(string.toLowerCase()) !== -1,
+        message: pp('Expect {{%0}} {{not}} to contain {{%1}} (case insensitive)', this.actual, string)
+      };
+    },
+
     toStartWith: function(prefix) {
       return {
         pass: isString(prefix) && isString(this.actual) && this.actual.indexOf(prefix) === 0,
