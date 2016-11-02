@@ -2,7 +2,7 @@
   "name": "jasmine-utils",
   "author": "mickael.jeanroy@gmail.com",
   "main": "src/jasmine-utils.js",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "license": "MIT",
   "repository": {
     "type": "git",
@@ -12,19 +12,21 @@
     "jasmine-core": ">=1.3.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
     "bower": "1.7.7",
+    "gulp": "3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-bump": "1.0.0",
+    "gulp-filter": "3.0.1",
+    "gulp-git": "1.7.0",
+    "gulp-jshint": "2.0.0",
+    "gulp-tag-version": "1.3.0",
     "jasmine-core": ">=1.3.0",
+    "jshint": "2.9.1",
     "karma": "0.13.21",
     "karma-jasmine": "0.3.7",
     "karma-phantomjs-launcher": "1.0.0",
-    "phantomjs-prebuilt": "2.1.4",
-    "jshint": "2.9.1",
-    "gulp": "3.9.1",
-    "gulp-jshint": "2.0.0",
-    "gulp-git": "1.7.0",
-    "gulp-bump": "1.0.0",
-    "gulp-filter": "3.0.1",
-    "gulp-tag-version": "1.3.0"
+    "phantomjs-prebuilt": "2.1.4"
   },
   "engines": {
     "node": ">=0.10.0"
