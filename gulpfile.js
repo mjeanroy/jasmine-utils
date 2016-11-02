@@ -30,6 +30,7 @@ var git = require('gulp-git');
 var bump = require('gulp-bump');
 var gulpFilter = require('gulp-filter');
 var tag_version = require('gulp-tag-version');
+var babel = require('gulp-babel');
 
 var options = {
   root: __dirname,
@@ -54,13 +55,21 @@ function startKarma(singleRun, done) {
   karma.start();
 }
 
+gulp.task('babel', function() {
+  return gulp.src(options.test + '/*.es6' )
+    .pipe(babel({
+        presets: ['es2015']
+    }))
+    .pipe(gulp.dest(options.test));
+});
+
 gulp.task('lint', function() {
   return gulp.src(options.src + '/**/*.js')
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('test', function(done) {
+gulp.task('test', ['babel'], function(done) {
   startKarma(true, done);
 });
 

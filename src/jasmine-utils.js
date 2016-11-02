@@ -253,9 +253,9 @@
   var isSameDay = function(date1, date2) {
     var d1 = isDate(date1) ? date1 : new Date(date1);
     var d2 = isDate(date2) ? date2 : new Date(date2);
-    var isSameYear = d1.getFullYear() === d2.getFullYear();
-    var isSameMonth = d1.getMonth() === d2.getMonth();
-    var isSameDate = d1.getDate() === d2.getDate();
+    var isSameYear = d1.getUTCFullYear() === d2.getUTCFullYear();
+    var isSameMonth = d1.getUTCMonth() === d2.getUTCMonth();
+    var isSameDate = d1.getUTCDate() === d2.getUTCDate();
     return isSameYear && isSameMonth && isSameDate;
   };
 
@@ -958,6 +958,24 @@
     // Go up in the prototype chain.
     if (obj.prototype) {
       eachOfObj(obj.prototype, iterator);
+    }
+    // for babel transformed es6 classes
+    else if(obj.constructor.prototype) {
+      var constructProps = Object.getOwnPropertyNames(obj.constructor.prototype);
+
+      for (var k2 = 0, size2 = constructProps.length; k2 < size2; ++k2) {
+        var propName2 = constructProps[k2];
+
+        if(propName2 !== 'constructor' && typeof obj[propName2] === 'function') {
+          // Handle property if it is as not been seen yet.
+          if (foundProps[propName2] !== true) {
+            var descriptor2 = Object.getOwnPropertyDescriptor(obj.constructor.prototype, propName2);
+            if (descriptor2.writable) {
+              iterator.call(null, obj, constructProps[k2]);
+            }
+          }
+        }
+      }
     }
   };
 

@@ -54,6 +54,25 @@ describe('jasmine-utils', function() {
     });
   });
 
+  describe('spyAll on babel transformed es6 classes', function() {
+    var exampleInstance;
+    beforeEach(function() {
+      exampleInstance = new ExampleEs6Class();
+    });
+
+    it('should spy on all methods', function() {
+      jasmine.spyAll(exampleInstance);
+      expect(jasmine.isSpy(exampleInstance.methodOne)).toBeTruthy();
+      expect(jasmine.isSpy(exampleInstance.methodTwo)).toBeTruthy();
+    });
+
+    it('should spy all methods except methodOne', function() {
+      jasmine.spyAllExcept(exampleInstance, 'methodOne');
+      expect(jasmine.isSpy(exampleInstance.methodTwo)).toBeTruthy();
+      expect(jasmine.isSpy(exampleInstance.methodOne)).toBeFalsy();
+    });
+  });
+
   describe('spyAll and spyAllExcept', function() {
     beforeEach(function() {
       this.Klass = function() {
@@ -817,7 +836,6 @@ describe('jasmine-utils', function() {
 
     it('should pass with strings', function() {
       var date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
-
       expect(date1).toBeSameDay('2014-06-05');
       expect(date1).not.toBeSameDay('2014-06-06');
     });

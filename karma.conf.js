@@ -23,6 +23,12 @@ module.exports = function(config) {
         watched: true,
         served: true,
         included: true
+      },
+      {
+        pattern: 'test/example-es6-class.js',
+        watched: true,
+        served: true,
+        included: true
       }
     ],
 
