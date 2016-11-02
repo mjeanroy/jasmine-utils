@@ -960,22 +960,8 @@
       eachOfObj(obj.prototype, iterator);
     }
     // for babel transformed es6 classes
-    else if(obj.constructor.prototype) {
-      var constructProps = Object.getOwnPropertyNames(obj.constructor.prototype);
-
-      for (var k2 = 0, size2 = constructProps.length; k2 < size2; ++k2) {
-        var propName2 = constructProps[k2];
-
-        if(propName2 !== 'constructor' && typeof obj[propName2] === 'function') {
-          // Handle property if it is as not been seen yet.
-          if (foundProps[propName2] !== true) {
-            var descriptor2 = Object.getOwnPropertyDescriptor(obj.constructor.prototype, propName2);
-            if (descriptor2.writable) {
-              iterator.call(null, obj, constructProps[k2]);
-            }
-          }
-        }
-      }
+    else if(obj.__proto__) {
+      eachOfObj(obj.__proto__, iterator);
     }
   };
 
