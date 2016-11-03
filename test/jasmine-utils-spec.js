@@ -55,9 +55,11 @@ describe('jasmine-utils', function() {
   });
 
   describe('spyAll on babel transformed es6 classes', function() {
-    var exampleInstance;
+    var exampleInstance,
+        exampleChildInstance;
     beforeEach(function() {
       exampleInstance = new ExampleEs6Class();
+      exampleChildInstance = new ChildExampleEs6Class();
     });
 
     it('should spy on all methods', function() {
@@ -70,6 +72,13 @@ describe('jasmine-utils', function() {
       jasmine.spyAllExcept(exampleInstance, 'methodOne');
       expect(jasmine.isSpy(exampleInstance.methodTwo)).toBeTruthy();
       expect(jasmine.isSpy(exampleInstance.methodOne)).toBeFalsy();
+    });
+
+    it('should spy on all parent and child methods', function() {
+      jasmine.spyAll(exampleChildInstance);
+      expect(jasmine.isSpy(exampleChildInstance.methodOne)).toBeTruthy();
+      expect(jasmine.isSpy(exampleChildInstance.methodTwo)).toBeTruthy();
+      expect(jasmine.isSpy(exampleChildInstance.childMethodOne)).toBeTruthy();
     });
   });
 

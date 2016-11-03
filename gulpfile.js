@@ -73,7 +73,7 @@ gulp.task('test', ['babel'], function(done) {
   startKarma(true, done);
 });
 
-gulp.task('tdd', function(done) {
+gulp.task('tdd', ['babel'], function(done) {
   startKarma(false, done);
 });
 

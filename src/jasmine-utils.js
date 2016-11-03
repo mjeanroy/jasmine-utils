@@ -967,8 +967,8 @@
       eachOfObj(obj.prototype, iterator);
     }
     // for babel transformed es6 classes
-    else if(obj.__proto__) {
-      eachOfObj(obj.__proto__, iterator);
+    else if(Object.getPrototypeOf) {
+      eachOfObj(Object.getPrototypeOf(obj), iterator);
     }
   };
 
