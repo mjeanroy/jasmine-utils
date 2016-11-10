@@ -73,7 +73,7 @@ jasmine.autoSpy = (function autoMock() {
     var autoSpy = function(objOrArrayOfObjects, description) {
         beforeAll(function () {
             if(description) {
-                console.log('autoSpy:: ' + description)
+                console.log('autoSpy:: ' + description);
             }
             helpers.add(objOrArrayOfObjects);
         });
