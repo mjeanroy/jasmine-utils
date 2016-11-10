@@ -30,6 +30,8 @@ var git = require('gulp-git');
 var bump = require('gulp-bump');
 var gulpFilter = require('gulp-filter');
 var tag_version = require('gulp-tag-version');
+var rollup = require('rollup');
+var rollupConf = require('./rollup.conf.js');
 
 var options = {
   root: __dirname,
@@ -68,6 +70,24 @@ gulp.task('tdd', function(done) {
   startKarma(false, done);
 });
 
+gulp.task('test-es6', (done) => {
+  var opts = {
+    configFile: path.join(options.root, '/karma-es6.conf.js')
+  };
+
+  var karma = new KarmaServer(opts, function() {
+    done();
+  });
+
+  karma.start();
+});
+
+gulp.task('build', () => {
+  return rollup
+    .rollup(rollupConf)
+    .then((bundle) => bundle.write(rollupConf));
+});
+
 // Release tasks
 ['minor', 'major', 'patch'].forEach(function(level) {
   gulp.task('release:' + level, ['build'], function() {
@@ -94,4 +114,3 @@ gulp.task('tdd', function(done) {
 });
 
 gulp.task('release', ['release:minor']);
-gulp.task('build', ['lint', 'test']);
