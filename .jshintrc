@@ -18,10 +18,5 @@
   "strict": false,
   "trailing": true,
   "smarttabs": true,
-  "globals": {
-    "jasmine": true,
-    "spyOn": true,
-    "beforeEach": true,
-    "describe": true
-  }
+  "jasmine": true
 }
