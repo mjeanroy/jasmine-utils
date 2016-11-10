@@ -23,7 +23,7 @@
  */
 
 
-jasmine.autoSpy = (function autoMock() {
+jasmine.autoSpy = (function autoSpy() {
 
     var autoSpyAll = [];
 

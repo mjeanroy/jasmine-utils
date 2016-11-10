@@ -31,6 +31,7 @@ var bump = require('gulp-bump');
 var gulpFilter = require('gulp-filter');
 var tag_version = require('gulp-tag-version');
 var babel = require('gulp-babel');
+var concat = require('gulp-concat');
 
 var options = {
   root: __dirname,
@@ -69,12 +70,18 @@ gulp.task('lint', function() {
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('test', ['babel'], function(done) {
+gulp.task('test', function(done) {
   startKarma(true, done);
 });
 
 gulp.task('tdd', ['babel'], function(done) {
   startKarma(false, done);
+});
+
+gulp.task('dist', ['build'], function() {
+  return gulp.src(['./src/jasmine-utils.js', './src/jasmine-utils-auto-spy.js'])
+      .pipe(concat('index.js'))
+      .pipe(gulp.dest('./dist/'));
 });
 
 // Release tasks
@@ -103,4 +110,4 @@ gulp.task('tdd', ['babel'], function(done) {
 });
 
 gulp.task('release', ['release:minor']);
-gulp.task('build', ['lint', 'test']);
+gulp.task('build', ['lint', 'babel', 'test']);

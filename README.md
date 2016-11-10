@@ -1067,7 +1067,7 @@ it('should check that a spy has been called once with given arguments', function
 });
 ```
 
-*Since version 0.3.x*
+##Since version >0.3.x
 
 - `jasmine.autoSpy(objectOrArrayOfObjects)`
   - Calls jasmine.spyAll on all of the objects passed in beforeEach()
