@@ -1108,6 +1108,129 @@ describe('jasmine.autoSpy', function() {
  });
 ```
 
+##Since version >=0.4.1
+
+- `jasmine.spyAll(window)` will only spy on the following methods:
+
+```
+// if window is passed to spyAll, we only want to spy on the following methods
+// taken from here: https://developer.mozilla.org/en-US/docs/Web/API/Window#Methods
+var whiteListedWindowMethods = [
+    'alert',
+    'atob',
+    //'back', <- non standard
+    'blur',
+    'btoa',
+    'cancelAnimationFrame',
+    'captureEvents',
+    'clearImmediate',
+    'clearInterval',
+    'clearTimeout',
+    'close',
+    'confirm',
+    'convertPointFromNodeToPage',
+    'createImageBitmap',
+    'dump',
+    //'fetch',
+    'find',
+    'focus',
+    //'forward', <- non standard
+    'getAttention',
+    'getComputedStyle',
+    //'getDefaultComputedStyle', <- non standard
+    'getSelection',
+    //'home', <- non standard
+    'matchMedia',
+    'minimize',
+    'moveBy',
+    'moveTo',
+    'open',
+    'openDialog',
+    'postMessage',
+    'print',
+    'prompt',
+    'releaseEvents',
+    'requestAnimationFrame',
+    'resizeBy',
+    'resizeTo',
+    'restore',
+    'routeEvent',
+    'scroll',
+    'scrollBy',
+    'scrollByLines',
+    'scrollByPages',
+    'scrollTo',
+    'setCursor',
+    'setImmediate',
+    'setInterval',
+    'setTimeout',
+    'showModalDialog',
+    'sizeToContent',
+    'stop',
+    'updateCommands'
+];
+```
+
+- `jasmine.spyAll(document)` will only spy on the following methods:
+
+```
+// if document is passed to spyAll, we only want to spy on the following methods
+// taken from here: https://developer.mozilla.org/en-US/docs/Web/API/Document#Methods
+var whitelistDocumentMethods = [
+    'adoptNode',
+    'append',
+    'caretPositionFromPoint',
+    'caretRangeFromPoint',
+    'clear',
+    'close',
+    'createAttribute',
+    'createCDATASection',
+    'createComment',
+    'createDocumentFragment',
+    'createElement',
+    'createElementNS',
+    'createEntityReference',
+    'createEvent',
+    'createExpression',
+    'createNodeIterator',
+    'createNSResolver',
+    'createProcessingInstruction',
+    'createRange',
+    'createTextNode',
+    'createTouch',
+    'createTouchList',
+    'createTreeWalker',
+    'elementFromPoint',
+    'enableStyleSheetsForSet',
+    'evaluate',
+    'execCommand',
+    'exitFullscreen',
+    'exitPointerLock',
+    'getAnimations',
+    'getBoxObjectFor',
+    'getElementById',
+    'getElementsByClassName',
+    'getElementsByName',
+    'getElementsByTagName',
+    'getElementsByTagNameNS',
+    'getSelection',
+    'hasFocus',
+    'importNode',
+    'loadOverlay',
+    'mozSetImageElement',
+    'open',
+    'prepend',
+    'queryCommandEnabled',
+    'queryCommandSupported',
+    'querySelector',
+    'querySelectorAll',
+    'registerElement',
+    'releaseCapture',
+    'write',
+    'writeln'
+];
+```
+
 ## Licence
 
 MIT License (MIT)
