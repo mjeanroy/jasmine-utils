@@ -4,6 +4,9 @@
   "main": "dist/index.js",
   "version": "0.4.1",
   "license": "MIT",
+  "contributors": [
+    "Geoff Dutton <g.dutton@gmail.com> (https://github.com/geoffdutton)"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/mjeanroy/jasmine-utils.git"
