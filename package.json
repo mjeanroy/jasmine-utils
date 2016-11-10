@@ -2,7 +2,7 @@
   "name": "jasmine-utils",
   "author": "mickael.jeanroy@gmail.com",
   "main": "dist/index.js",
-  "version": "0.4.1",
+  "version": "0.4.0",
   "license": "MIT",
   "contributors": [
     "Geoff Dutton <g.dutton@gmail.com> (https://github.com/geoffdutton)"

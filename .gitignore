@@ -5,4 +5,3 @@ test/example-es6-class.js
 
 # can't ignore this until it's published
 # dist
-dist/
