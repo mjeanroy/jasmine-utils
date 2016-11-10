@@ -46,14 +46,14 @@ describe('jasmine-utils-auto-spy', function() {
     describe('autoSpyAll', function () {
 
         it('should add to existing auto mocks', function () {
-            let obj = {a: 'object'};
+            var obj = {a: 'object'};
             expect(autoSpy.add(obj).length).toEqual(1 + before.length);
             expect(autoSpy.add(obj).length).toEqual(1 + before.length);
             expect(autoSpy.add({}).length).toEqual(2 + before.length);
         });
 
         it('should remove existing or non-existing auto mocks', function () {
-            let obj = {some: 'object'},
+            var obj = {some: 'object'},
                 now = autoSpy.remove(obj);
 
             expect(now.length).toEqual(before.length);
@@ -64,13 +64,13 @@ describe('jasmine-utils-auto-spy', function() {
         });
 
         it('should add a single object', function() {
-            let obj = {some: 'object2'};
+            var obj = {some: 'object2'};
             autoSpy.add(obj);
             expect(autoSpy.get().length).toEqual(before.length + 1);
         });
 
         it('should add an array of objects', function() {
-            let obj = {some: 'object3'},
+            var obj = {some: 'object3'},
                 obj2 = {other: 'object4'};
 
             autoSpy.add([obj, obj2]);
@@ -82,11 +82,11 @@ describe('jasmine-utils-auto-spy', function() {
 
     describe('jasmine.autoSpyAll - parent scope', function() {
         beforeAll(autoSpy.removeAll);
-        
+
         autoSpy([mockMe], 'parent scope');
 
         it('should auto spy', function () {
-            let now = autoSpy.get().length;
+            var now = autoSpy.get().length;
             expect(now).toBe(1);
             expect(autoSpy.get()[0]).toBe(mockMe);
             expect(jasmine.isSpy(mockMe.one)).toBe(true);
@@ -99,7 +99,7 @@ describe('jasmine-utils-auto-spy', function() {
 
         describe(' - first child scope', function () {
 
-            let anotherObj = {another: function() {}};
+            var anotherObj = {another: function() {}};
             autoSpy(anotherObj, 'first child scope');
 
             it('should add to existing auto mock', function () {
@@ -112,7 +112,7 @@ describe('jasmine-utils-auto-spy', function() {
             });
 
             describe(' - second child scope', function () {
-                let andAnotherObj = {nextAgain: function() {}};
+                var andAnotherObj = {nextAgain: function() {}};
                 autoSpy(andAnotherObj, ' - second child scope');
 
                 it('should add to existing auto mock', function () {
@@ -139,7 +139,7 @@ describe('jasmine-utils-auto-spy', function() {
         });
 
         it('should auto spy after child scopes', function () {
-            let now = autoSpy.get().length;
+            var now = autoSpy.get().length;
             expect(now).toBe(1);
             expect(autoSpy.get()[0]).toBe(mockMe);
             expect(jasmine.isSpy(mockMe.one)).toBe(true);
