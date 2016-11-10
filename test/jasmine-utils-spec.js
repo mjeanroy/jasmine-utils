@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+/* globals ExampleEs6Class, ChildExampleEs6Class */
 
 describe('jasmine-utils', function() {
 
@@ -82,7 +83,7 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('spyAll and spyAllExcept', function() {
+  describe('spyAll, spyAllExcept, spyAllOnly', function() {
     beforeEach(function() {
       this.Klass = function() {
         this.id = 0;
@@ -93,6 +94,10 @@ describe('jasmine-utils', function() {
         },
 
         bar: function() {
+        },
+        boo: function() {
+        },
+        far: function() {
         }
       };
     });
@@ -151,6 +156,17 @@ describe('jasmine-utils', function() {
       expect(jasmine.isSpy(obj.bar)).toBeFalsy();
     });
 
+    it('should spy all methods but only bar', function() {
+      var obj = new this.Klass();
+
+      jasmine.spyAllOnly(obj, 'bar');
+
+      expect(jasmine.isSpy(obj.far)).toBeFalsy();
+      expect(jasmine.isSpy(obj.boo)).toBeFalsy();
+      expect(jasmine.isSpy(obj.foo)).toBeFalsy();
+      expect(jasmine.isSpy(obj.bar)).toBeTruthy();
+    });
+
     it('should spy all methods except foo and bar', function() {
       var obj = new this.Klass();
 
@@ -158,6 +174,17 @@ describe('jasmine-utils', function() {
 
       expect(jasmine.isSpy(obj.foo)).toBeFalsy();
       expect(jasmine.isSpy(obj.bar)).toBeFalsy();
+    });
+
+    it('should spy all methods but only foo and bar', function() {
+      var obj = new this.Klass();
+
+      jasmine.spyAllOnly(obj, ['foo', 'bar']);
+
+      expect(jasmine.isSpy(obj.far)).toBeFalsy();
+      expect(jasmine.isSpy(obj.boo)).toBeFalsy();
+      expect(jasmine.isSpy(obj.foo)).toBeTruthy();
+      expect(jasmine.isSpy(obj.bar)).toBeTruthy();
     });
 
     it('should spy each methods with one argument', function() {
@@ -193,6 +220,32 @@ describe('jasmine-utils', function() {
 
       expect(jasmine.isSpy(this.Klass.prototype.foo)).toBeTruthy();
       expect(jasmine.isSpy(this.Klass.prototype.bar)).toBeTruthy();
+    });
+  });
+
+  describe('spyAll on window, document', function () {
+    it('should gracefully spyAll on the window object', function () {
+      jasmine.spyAll(window);
+      expect(jasmine.isSpy(window.alert)).toBe(true);
+      expect(jasmine.isSpy(window.scroll)).toBe(true);
+      expect(jasmine.isSpy(window.close)).toBe(true);
+      window.close.and.returnValue(undefined);
+      window.close();
+      expect(window.close).toHaveBeenCalledTimes(1);
+      jasmine.resetAll(window);
+      expect(window.close).not.toHaveBeenCalled();
+    });
+
+    it('should gracefully spyAll on the document object', function () {
+      jasmine.spyAll(document);
+      expect(jasmine.isSpy(document.createElement)).toBe(true);
+      expect(jasmine.isSpy(document.querySelector)).toBe(true);
+      expect(jasmine.isSpy(document.getElementById)).toBe(true);
+      document.createElement.and.returnValue({what: 'ever'});
+      document.createElement('blah');
+      expect(document.createElement).toHaveBeenCalledTimes(1);
+      jasmine.resetAll(document);
+      expect(document.createElement).not.toHaveBeenCalled();
     });
   });
 

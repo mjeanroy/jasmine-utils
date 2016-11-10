@@ -4,7 +4,7 @@
  * Copyright (c) 2014 Mickael Jeanroy <mickael.jeanroy@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
+ * of this software and associated documentation files (the 'Software'), to deal
  * in the Software without restriction, including without limitation the rights
  * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
  * copies of the Software, and to permit persons to whom the Software is
@@ -13,7 +13,7 @@
  * The above copyright notice and this permission notice shall be included in
  * all copies or substantial portions of the Software.
  *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
@@ -803,6 +803,119 @@
 
   var jasmineMatchers = {};
 
+  // if window is passed to spyAll, we only want to spy on the following methods
+  // taken from here: https://developer.mozilla.org/en-US/docs/Web/API/Window#Methods
+  var whiteListedWindowMethods = [
+    'alert',
+    'atob',
+    //'back', <- non standard
+    'blur',
+    'btoa',
+    'cancelAnimationFrame',
+    'captureEvents',
+    'clearImmediate',
+    'clearInterval',
+    'clearTimeout',
+    'close',
+    'confirm',
+    'convertPointFromNodeToPage',
+    'createImageBitmap',
+    'dump',
+    //'fetch',
+    'find',
+    'focus',
+    //'forward', <- non standard
+    'getAttention',
+    'getComputedStyle',
+    //'getDefaultComputedStyle', <- non standard
+    'getSelection',
+    //'home', <- non standard
+    'matchMedia',
+    'minimize',
+    'moveBy',
+    'moveTo',
+    'open',
+    'openDialog',
+    'postMessage',
+    'print',
+    'prompt',
+    'releaseEvents',
+    'requestAnimationFrame',
+    'resizeBy',
+    'resizeTo',
+    'restore',
+    'routeEvent',
+    'scroll',
+    'scrollBy',
+    'scrollByLines',
+    'scrollByPages',
+    'scrollTo',
+    'setCursor',
+    'setImmediate',
+    'setInterval',
+    'setTimeout',
+    'showModalDialog',
+    'sizeToContent',
+    'stop',
+    'updateCommands'
+  ];
+
+  // if document is passed to spyAll, we only want to spy on the following methods
+  // taken from here: https://developer.mozilla.org/en-US/docs/Web/API/Document#Methods
+  var whitelistDocumentMethods = [
+    'adoptNode',
+    'append',
+    'caretPositionFromPoint',
+    'caretRangeFromPoint',
+    'clear',
+    'close',
+    'createAttribute',
+    'createCDATASection',
+    'createComment',
+    'createDocumentFragment',
+    'createElement',
+    'createElementNS',
+    'createEntityReference',
+    'createEvent',
+    'createExpression',
+    'createNodeIterator',
+    'createNSResolver',
+    'createProcessingInstruction',
+    'createRange',
+    'createTextNode',
+    'createTouch',
+    'createTouchList',
+    'createTreeWalker',
+    'elementFromPoint',
+    'enableStyleSheetsForSet',
+    'evaluate',
+    'execCommand',
+    'exitFullscreen',
+    'exitPointerLock',
+    'getAnimations',
+    'getBoxObjectFor',
+    'getElementById',
+    'getElementsByClassName',
+    'getElementsByName',
+    'getElementsByTagName',
+    'getElementsByTagNameNS',
+    'getSelection',
+    'hasFocus',
+    'importNode',
+    'loadOverlay',
+    'mozSetImageElement',
+    'open',
+    'prepend',
+    'queryCommandEnabled',
+    'queryCommandSupported',
+    'querySelector',
+    'querySelectorAll',
+    'registerElement',
+    'releaseCapture',
+    'write',
+    'writeln'
+  ];
+
   var parseNegateMessage = function(isNot, message) {
     var notKey = isNot ? '{{not}}' : '{{not}} ';
     var notValue = isNot ? 'not' : '';
@@ -974,7 +1087,15 @@
 
   // Spy all methods on given object
   jasmine.spyAll = function(obj) {
-    jasmine.spyAllExcept(obj, []);
+    if(obj === window) {
+      jasmine.spyAllOnly(obj, whiteListedWindowMethods);
+    }
+    else if(obj === document) {
+      jasmine.spyAllOnly(obj, whitelistDocumentMethods);
+    }
+    else {
+      jasmine.spyAllExcept(obj, []);
+    }
   };
 
   jasmine.spyEach = function(obj, methods) {
@@ -1011,8 +1132,31 @@
     });
   };
 
+  // Spy only methods on given object in the onlys array
+  jasmine.spyAllOnly = function(obj, onlys) {
+    if (!isArray(onlys)) {
+      onlys = [onlys];
+    }
+
+    var map = arrayToMap(onlys);
+
+    eachOfObj(obj, function(target, i) {
+      if (map[i]) {
+        spyIfAndCallThrough(target, i);
+      }
+    });
+  };
+
   jasmine.resetAll = function(obj) {
-    jasmine.resetAllExcept(obj, []);
+    if(obj === window) {
+      jasmine.resetAllOnly(obj, whiteListedWindowMethods);
+    }
+    else if(obj === document) {
+      jasmine.resetAllOnly(obj, whitelistDocumentMethods);
+    }
+    else {
+      jasmine.resetAllExcept(obj, []);
+    }
   };
 
   jasmine.resetEach = function(obj, methods) {
@@ -1037,6 +1181,21 @@
       var spy = target[i];
       if (jasmine.isSpy(spy) && !map[i]) {
         reset(spy);
+      }
+    });
+  };
+
+  jasmine.resetAllOnly = function(obj, onlys) {
+    var arg = onlys || [];
+    var array = isArray(arg) ? arg : [arg];
+    var map = arrayToMap(array);
+
+    eachOfObj(obj, function(target, i) {
+      if(map[i]) {
+        var spy = target[i];
+        if (jasmine.isSpy(spy)) {
+          reset(spy);
+        }
       }
     });
   };
