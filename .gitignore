@@ -2,4 +2,7 @@
 node_modules/
 test/example-es6-class.js
 .idea
-dist
+
+# can't ignore this until it's published
+# dist
+dist/
