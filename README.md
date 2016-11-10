@@ -1067,6 +1067,47 @@ it('should check that a spy has been called once with given arguments', function
 });
 ```
 
+*Since version 0.3.x*
+
+- `jasmine.autoSpy(objectOrArrayOfObjects)`
+  - Calls jasmine.spyAll on all of the objects passed in beforeEach()
+  - Calls jasmine.resetAll on all of the objects passed in afterEach()
+  - Only keeps spies in the called describe() scope
+```javascript
+describe('jasmine.autoSpy', function() {
+    var mockMe = {one: function() {}};
+
+    autoSpy([mockMe]);
+
+    it('should auto spy', function () {
+        var now = autoSpy.get().length;
+        expect(now).toBe(1);
+        expect(autoSpy.get()[0]).toBe(mockMe);
+        expect(jasmine.isSpy(mockMe.one)).toBe(true);
+    });
+
+    it('should auto spy mocks at this describe scope only once', function () {
+        expect(autoSpy.get().length).toBe(1);
+        expect(autoSpy.get()[0]).toBe(mockMe);
+    });
+
+    describe(' - first child scope', function () {
+
+        var anotherObj = {another: function() {}};
+        autoSpy(anotherObj, 'first child scope');
+
+        it('should add to existing auto mock', function () {
+            expect(autoSpy.get().length).toBe(2);
+            expect(autoSpy.get()[0]).toBe(mockMe);
+            expect(jasmine.isSpy(mockMe.one)).toBe(true);
+
+            expect(autoSpy.get()[1]).toBe(anotherObj);
+            expect(jasmine.isSpy(anotherObj.another)).toBe(true);
+        });
+    });
+ });
+```
+
 ## Licence
 
 MIT License (MIT)
