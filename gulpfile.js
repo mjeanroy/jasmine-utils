@@ -30,6 +30,8 @@ var git = require('gulp-git');
 var bump = require('gulp-bump');
 var gulpFilter = require('gulp-filter');
 var tag_version = require('gulp-tag-version');
+var babel = require('gulp-babel');
+var concat = require('gulp-concat');
 
 var options = {
   root: __dirname,
@@ -45,6 +47,26 @@ function startKarma(singleRun, done) {
   if (singleRun) {
     opts.singleRun = true;
     opts.browsers = ['PhantomJS'];
+    opts.files = [
+      {
+        pattern: 'test/example-es6-class.js',
+        watched: true,
+        served: true,
+        included: true
+      },
+      {
+        pattern: 'dist/index.js',
+        watched: true,
+        served: true,
+        included: true
+      },
+      {
+        pattern: 'test/*spec.js',
+        watched: true,
+        served: true,
+        included: true
+      }
+    ];
   }
 
   var karma = new KarmaServer(opts, function() {
@@ -53,6 +75,14 @@ function startKarma(singleRun, done) {
 
   karma.start();
 }
+
+gulp.task('babel', function() {
+  return gulp.src(options.test + '/*.es6' )
+    .pipe(babel({
+        presets: ['es2015']
+    }))
+    .pipe(gulp.dest(options.test));
+});
 
 gulp.task('lint', function() {
   return gulp.src(options.src + '/**/*.js')
@@ -64,8 +94,14 @@ gulp.task('test', function(done) {
   startKarma(true, done);
 });
 
-gulp.task('tdd', function(done) {
+gulp.task('tdd', ['babel', 'dist'], function(done) {
   startKarma(false, done);
+});
+
+gulp.task('dist', function() {
+  return gulp.src(['./src/jasmine-utils.js', './src/jasmine-utils-auto-spy.js'])
+      .pipe(concat('index.js'))
+      .pipe(gulp.dest('./dist/'));
 });
 
 // Release tasks
@@ -94,4 +130,4 @@ gulp.task('tdd', function(done) {
 });
 
 gulp.task('release', ['release:minor']);
-gulp.task('build', ['lint', 'test']);
+gulp.task('build', ['lint', 'babel', 'dist', 'test']);

@@ -1,9 +1,12 @@
 {
   "name": "jasmine-utils",
   "author": "mickael.jeanroy@gmail.com",
-  "main": "src/jasmine-utils.js",
-  "version": "0.2.3",
+  "main": "dist/index.js",
+  "version": "0.4.1",
   "license": "MIT",
+  "contributors": [
+    "Geoff Dutton <g.dutton@gmail.com> (https://github.com/geoffdutton)"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/mjeanroy/jasmine-utils.git"
@@ -12,22 +15,26 @@
     "jasmine-core": ">=1.3.0"
   },
   "devDependencies": {
+    "babel-preset-es2015": "^6.18.0",
     "bower": "1.7.7",
+    "gulp": "3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-bump": "1.0.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-filter": "3.0.1",
+    "gulp-git": "1.7.0",
+    "gulp-jshint": "2.0.0",
+    "gulp-tag-version": "1.3.0",
     "jasmine-core": ">=1.3.0",
+    "jshint": "2.9.1",
     "karma": "0.13.21",
+    "karma-chrome-launcher": "^2.0.0",
     "karma-jasmine": "0.3.7",
     "karma-phantomjs-launcher": "1.0.0",
-    "phantomjs-prebuilt": "2.1.4",
-    "jshint": "2.9.1",
-    "gulp": "3.9.1",
-    "gulp-jshint": "2.0.0",
-    "gulp-git": "1.7.0",
-    "gulp-bump": "1.0.0",
-    "gulp-filter": "3.0.1",
-    "gulp-tag-version": "1.3.0"
+    "phantomjs-prebuilt": "2.1.4"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4.0.0"
   },
   "scripts": {
     "lint": "gulp lint",
@@ -35,6 +42,7 @@
     "tdd": "gulp tdd",
     "build": "gulp build",
     "release": "gulp release",
+    "babel": "gulp babel",
     "release:patch": "gulp release:patch",
     "release:minor": "gulp release:minor",
     "release:major": "gulp release:major"
