@@ -42,6 +42,7 @@
     "tdd": "gulp tdd",
     "build": "gulp build",
     "release": "gulp release",
+    "babel": "gulp babel",
     "release:patch": "gulp release:patch",
     "release:minor": "gulp release:minor",
     "release:major": "gulp release:major"
