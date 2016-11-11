@@ -1,9 +1,13 @@
+![](https://travis-ci.org/geoffdutton/jasmine-utils.svg?branch=master)
+
 jasmine-utils
 =============
 
 Jasmine-Utils is a set of custom matchers that I used in my previous projects.
 
 Jasmine-Utils is compatible with __Jasmine 1.3__ and __Jasmine 2.0__.
+
+Get some: 
 
 ## Utils Functions
 
