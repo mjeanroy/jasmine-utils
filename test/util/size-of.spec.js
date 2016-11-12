@@ -36,7 +36,7 @@ describe('sizeOf', () => {
   });
 
   it('should return length of array-like object', () => {
-    const arrayLike = {'0': 1, '1': 2, '2': 3, length: 3};
+    const arrayLike = {'0': 1, '1': 2, '2': 3, 'length': 3};
     expect(sizeOf(arrayLike)).toBe(3);
   });
 

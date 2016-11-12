@@ -61,7 +61,7 @@ export function jasmine2MatcherFactory(fn) {
       // See: https://jasmine.github.io/2.5/custom_equality.html
       equals(a, b) {
         return util.equals(a, b, customEqualityTesters);
-      }
+      },
     };
 
     return {
@@ -71,15 +71,16 @@ export function jasmine2MatcherFactory(fn) {
        *
        * @param {*} actual Object being tested (the object being given in `expect` call).
        * @param {Array<*>} args The matcher arguments (arguments being given to `toCustomMatcher` call).
+       * @return {Object} The test result.
        */
       compare(actual, ...args) {
         ctx.actual = actual;
         ctx.isNot = false;
 
-        const result = fn.apply(null, [ctx].concat(args));
+        const result = fn(...[ctx].concat(args));
         return {
           pass: result.pass,
-          message: negateMessage(false, result.message)
+          message: negateMessage(false, result.message),
         };
       },
 
@@ -89,17 +90,18 @@ export function jasmine2MatcherFactory(fn) {
        *
        * @param {*} actual Object being tested (the object being given in `expect` call).
        * @param {Array<*>} args The matcher arguments (arguments being given to `toCustomMatcher` call).
+       * @return {void}
        */
       negativeCompare(actual, ...args) {
         ctx.actual = actual;
         ctx.isNot = true;
 
-        const result = fn.apply(null, [ctx].concat(args));
+        const result = fn(...[ctx].concat(args));
         return {
           pass: !result.pass,
-          message: negateMessage(true, result.message)
+          message: negateMessage(true, result.message),
         };
-      }
+      },
     };
   };
 }

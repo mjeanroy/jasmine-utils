@@ -33,7 +33,7 @@ import {has} from './has.js';
 export function values(obj) {
   const vals = [];
 
-  for (var i in obj) {
+  for (let i in obj) {
     if (has(obj, i)) {
       vals.push(obj[i]);
     }

@@ -4,10 +4,6 @@ import {isString} from './is-string.js';
 import {isNil} from './is-nil.js';
 import {isObject} from './is-object.js';
 
-function sizeOfObject(obj) {
-  return
-}
-
 /**
  * Get the `size` of a given value:
  * - The length value for an array (or an array-like) object.

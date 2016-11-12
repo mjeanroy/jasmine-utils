@@ -28,6 +28,8 @@ describe('isArray', () => {
   it('should return true with array', () => {
     expect(isArray([0, 1, 2])).toBe(true);
     expect(isArray(Array(10))).toBe(true);
+
+    // eslint-disable-next-line no-array-constructor
     expect(isArray(new Array(1, 2, 3))).toBe(true);
   });
 

@@ -28,6 +28,8 @@ describe('isString', () => {
   it('should return true with a string', () => {
     expect(isString('test')).toBe(true);
     expect(isString(String('test'))).toBe(true);
+
+    // eslint-disable-next-line no-new-wrappers
     expect(isString(new String('test'))).toBe(true);
   });
 

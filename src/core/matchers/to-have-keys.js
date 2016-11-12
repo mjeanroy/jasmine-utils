@@ -48,6 +48,6 @@ export function toHaveKeys(ctx, ...expectedKeys) {
 
   return {
     pass: ok,
-    message: pp('Expect object {{%0}} {{not}} to contain keys {{%1}}', actual, expectedKeys)
+    message: pp('Expect object {{%0}} {{not}} to contain keys {{%1}}', actual, expectedKeys),
   };
 }

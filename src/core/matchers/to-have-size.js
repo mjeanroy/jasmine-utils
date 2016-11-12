@@ -29,6 +29,7 @@ import {sizeOf} from '../util/size-of.js';
  * Check that tested object has an expected size.
  *
  * @param {Object} ctx Test context.
+ * @param {number} expectedSize The expected size.
  * @return {Object} Test result.
  */
 export function toHaveSize(ctx, expectedSize) {
@@ -36,6 +37,6 @@ export function toHaveSize(ctx, expectedSize) {
   const size = sizeOf(actual);
   return {
     pass: size === expectedSize,
-    message: pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedSize, size)
+    message: pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedSize, size),
   };
 }

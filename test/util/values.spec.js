@@ -28,7 +28,7 @@ describe('values', () => {
   it('should extract all object values', () => {
     const object = {
       foo: 'bar',
-      quix: 'foo'
+      quix: 'foo',
     };
 
     const vals = values(object);

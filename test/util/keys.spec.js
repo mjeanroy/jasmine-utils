@@ -28,7 +28,7 @@ describe('keys', () => {
   it('should return all own keys of object', () => {
     const obj = {
       k1: true,
-      k2: false
+      k2: false,
     };
 
     const results = keys(obj);

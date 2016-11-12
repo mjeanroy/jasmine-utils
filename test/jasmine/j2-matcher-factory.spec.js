@@ -44,14 +44,14 @@ describe('jasmine2MatcherFactory', () => {
 
       customEqualityTesters = {};
       util = {
-        equals: jasmine.createSpy('equals').and.returnValue(true)
+        equals: jasmine.createSpy('equals').and.returnValue(true),
       };
     });
 
     it('should execute matcher with the compare function', () => {
       matcher.and.returnValue({
         pass: true,
-        message: 'a message'
+        message: 'a message',
       });
 
       const actual = {};
@@ -70,7 +70,7 @@ describe('jasmine2MatcherFactory', () => {
         isNot: false,
         callCount: jasmine.any(Function),
         argsFor: jasmine.any(Function),
-        equals: jasmine.any(Function)
+        equals: jasmine.any(Function),
       });
 
       expect(args[1]).toBe(arg0);
@@ -80,7 +80,7 @@ describe('jasmine2MatcherFactory', () => {
     it('should execute matcher with the negativeCompare function', () => {
       matcher.and.returnValue({
         pass: true,
-        message: 'a message'
+        message: 'a message',
       });
 
       const actual = {};
@@ -103,7 +103,7 @@ describe('jasmine2MatcherFactory', () => {
         isNot: true,
         callCount: jasmine.any(Function),
         argsFor: jasmine.any(Function),
-        equals: jasmine.any(Function)
+        equals: jasmine.any(Function),
       });
     });
 
@@ -113,7 +113,7 @@ describe('jasmine2MatcherFactory', () => {
       beforeEach(() => {
         matcher.and.returnValue({
           pass: true,
-          message: 'a message'
+          message: 'a message',
         });
 
         j2Matcher(util, customEqualityTesters).negativeCompare({});
@@ -123,8 +123,8 @@ describe('jasmine2MatcherFactory', () => {
       it('should return callCount of a spy', () => {
         const callCount = ctx.callCount({
           calls: {
-            count: jasmine.createSpy('callCount').and.returnValue(1)
-          }
+            count: jasmine.createSpy('callCount').and.returnValue(1),
+          },
         });
 
         expect(callCount).toBe(1);
@@ -134,8 +134,8 @@ describe('jasmine2MatcherFactory', () => {
         const actualArgs = [0, 1, 2];
         const spy = {
           calls: {
-            argsFor: jasmine.createSpy('argsFor').and.returnValue(actualArgs)
-          }
+            argsFor: jasmine.createSpy('argsFor').and.returnValue(actualArgs),
+          },
         };
 
         const argsForCall0 = ctx.argsFor(spy, 0);

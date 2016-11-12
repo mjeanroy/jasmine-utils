@@ -22,26 +22,34 @@
  * THE SOFTWARE.
  */
 
-var path = require('path');
-var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var KarmaServer = require('karma').Server;
-var git = require('gulp-git');
-var bump = require('gulp-bump');
-var gulpFilter = require('gulp-filter');
-var tag_version = require('gulp-tag-version');
-var rollup = require('rollup');
-var rollupConf = require('./rollup.conf.js');
+const path = require('path');
+const gulp = require('gulp');
+const jshint = require('gulp-jshint');
+const KarmaServer = require('karma').Server;
+const git = require('gulp-git');
+const bump = require('gulp-bump');
+const gulpFilter = require('gulp-filter');
+const tagVersion = require('gulp-tag-version');
+const rollup = require('rollup');
+const rollupConf = require('./rollup.conf.js');
+const eslint = require('gulp-eslint');
 
-var options = {
+const options = {
   root: __dirname,
   src: path.join(__dirname, 'src'),
-  test: path.join(__dirname, 'test')
+  test: path.join(__dirname, 'test'),
 };
 
+/**
+ * Start Karma Server and run unit tests.
+ *
+ * @param {boolean} singleRun If it runs once and exit or not.
+ * @param {function} done The done callback.
+ * @return {void}
+ */
 function startKarma(singleRun, done) {
-  var opts = {
-    configFile: path.join(options.root, '/karma.conf.js')
+  const opts = {
+    configFile: path.join(options.root, '/karma.conf.js'),
   };
 
   if (singleRun) {
@@ -49,35 +57,44 @@ function startKarma(singleRun, done) {
     opts.browsers = ['PhantomJS'];
   }
 
-  var karma = new KarmaServer(opts, function() {
-    done();
-  });
+  const karma = new KarmaServer(opts, () => done());
 
   karma.start();
 }
 
-gulp.task('lint', function() {
-  return gulp.src(options.src + '/**/*.js')
+gulp.task('eslint', () => {
+  const sources = [
+    path.join(options.root, '*.js'),
+    path.join(options.src, '**', '*.js'),
+    path.join(options.test, '**', '*.js'),
+  ];
+
+  return gulp.src(sources)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});
+
+gulp.task('lint', () => {
+  return gulp.src(path.join(options.src, '**', '*.js'))
     .pipe(jshint())
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('test', function(done) {
+gulp.task('test', (done) => {
   startKarma(true, done);
 });
 
-gulp.task('tdd', function(done) {
+gulp.task('tdd', (done) => {
   startKarma(false, done);
 });
 
 gulp.task('test-es6', (done) => {
-  var opts = {
-    configFile: path.join(options.root, '/karma-es6.conf.js')
+  const opts = {
+    configFile: path.join(options.root, '/karma-es6.conf.js'),
   };
 
-  var karma = new KarmaServer(opts, function() {
-    done();
-  });
+  const karma = new KarmaServer(opts, () => done());
 
   karma.start();
 });
@@ -91,17 +108,8 @@ gulp.task('build', () => {
 // Release tasks
 ['minor', 'major', 'patch'].forEach(function(level) {
   gulp.task('release:' + level, ['build'], function() {
-    var packageJsonFilter = gulpFilter(function(file) {
-      return file.relative === 'package.json';
-    });
-
-    var distFilter = gulpFilter(function(file) {
-      return file.relative === 'dist';
-    });
-
-    var src = ['package.json', 'bower.json'].map(function(file) {
-      return path.join(options.root, file);
-    });
+    const packageJsonFilter = gulpFilter((file) => file.relative === 'package.json');
+    const src = ['package.json', 'bower.json'].map((file) => path.join(options.root, file));
 
     return gulp.src(src)
       .pipe(bump({type: level}))
@@ -109,7 +117,7 @@ gulp.task('build', () => {
       .pipe(git.add({args: '-f'}))
       .pipe(git.commit('release: release version'))
       .pipe(packageJsonFilter)
-      .pipe(tag_version());
+      .pipe(tagVersion());
   });
 });
 

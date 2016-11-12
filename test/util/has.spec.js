@@ -28,7 +28,7 @@ describe('keys', () => {
   it('should return true if object has key', () => {
     const obj = {
       k1: true,
-      k2: false
+      k2: false,
     };
 
     expect(has(obj, 'k1')).toBe(true);
@@ -38,7 +38,7 @@ describe('keys', () => {
   it('should return false if object does not have key', () => {
     const obj = {
       k1: true,
-      k2: false
+      k2: false,
     };
 
     expect(has(obj, 'k3')).toBe(false);

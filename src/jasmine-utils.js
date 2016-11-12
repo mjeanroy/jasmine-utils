@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+/* eslint-disable */
+
 (function(undefined) {
 
   var toString = Object.prototype.toString;
@@ -1039,3 +1041,5 @@
   });
 
 })(void 0);
+
+/* eslint-enable */

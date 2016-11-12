@@ -36,6 +36,6 @@ export function toHaveLength(ctx, expectedLength) {
   const actualLength = actual.length;
   return {
     pass: actualLength === expectedLength,
-    message: pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedLength, actualLength)
+    message: pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedLength, actualLength),
   };
 }

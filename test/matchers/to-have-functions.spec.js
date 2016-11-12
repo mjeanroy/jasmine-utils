@@ -36,15 +36,18 @@ describe('toHaveFunctions', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect object Object({ f1: spy on f1, f2: spy on f2 }) {{not}} to contain functions [ 'f1', 'f2' ]`
+      message: `Expect object Object({ f1: spy on f1, f2: spy on f2 }) {{not}} to contain functions [ 'f1', 'f2' ]`,
     });
   });
 
   it('should check if class instance has expected functions', () => {
+    // eslint-disable-next-line
     class TestClass {
+      // eslint-disable-next-line
       f1() {
       }
 
+      // eslint-disable-next-line
       f2() {
       }
     }
@@ -57,13 +60,12 @@ describe('toHaveFunctions', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect object TestClass({  }) {{not}} to contain functions [ 'f1', 'f2' ]`
+      message: `Expect object TestClass({  }) {{not}} to contain functions [ 'f1', 'f2' ]`,
     });
   });
 
   it('should fail if object does not have all expected functions', () => {
     const f1 = jasmine.createSpy('f1');
-    const f2 = jasmine.createSpy('f2');
     const actual = {f1};
     const isNot = false;
     const ctx = {actual, isNot};
@@ -72,7 +74,7 @@ describe('toHaveFunctions', () => {
 
     expect(result).toEqual({
       pass: false,
-      message: `Expect object Object({ f1: spy on f1 }) {{not}} to contain functions [ 'f1', 'f2' ]`
+      message: `Expect object Object({ f1: spy on f1 }) {{not}} to contain functions [ 'f1', 'f2' ]`,
     });
   });
 });

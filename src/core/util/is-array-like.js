@@ -57,6 +57,6 @@ export function isArrayLike(obj) {
       return true;
   }
 
-  var length = obj.length;
+  const length = obj.length;
   return length === 0 || isNumber(length) && length > 0 && (length - 1) in obj;
 }

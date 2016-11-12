@@ -40,7 +40,7 @@ describe('map', () => {
 
   it('should iterate over array like object and returns new array', () => {
     const arrayLike = {
-      length: 3,
+      'length': 3,
 
       '0': 1,
       '1': 2,

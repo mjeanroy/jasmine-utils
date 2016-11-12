@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+/* eslint-disable */
+
 describe('jasmine-utils', function() {
 
   describe('spyIf', function() {
@@ -1114,3 +1116,5 @@ describe('jasmine-utils', function() {
     });
   });
 });
+
+/* eslint-enable */

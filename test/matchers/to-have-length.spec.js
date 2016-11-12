@@ -35,7 +35,7 @@ describe('toHaveLength', () => {
   });
 
   it('should check length of array-like object', () => {
-    const actual = {'0': 1, '1': 2, '2': 3, length: 3};
+    const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
     const result = toHaveLength({actual}, 3);
     expect(result).toEqual({
       pass: true,

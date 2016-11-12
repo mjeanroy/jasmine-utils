@@ -37,6 +37,6 @@ export function toBeEmpty(ctx) {
   const size = sizeOf(actual);
   return {
     pass: size === 0,
-    message: pp('Expect {{%0}} {{not}} to be empty', actual)
+    message: pp('Expect {{%0}} {{not}} to be empty', actual),
   };
 }

@@ -57,7 +57,7 @@ describe('isArrayLike', () => {
       '0': 1,
       '1': 2,
       '2': 3,
-      length: 3
+      'length': 3,
     };
 
     expect(isArrayLike(arrayLike)).toBe(true);
@@ -69,7 +69,7 @@ describe('isArrayLike', () => {
 
   it('should return false with invalid array like object', () => {
     const arrayLike = {
-      length: 3
+      'length': 3,
     };
 
     expect(isArrayLike(arrayLike)).toBe(false);
@@ -77,7 +77,7 @@ describe('isArrayLike', () => {
 
   it('should return false with negative length', () => {
     const arrayLike = {
-      length: -1
+      'length': -1,
     };
 
     expect(isArrayLike(arrayLike)).toBe(false);
@@ -88,7 +88,7 @@ describe('isArrayLike', () => {
       '0': 1,
       '1': 2,
       '2': 3,
-      length: '3'
+      'length': '3',
     };
 
     expect(isArrayLike(arrayLike)).toBe(false);

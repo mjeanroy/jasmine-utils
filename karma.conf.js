@@ -2,13 +2,13 @@
  * Karma Configuration.
  */
 
-module.exports = function(config) {
+module.exports = (config) => {
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '.',
 
     frameworks: [
-      'jasmine'
+      'jasmine',
     ],
 
     files: [
@@ -16,14 +16,14 @@ module.exports = function(config) {
         pattern: 'src/*.js',
         watched: true,
         served: true,
-        included: true
+        included: true,
       },
       {
         pattern: 'test/*spec.js',
         watched: true,
         served: true,
-        included: true
-      }
+        included: true,
+      },
     ],
 
     exclude: [
@@ -32,7 +32,7 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
     // CLI --reporters progress
     reporters: [
-      'progress'
+      'progress',
     ],
 
     // web server port
@@ -66,7 +66,7 @@ module.exports = function(config) {
     // - IE (only Windows)
     // CLI --browsers Chrome,Firefox,Safari
     browsers: [
-      'Chrome'
+      'Chrome',
     ],
 
     // If browser does not capture in given timeout [ms], kill it
@@ -82,7 +82,6 @@ module.exports = function(config) {
     reportSlowerThan: 500,
 
     preprocessors: {
-    }
+    },
   });
-
 };

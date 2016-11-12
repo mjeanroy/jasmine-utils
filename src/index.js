@@ -31,7 +31,7 @@ import {
   toHaveSize,
   toBeEmpty,
   toHaveValues,
-  toHaveLength
+  toHaveLength,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -40,11 +40,18 @@ const jasmineMatchers = {
   toHaveSize: createMatcher(toHaveSize),
   toBeEmpty: createMatcher(toBeEmpty),
   toHaveValues: createMatcher(toHaveValues),
-  toHaveLength: createMatcher(toHaveLength)
+  toHaveLength: createMatcher(toHaveLength),
 };
 
+/**
+ * The `beforeEach` function executed by Jasmine before each tests that addMatchers
+ * all custom matchers.
+ *
+ * @return {void}
+ */
 function jasmineUtilBeforeEach() {
   if (version === 1) {
+    // eslint-disable-next-line no-invalid-this
     this.addMatchers(jasmineMatchers);
   } else {
     jasmine.addMatchers(jasmineMatchers);

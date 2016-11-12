@@ -26,11 +26,18 @@ import {pp} from '../jasmine/pp.js';
 import {contains} from '../util/contains.js';
 import {values} from '../util/values.js';
 
+/**
+ * Check that the tested object contains expected values (the key is not checked).
+ *
+ * @param {Object} ctx The test context.
+ * @param {Array<*>} expectedValues The values to look for.
+ * @return {Object} The test result.
+ */
 export function toHaveValues(ctx, ...expectedValues) {
   const {actual, equals} = ctx;
   const actualValues = values(actual);
 
-  var ok = true;
+  let ok = true;
   for (let i = 0, size = expectedValues.length; i < size; ++i) {
     if (!contains(actualValues, expectedValues[i], equals)) {
       ok = false;
@@ -40,6 +47,6 @@ export function toHaveValues(ctx, ...expectedValues) {
 
   return {
     pass: ok,
-    message: pp('Expect object {{%0}} {{not}} to contain values {{%1}}', actual, expectedValues)
+    message: pp('Expect object {{%0}} {{not}} to contain values {{%1}}', actual, expectedValues),
   };
 }

@@ -42,7 +42,7 @@ describe('jasmine1MatcherFactory', () => {
 
     it('should compare two values', () => {
       matcher.and.returnValue({
-        pass: true
+        pass: true,
       });
 
       const actual = {};
@@ -52,8 +52,8 @@ describe('jasmine1MatcherFactory', () => {
         actual: actual,
         isNot: false,
         env: {
-          equals_: jasmine.createSpy('equals_').and.returnValue(true)
-        }
+          equals_: jasmine.createSpy('equals_').and.returnValue(true),
+        },
       };
 
       const result = j1Matcher.call(jasmineContext, arg0, arg1);
@@ -73,7 +73,7 @@ describe('jasmine1MatcherFactory', () => {
         isNot: false,
         callCount: jasmine.any(Function),
         argsFor: jasmine.any(Function),
-        equals: jasmine.any(Function)
+        equals: jasmine.any(Function),
       });
     });
   });

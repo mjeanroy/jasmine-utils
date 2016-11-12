@@ -28,7 +28,7 @@ import {jasmine2MatcherFactory} from './j2-matcher-factory.js';
 
 const factories = {
   1: jasmine1MatcherFactory,
-  2: jasmine2MatcherFactory
+  2: jasmine2MatcherFactory,
 };
 
 /**
