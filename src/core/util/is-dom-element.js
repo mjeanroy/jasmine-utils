@@ -22,27 +22,13 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
-
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
+/**
+ * Check that a value is a DOM node element.
+ *
+ * @param {*} obj Value to check.
+ * @return {boolean} `true` if `obj` is a DOM node, `false` otherwise.
+ */
+export function isDOMElement(obj) {
+  return !!(obj && obj.nodeType === 1);
 }
-
-beforeEach(jasmineUtilBeforeEach);

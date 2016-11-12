@@ -22,27 +22,16 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
-
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
-
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
+const _isArray = Array.isArray || function _isArray(obj) {
+  return Object.prototype.toString.call(obj) === '[object Array]';
 };
 
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
+/**
+ * Check that a given value is an array.
+ *
+ * @param {*} obj Value to check.
+ * @return {boolean} `true` if `obj` is an array, `false` otherwise.
+ */
+export function isArray(obj) {
+  return _isArray(obj);
 }
-
-beforeEach(jasmineUtilBeforeEach);

@@ -22,5 +22,6 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys';
-export {toHaveFunctions} from './to-have-functions';
+export {toHaveKeys} from './to-have-keys.js';
+export {toHaveFunctions} from './to-have-functions.js';
+export {toHaveSize} from './to-have-size.js';

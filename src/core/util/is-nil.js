@@ -22,27 +22,15 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isNull} from './is-null.js';
+import {isUndefined} from './is-undefined.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
-
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
+/**
+ * Check that a given value is `null` or `undefined`.
+ *
+ * @param {*} obj Value to check.
+ * @return {boolean} `true` if `obj` is `null` or `undefined`, `false` otherwise.
+ */
+export function isNil(obj) {
+  return isNull(obj) || isUndefined(obj);
 }
-
-beforeEach(jasmineUtilBeforeEach);

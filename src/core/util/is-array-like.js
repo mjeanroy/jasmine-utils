@@ -22,27 +22,41 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isArray} from './is-array.js';
+import {isFunction} from './is-function.js';
+import {isNumber} from './is-number.js';
+import {isNodeList} from './is-node-list.js';
+import {isDOMElement} from './is-dom-element.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
-
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
+/**
+ * Check that a given value is an array or an array-like object.
+ *
+ * An array-like object is an object that can be iterated like an object:
+ * - It has a `length` property (and its value is a number).
+ * - It has indexed property starting from zero.
+ *
+ * For example, node list objects are a kind of array-like object.
+ *
+ * @param {*} obj Value to check.
+ * @return {boolean} `true` if `obj` is an array-like object, `false` otherwise.
+ */
+export function isArrayLike(obj) {
+  if (isArray(obj)) {
+    return true;
   }
-}
 
-beforeEach(jasmineUtilBeforeEach);
+  if (isNodeList(obj)) {
+    return true;
+  }
+
+  if (isFunction(obj) && obj !== window) {
+      return false;
+  }
+
+  if (isDOMElement(obj) && obj.length) {
+      return true;
+  }
+
+  var length = obj.length;
+  return length === 0 || isNumber(length) && length > 0 && (length - 1) in obj;
+}

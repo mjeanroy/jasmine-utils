@@ -22,27 +22,19 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isNil} from 'src/core/util/is-nil.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('isNil', () => {
+  it('should return true with undefined or null', () => {
+    expect(isNil(null)).toBe(true);
+    expect(isNil(undefined)).toBe(true);
+    expect(isNil(void 0)).toBe(true);
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+  it('should return false without undefined', () => {
+    expect(isNil(0)).toBe(false);
+    expect(isNil(true)).toBe(false);
+    expect(isNil({})).toBe(false);
+    expect(isNil(() => {})).toBe(false);
+  });
+});

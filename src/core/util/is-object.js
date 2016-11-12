@@ -22,27 +22,12 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
-
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
-
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
+/**
+ * Check that a given value is an object.
+ *
+ * @param {*} obj Value to check.
+ * @return {boolean} `true` if `obj` is an object, `false` otherwise.
+ */
+export function isObject(obj) {
+  return typeof obj === 'object';
 }
-
-beforeEach(jasmineUtilBeforeEach);

@@ -22,27 +22,41 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isDOMElement} from 'src/core/util/is-dom-element.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('isDOMElement', () => {
+  let fixtures;
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
+  beforeEach(() => {
+    fixtures = document.createElement('div');
 
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
+    fixtures.appendChild(document.createElement('p'));
+    fixtures.appendChild(document.createElement('p'));
 
-beforeEach(jasmineUtilBeforeEach);
+    document.body.appendChild(fixtures);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(fixtures);
+  });
+
+  it('should return true with DOM Node with type 1', () => {
+    const node = fixtures.childNodes[0];
+    expect(isDOMElement(node)).toBe(true);
+  });
+
+  it('should return false with DOM Node without type 1', () => {
+    const node = document.createTextNode('test');
+    expect(isDOMElement(node)).toBe(false);
+  });
+
+  it('should return false without DOM Node', () => {
+    expect(isDOMElement(0)).toBe(false);
+    expect(isDOMElement(true)).toBe(false);
+    expect(isDOMElement({})).toBe(false);
+    expect(isDOMElement(() => {})).toBe(false);
+    expect(isDOMElement([])).toBe(false);
+    expect(isDOMElement(null)).toBe(false);
+    expect(isDOMElement(undefined)).toBe(false);
+  });
+});

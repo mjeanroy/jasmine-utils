@@ -22,27 +22,26 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {sizeOf} from 'src/core/util/size-of.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('sizeOf', () => {
+  it('should return 0 with nil value', () => {
+    expect(sizeOf(null)).toBe(0);
+    expect(sizeOf(undefined)).toBe(0);
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
+  it('should return length of array', () => {
+    expect(sizeOf([])).toBe(0);
+    expect(sizeOf([1, 2, 3])).toBe(3);
+  });
 
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
+  it('should return length of array-like object', () => {
+    const arrayLike = {'0': 1, '1': 2, '2': 3, length: 3};
+    expect(sizeOf(arrayLike)).toBe(3);
+  });
 
-beforeEach(jasmineUtilBeforeEach);
+  it('should return number of properties of objects', () => {
+    const obj = {foo: 'bar', quix: 'bar'};
+    expect(sizeOf(obj)).toBe(2);
+  });
+});

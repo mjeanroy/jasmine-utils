@@ -22,27 +22,33 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {toHaveSize} from 'src/core/matchers/to-have-size.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('toHaveSize', () => {
+  it('should check length of array', () => {
+    const actual = [1, 2, 3];
+    const result = toHaveSize({actual}, 3);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect size of [ 1, 2, 3 ] {{not}} to be 3 but was 3`,
+    });
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
+  it('should check size of object', () => {
+    const actual = {foo: 'bar'};
+    const result = toHaveSize({actual}, 1);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect size of Object({ foo: 'bar' }) {{not}} to be 1 but was 1`,
+    });
+  });
 
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+  it('should fail with non expected length', () => {
+    const actual = {foo: 'bar'};
+    const result = toHaveSize({actual}, 2);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect size of Object({ foo: 'bar' }) {{not}} to be 2 but was 1`,
+    });
+  });
+});

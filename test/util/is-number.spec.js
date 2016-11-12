@@ -22,27 +22,19 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isNumber} from 'src/core/util/is-number.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('isNumber', () => {
+  it('should return true with a number', () => {
+    expect(isNumber(0)).toBe(true);
+    expect(isNumber(1)).toBe(true);
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+  it('should return false without a number', () => {
+    expect(isNumber(true)).toBe(false);
+    expect(isNumber({})).toBe(false);
+    expect(isNumber(() => {})).toBe(false);
+    expect(isNumber(null)).toBe(false);
+    expect(isNumber(undefined)).toBe(false);
+  });
+});

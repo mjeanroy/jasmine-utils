@@ -22,27 +22,19 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isUndefined} from 'src/core/util/is-undefined.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('isUndefined', () => {
+  it('should return true with undefined', () => {
+    expect(isUndefined(undefined)).toBe(true);
+    expect(isUndefined(void 0)).toBe(true);
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+  it('should return false without undefined', () => {
+    expect(isUndefined(0)).toBe(false);
+    expect(isUndefined(true)).toBe(false);
+    expect(isUndefined({})).toBe(false);
+    expect(isUndefined(() => {})).toBe(false);
+    expect(isUndefined(null)).toBe(false);
+  });
+});

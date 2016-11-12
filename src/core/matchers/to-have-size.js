@@ -22,27 +22,14 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {pp} from '../jasmine/pp.js';
+import {sizeOf} from '../util/size-of.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
-
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
+export function toHaveSize(ctx, expectedSize) {
+  const actual = ctx.actual;
+  const size = sizeOf(actual);
+  return {
+    pass: size === expectedSize,
+    message: pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedSize, size)
+  };
 }
-
-beforeEach(jasmineUtilBeforeEach);

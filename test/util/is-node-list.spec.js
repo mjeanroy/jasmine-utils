@@ -22,27 +22,41 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isNodeList} from 'src/core/util/is-node-list.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('isNodeList', () => {
+  let fixtures;
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
+  beforeEach(() => {
+    fixtures = document.createElement('div');
 
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
+    fixtures.appendChild(document.createElement('p'));
+    fixtures.appendChild(document.createElement('p'));
 
-beforeEach(jasmineUtilBeforeEach);
+    document.body.appendChild(fixtures);
+  });
+
+  afterEach(() => {
+    document.body.removeChild(fixtures);
+  });
+
+  it('should return true with NodeList instance', () => {
+    const children = fixtures.childNodes;
+    expect(isNodeList(children)).toBe(true);
+  });
+
+  it('should return true with HTMLCollection instance', () => {
+    const p = fixtures.getElementsByTagName('p');
+    expect(isNodeList(p)).toBe(true);
+  });
+
+  it('should return false without NodeList', () => {
+    expect(isNodeList(0)).toBe(false);
+    expect(isNodeList(true)).toBe(false);
+    expect(isNodeList({})).toBe(false);
+    expect(isNodeList(() => {})).toBe(false);
+    expect(isNodeList([])).toBe(false);
+    expect(isNodeList(null)).toBe(false);
+    expect(isNodeList(undefined)).toBe(false);
+  });
+});

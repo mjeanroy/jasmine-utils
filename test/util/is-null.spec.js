@@ -22,27 +22,18 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isNull} from 'src/core/util/is-null.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('isNull', () => {
+  it('should return true with undefined', () => {
+    expect(isNull(null)).toBe(true);
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+  it('should return false without undefined', () => {
+    expect(isNull(0)).toBe(false);
+    expect(isNull(true)).toBe(false);
+    expect(isNull({})).toBe(false);
+    expect(isNull(() => {})).toBe(false);
+    expect(isNull(undefined)).toBe(false);
+  });
+});

@@ -22,27 +22,21 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isString} from 'src/core/util/is-string.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('isString', () => {
+  it('should return true with a string', () => {
+    expect(isString('test')).toBe(true);
+    expect(isString(String('test'))).toBe(true);
+    expect(isString(new String('test'))).toBe(true);
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+  it('should return false without a string', () => {
+    expect(isString(true)).toBe(false);
+    expect(isString(0)).toBe(false);
+    expect(isString({})).toBe(false);
+    expect(isString(() => {})).toBe(false);
+    expect(isString(null)).toBe(false);
+    expect(isString(undefined)).toBe(false);
+  });
+});

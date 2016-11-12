@@ -22,27 +22,19 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {isArray} from 'src/core/util/is-array.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize
-} from './core/matchers/matchers.js';
+describe('isArray', () => {
+  it('should return true with array', () => {
+    expect(isArray([0, 1, 2])).toBe(true);
+    expect(isArray(Array(10))).toBe(true);
+    expect(isArray(new Array(1, 2, 3))).toBe(true);
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+  it('should return false without array', () => {
+    expect(isArray(0)).toBe(false);
+    expect(isArray(true)).toBe(false);
+    expect(isArray({})).toBe(false);
+    expect(isArray(() => {})).toBe(false);
+  });
+});
