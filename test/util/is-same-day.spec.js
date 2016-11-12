@@ -22,20 +22,30 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
-export {toBeDateBefore} from './to-be-date-before.js';
-export {toBeDateBeforeNow} from './to-be-date-before-now.js';
-export {toBeSameDay} from './to-be-same-day.js';
+import {isSameDay} from 'src/core/util/is-same-day.js';
+
+describe('isSameDay', () => {
+  it('should return true if both dates are the same day', () => {
+    const d1 = new Date(2016, 10, 10, 10, 0, 0, 0);
+    const d2 = new Date(2016, 10, 10, 11, 0, 0, 0);
+    expect(isSameDay(d1, d2)).toBe(true);
+  });
+
+  it('should return true if both timestamps are the same day', () => {
+    const d1 = new Date(2016, 10, 10, 10, 0, 0, 0);
+    const d2 = new Date(2016, 10, 10, 11, 0, 0, 0);
+    expect(isSameDay(d1.getTime(), d2.getTime())).toBe(true);
+  });
+
+  it('should return true if both ISO string are the same day', () => {
+    const d1 = '2016-10-10T10:00:00.000Z';
+    const d2 = '2016-10-10T11:00:00.000Z';
+    expect(isSameDay(d1, d2)).toBe(true);
+  });
+
+  it('should return false if dates are not the same day', () => {
+    const d1 = new Date(2016, 10, 10, 10, 0, 0, 0);
+    const d2 = new Date(2016, 10, 11, 10, 0, 0, 0);
+    expect(isSameDay(d1, d2)).toBe(false);
+  });
+});

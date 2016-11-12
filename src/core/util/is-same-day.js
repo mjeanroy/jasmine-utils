@@ -22,20 +22,20 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
-export {toBeDateBefore} from './to-be-date-before.js';
-export {toBeDateBeforeNow} from './to-be-date-before-now.js';
-export {toBeSameDay} from './to-be-same-day.js';
+import {isDate} from './is-date.js';
+
+/**
+ * Check that both dates are the same day (do not compare hours, minutes, etc.).
+ *
+ * @param {Date|number|string} date1 First date.
+ * @param {Date|number|string} date2 Second date.
+ * @return {boolean} `true` if both dates are the same day, `false` otherwise.
+ */
+export function isSameDay(date1, date2) {
+  const d1 = isDate(date1) ? date1 : new Date(date1);
+  const d2 = isDate(date2) ? date2 : new Date(date2);
+  const isSameYear = d1.getFullYear() === d2.getFullYear();
+  const isSameMonth = d1.getMonth() === d2.getMonth();
+  const isSameDate = d1.getDate() === d2.getDate();
+  return isSameYear && isSameMonth && isSameDate;
+}

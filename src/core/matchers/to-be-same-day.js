@@ -22,20 +22,22 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
-export {toBeDateBefore} from './to-be-date-before.js';
-export {toBeDateBeforeNow} from './to-be-date-before-now.js';
-export {toBeSameDay} from './to-be-same-day.js';
+import {pp} from '../jasmine/pp.js';
+import {isSameDay} from '../util/is-same-day.js';
+
+/**
+ * Check that the tested object is the same as an other date.
+ *
+ * @param {Object} ctx Test context.
+ * @param {Date|number|string} day The other date.
+ * @return {Object} Test result.
+ */
+export function toBeSameDay(ctx, day) {
+  const actual = ctx.actual;
+  const d1 = new Date(actual);
+  const d2 = new Date(day);
+  return {
+    pass: isSameDay(d1, d2),
+    message: pp('Expect date {{%0}} {{not}} to be same day as {{%1}}', d1, d2),
+  };
+}
