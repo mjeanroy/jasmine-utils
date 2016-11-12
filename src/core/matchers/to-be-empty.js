@@ -26,16 +26,17 @@ import {pp} from '../jasmine/pp.js';
 import {sizeOf} from '../util/size-of.js';
 
 /**
- * Check that tested object has an expected size.
+ * Check that tested object is empty (have a length of zero for an array, or don't
+ * have any property if it is an object).
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
  */
-export function toHaveSize(ctx, expectedSize) {
+export function toBeEmpty(ctx) {
   const actual = ctx.actual;
   const size = sizeOf(actual);
   return {
-    pass: size === expectedSize,
-    message: pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedSize, size)
+    pass: size === 0,
+    message: pp('Expect {{%0}} {{not}} to be empty', actual)
   };
 }

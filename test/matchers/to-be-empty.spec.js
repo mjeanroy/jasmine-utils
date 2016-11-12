@@ -22,20 +22,42 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
-import {sizeOf} from '../util/size-of.js';
+import {toBeEmpty} from 'src/core/matchers/to-be-empty.js';
 
-/**
- * Check that tested object has an expected size.
- *
- * @param {Object} ctx Test context.
- * @return {Object} Test result.
- */
-export function toHaveSize(ctx, expectedSize) {
-  const actual = ctx.actual;
-  const size = sizeOf(actual);
-  return {
-    pass: size === expectedSize,
-    message: pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedSize, size)
-  };
-}
+describe('toBeEmpty', () => {
+  it('should check for empty array', () => {
+    const actual = [];
+    const result = toBeEmpty({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect [  ] {{not}} to be empty`,
+    });
+  });
+
+  it('should check for empty object', () => {
+    const actual = {};
+    const result = toBeEmpty({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect Object({  }) {{not}} to be empty`,
+    });
+  });
+
+  it('should fail with non empty array', () => {
+    const actual = [1, 2, 3];
+    const result = toBeEmpty({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect [ 1, 2, 3 ] {{not}} to be empty`,
+    });
+  });
+
+  it('should fail with non empty object', () => {
+    const actual = {foo: 'bar'};
+    const result = toBeEmpty({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect Object({ foo: 'bar' }) {{not}} to be empty`,
+    });
+  });
+});
