@@ -22,10 +22,36 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
+import {toHaveSameLengthAs} from 'src/core/matchers/to-have-same-length-as.js';
+
+describe('toHaveSameLengthAs', () => {
+  it('should check length of array', () => {
+    const actual = [1, 2, 3];
+    const expected = [4, 5, 6];
+    const result = toHaveSameLengthAs({actual}, expected);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect length of [ 1, 2, 3 ] {{not}} to be 3 but was 3`,
+    });
+  });
+
+  it('should check length of array-like object', () => {
+    const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
+    const expected = {'0': 4, '1': 5, '2': 6, 'length': 3};
+    const result = toHaveSameLengthAs({actual}, expected);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect length of Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be 3 but was 3`,
+    });
+  });
+
+  it('should fail with non expected length', () => {
+    const actual = [];
+    const expected = [1, 2, 3];
+    const result = toHaveSameLengthAs({actual}, expected);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect length of [  ] {{not}} to be 3 but was 0`,
+    });
+  });
+});

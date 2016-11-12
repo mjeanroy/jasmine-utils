@@ -22,10 +22,21 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
+import {pp} from '../jasmine/pp.js';
+
+/**
+ * Check that tested object has the same length as an other array.
+ *
+ * @param {Object} ctx Test context.
+ * @param {Array<*>} expected The other array.
+ * @return {Object} Test result.
+ */
+export function toHaveSameLengthAs(ctx, expected) {
+  const actual = ctx.actual;
+  const actualLength = actual.length;
+  const expectedLength = expected.length;
+  return {
+    pass: actualLength === expectedLength,
+    message: pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedLength, actualLength),
+  };
+}
