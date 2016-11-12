@@ -22,33 +22,20 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {pp} from '../jasmine/pp.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize,
-  toBeEmpty,
-  toHaveValues,
-  toHaveLength
-} from './core/matchers/matchers.js';
-
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize),
-  toBeEmpty: createMatcher(toBeEmpty),
-  toHaveValues: createMatcher(toHaveValues),
-  toHaveLength: createMatcher(toHaveLength)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
+/**
+ * Check that tested object has an expected length.
+ *
+ * @param {Object} ctx Test context.
+ * @param {number} expectedLength The expected length value.
+ * @return {Object} Test result.
+ */
+export function toHaveLength(ctx, expectedLength) {
+  const actual = ctx.actual;
+  const actualLength = actual.length;
+  return {
+    pass: actualLength === expectedLength,
+    message: pp('Expect length of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedLength, actualLength)
+  };
 }
-
-beforeEach(jasmineUtilBeforeEach);
