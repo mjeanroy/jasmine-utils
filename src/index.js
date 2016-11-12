@@ -36,6 +36,7 @@ import {
   toHaveSameSizeAs,
   toBeAnArray,
   toBeADate,
+  toBeDateCloseTo,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -49,6 +50,7 @@ const jasmineMatchers = {
   toHaveSameSizeAs: createMatcher(toHaveSameSizeAs),
   toBeAnArray: createMatcher(toBeAnArray),
   toBeADate: createMatcher(toBeADate),
+  toBeDateCloseTo: createMatcher(toBeDateCloseTo),
 };
 
 /**

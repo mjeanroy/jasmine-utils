@@ -22,14 +22,21 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
+import {isDate} from './is-date.js';
+
+/**
+ * Get the difference in milliseconds between two dates.
+ *
+ * Both parameters does not need to be an instance of Date:
+ * - If it is a number, it is assumed that this is a timestamp and it is converted to a date.
+ * - If it is a string, it is assumed that this is an ISO format.
+ *
+ * @param {Date|number|string} d1 First date.
+ * @param {Date|number|string} d2 Second date.
+ * @return {number} The number of milliseconds between dates.
+ */
+export function dateDiff(d1, d2) {
+  const t1 = isDate(d1) ? d1.getTime() : new Date(d1).getTime();
+  const t2 = isDate(d2) ? d2.getTime() : new Date(d2).getTime();
+  return t1 - t2;
+}

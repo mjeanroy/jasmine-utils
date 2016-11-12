@@ -22,14 +22,27 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
+import {dateDiff} from 'src/core/util/date-diff.js';
+
+describe('dateDiff', () => {
+  it('should compute the difference between two dates', () => {
+    const d1 = new Date(2016, 10, 10, 17, 0, 0, 0);
+    const d2 = new Date(2016, 10, 10, 17, 10, 0, 0);
+    const diff = dateDiff(d1, d2);
+    expect(diff).toBe(-600000);
+  });
+
+  it('should compute the difference between two timestamp', () => {
+    const d1 = 60000;
+    const d2 = 65000;
+    const diff = dateDiff(d1, d2);
+    expect(diff).toBe(-5000);
+  });
+
+  it('should compute the difference between two ISO string', () => {
+    const d1 = '2016-11-10T10:00:00.000Z';
+    const d2 = '2016-11-10T10:10:00.000Z';
+    const diff = dateDiff(d1, d2);
+    expect(diff).toBe(-600000);
+  });
+});
