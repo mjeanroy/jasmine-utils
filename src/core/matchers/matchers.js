@@ -30,3 +30,4 @@ export {toHaveValues} from './to-have-values.js';
 export {toHaveLength} from './to-have-length.js';
 export {toHaveSameLengthAs} from './to-have-same-length-as.js';
 export {toHaveSameSizeAs} from './to-have-same-size-as.js';
+export {toBeAnArray} from './to-be-an-array.js';

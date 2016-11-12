@@ -22,46 +22,24 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {toBeAnArray} from 'src/core/matchers/to-be-an-array.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize,
-  toBeEmpty,
-  toHaveValues,
-  toHaveLength,
-  toHaveSameLengthAs,
-  toHaveSameSizeAs,
-  toBeAnArray,
-} from './core/matchers/matchers.js';
+describe('toBeAnArray', () => {
+  it('should check that object is an array', () => {
+    const actual = [1, 2, 3];
+    const result = toBeAnArray({actual}, 3);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect [ 1, 2, 3 ] {{not}} to be an array`,
+    });
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize),
-  toBeEmpty: createMatcher(toBeEmpty),
-  toHaveValues: createMatcher(toHaveValues),
-  toHaveLength: createMatcher(toHaveLength),
-  toHaveSameLengthAs: createMatcher(toHaveSameLengthAs),
-  toHaveSameSizeAs: createMatcher(toHaveSameSizeAs),
-  toBeAnArray: createMatcher(toBeAnArray),
-};
-
-/**
- * The `beforeEach` function executed by Jasmine before each tests that addMatchers
- * all custom matchers.
- *
- * @return {void}
- */
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    // eslint-disable-next-line no-invalid-this
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+  it('should not pass with an array-like object', () => {
+    const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
+    const result = toBeAnArray({actual}, 3);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be an array`,
+    });
+  });
+});
