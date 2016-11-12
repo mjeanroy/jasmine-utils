@@ -37,6 +37,7 @@ import {
   toBeAnArray,
   toBeADate,
   toBeDateCloseTo,
+  toBeDateCloseToNow,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -51,6 +52,7 @@ const jasmineMatchers = {
   toBeAnArray: createMatcher(toBeAnArray),
   toBeADate: createMatcher(toBeADate),
   toBeDateCloseTo: createMatcher(toBeDateCloseTo),
+  toBeDateCloseToNow: createMatcher(toBeDateCloseToNow),
 };
 
 /**

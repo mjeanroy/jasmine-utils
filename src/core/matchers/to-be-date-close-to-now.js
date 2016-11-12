@@ -22,15 +22,21 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
+import {pp} from '../jasmine/pp.js';
+import {dateDiff} from '../util/date-diff.js';
+
+/**
+ * Check that the tested object is a date close to 'now' (i.e `Date.now()`).
+ *
+ * @param {Object} ctx Test context.
+ * @param {number} max The maximum difference (in milliseconds). Defaults to 1000.
+ * @return {Object} The test result.
+ */
+export function toBeDateCloseToNow(ctx, max = 1000) {
+  const actual = ctx.actual;
+  const diff = Math.abs(dateDiff(actual, new Date()));
+  return {
+    pass: diff <= max,
+    message: pp('Expect date {{%0}} {{not}} to be close to now', actual),
+  };
+}

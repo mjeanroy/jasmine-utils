@@ -22,15 +22,36 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
+ import {toBeDateCloseToNow} from 'src/core/matchers/to-be-date-close-to-now.js';
+
+ describe('toBeDateCloseToNow', () => {
+   it('should check that object is a date close to "now"', () => {
+     const now = new Date().getTime();
+     const actual = new Date(now + 100);
+     const result = toBeDateCloseToNow({actual});
+     expect(result).toEqual({
+       pass: true,
+       message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to now`,
+     });
+   });
+
+   it('should check that object is a date close to now with a custom diff', () => {
+     const now = new Date().getTime();
+     const actual = new Date(now + 9000);
+     const result = toBeDateCloseToNow({actual}, 10000);
+     expect(result).toEqual({
+       pass: true,
+       message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to now`,
+     });
+   });
+
+   it('should not pass with a date not close to now', () => {
+     const now = new Date().getTime();
+     const actual = new Date(now + 10000);
+     const result = toBeDateCloseToNow({actual});
+     expect(result).toEqual({
+       pass: false,
+       message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to now`,
+     });
+   });
+ });
