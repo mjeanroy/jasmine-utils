@@ -43,6 +43,7 @@ import {
   toBeSameDay,
   toBeToday,
   toBeNull,
+  toBeANumber,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -65,6 +66,7 @@ const jasmineMatchers = {
   toBeSameDay: createMatcher(toBeSameDay),
   toBeToday: createMatcher(toBeToday),
   toBeNull: createMatcher(toBeNull),
+  toBeANumber: createMatcher(toBeANumber),
 };
 
 /**
