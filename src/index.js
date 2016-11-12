@@ -33,6 +33,7 @@ import {
   toHaveValues,
   toHaveLength,
   toHaveSameLengthAs,
+  toHaveSameSizeAs,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -43,6 +44,7 @@ const jasmineMatchers = {
   toHaveValues: createMatcher(toHaveValues),
   toHaveLength: createMatcher(toHaveLength),
   toHaveSameLengthAs: createMatcher(toHaveSameLengthAs),
+  toHaveSameSizeAs: createMatcher(toHaveSameSizeAs),
 };
 
 /**

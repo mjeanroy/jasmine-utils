@@ -22,11 +22,22 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
+import {pp} from '../jasmine/pp.js';
+import {sizeOf} from '../util/size-of.js';
+
+/**
+ * Check that tested object has the same size as an other one.
+ *
+ * @param {Object} ctx Test context.
+ * @param {*} expected The other object (or array, or array-like object).
+ * @return {Object} Test result.
+ */
+export function toHaveSameSizeAs(ctx, expected) {
+  const actual = ctx.actual;
+  const actualSize = sizeOf(actual);
+  const expectedSize = sizeOf(expected);
+  return {
+    pass: actualSize === expectedSize,
+    message: pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedSize, actualSize),
+  };
+}

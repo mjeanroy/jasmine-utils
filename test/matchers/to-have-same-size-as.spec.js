@@ -22,11 +22,36 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
+import {toHaveSameSizeAs} from 'src/core/matchers/to-have-same-size-as.js';
+
+describe('toHaveSameSizeAs', () => {
+  it('should check length of array', () => {
+    const actual = [1, 2, 3];
+    const expected = [4, 5, 6];
+    const result = toHaveSameSizeAs({actual}, expected);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect size of [ 1, 2, 3 ] {{not}} to be 3 but was 3`,
+    });
+  });
+
+  it('should check size of object', () => {
+    const actual = {foo: 'bar'};
+    const expected = {bar: 'foo'};
+    const result = toHaveSameSizeAs({actual}, expected);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect size of Object({ foo: 'bar' }) {{not}} to be 1 but was 1`,
+    });
+  });
+
+  it('should fail with non expected length', () => {
+    const actual = {foo: 'bar'};
+    const expected = {};
+    const result = toHaveSameSizeAs({actual}, expected);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect size of Object({ foo: 'bar' }) {{not}} to be 0 but was 1`,
+    });
+  });
+});
