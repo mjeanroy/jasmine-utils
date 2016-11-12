@@ -40,6 +40,8 @@ import {
   toBeDateCloseToNow,
   toBeDateAfter,
   toBeDateAfterNow,
+  toBeDateBefore,
+  toBeDateBeforeNow,
   toBeSameDay,
   toBeToday,
   toBeNull,
