@@ -22,5 +22,25 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys';
-export {toHaveFunctions} from './to-have-functions';
+/**
+ * Check that a predicate satisfies each elements in an array.
+ *
+ * The predicate function will be called with three arguments:
+ *  - `value` The value for the given iteration.
+ *  - `index` The index of the value being iterated.
+ *  - `array` The array being traversed.
+ *
+ * @param {Array<*>} array The array to iterate.
+ * @param {function} predicate The predicate function.
+ * @return {boolean} `true` if the predicate returns a truthy value for each element
+ *                   in the array, `false` otherwise.
+ */
+export function every(array, predicate) {
+  for (let i = 0, size = array.length; i < size; ++i) {
+    if (!predicate.call(null, array[i], i, array)) {
+      return false;
+    }
+  }
+
+  return true;
+}

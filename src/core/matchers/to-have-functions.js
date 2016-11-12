@@ -22,5 +22,22 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys';
-export {toHaveFunctions} from './to-have-functions';
+import {pp} from '../jasmine/pp.js';
+import {isFunction} from '../util/is-function.js';
+import {every} from '../util/every.js';
+
+/**
+ * Check that actual object contains all given expected functions.
+ *
+ * @param {Object} ctx Test context containing tested object.
+ * @param {Array<string>} methods List of methods to look for.
+ * @return {Object} Matcher result.
+ */
+export function toHaveFunctions(ctx, ...methods) {
+  const actual = ctx.actual;
+  const ok = every(methods, (method) => isFunction(actual[method]));
+  return {
+    pass: ok,
+    message: pp('Expect object {{%0}} {{not}} to contain functions {{%1}}', actual, methods)
+  };
+}

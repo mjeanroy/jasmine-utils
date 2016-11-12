@@ -22,5 +22,32 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys';
-export {toHaveFunctions} from './to-have-functions';
+import {every} from 'src/core/util/every.js';
+
+describe('every', () => {
+  it('should return true if predicate always returns a truthy value', () => {
+    const array = [1, 2, 3];
+    const predicate = jasmine.createSpy('predicate').and.returnValue(true);
+
+    const result = every(array, predicate);
+
+    expect(result).toBe(true);
+    expect(predicate).toHaveBeenCalledWith(1, 0, array);
+    expect(predicate).toHaveBeenCalledWith(2, 1, array);
+    expect(predicate).toHaveBeenCalledWith(3, 2, array);
+  });
+
+  it('should return false if predicate returns a falsy value', () => {
+    const array = [1, 2, 3];
+    const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
+      return x < 3;
+    });
+
+    const result = every(array, predicate);
+
+    expect(result).toBe(false);
+    expect(predicate).toHaveBeenCalledWith(1, 0, array);
+    expect(predicate).toHaveBeenCalledWith(2, 1, array);
+    expect(predicate).toHaveBeenCalledWith(3, 2, array);
+  });
+});

@@ -22,5 +22,12 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys';
-export {toHaveFunctions} from './to-have-functions';
+/**
+ * Check that a given value is a function.
+ *
+ * @param {*} value Value to check.
+ * @return {boolean} `true` if `value` is a function, `false` otherwise.
+ */
+export function isFunction(value) {
+  return Object.prototype.toString.call(value) === '[object Function]';
+}
