@@ -22,22 +22,24 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
-export {toBeDateBefore} from './to-be-date-before.js';
-export {toBeDateBeforeNow} from './to-be-date-before-now.js';
-export {toBeSameDay} from './to-be-same-day.js';
-export {toBeToday} from './to-be-today.js';
-export {toBeNull} from './to-be-null.js';
+import {toBeNull} from 'src/core/matchers/to-be-null.js';
+
+describe('toBeNull', () => {
+  it('should check that object is null', () => {
+    const actual = null;
+    const result = toBeNull({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect null {{not}} to be null`,
+    });
+  });
+
+  it('should not pass without null', () => {
+    const actual = void 0;
+    const result = toBeNull({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect undefined {{not}} to be null`,
+    });
+  });
+});

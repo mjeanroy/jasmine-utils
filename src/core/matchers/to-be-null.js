@@ -22,22 +22,19 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
-export {toBeDateBefore} from './to-be-date-before.js';
-export {toBeDateBeforeNow} from './to-be-date-before-now.js';
-export {toBeSameDay} from './to-be-same-day.js';
-export {toBeToday} from './to-be-today.js';
-export {toBeNull} from './to-be-null.js';
+import {pp} from '../jasmine/pp.js';
+import {isNull} from '../util/is-null.js';
+
+/**
+ * Check that tested object is `null`.
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ */
+export function toBeNull(ctx) {
+  const actual = ctx.actual;
+  return {
+    pass: isNull(actual),
+    message: pp('Expect {{%0}} {{not}} to be null', actual),
+  };
+}
