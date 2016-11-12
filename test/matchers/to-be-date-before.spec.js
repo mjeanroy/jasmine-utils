@@ -22,18 +22,26 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
-export {toBeDateBefore} from './to-be-date-before.js';
+ import {toBeDateBefore} from 'src/core/matchers/to-be-date-before.js';
+
+ describe('toBeDateBefore', () => {
+   it('should check that object is a date before an other date', () => {
+     const lower = new Date(2016, 10, 12, 17, 55, 38, 0);
+     const actual = new Date(2016, 10, 12, 17, 55, 37, 0);
+     const result = toBeDateBefore({actual}, lower);
+     expect(result).toEqual({
+       pass: true,
+       message: `Expect date ${jasmine.pp(actual)} {{not}} to be before ${jasmine.pp(lower)}`,
+     });
+   });
+
+   it('should not pass with a date after', () => {
+     const lower = new Date(2016, 10, 12, 17, 55, 37, 0);
+     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
+     const result = toBeDateBefore({actual}, lower);
+     expect(result).toEqual({
+       pass: false,
+       message: `Expect date ${jasmine.pp(actual)} {{not}} to be before ${jasmine.pp(lower)}`,
+     });
+   });
+ });

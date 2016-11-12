@@ -57,6 +57,7 @@ const jasmineMatchers = {
   toBeDateCloseToNow: createMatcher(toBeDateCloseToNow),
   toBeDateAfter: createMatcher(toBeDateAfter),
   toBeDateAfterNow: createMatcher(toBeDateAfterNow),
+  toBeDateBefore: createMatcher(toBeDateBefore),
 };
 
 /**
