@@ -22,31 +22,17 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {values} from 'src/core/util/values.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize,
-  toBeEmpty,
-  toHaveValues
-} from './core/matchers/matchers.js';
+describe('values', () => {
+  it('should extract all object values', () => {
+    const object = {
+      foo: 'bar',
+      quix: 'foo'
+    };
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize),
-  toBeEmpty: createMatcher(toBeEmpty),
-  toHaveValues: createMatcher(toHaveValues)
-};
+    const vals = values(object);
 
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+    expect(vals.sort()).toEqual(['bar', 'foo']);
+  });
+});

@@ -22,31 +22,24 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {toHaveValues} from 'src/core/matchers/to-have-values.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize,
-  toBeEmpty,
-  toHaveValues
-} from './core/matchers/matchers.js';
+describe('toHaveValues', () => {
+  it('should check for object values', () => {
+    const actual = {foo: 'bar', quix: 'foo'};
+    const result = toHaveValues({actual}, 'foo', 'bar');
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect object Object({ foo: 'bar', quix: 'foo' }) {{not}} to contain values [ 'foo', 'bar' ]`,
+    });
+  });
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize),
-  toBeEmpty: createMatcher(toBeEmpty),
-  toHaveValues: createMatcher(toHaveValues)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
-  }
-}
-
-beforeEach(jasmineUtilBeforeEach);
+  it('should fail with non expecte values', () => {
+    const actual = {foo: 'bar'};
+    const result = toHaveValues({actual}, 'foo', 'bar');
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect object Object({ foo: 'bar' }) {{not}} to contain values [ 'foo', 'bar' ]`,
+    });
+  });
+});

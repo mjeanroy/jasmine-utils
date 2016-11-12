@@ -22,31 +22,22 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {has} from './has.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize,
-  toBeEmpty,
-  toHaveValues
-} from './core/matchers/matchers.js';
+/**
+ * Get all values of object.
+ *
+ * @param {*} obj The object.
+ * @return {Array<*>} Array of all values.
+ */
+export function values(obj) {
+  const vals = [];
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize),
-  toBeEmpty: createMatcher(toBeEmpty),
-  toHaveValues: createMatcher(toHaveValues)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
+  for (var i in obj) {
+    if (has(obj, i)) {
+      vals.push(obj[i]);
+    }
   }
-}
 
-beforeEach(jasmineUtilBeforeEach);
+  return vals;
+}

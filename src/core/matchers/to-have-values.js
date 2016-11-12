@@ -22,31 +22,24 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
+import {pp} from '../jasmine/pp.js';
+import {contains} from '../util/contains.js';
+import {values} from '../util/values.js';
 
-import {
-  toHaveKeys,
-  toHaveFunctions,
-  toHaveSize,
-  toBeEmpty,
-  toHaveValues
-} from './core/matchers/matchers.js';
+export function toHaveValues(ctx, ...expectedValues) {
+  const {actual, equals} = ctx;
+  const actualValues = values(actual);
 
-const jasmineMatchers = {
-  toHaveKeys: createMatcher(toHaveKeys),
-  toHaveFunctions: createMatcher(toHaveFunctions),
-  toHaveSize: createMatcher(toHaveSize),
-  toBeEmpty: createMatcher(toBeEmpty),
-  toHaveValues: createMatcher(toHaveValues)
-};
-
-function jasmineUtilBeforeEach() {
-  if (version === 1) {
-    this.addMatchers(jasmineMatchers);
-  } else {
-    jasmine.addMatchers(jasmineMatchers);
+  var ok = true;
+  for (let i = 0, size = expectedValues.length; i < size; ++i) {
+    if (!contains(actualValues, expectedValues[i], equals)) {
+      ok = false;
+      break;
+    }
   }
-}
 
-beforeEach(jasmineUtilBeforeEach);
+  return {
+    pass: ok,
+    message: pp('Expect object {{%0}} {{not}} to contain values {{%1}}', actual, expectedValues)
+  };
+}

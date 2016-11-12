@@ -25,3 +25,5 @@
 export {toHaveKeys} from './to-have-keys.js';
 export {toHaveFunctions} from './to-have-functions.js';
 export {toHaveSize} from './to-have-size.js';
+export {toBeEmpty} from './to-be-empty.js';
+export {toHaveValues} from './to-have-values.js';
