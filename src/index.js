@@ -35,6 +35,7 @@ import {
   toHaveSameLengthAs,
   toHaveSameSizeAs,
   toBeAnArray,
+  toBeADate,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -47,6 +48,7 @@ const jasmineMatchers = {
   toHaveSameLengthAs: createMatcher(toHaveSameLengthAs),
   toHaveSameSizeAs: createMatcher(toHaveSameSizeAs),
   toBeAnArray: createMatcher(toBeAnArray),
+  toBeADate: createMatcher(toBeADate),
 };
 
 /**

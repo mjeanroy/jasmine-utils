@@ -22,13 +22,19 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
+import {pp} from '../jasmine/pp.js';
+import {isDate} from '../util/is-date.js';
+
+/**
+ * Check that the tested object is an instance of Date.
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ */
+export function toBeADate(ctx) {
+  const actual = ctx.actual;
+  return {
+    pass: isDate(actual),
+    message: pp('Expect {{%0}} {{not}} to be a date', actual),
+  };
+}
