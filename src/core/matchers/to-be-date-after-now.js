@@ -22,17 +22,20 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
+import {pp} from '../jasmine/pp.js';
+import {dateDiff} from '../util/date-diff.js';
+
+/**
+ * Check that the tested date object is a date "after" now (i.e `Date.now()`).
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ */
+export function toBeDateAfterNow(ctx) {
+  const actual = ctx.actual;
+  const diff = dateDiff(actual, new Date());
+  return {
+    pass: diff >= 0,
+    message: pp('Expect date {{%0}} {{not}} to be after now', actual),
+  };
+ }
