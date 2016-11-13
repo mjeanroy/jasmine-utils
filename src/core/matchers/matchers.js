@@ -54,3 +54,4 @@ export {toBeAFunction} from './to-be-a-function.js';
 export {toBeZero} from './to-be-zero.js';
 export {toBePositive} from './to-be-positive.js';
 export {toBeNegative} from './to-be-negative.js';
+export {toBeOddNumber} from './to-be-odd-number.js';
