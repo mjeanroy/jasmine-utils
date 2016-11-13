@@ -63,6 +63,7 @@ import {
   toBeNumeric,
   toBeInteger,
   toBeFloat,
+  toBeInRange,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -103,6 +104,7 @@ const jasmineMatchers = {
   toBeNumeric: createMatcher(toBeNumeric),
   toBeInteger: createMatcher(toBeInteger),
   toBeFloat: createMatcher(toBeFloat),
+  toBeInRange: createMatcher(toBeInRange),
 };
 
 /**

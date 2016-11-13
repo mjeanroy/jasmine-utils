@@ -59,3 +59,4 @@ export {toBeEvenNumber} from './to-be-even-number.js';
 export {toBeNumeric} from './to-be-numeric.js';
 export {toBeInteger} from './to-be-integer.js';
 export {toBeFloat} from './to-be-float.js';
+export {toBeInRange} from './to-be-in-range.js';
