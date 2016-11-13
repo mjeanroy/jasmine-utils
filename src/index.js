@@ -72,6 +72,7 @@ import {
   toHaveSome,
   toBePartiallyEqualTo,
   toHaveBeenCalledOnce,
+  toHaveBeenCalledOnceWith,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -121,6 +122,7 @@ const jasmineMatchers = {
   toHaveSome: createMatcher(toHaveSome),
   toBePartiallyEqualTo: createMatcher(toBePartiallyEqualTo),
   toHaveBeenCalledOnce: createMatcher(toHaveBeenCalledOnce),
+  toHaveBeenCalledOnceWith: createMatcher(toHaveBeenCalledOnceWith),
 };
 
 /**
