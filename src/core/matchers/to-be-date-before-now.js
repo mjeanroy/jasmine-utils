@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {dateDiff} from '../util/date-diff.js';
 
 /**
@@ -36,6 +35,6 @@ export function toBeDateBeforeNow(ctx) {
   const diff = dateDiff(actual, new Date());
   return {
     pass: diff <= 0,
-    message: pp('Expect date {{%0}} {{not}} to be before now', actual),
+    message: `Expect date ${jasmine.pp(actual)} {{not}} to be before now`,
   };
  }

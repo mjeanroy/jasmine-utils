@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {sizeOf} from '../util/size-of.js';
 
 /**
@@ -38,6 +37,8 @@ export function toHaveSameSizeAs(ctx, expected) {
   const expectedSize = sizeOf(expected);
   return {
     pass: actualSize === expectedSize,
-    message: pp('Expect size of {{%0}} {{not}} to be {{%1}} but was {{%2}}', actual, expectedSize, actualSize),
+    message:
+      `Expect size of ${jasmine.pp(actual)} {{not}} to be ${jasmine.pp(expectedSize)} ` +
+      `but was ${jasmine.pp(actualSize)}`,
   };
 }

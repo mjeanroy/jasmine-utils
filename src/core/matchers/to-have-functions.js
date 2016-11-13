@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {isFunction} from '../util/is-function.js';
 import {every} from '../util/every.js';
 
@@ -38,6 +37,6 @@ export function toHaveFunctions(ctx, ...methods) {
   const ok = every(methods, (method) => isFunction(actual[method]));
   return {
     pass: ok,
-    message: pp('Expect object {{%0}} {{not}} to contain functions {{%1}}', actual, methods),
+    message: `Expect object ${jasmine.pp(actual)} {{not}} to contain functions ${jasmine.pp(methods)}`,
   };
 }

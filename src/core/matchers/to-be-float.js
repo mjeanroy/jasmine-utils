@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {isFloat} from '../util/is-float.js';
 
 /**
@@ -35,6 +34,6 @@ export function toBeFloat(ctx) {
   const actual = ctx.actual;
   return {
     pass: isFloat(actual),
-    message: pp('Expect {{%0}} {{not}} to be a float', actual),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be a float`,
   };
 }

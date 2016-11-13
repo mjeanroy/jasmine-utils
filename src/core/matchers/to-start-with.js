@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {isString} from '../util/is-string.js';
 
 /**
@@ -36,6 +35,6 @@ export function toStartWith(ctx, prefix) {
   const actual = ctx.actual;
   return {
     pass: isString(prefix) && isString(actual) && actual.indexOf(prefix) === 0,
-    message: pp('Expect {{%0}} {{not}} to start with {{%1}}', actual, prefix),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to start with ${jasmine.pp(prefix)}`,
   };
 }

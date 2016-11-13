@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {isArray} from '../util/is-array.js';
 import {containsDistinct} from '../util/contains-distinct.js';
 
@@ -36,6 +35,6 @@ export function toContainsDistinctValues(ctx) {
   const {actual, equals} = ctx;
   return {
     pass: isArray(actual) && containsDistinct(actual, equals),
-    message: pp('Expect {{%0}} {{not}} to contains only distinct values', actual),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to contains only distinct values`,
   };
 }

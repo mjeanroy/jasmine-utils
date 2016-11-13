@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {isArray} from '../util/is-array.js';
 import {isSorted} from '../util/is-sorted.js';
 
@@ -38,6 +37,6 @@ export function toBeSorted(ctx, comparator) {
   const actual = ctx.actual;
   return {
     pass: isArray(actual) && isSorted(actual, comparator),
-    message: pp('Expect {{%0}} {{not}} to be sorted', actual),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be sorted`,
   };
 }

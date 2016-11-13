@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {isDate} from '../util/is-date.js';
 
 /**
@@ -35,6 +34,6 @@ export function toBeADate(ctx) {
   const actual = ctx.actual;
   return {
     pass: isDate(actual),
-    message: pp('Expect {{%0}} {{not}} to be a date', actual),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be a date`,
   };
 }

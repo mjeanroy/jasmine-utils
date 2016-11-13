@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {dateDiff} from '../util/date-diff.js';
 
 /**
@@ -37,6 +36,6 @@ export function toBeDateBefore(ctx, upper) {
   const diff = dateDiff(actual, upper);
   return {
     pass: diff <= 0,
-    message: pp('Expect date {{%0}} {{not}} to be before {{%1}}', actual, upper),
+    message: `Expect date ${jasmine.pp(actual)} {{not}} to be before ${jasmine.pp(upper)}`,
   };
  }

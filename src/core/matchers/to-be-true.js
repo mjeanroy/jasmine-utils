@@ -22,8 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
-
 /**
  * Check that the tested object is `true`.
  *
@@ -34,6 +32,6 @@ export function toBeTrue(ctx) {
   const actual = ctx.actual;
   return {
     pass: actual === true,
-    message: pp('Expect {{%0}} {{not}} to be true', actual),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be true`,
   };
 }

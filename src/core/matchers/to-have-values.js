@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {contains} from '../util/contains.js';
 import {values} from '../util/values.js';
 
@@ -47,6 +46,6 @@ export function toHaveValues(ctx, ...expectedValues) {
 
   return {
     pass: ok,
-    message: pp('Expect object {{%0}} {{not}} to contain values {{%1}}', actual, expectedValues),
+    message: `Expect object ${jasmine.pp(actual)} {{not}} to contain values ${jasmine.pp(expectedValues)}`,
   };
 }

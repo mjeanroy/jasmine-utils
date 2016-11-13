@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {isNumber} from '../util/is-number.js';
 
 /**
@@ -35,6 +34,6 @@ export function toBeOddNumber(ctx) {
   const actual = ctx.actual;
   return {
     pass: isNumber(actual) && actual % 2 !== 0,
-    message: pp('Expect {{%0}} {{not}} to be an odd number', actual),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be an odd number`,
   };
 }

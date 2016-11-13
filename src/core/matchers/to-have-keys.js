@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {keys} from '../util/keys.js';
 import {contains} from '../util/contains.js';
 
@@ -48,6 +47,6 @@ export function toHaveKeys(ctx, ...expectedKeys) {
 
   return {
     pass: ok,
-    message: pp('Expect object {{%0}} {{not}} to contain keys {{%1}}', actual, expectedKeys),
+    message: `Expect object ${jasmine.pp(actual)} {{not}} to contain keys ${jasmine.pp(expectedKeys)}`,
   };
 }

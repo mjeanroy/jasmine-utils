@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
 import {isString} from '../util/is-string.js';
 
 /**
@@ -37,6 +36,6 @@ export function toEqualIgnoringCase(ctx, other) {
   const actual = ctx.actual;
   return {
     pass: isString(other) && isString(actual) && actual.toLowerCase() === other.toLowerCase(),
-    message: pp('Expect {{%0}} {{not}} to be equal to {{%1}} (case insensitive)', actual, other),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be equal to ${jasmine.pp(other)} (case insensitive)`,
   };
 }
