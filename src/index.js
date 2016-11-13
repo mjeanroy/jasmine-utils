@@ -73,6 +73,7 @@ import {
   toBePartiallyEqualTo,
   toHaveBeenCalledOnce,
   toHaveBeenCalledOnceWith,
+  toBeAnInstanceOf,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -123,6 +124,7 @@ const jasmineMatchers = {
   toBePartiallyEqualTo: createMatcher(toBePartiallyEqualTo),
   toHaveBeenCalledOnce: createMatcher(toHaveBeenCalledOnce),
   toHaveBeenCalledOnceWith: createMatcher(toHaveBeenCalledOnceWith),
+  toBeAnInstanceOf: createMatcher(toBeAnInstanceOf),
 };
 
 /**

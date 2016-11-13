@@ -69,3 +69,4 @@ export {toHaveSome} from './to-have-some.js';
 export {toBePartiallyEqualTo} from './to-be-partially-equal-to.js';
 export {toHaveBeenCalledOnce} from './to-have-been-called-once.js';
 export {toHaveBeenCalledOnceWith} from './to-have-been-called-once-with.js';
+export {toBeAnInstanceOf} from './to-be-an-instance-of.js';
