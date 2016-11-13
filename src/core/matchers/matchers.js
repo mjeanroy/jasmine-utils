@@ -49,3 +49,4 @@ export {toBeAString} from './to-be-a-string.js';
 export {toBeAnEmptyString} from './to-be-an-empty-string';
 export {toEqualIgnoringCase} from './to-equal-ignoring-case.js';
 export {toStartWith} from './to-start-with.js';
+export {toEndWith} from './to-end-with.js';

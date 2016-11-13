@@ -53,6 +53,7 @@ import {
   toBeAnEmptyString,
   toEqualIgnoringCase,
   toStartWith,
+  toEndWith,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -83,6 +84,7 @@ const jasmineMatchers = {
   toBeAnEmptyString: createMatcher(toBeAnEmptyString),
   toEqualIgnoringCase: createMatcher(toEqualIgnoringCase),
   toStartWith: createMatcher(toStartWith),
+  toEndWith: createMatcher(toEndWith),
 };
 
 /**
