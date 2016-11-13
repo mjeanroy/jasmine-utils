@@ -61,6 +61,7 @@ import {
   toBeOddNumber,
   toBeEvenNumber,
   toBeNumeric,
+  toBeInteger,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -99,6 +100,7 @@ const jasmineMatchers = {
   toBeOddNumber: createMatcher(toBeOddNumber),
   toBeEvenNumber: createMatcher(toBeEvenNumber),
   toBeNumeric: createMatcher(toBeNumeric),
+  toBeInteger: createMatcher(toBeInteger),
 };
 
 /**
