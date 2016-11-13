@@ -70,6 +70,7 @@ import {
   toContainsDistinctValues,
   toVerify,
   toHaveSome,
+  toBePartiallyEqualTo,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -117,6 +118,7 @@ const jasmineMatchers = {
   toContainsDistinctValues: createMatcher(toContainsDistinctValues),
   toVerify: createMatcher(toVerify),
   toHaveSome: createMatcher(toHaveSome),
+  toBePartiallyEqualTo: createMatcher(toBePartiallyEqualTo),
 };
 
 /**
