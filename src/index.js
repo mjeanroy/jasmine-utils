@@ -74,6 +74,7 @@ import {
   toHaveBeenCalledOnce,
   toHaveBeenCalledOnceWith,
   toBeAnInstanceOf,
+  toBeDOMElement,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -125,6 +126,7 @@ const jasmineMatchers = {
   toHaveBeenCalledOnce: createMatcher(toHaveBeenCalledOnce),
   toHaveBeenCalledOnceWith: createMatcher(toHaveBeenCalledOnceWith),
   toBeAnInstanceOf: createMatcher(toBeAnInstanceOf),
+  toBeDOMElement: createMatcher(toBeDOMElement),
 };
 
 /**

@@ -70,3 +70,4 @@ export {toBePartiallyEqualTo} from './to-be-partially-equal-to.js';
 export {toHaveBeenCalledOnce} from './to-have-been-called-once.js';
 export {toHaveBeenCalledOnceWith} from './to-have-been-called-once-with.js';
 export {toBeAnInstanceOf} from './to-be-an-instance-of.js';
+export {toBeDOMElement} from './to-be-dom-element.js';
