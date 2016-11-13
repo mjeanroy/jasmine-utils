@@ -54,6 +54,7 @@ import {
   toEqualIgnoringCase,
   toStartWith,
   toEndWith,
+  toBeAFunction,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -85,6 +86,7 @@ const jasmineMatchers = {
   toEqualIgnoringCase: createMatcher(toEqualIgnoringCase),
   toStartWith: createMatcher(toStartWith),
   toEndWith: createMatcher(toEndWith),
+  toBeAFunction: createMatcher(toBeAFunction),
 };
 
 /**
