@@ -77,6 +77,7 @@ import {
   toBeDOMElement,
   toBeDOMElementWithId,
   toBeDOMElementWithAttributes,
+  toBeDOMElementWithClasses,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -131,6 +132,7 @@ const jasmineMatchers = {
   toBeDOMElement: createMatcher(toBeDOMElement),
   toBeDOMElementWithId: createMatcher(toBeDOMElementWithId),
   toBeDOMElementWithAttributes: createMatcher(toBeDOMElementWithAttributes),
+  toBeDOMElementWithClasses: createMatcher(toBeDOMElementWithClasses),
 };
 
 /**
