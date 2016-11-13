@@ -22,24 +22,19 @@
  * THE SOFTWARE.
  */
 
-import {toBeZero} from 'src/core/matchers/to-be-zero.js';
+import {pp} from '../jasmine/pp.js';
+import {isNumber} from '../util/is-number.js';
 
-describe('toBeZero', () => {
-  it('should check that object is exactly zero', () => {
-    const actual = 0;
-    const result = toBeZero({actual});
-    expect(result).toEqual({
-      pass: true,
-      message: `Expect 0 {{not}} to be zero`,
-    });
-  });
-
-  it('should not pass without zero', () => {
-    const actual = 1;
-    const result = toBeZero({actual});
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect 1 {{not}} to be zero`,
-    });
-  });
-});
+/**
+ * Check that the tested object is a number greater than zero.
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ */
+export function toBePositive(ctx) {
+  const actual = ctx.actual;
+  return {
+    pass: isNumber(actual) && actual > 0,
+    message: pp('Expect {{%0}} {{not}} to be a positive number', actual),
+  };
+}

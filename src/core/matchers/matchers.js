@@ -52,3 +52,4 @@ export {toStartWith} from './to-start-with.js';
 export {toEndWith} from './to-end-with.js';
 export {toBeAFunction} from './to-be-a-function.js';
 export {toBeZero} from './to-be-zero.js';
+export {toBePositive} from './to-be-positive.js';
