@@ -66,6 +66,7 @@ import {
   toBeInRange,
   toBeSorted,
   toContainsOnlyTruthyValues,
+  toContainsOnlyFalsyValues,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -109,6 +110,7 @@ const jasmineMatchers = {
   toBeInRange: createMatcher(toBeInRange),
   toBeSorted: createMatcher(toBeSorted),
   toContainsOnlyTruthyValues: createMatcher(toContainsOnlyTruthyValues),
+  toContainsOnlyFalsyValues: createMatcher(toContainsOnlyFalsyValues),
 };
 
 /**
