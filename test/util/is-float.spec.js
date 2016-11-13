@@ -22,27 +22,27 @@
  * THE SOFTWARE.
  */
 
-import {isInteger} from 'src/core/util/is-integer.js';
+import {isFloat} from 'src/core/util/is-float.js';
 
-describe('isInteger', () => {
-  it('should return true with an integer value', () => {
-    expect(isInteger(0)).toBe(true);
-    expect(isInteger(1)).toBe(true);
-    expect(isInteger('1')).toBe(true);
-    expect(isInteger('0')).toBe(true);
-    expect(isInteger('1.0')).toBe(true);
+describe('isFloat', () => {
+  it('should return true with a float value', () => {
+    expect(isFloat(0.5)).toBe(true);
+    expect(isFloat(1.8)).toBe(true);
+    expect(isFloat('1.8')).toBe(true);
+    expect(isFloat('0.5')).toBe(true);
   });
 
-  it('should return false without an integer value', () => {
-    expect(isInteger(NaN)).toBe(false);
-    expect(isInteger(Infinity)).toBe(false);
-    expect(isInteger(1.5)).toBe(false);
-    expect(isInteger('1.5')).toBe(false);
+  it('should return false without a float value', () => {
+    expect(isFloat(NaN)).toBe(false);
+    expect(isFloat(Infinity)).toBe(false);
+    expect(isFloat(1)).toBe(false);
+    expect(isFloat('1')).toBe(false);
+    expect(isFloat('1.0')).toBe(false);
 
-    expect(isInteger(true)).toBe(false);
-    expect(isInteger({})).toBe(false);
-    expect(isInteger(() => {})).toBe(false);
-    expect(isInteger(null)).toBe(false);
-    expect(isInteger(undefined)).toBe(false);
+    expect(isFloat(true)).toBe(false);
+    expect(isFloat({})).toBe(false);
+    expect(isFloat(() => {})).toBe(false);
+    expect(isFloat(null)).toBe(false);
+    expect(isFloat(undefined)).toBe(false);
   });
 });

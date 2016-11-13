@@ -22,27 +22,19 @@
  * THE SOFTWARE.
  */
 
-import {isInteger} from 'src/core/util/is-integer.js';
+import {pp} from '../jasmine/pp.js';
+import {isFloat} from '../util/is-float.js';
 
-describe('isInteger', () => {
-  it('should return true with an integer value', () => {
-    expect(isInteger(0)).toBe(true);
-    expect(isInteger(1)).toBe(true);
-    expect(isInteger('1')).toBe(true);
-    expect(isInteger('0')).toBe(true);
-    expect(isInteger('1.0')).toBe(true);
-  });
-
-  it('should return false without an integer value', () => {
-    expect(isInteger(NaN)).toBe(false);
-    expect(isInteger(Infinity)).toBe(false);
-    expect(isInteger(1.5)).toBe(false);
-    expect(isInteger('1.5')).toBe(false);
-
-    expect(isInteger(true)).toBe(false);
-    expect(isInteger({})).toBe(false);
-    expect(isInteger(() => {})).toBe(false);
-    expect(isInteger(null)).toBe(false);
-    expect(isInteger(undefined)).toBe(false);
-  });
-});
+/**
+ * Check that the tested object is a float value.
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ */
+export function toBeFloat(ctx) {
+  const actual = ctx.actual;
+  return {
+    pass: isFloat(actual),
+    message: pp('Expect {{%0}} {{not}} to be a float', actual),
+  };
+}

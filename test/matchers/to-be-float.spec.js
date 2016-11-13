@@ -22,27 +22,42 @@
  * THE SOFTWARE.
  */
 
-import {isInteger} from 'src/core/util/is-integer.js';
+import {toBeFloat} from 'src/core/matchers/to-be-float.js';
 
-describe('isInteger', () => {
-  it('should return true with an integer value', () => {
-    expect(isInteger(0)).toBe(true);
-    expect(isInteger(1)).toBe(true);
-    expect(isInteger('1')).toBe(true);
-    expect(isInteger('0')).toBe(true);
-    expect(isInteger('1.0')).toBe(true);
+describe('toBeFloat', () => {
+  it('should check that object is a float value', () => {
+    const actual = '1.5';
+    const result = toBeFloat({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect '1.5' {{not}} to be a float`,
+    });
   });
 
-  it('should return false without an integer value', () => {
-    expect(isInteger(NaN)).toBe(false);
-    expect(isInteger(Infinity)).toBe(false);
-    expect(isInteger(1.5)).toBe(false);
-    expect(isInteger('1.5')).toBe(false);
+  it('should not pass with NaN', () => {
+    const actual = NaN;
+    const result = toBeFloat({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect NaN {{not}} to be a float`,
+    });
+  });
 
-    expect(isInteger(true)).toBe(false);
-    expect(isInteger({})).toBe(false);
-    expect(isInteger(() => {})).toBe(false);
-    expect(isInteger(null)).toBe(false);
-    expect(isInteger(undefined)).toBe(false);
+  it('should not pass with a Infinity', () => {
+    const actual = Infinity;
+    const result = toBeFloat({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect Infinity {{not}} to be a float`,
+    });
+  });
+
+  it('should not pass with an integer', () => {
+    const actual = 1.0;
+    const result = toBeFloat({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 1 {{not}} to be a float`,
+    });
   });
 });

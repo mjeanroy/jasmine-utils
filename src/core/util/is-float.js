@@ -22,27 +22,15 @@
  * THE SOFTWARE.
  */
 
-import {isInteger} from 'src/core/util/is-integer.js';
+import {isNumeric} from './is-numeric.js';
+import {isInteger} from './is-integer.js';
 
-describe('isInteger', () => {
-  it('should return true with an integer value', () => {
-    expect(isInteger(0)).toBe(true);
-    expect(isInteger(1)).toBe(true);
-    expect(isInteger('1')).toBe(true);
-    expect(isInteger('0')).toBe(true);
-    expect(isInteger('1.0')).toBe(true);
-  });
-
-  it('should return false without an integer value', () => {
-    expect(isInteger(NaN)).toBe(false);
-    expect(isInteger(Infinity)).toBe(false);
-    expect(isInteger(1.5)).toBe(false);
-    expect(isInteger('1.5')).toBe(false);
-
-    expect(isInteger(true)).toBe(false);
-    expect(isInteger({})).toBe(false);
-    expect(isInteger(() => {})).toBe(false);
-    expect(isInteger(null)).toBe(false);
-    expect(isInteger(undefined)).toBe(false);
-  });
-});
+/**
+ * Check that a given value is a float value.
+ *
+ * @param {*} obj Value to check.
+ * @return {boolean} `true` if `obj` is a float, `false` otherwise.
+ */
+export function isFloat(obj) {
+  return isNumeric(obj) && !isInteger(obj);
+}
