@@ -46,6 +46,7 @@ import {
   toBeToday,
   toBeNull,
   toBeANumber,
+  toBeABoolean,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -69,6 +70,7 @@ const jasmineMatchers = {
   toBeToday: createMatcher(toBeToday),
   toBeNull: createMatcher(toBeNull),
   toBeANumber: createMatcher(toBeANumber),
+  toBeABoolean: createMatcher(toBeABoolean),
 };
 
 /**

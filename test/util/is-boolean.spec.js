@@ -22,24 +22,24 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
-export {toBeDateBefore} from './to-be-date-before.js';
-export {toBeDateBeforeNow} from './to-be-date-before-now.js';
-export {toBeSameDay} from './to-be-same-day.js';
-export {toBeToday} from './to-be-today.js';
-export {toBeNull} from './to-be-null.js';
-export {toBeANumber} from './to-be-a-number.js';
-export {toBeABoolean} from './to-be-a-boolean.js';
+import {isBoolean} from 'src/core/util/is-boolean.js';
+
+describe('isBoolean', () => {
+  it('should return true with a true or false', () => {
+    expect(isBoolean(true)).toBe(true);
+    expect(isBoolean(false)).toBe(true);
+    expect(isBoolean(Boolean(0))).toBe(true);
+
+    // eslint-disable-next-line no-new-wrappers
+    expect(isBoolean(new Boolean(true))).toBe(true);
+  });
+
+  it('should return false without a boolean', () => {
+    expect(isBoolean('')).toBe(false);
+    expect(isBoolean(0)).toBe(false);
+    expect(isBoolean({})).toBe(false);
+    expect(isBoolean(() => {})).toBe(false);
+    expect(isBoolean(null)).toBe(false);
+    expect(isBoolean(undefined)).toBe(false);
+  });
+});
