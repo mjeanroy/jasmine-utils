@@ -61,3 +61,4 @@ export {toBeInteger} from './to-be-integer.js';
 export {toBeFloat} from './to-be-float.js';
 export {toBeInRange} from './to-be-in-range.js';
 export {toBeSorted} from './to-be-sorted.js';
+export {toContainsOnlyTruthyValues} from './to-contains-only-truthy-values.js';
