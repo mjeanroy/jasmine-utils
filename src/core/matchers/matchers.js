@@ -47,3 +47,4 @@ export {toBeTrue} from './to-be-true.js';
 export {toBeFalse} from './to-be-false.js';
 export {toBeAString} from './to-be-a-string.js';
 export {toBeAnEmptyString} from './to-be-an-empty-string';
+export {toEqualIgnoringCase} from './to-equal-ignoring-case.js';
