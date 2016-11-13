@@ -67,3 +67,4 @@ export {toContainsDistinctValues} from './to-contains-distinct-values.js';
 export {toVerify} from './to-verify.js';
 export {toHaveSome} from './to-have-some.js';
 export {toBePartiallyEqualTo} from './to-be-partially-equal-to.js';
+export {toHaveBeenCalledOnce} from './to-have-been-called-once.js';
