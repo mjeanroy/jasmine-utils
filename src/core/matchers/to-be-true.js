@@ -22,25 +22,18 @@
  * THE SOFTWARE.
  */
 
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
-export {toBeDateBefore} from './to-be-date-before.js';
-export {toBeDateBeforeNow} from './to-be-date-before-now.js';
-export {toBeSameDay} from './to-be-same-day.js';
-export {toBeToday} from './to-be-today.js';
-export {toBeNull} from './to-be-null.js';
-export {toBeANumber} from './to-be-a-number.js';
-export {toBeABoolean} from './to-be-a-boolean.js';
-export {toBeTrue} from './to-be-true.js';
+import {pp} from '../jasmine/pp.js';
+
+/**
+ * Check that the tested object is `true`.
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ */
+export function toBeTrue(ctx) {
+  const actual = ctx.actual;
+  return {
+    pass: actual === true,
+    message: pp('Expect {{%0}} {{not}} to be true', actual),
+  };
+}
