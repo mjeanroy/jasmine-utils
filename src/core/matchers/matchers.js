@@ -45,3 +45,4 @@ export {toBeANumber} from './to-be-a-number.js';
 export {toBeABoolean} from './to-be-a-boolean.js';
 export {toBeTrue} from './to-be-true.js';
 export {toBeFalse} from './to-be-false.js';
+export {toBeAString} from './to-be-a-string.js';
