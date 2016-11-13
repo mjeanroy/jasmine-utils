@@ -65,3 +65,4 @@ export {toContainsOnlyTruthyValues} from './to-contains-only-truthy-values.js';
 export {toContainsOnlyFalsyValues} from './to-contains-only-falsy-values.js';
 export {toContainsDistinctValues} from './to-contains-distinct-values.js';
 export {toVerify} from './to-verify.js';
+export {toHaveSome} from './to-have-some.js';

@@ -69,6 +69,7 @@ import {
   toContainsOnlyFalsyValues,
   toContainsDistinctValues,
   toVerify,
+  toHaveSome,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -115,6 +116,7 @@ const jasmineMatchers = {
   toContainsOnlyFalsyValues: createMatcher(toContainsOnlyFalsyValues),
   toContainsDistinctValues: createMatcher(toContainsDistinctValues),
   toVerify: createMatcher(toVerify),
+  toHaveSome: createMatcher(toHaveSome),
 };
 
 /**
