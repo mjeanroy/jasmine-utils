@@ -51,3 +51,4 @@ export {toEqualIgnoringCase} from './to-equal-ignoring-case.js';
 export {toStartWith} from './to-start-with.js';
 export {toEndWith} from './to-end-with.js';
 export {toBeAFunction} from './to-be-a-function.js';
+export {toBeZero} from './to-be-zero.js';

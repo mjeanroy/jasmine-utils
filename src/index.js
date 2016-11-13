@@ -55,6 +55,7 @@ import {
   toStartWith,
   toEndWith,
   toBeAFunction,
+  toBeZero,
 } from './core/matchers/matchers.js';
 
 const jasmineMatchers = {
@@ -87,6 +88,7 @@ const jasmineMatchers = {
   toStartWith: createMatcher(toStartWith),
   toEndWith: createMatcher(toEndWith),
   toBeAFunction: createMatcher(toBeAFunction),
+  toBeZero: createMatcher(toBeZero),
 };
 
 /**
