@@ -22,33 +22,31 @@
  * THE SOFTWARE.
  */
 
-/* eslint-disable */
+import 'src/index.js';
+import {Klass} from './fixtures/klass.js';
 
-describe('jasmine-utils', function() {
-
-  describe('spyIf', function() {
-    it('should spy a method that is not already a spy', function() {
-      var obj = {
-        foo: function() {
-        }
+describe('jasmine-utils', () => {
+  describe('spyIf', () => {
+    it('should spy a method that is not already a spy', () => {
+      const obj = {
+        foo() {},
       };
 
-      var spy = jasmine.spyIf(obj, 'foo');
+      const spy = jasmine.spyIf(obj, 'foo');
 
       expect(jasmine.isSpy(obj.foo)).toBeTruthy();
       expect(spy).toBeDefined();
       expect(spy).toBe(obj.foo);
     });
 
-    it('should not spy a method that is already a spy', function() {
-      var obj = {
-        foo: function() {
-        }
+    it('should not spy a method that is already a spy', () => {
+      const obj = {
+        foo() {},
       };
 
       spyOn(obj, 'foo');
 
-      var spy = jasmine.spyIf(obj, 'foo');
+      const spy = jasmine.spyIf(obj, 'foo');
 
       expect(jasmine.isSpy(obj.foo)).toBeTruthy();
       expect(spy).toBeDefined();
@@ -56,23 +54,12 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('spyAll and spyAllExcept', function() {
-    beforeEach(function() {
-      this.Klass = function() {
-        this.id = 0;
+  describe('spyAll and spyAllExcept', () => {
+    it('should spy all methods', () => {
+      const obj = {
+        foo() {},
+        bar() {},
       };
-
-      this.Klass.prototype = {
-        foo: function() {
-        },
-
-        bar: function() {
-        }
-      };
-    });
-
-    it('should spy all methods', function() {
-      var obj = new this.Klass();
 
       jasmine.spyAll(obj);
 
@@ -81,13 +68,13 @@ describe('jasmine-utils', function() {
     });
 
     if (Object.getOwnPropertyNames) {
-      it('should spy all methods with non-enumerable writable property', function() {
-        var obj = new this.Klass();
+      it('should spy all methods with non-enumerable writable property', () => {
+        const obj = new Klass();
 
         Object.defineProperty(obj, 'nonEnumerableProperty', {
-          value: function() {},
+          value: () => {},
           enumerable: false,
-          writable: true
+          writable: true,
         });
 
         expect(obj.nonEnumerableProperty).toBeDefined();
@@ -98,13 +85,13 @@ describe('jasmine-utils', function() {
         expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeTruthy();
       });
 
-      it('should not try to spy non-enumerable methods and non writable property', function() {
-        var obj = new this.Klass();
+      it('should not try to spy non-enumerable methods and non writable property', () => {
+        const obj = new Klass();
 
         Object.defineProperty(obj, 'nonEnumerableProperty', {
-          value: function() {},
+          value: () => {},
           enumerable: false,
-          writable: false
+          writable: false,
         });
 
         expect(obj.nonEnumerableProperty).toBeDefined();
@@ -116,8 +103,11 @@ describe('jasmine-utils', function() {
       });
     }
 
-    it('should spy all methods except bar', function() {
-      var obj = new this.Klass();
+    it('should spy all methods except bar', () => {
+      const obj = {
+        foo() {},
+        bar() {},
+      };
 
       jasmine.spyAllExcept(obj, 'bar');
 
@@ -125,8 +115,8 @@ describe('jasmine-utils', function() {
       expect(jasmine.isSpy(obj.bar)).toBeFalsy();
     });
 
-    it('should spy all methods except foo and bar', function() {
-      var obj = new this.Klass();
+    it('should spy all methods except foo and bar', () => {
+      const obj = new Klass();
 
       jasmine.spyAllExcept(obj, ['foo', 'bar']);
 
@@ -134,8 +124,11 @@ describe('jasmine-utils', function() {
       expect(jasmine.isSpy(obj.bar)).toBeFalsy();
     });
 
-    it('should spy each methods with one argument', function() {
-      var obj = new this.Klass();
+    it('should spy each methods with one argument', () => {
+      const obj = {
+        foo() {},
+        bar() {},
+      };
 
       jasmine.spyEach(obj, 'bar');
 
@@ -143,8 +136,12 @@ describe('jasmine-utils', function() {
       expect(jasmine.isSpy(obj.bar)).toBeTruthy();
     });
 
-    it('should spy each methods', function() {
-      var obj = new this.Klass();
+    it('should spy each methods', () => {
+      const obj = {
+        foo() {},
+        bar() {},
+        baz() {},
+      };
 
       jasmine.spyEach(obj, ['bar', 'foo']);
 
@@ -152,8 +149,12 @@ describe('jasmine-utils', function() {
       expect(jasmine.isSpy(obj.bar)).toBeTruthy();
     });
 
-    it('should not spy a method that is already a spy', function() {
-      var obj = new this.Klass();
+    it('should not spy a method that is already a spy', () => {
+      const obj = {
+        foo() {},
+        bar() {},
+      };
+
       spyOn(obj, 'foo').and.returnValue(true);
 
       jasmine.spyAll(obj);
@@ -162,31 +163,17 @@ describe('jasmine-utils', function() {
       expect(jasmine.isSpy(obj.bar)).toBeTruthy();
     });
 
-    it('should spy class methods', function() {
-      jasmine.spyAll(this.Klass);
+    it('should spy class methods', () => {
+      jasmine.spyAll(Klass);
 
-      expect(jasmine.isSpy(this.Klass.prototype.foo)).toBeTruthy();
-      expect(jasmine.isSpy(this.Klass.prototype.bar)).toBeTruthy();
+      expect(jasmine.isSpy(Klass.prototype.foo)).toBeTruthy();
+      expect(jasmine.isSpy(Klass.prototype.bar)).toBeTruthy();
     });
   });
 
-  describe('resetAll, resetEach and resetAllExcept', function() {
-    beforeEach(function() {
-      this.Klass = function() {
-        this.id = 0;
-      };
-
-      this.Klass.prototype = {
-        foo: function() {
-        },
-
-        bar: function() {
-        }
-      };
-    });
-
-    it('should reset all methods', function() {
-      var obj = new this.Klass();
+  describe('resetAll, resetEach and resetAllExcept', () => {
+    it('should reset all methods', () => {
+      const obj = new Klass();
       spyOn(obj, 'foo');
       spyOn(obj, 'bar');
 
@@ -202,8 +189,8 @@ describe('jasmine-utils', function() {
       expect(obj.bar).not.toHaveBeenCalled();
     });
 
-    it('should reset each specified methods', function() {
-      var obj = new this.Klass();
+    it('should reset each specified methods', () => {
+      const obj = new Klass();
       spyOn(obj, 'foo');
       spyOn(obj, 'bar');
 
@@ -219,8 +206,8 @@ describe('jasmine-utils', function() {
       expect(obj.bar).toHaveBeenCalled();
     });
 
-    it('should reset all methods except specified', function() {
-      var obj = new this.Klass();
+    it('should reset all methods except specified', () => {
+      const obj = new Klass();
       spyOn(obj, 'foo');
       spyOn(obj, 'bar');
 
@@ -237,118 +224,104 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toHaveLength', function() {
-    it('should pass with an array', function() {
+  describe('toHaveLength', () => {
+    it('should pass with an array', () => {
       expect([1, 2, 3]).toHaveLength(3);
       expect([1, 2, 3]).not.toHaveLength(1);
     });
 
-    it('should pass with a string', function() {
+    it('should pass with a string', () => {
       expect('123').toHaveLength(3);
       expect('123').not.toHaveLength(1);
     });
   });
 
-  describe('toHaveSameLengthAs', function() {
-    it('should pass with an array', function() {
+  describe('toHaveSameLengthAs', () => {
+    it('should pass with an array', () => {
       expect([1, 2, 3]).toHaveSameLengthAs([3, 2, 1]);
       expect([1, 2, 3]).not.toHaveSameLengthAs([1]);
     });
 
-    it('should pass with a string', function() {
+    it('should pass with a string', () => {
       expect('123').toHaveSameLengthAs('321');
       expect('123').not.toHaveSameLengthAs('1');
     });
   });
 
-  describe('toHaveSize', function() {
-    it('should pass with an array', function() {
+  describe('toHaveSize', () => {
+    it('should pass with an array', () => {
       expect([1, 2, 3]).toHaveSize(3);
       expect([1, 2, 3]).not.toHaveSize(1);
     });
 
-    it('should pass with an array like object', function() {
+    it('should pass with an array like object', () => {
       // HTMLCollection is an array like object
-      var nodes = document.getElementsByTagName('foo');
+      const nodes = document.getElementsByTagName('foo');
       expect(nodes).toHaveSize(0);
       expect(nodes).not.toHaveSize(1);
     });
 
-    it('should pass with an object', function() {
-      var obj = {
-        'one': 1,
-        'two': 2,
-        'three': 3
-      };
-
+    it('should pass with an object', () => {
+      const obj = {one: 1, two: 2, three: 3};
       expect(obj).toHaveSize(3);
       expect(obj).not.toHaveSize(1);
     });
 
-    it('should pass with a string', function() {
+    it('should pass with a string', () => {
       expect('123').toHaveSize(3);
       expect('123').not.toHaveSize(1);
     });
   });
 
-  describe('toHaveSameSizeAs', function() {
-    it('should pass with an array', function() {
+  describe('toHaveSameSizeAs', () => {
+    it('should pass with an array', () => {
       expect([1, 2, 3]).toHaveSameSizeAs([3, 2, 1]);
       expect([1, 2, 3]).not.toHaveSameSizeAs([1]);
     });
 
-    it('should pass with an object', function() {
-      var obj = {
-        'one': 1,
-        'two': 2,
-        'three': 3
-      };
-
-      var obj2 = {
-        1: 'one',
-        2: 'two',
-        3: 'three'
-      };
+    it('should pass with an object', () => {
+      const obj = {one: 1, two: 2, three: 3};
+      const obj2 = {1: 'one', 2: 'two', 3: 'three'};
 
       expect(obj).toHaveSameSizeAs(obj2);
       expect(obj).not.toHaveSameSizeAs({
-        1: 'one'
+        1: 'one',
       });
     });
 
-    it('should pass with a string', function() {
+    it('should pass with a string', () => {
       expect('123').toHaveSameSizeAs('321');
       expect('123').not.toHaveSameSizeAs('1');
     });
   });
 
-  describe('toBeEmpty', function() {
-    it('should pass with an array', function() {
+  describe('toBeEmpty', () => {
+    it('should pass with an array', () => {
       expect([]).toBeEmpty();
       expect([1, 2, 3]).not.toBeEmpty();
     });
 
-    it('should pass with an object', function() {
+    it('should pass with an object', () => {
       expect({}).toBeEmpty();
       expect({'one': 1}).not.toBeEmpty();
     });
 
-    it('should pass with an empty string', function() {
+    it('should pass with an empty string', () => {
       expect('').toBeEmpty();
       expect('123').not.toBeEmpty();
     });
 
-    it('should pass with null', function() {
+    it('should pass with null', () => {
       expect(null).toBeEmpty();
     });
 
-    it('should pass with undefined', function() {
+    it('should pass with undefined', () => {
       expect(undefined).toBeEmpty();
     });
   });
 
-  describe('toBeAnArray', function() {
-    it('should pass', function() {
+  describe('toBeAnArray', () => {
+    it('should pass', () => {
       expect([]).toBeAnArray();
       expect('123').not.toBeAnArray();
       expect(1).not.toBeAnArray();
@@ -359,8 +332,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeNull', function() {
-    it('should pass', function() {
+  describe('toBeNull', () => {
+    it('should pass', () => {
       expect(null).toBeNull();
       expect('123').not.toBeNull();
       expect(1).not.toBeNull();
@@ -370,9 +343,9 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeDOMElement', function() {
-    it('should pass', function() {
-      var element = document.createElement('span');
+  describe('toBeDOMElement', () => {
+    it('should pass', () => {
+      const element = document.createElement('span');
       expect(element).toBeDOMElement();
 
       expect(null).not.toBeDOMElement();
@@ -381,8 +354,8 @@ describe('jasmine-utils', function() {
       expect('foo').not.toBeDOMElement();
     });
 
-    it('should pass with a tag name', function() {
-      var element = document.createElement('span');
+    it('should pass with a tag name', () => {
+      const element = document.createElement('span');
       expect(element).toBeDOMElement('span');
       expect(element).toBeDOMElement('SPAN');
 
@@ -397,10 +370,10 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeDOMElementWithId', function() {
-    it('should pass', function() {
-      var actualId = 'foo';
-      var element = document.createElement('span');
+  describe('toBeDOMElementWithId', () => {
+    it('should pass', () => {
+      const actualId = 'foo';
+      const element = document.createElement('span');
       element.setAttribute('id', actualId);
 
       expect(element).toBeDOMElementWithId(actualId);
@@ -413,10 +386,9 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeDOMElementWithAttributes', function() {
-    it('should pass', function() {
-      var actualId = 'foo';
-      var element = document.createElement('span');
+  describe('toBeDOMElementWithAttributes', () => {
+    it('should pass', () => {
+      const element = document.createElement('span');
       element.setAttribute('id', 'id');
       element.setAttribute('foo', 'bar');
       element.setAttribute('bar', 'foo');
@@ -426,22 +398,21 @@ describe('jasmine-utils', function() {
         id: 'id',
         foo: 'bar',
         bar: 'foo',
-        idx: '0'
+        idx: '0',
       });
 
       expect(element).not.toBeDOMElementWithAttributes({
         id: 'foo',
         foo: 'foo',
         bar: 'foo',
-        idx: 'foo'
+        idx: 'foo',
       });
     });
   });
 
-  describe('toBeDOMElementWithClasses', function() {
-    it('should pass', function() {
-      var actualId = 'foo';
-      var element = document.createElement('span');
+  describe('toBeDOMElementWithClasses', () => {
+    it('should pass', () => {
+      const element = document.createElement('span');
       element.className = 'foo  bar quix ';
 
       expect(element).toBeDOMElementWithClasses('foo');
@@ -460,8 +431,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeANumber', function() {
-    it('should pass', function() {
+  describe('toBeANumber', () => {
+    it('should pass', () => {
       expect(1).toBeANumber();
       expect(0).toBeANumber();
 
@@ -473,8 +444,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeAString', function() {
-    it('should pass', function() {
+  describe('toBeAString', () => {
+    it('should pass', () => {
       expect('1').toBeAString();
       expect('').toBeAString();
 
@@ -486,8 +457,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeAnEmptyString', function() {
-    it('should pass', function() {
+  describe('toBeAnEmptyString', () => {
+    it('should pass', () => {
       expect('').toBeAnEmptyString();
 
       expect('123').not.toBeAnEmptyString();
@@ -495,8 +466,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toStartWith', function() {
-    it('should pass', function() {
+  describe('toStartWith', () => {
+    it('should pass', () => {
       expect('foo').toStartWith('foo');
       expect('foo').toStartWith('fo');
       expect('foo').toStartWith('f');
@@ -516,8 +487,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toEndWith', function() {
-    it('should pass', function() {
+  describe('toEndWith', () => {
+    it('should pass', () => {
       expect('foo').toEndWith('foo');
       expect('foo').toEndWith('oo');
       expect('foo').toEndWith('o');
@@ -537,8 +508,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toEqualIgnoringCase', function() {
-    it('should pass', function() {
+  describe('toEqualIgnoringCase', () => {
+    it('should pass', () => {
       expect('foo').toEqualIgnoringCase('Foo');
       expect('foo').toEqualIgnoringCase('FOO');
       expect('foo').toEqualIgnoringCase('foo');
@@ -554,8 +525,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeZero', function() {
-    it('should pass', function() {
+  describe('toBeZero', () => {
+    it('should pass', () => {
       expect(0).toBeZero();
 
       expect(-1).not.toBeZero();
@@ -568,8 +539,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeOddNumber', function() {
-    it('should pass', function() {
+  describe('toBeOddNumber', () => {
+    it('should pass', () => {
       expect(1).toBeOddNumber();
       expect(3).toBeOddNumber();
       expect(5).toBeOddNumber();
@@ -581,8 +552,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeEvenNumber', function() {
-    it('should pass', function() {
+  describe('toBeEvenNumber', () => {
+    it('should pass', () => {
       expect(0).toBeEvenNumber();
       expect(2).toBeEvenNumber();
       expect(4).toBeEvenNumber();
@@ -594,8 +565,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBePositive', function() {
-    it('should pass', function() {
+  describe('toBePositive', () => {
+    it('should pass', () => {
       expect(1).toBePositive();
 
       expect(-1).not.toBePositive();
@@ -603,8 +574,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeNegative', function() {
-    it('should pass', function() {
+  describe('toBeNegative', () => {
+    it('should pass', () => {
       expect(-1).toBeNegative();
 
       expect(1).not.toBeNegative();
@@ -612,8 +583,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeNumeric', function() {
-    it('should pass', function() {
+  describe('toBeNumeric', () => {
+    it('should pass', () => {
       expect(1).toBeNumeric();
       expect('1').toBeNumeric();
 
@@ -631,8 +602,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeInteger', function() {
-    it('should pass', function() {
+  describe('toBeInteger', () => {
+    it('should pass', () => {
       expect(1).toBeInteger();
       expect(1.0).toBeInteger();
       expect('1').toBeNumeric();
@@ -642,8 +613,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeFloat', function() {
-    it('should pass', function() {
+  describe('toBeFloat', () => {
+    it('should pass', () => {
       expect(1.5).toBeFloat();
       expect('1.5').toBeFloat();
 
@@ -654,9 +625,9 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeAFunction', function() {
-    it('should pass', function() {
-      var myFunc = function() {};
+  describe('toBeAFunction', () => {
+    it('should pass', () => {
+      const myFunc = () => {};
       expect(myFunc).toBeAFunction();
 
       expect(0).not.toBeAFunction();
@@ -664,12 +635,9 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeInstanceOf', function() {
-    it('should pass', function() {
-      var Klass = function() {
-      };
-
-      var value = new Klass();
+  describe('toBeInstanceOf', () => {
+    it('should pass', () => {
+      const value = new Klass();
 
       expect(value).toBeInstanceOf(Klass);
       expect(null).not.toBeInstanceOf(Klass);
@@ -680,25 +648,21 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toHaveKeys', function() {
-    it('should pass', function() {
-      var obj = {
-        id: 1,
-        name: 'foo'
-      };
-
+  describe('toHaveKeys', () => {
+    it('should pass', () => {
+      const obj = {id: 1, name: 'foo'};
       expect(obj).toHaveKeys('id', 'name');
       expect(obj).not.toHaveKeys('foo', 'bar');
     });
   });
 
-  describe('toHaveFunctions', function() {
-    it('should pass', function() {
-      var obj = {
+  describe('toHaveFunctions', () => {
+    it('should pass', () => {
+      const obj = {
         id: 1,
         name: 'foo',
         foo: jasmine.createSpy('foo'),
-        bar: jasmine.createSpy('bar')
+        bar: jasmine.createSpy('bar'),
       };
 
       expect(obj).toHaveFunctions('foo', 'bar');
@@ -706,25 +670,25 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toHaveValues', function() {
-    it('should pass', function() {
-      var obj = {
+  describe('toHaveValues', () => {
+    it('should pass', () => {
+      const obj = {
         id: 1,
         name: 'foo',
         array: [1, 2, 3],
         o: {
-          id: 10
-        }
+          id: 10,
+        },
       };
 
-      expect(obj).toHaveValues(1, 'foo', [1, 2, 3], { id: 10 });
+      expect(obj).toHaveValues(1, 'foo', [1, 2, 3], {id: 10});
       expect(obj).not.toHaveValues(2, 'bar');
-      expect(obj).not.toHaveValues({ id: 11 });
+      expect(obj).not.toHaveValues({id: 11});
     });
   });
 
-  describe('toBeADate', function() {
-    it('should pass', function() {
+  describe('toBeADate', () => {
+    it('should pass', () => {
       expect(new Date()).toBeADate();
 
       expect(null).not.toBeADate();
@@ -732,42 +696,34 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toVerify', function() {
-    it('should pass', function() {
-      var iterator = function(item) {
-        return item % 2 === 0;
-      };
-
+  describe('toVerify', () => {
+    it('should pass', () => {
+      const iterator = (item) => item % 2 === 0;
       expect([2, 4, 6, 8]).toVerify(iterator);
       expect([2, 4, 6, 8, 9]).not.toVerify(iterator);
     });
 
-    it('should pass with a custom message', function() {
-      var message = 'foo bar';
-      var iterator = function(item) {
-        return item % 2 === 0;
-      };
+    it('should pass with a custom message', () => {
+      const message = 'foo bar';
+      const iterator = (item) => item % 2 === 0;
 
       expect([2, 4, 6, 8]).toVerify(message, iterator);
       expect([2, 4, 6, 8, 9]).not.toVerify(message, iterator);
     });
   });
 
-  describe('toHaveSome', function() {
-    it('should pass', function() {
-      var iterator = function(item) {
-        return item % 2 === 0;
-      };
-
+  describe('toHaveSome', () => {
+    it('should pass', () => {
+      const iterator = (item) => item % 2 === 0;
       expect([1, 2, 3]).toHaveSome(iterator);
       expect([1, 3, 5, 7]).not.toHaveSome(iterator);
     });
   });
 
-  describe('toBeDateCloseTo', function() {
-    it('should pass', function() {
-      var date1 = new Date(2014, 6, 6, 10, 0, 0, 0);
-      var date2 = new Date(2014, 6, 6, 10, 0, 0, 1000);
+  describe('toBeDateCloseTo', () => {
+    it('should pass', () => {
+      const date1 = new Date(2014, 6, 6, 10, 0, 0, 0);
+      const date2 = new Date(2014, 6, 6, 10, 0, 0, 1000);
 
       expect(date1).toBeDateCloseTo(date2, 1000);
       expect(date1).toBeDateCloseTo(date2);
@@ -775,9 +731,9 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeDateCloseToNow', function() {
-    it('should pass', function() {
-      var date = new Date(new Date().getTime() + 900);
+  describe('toBeDateCloseToNow', () => {
+    it('should pass', () => {
+      const date = new Date(new Date().getTime() + 900);
 
       expect(date).toBeDateCloseToNow(1000);
       expect(date).toBeDateCloseToNow();
@@ -785,10 +741,10 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeDateAfter', function() {
-    it('should pass', function() {
-      var date1 = new Date(new Date().getTime() + 1000);
-      var date2 = new Date(new Date().getTime() + 2000);
+  describe('toBeDateAfter', () => {
+    it('should pass', () => {
+      const date1 = new Date(new Date().getTime() + 1000);
+      const date2 = new Date(new Date().getTime() + 2000);
 
       expect(date2).toBeDateAfterNow();
       expect(date2).toBeDateAfter(date1);
@@ -796,10 +752,10 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeDateBefore', function() {
-    it('should pass', function() {
-      var date1 = new Date(new Date().getTime() - 2000);
-      var date2 = new Date(new Date().getTime() - 1000);
+  describe('toBeDateBefore', () => {
+    it('should pass', () => {
+      const date1 = new Date(new Date().getTime() - 2000);
+      const date2 = new Date(new Date().getTime() - 1000);
 
       expect(date1).toBeDateBeforeNow();
       expect(date1).toBeDateBefore(date2);
@@ -807,28 +763,28 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeSameDay', function() {
-    it('should pass with dates', function() {
-      var date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
-      var date2 = new Date(2014, 5, 5, 15, 0, 0, 0);
-      var date3 = new Date(2014, 5, 6, 10, 0, 0, 0);
+  describe('toBeSameDay', () => {
+    it('should pass with dates', () => {
+      const date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
+      const date2 = new Date(2014, 5, 5, 15, 0, 0, 0);
+      const date3 = new Date(2014, 5, 6, 10, 0, 0, 0);
 
       expect(date1).toBeSameDay(date2);
       expect(date1).not.toBeSameDay(date3);
     });
 
-    it('should pass with strings', function() {
-      var date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
+    it('should pass with strings', () => {
+      const date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
 
       expect(date1).toBeSameDay('2014-06-05');
       expect(date1).not.toBeSameDay('2014-06-06');
     });
   });
 
-  describe('toBeToday', function() {
-    it('should pass', function() {
-      var date1 = new Date();
-      var date2 = new Date();
+  describe('toBeToday', () => {
+    it('should pass', () => {
+      const date1 = new Date();
+      const date2 = new Date();
       date2.setDate(date1.getDate() - 1);
 
       expect(date1).toBeToday();
@@ -836,8 +792,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeABoolean', function() {
-    it('should pass', function() {
+  describe('toBeABoolean', () => {
+    it('should pass', () => {
       expect(true).toBeABoolean();
       expect(false).toBeABoolean();
 
@@ -848,8 +804,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeTrue', function() {
-    it('should pass', function() {
+  describe('toBeTrue', () => {
+    it('should pass', () => {
       expect(true).toBeTrue();
 
       expect(false).not.toBeTrue();
@@ -860,8 +816,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeFalse', function() {
-    it('should pass', function() {
+  describe('toBeFalse', () => {
+    it('should pass', () => {
       expect(false).toBeFalse();
 
       expect(true).not.toBeFalse();
@@ -872,8 +828,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeInRange', function() {
-    it('should pass', function() {
+  describe('toBeInRange', () => {
+    it('should pass', () => {
       expect(2).toBeInRange(1, 3);
 
       expect(1).not.toBeInRange(1, 3);
@@ -881,82 +837,58 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toBeSorted', function() {
-    it('should pass with an array of numbers', function() {
+  describe('toBeSorted', () => {
+    it('should pass with an array of numbers', () => {
       expect([0, 1, 2, 3]).toBeSorted();
       expect([0, 1, 3, 2]).not.toBeSorted();
     });
 
-    it('should pass with an array of strings', function() {
+    it('should pass with an array of strings', () => {
       expect(['bar', 'foo']).toBeSorted();
       expect(['foo', 'bar']).not.toBeSorted();
     });
 
-    it('should pass with an array of booleans', function() {
+    it('should pass with an array of booleans', () => {
       expect([false, false, true, true]).toBeSorted();
       expect([true, true, false, false]).not.toBeSorted();
     });
 
-    it('should pass with an array of object sorted by id', function() {
-      var comparator = function(obj1, obj2) {
-        return obj1.id - obj2.id;
-      };
+    it('should pass with an array of object sorted by id', () => {
+      const comparator = (obj1, obj2) => obj1.id - obj2.id;
 
-      var obj1 = {
-        id: 1
-      };
-
-      var obj2 = {
-        id: 2
-      };
-
-      var obj3 = {
-        id: 3
-      };
+      const obj1 = {id: 1};
+      const obj2 = {id: 2};
+      const obj3 = {id: 3};
 
       expect([obj1, obj2, obj3]).toBeSorted(comparator);
       expect([obj3, obj2, obj1]).not.toBeSorted(comparator);
     });
 
-    it('should pass with an array of object sorted by id with same ids', function() {
-      var comparator = function(obj1, obj2) {
-        return obj1.id - obj2.id;
-      };
+    it('should pass with an array of object sorted by id with same ids', () => {
+      const comparator = (obj1, obj2) => obj1.id - obj2.id;
 
-      var obj1 = {
-        id: 1
-      };
+      const obj1 = {id: 1};
+      const obj21 = {id: 2, name: 'foo'};
+      const obj22 = {id: 2, name: 'bar'};
+      const obj3 = {id: 3};
 
-      var obj2_1 = {
-        id: 2,
-        name: 'foo'
-      };
-
-      var obj2_2 = {
-        id: 2,
-        name: 'bar'
-      };
-
-      var obj3 = {
-        id: 3
-      };
-
-      for (var i = 0; i < 100; ++i) {
-        expect([obj1, obj2_1, obj2_2, obj3]).toBeSorted(comparator);
-        expect([obj1, obj2_2, obj2_1, obj3]).toBeSorted(comparator);
+      for (let i = 0; i < 100; ++i) {
+        expect([obj1, obj21, obj22, obj3]).toBeSorted(comparator);
+        expect([obj1, obj22, obj21, obj3]).toBeSorted(comparator);
       }
     });
 
-    it('should pass with an array with custom properties', function() {
-      var array = [0, 1, 2, 3];
+    it('should pass with an array with custom properties', () => {
+      const array = [0, 1, 2, 3];
+
       array.$prop = true;
 
       expect(array).toBeSorted();
     });
   });
 
-  describe('toContainsOnlyTruthyValues', function() {
-    it('should pass', function() {
+  describe('toContainsOnlyTruthyValues', () => {
+    it('should pass', () => {
       expect([1, 2, true, 'foo', {}, []]).toContainsOnlyTruthyValues();
 
       expect([1, 2, false, 'foo', {}, []]).not.toContainsOnlyTruthyValues();
@@ -965,8 +897,8 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toContainsOnlyFalsyValues', function() {
-    it('should pass', function() {
+  describe('toContainsOnlyFalsyValues', () => {
+    it('should pass', () => {
       expect([0, false, null, undefined, '']).toContainsOnlyFalsyValues();
 
       expect([1, false, null, undefined, '']).not.toContainsOnlyFalsyValues();
@@ -977,65 +909,43 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toContainsDistinctValues', function() {
-    it('should pass with an array of integers', function() {
+  describe('toContainsDistinctValues', () => {
+    it('should pass with an array of integers', () => {
       expect([0, 1, 2, 3]).toContainsDistinctValues();
       expect([0, 1, 2, 3, 0]).not.toContainsDistinctValues();
     });
 
-    it('should pass with an array of strings', function() {
+    it('should pass with an array of strings', () => {
       expect(['true', 'false']).toContainsDistinctValues();
       expect(['true', 'false', 'false']).not.toContainsDistinctValues();
     });
 
-    it('should pass with an array of booleans', function() {
+    it('should pass with an array of booleans', () => {
       expect([true, false]).toContainsDistinctValues();
       expect([true, false, false]).not.toContainsDistinctValues();
     });
 
-    it('should pass with an array of booleans', function() {
+    it('should pass with an array of booleans', () => {
       expect([true, false]).toContainsDistinctValues();
       expect([true, false, false]).not.toContainsDistinctValues();
     });
 
-    it('should pass with an array of objects', function() {
-      var obj1 = {
-        id: 1
-      };
+    it('should pass with an array of objects', () => {
+      const obj1 = {id: 1};
+      const obj21 = {id: 2};
+      const obj22 = {id: 2};
+      const obj3 = {id: 3};
 
-      var obj2_1 = {
-        id: 2
-      };
-
-      var obj2_2 = {
-        id: 2
-      };
-
-      var obj3 = {
-        id: 3
-      };
-
-      expect([obj1, obj2_1, obj3]).toContainsDistinctValues();
-      expect([obj1, obj2_1, obj3, obj2_2]).not.toContainsDistinctValues();
+      expect([obj1, obj21, obj3]).toContainsDistinctValues();
+      expect([obj1, obj21, obj3, obj22]).not.toContainsDistinctValues();
     });
   });
 
-  describe('toBePartiallyEqualTo', function() {
-    it('should pass with objects', function() {
-      var a = {
-        id: 1,
-        foo: 'bar',
-        bar: 'foo'
-      };
-
-      var b = {
-        id: 1,
-        foo: 'bar'
-      };
-
-      var c = {
-        id: 2
-      };
+  describe('toBePartiallyEqualTo', () => {
+    it('should pass with objects', () => {
+      const a = {id: 1, foo: 'bar', bar: 'foo'};
+      const b = {id: 1, foo: 'bar'};
+      const c = {id: 2};
 
       expect(a).toBePartiallyEqualTo(b);
       expect(a).not.toBePartiallyEqualTo(c);
@@ -1045,36 +955,19 @@ describe('jasmine-utils', function() {
       expect(a).not.toBePartiallyEqualsTo(c);
     });
 
-    it('should pass with arrays', function() {
-      var a1 = {
-        id: 1,
-        foo: 'bar'
-      };
+    it('should pass with arrays', () => {
+      const a1 = {id: 1, foo: 'bar'};
+      const a2 = {id: 2, foo: 'bar'};
 
-      var a2 = {
-        id: 2,
-        foo: 'bar'
-      };
+      const b1 = {id: 1};
+      const b2 = {id: 2};
 
-      var b1 = {
-        id: 1
-      };
+      const c1 = {id: 2};
+      const c2 = {id: 2};
 
-      var b2 = {
-        id: 2,
-      };
-
-      var c1 = {
-        id: 2
-      };
-
-      var c2 = {
-        id: 2
-      };
-
-      var array1 = [a1, a2];
-      var array2 = [b1, b2];
-      var array3 = [c1, c2];
+      const array1 = [a1, a2];
+      const array2 = [b1, b2];
+      const array3 = [c1, c2];
 
       expect(array1).toBePartiallyEqualTo(array2);
       expect(array1).not.toBePartiallyEqualTo(array3);
@@ -1085,13 +978,13 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toContainsDistinctValues', function() {
+  describe('toContainsDistinctValues', () => {
 
   });
 
-  describe('toHaveBeenCalledOnce', function() {
-    it('should pass', function() {
-      var spy = jasmine.createSpy('foo');
+  describe('toHaveBeenCalledOnce', () => {
+    it('should pass', () => {
+      const spy = jasmine.createSpy('foo');
       expect(spy).not.toHaveBeenCalledOnce();
 
       spy();
@@ -1102,9 +995,9 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('toHaveBeenCalledOnceWith', function() {
-    it('should pass', function() {
-      var spy = jasmine.createSpy('foo');
+  describe('toHaveBeenCalledOnceWith', () => {
+    it('should pass', () => {
+      const spy = jasmine.createSpy('foo');
       expect(spy).not.toHaveBeenCalledOnce();
 
       spy('foo');
@@ -1116,5 +1009,3 @@ describe('jasmine-utils', function() {
     });
   });
 });
-
-/* eslint-enable */

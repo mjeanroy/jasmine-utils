@@ -24,6 +24,8 @@
 
 import {createMatcher} from './core/jasmine/matcher-factory.js';
 import {version} from './core/jasmine/version.js';
+import {keys} from './core/util/keys';
+import {forEach} from './core/util/for-each.js';
 
 import {
   toHaveKeys,
@@ -154,6 +156,34 @@ const jasmineMatchers = {
   toBeDOMElementWithAttributes: createMatcher(toBeDOMElementWithAttributes),
   toBeDOMElementWithClasses: createMatcher(toBeDOMElementWithClasses),
 };
+
+/**
+ * Create a deprecated method (will log a warning before executing the function).
+ *
+ * @param {string} name Name of the deprecated method.
+ * @param {string} alternative Name of the new method to use.
+ * @param {function} func The new method to use.
+ * @return {function} The deprecated method.
+ */
+function createDeprecated(name, alternative, func) {
+  return function(...args) {
+    console.warn(`Matcher "${name}" is deprecated and will be removed, please use "${alternative}" instead.`);
+    return func(...args);
+  };
+}
+
+const deprecateds = {
+  toStartsWith: 'toStartWith',
+  toEndsWith: 'toEndWith',
+  toEqualsIgnoringCase: 'toEqualIgnoringCase',
+  toBePartiallyEqualsTo: 'toBePartiallyEqualTo',
+};
+
+forEach(keys(deprecateds), (name) => {
+  const alternative = deprecateds[name];
+  const func = jasmineMatchers[alternative];
+  jasmineMatchers[name] = createDeprecated(name, alternative, func);
+});
 
 /**
  * The `beforeEach` function executed by Jasmine before each tests that addMatchers
