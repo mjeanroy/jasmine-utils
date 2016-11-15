@@ -22,34 +22,15 @@
  * THE SOFTWARE.
  */
 
-import {toBeInstanceOf} from 'src/core/matchers/to-be-instance-of.js';
+import {reset} from 'src/core/spies/reset.js';
 
-describe('toBeInstanceOf', () => {
-  let Klass;
+describe('reset', () => {
+  it('should reset spy', () => {
+    const spy = jasmine.createSpy('spy');
+    spy();
 
-  beforeEach(() => {
-    // eslint-disable-next-line
-    Klass = class Klass {
-      // eslint-disable-next-line
-      constructor() {}
-    };
-  });
+    reset(spy);
 
-  it('should pass if value is an instance of given class', () => {
-    const actual = new Klass();
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: true,
-      message: 'Expect Klass({  }) {{not}} to be an instance of Function',
-    });
-  });
-
-  it('should not pass if value is not an instance of given class', () => {
-    const actual = '';
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect '' {{not}} to be an instance of Function`,
-    });
+    expect(spy.calls.count()).toBe(0);
   });
 });

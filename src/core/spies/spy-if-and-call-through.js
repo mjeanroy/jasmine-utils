@@ -22,34 +22,30 @@
  * THE SOFTWARE.
  */
 
-import {toBeInstanceOf} from 'src/core/matchers/to-be-instance-of.js';
+import {version} from '../jasmine/version.js';
+import {isFunction} from '../util/is-function.js';
 
-describe('toBeInstanceOf', () => {
-  let Klass;
+/**
+ * Spy a method on an object if and only if it is not already a spy.
+ * The spy (or the new created spy) is returned.
+ *
+ * @param {Object} obj Object.
+ * @param {string} i The name of the method to spy.
+ * @return {*} The spy, or the original value if it is alreay a spy or it cannot be spied.
+ */
+ export function spyIfAndCallThrough(obj, i) {
+   const current = obj[i];
 
-  beforeEach(() => {
-    // eslint-disable-next-line
-    Klass = class Klass {
-      // eslint-disable-next-line
-      constructor() {}
-    };
-  });
+   if (isFunction(current) && !jasmine.isSpy(current)) {
+     const spy = spyOn(obj, i);
+     if (version === 1) {
+       spy.andCallThrough();
+     } else {
+       spy.and.callThrough();
+     }
 
-  it('should pass if value is an instance of given class', () => {
-    const actual = new Klass();
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: true,
-      message: 'Expect Klass({  }) {{not}} to be an instance of Function',
-    });
-  });
+     return spy;
+   }
 
-  it('should not pass if value is not an instance of given class', () => {
-    const actual = '';
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect '' {{not}} to be an instance of Function`,
-    });
-  });
-});
+   return current;
+ }

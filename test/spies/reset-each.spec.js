@@ -22,34 +22,38 @@
  * THE SOFTWARE.
  */
 
-import {toBeInstanceOf} from 'src/core/matchers/to-be-instance-of.js';
+import {resetEach} from 'src/core/spies/reset-each.js';
 
-describe('toBeInstanceOf', () => {
-  let Klass;
-
-  beforeEach(() => {
-    // eslint-disable-next-line
-    Klass = class Klass {
-      // eslint-disable-next-line
-      constructor() {}
+describe('resetEach', () => {
+  it('should reset specified spy of object', () => {
+    const o = {
+      foo: jasmine.createSpy('foo'),
+      bar: () => {},
+      baz: jasmine.createSpy('baz'),
     };
+
+    spyOn(o.foo.calls, 'reset').and.callThrough();
+    spyOn(o.baz.calls, 'reset').and.callThrough();
+
+    resetEach(o, 'foo');
+
+    expect(o.foo.calls.reset).toHaveBeenCalled();
+    expect(o.baz.calls.reset).not.toHaveBeenCalled();
   });
 
-  it('should pass if value is an instance of given class', () => {
-    const actual = new Klass();
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: true,
-      message: 'Expect Klass({  }) {{not}} to be an instance of Function',
-    });
-  });
+  it('should reset specified spies of object', () => {
+    const o = {
+      foo: jasmine.createSpy('foo'),
+      bar: () => {},
+      baz: jasmine.createSpy('baz'),
+    };
 
-  it('should not pass if value is not an instance of given class', () => {
-    const actual = '';
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect '' {{not}} to be an instance of Function`,
-    });
+    spyOn(o.foo.calls, 'reset').and.callThrough();
+    spyOn(o.baz.calls, 'reset').and.callThrough();
+
+    resetEach(o, ['foo']);
+
+    expect(o.foo.calls.reset).toHaveBeenCalled();
+    expect(o.baz.calls.reset).not.toHaveBeenCalled();
   });
 });

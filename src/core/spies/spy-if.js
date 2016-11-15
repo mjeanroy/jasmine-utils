@@ -22,34 +22,18 @@
  * THE SOFTWARE.
  */
 
-import {toBeInstanceOf} from 'src/core/matchers/to-be-instance-of.js';
+/**
+ * Spy a method on an object if and only if it is not already a spy.
+ * The spy (or the new created spy) is returned.
+ *
+ * @param {Object} obj Object.
+ * @param {string} method Name of the method on the object to spy.
+ * @return {function} The spy.
+ */
+export function spyIf(obj, method) {
+  if (!jasmine.isSpy(obj[method])) {
+    spyOn(obj, method);
+  }
 
-describe('toBeInstanceOf', () => {
-  let Klass;
-
-  beforeEach(() => {
-    // eslint-disable-next-line
-    Klass = class Klass {
-      // eslint-disable-next-line
-      constructor() {}
-    };
-  });
-
-  it('should pass if value is an instance of given class', () => {
-    const actual = new Klass();
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: true,
-      message: 'Expect Klass({  }) {{not}} to be an instance of Function',
-    });
-  });
-
-  it('should not pass if value is not an instance of given class', () => {
-    const actual = '';
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect '' {{not}} to be an instance of Function`,
-    });
-  });
-});
+  return obj[method];
+}

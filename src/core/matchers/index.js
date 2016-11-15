@@ -69,7 +69,7 @@ export {toHaveSome} from './to-have-some.js';
 export {toBePartiallyEqualTo} from './to-be-partially-equal-to.js';
 export {toHaveBeenCalledOnce} from './to-have-been-called-once.js';
 export {toHaveBeenCalledOnceWith} from './to-have-been-called-once-with.js';
-export {toBeAnInstanceOf} from './to-be-an-instance-of.js';
+export {toBeInstanceOf} from './to-be-instance-of.js';
 export {toBeDOMElement} from './to-be-dom-element.js';
 export {toBeDOMElementWithId} from './to-be-dom-element-with-id.js';
 export {toBeDOMElementWithAttributes} from './to-be-dom-element-with-attributes.js';

@@ -22,34 +22,40 @@
  * THE SOFTWARE.
  */
 
-import {toBeInstanceOf} from 'src/core/matchers/to-be-instance-of.js';
+import {spyAllExcept} from 'src/core/spies/spy-all-except.js';
 
-describe('toBeInstanceOf', () => {
-  let Klass;
-
-  beforeEach(() => {
-    // eslint-disable-next-line
-    Klass = class Klass {
-      // eslint-disable-next-line
-      constructor() {}
+describe('resetAll', () => {
+  it('should spy methods of object except one', () => {
+    const o = {
+      id: 1,
+      foo() {},
+      bar() {},
+      baz() {},
     };
+
+    spyAllExcept(o, 'foo');
+
+    expect(jasmine.isSpy(o.foo)).toBe(false);
+    expect(jasmine.isSpy(o.bar)).toBe(true);
+    expect(jasmine.isSpy(o.baz)).toBe(true);
+
+    expect(o.id).toBe(1);
   });
 
-  it('should pass if value is an instance of given class', () => {
-    const actual = new Klass();
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: true,
-      message: 'Expect Klass({  }) {{not}} to be an instance of Function',
-    });
-  });
+  it('should spy methods of object except ones', () => {
+    const o = {
+      id: 1,
+      foo() {},
+      bar() {},
+      baz() {},
+    };
 
-  it('should not pass if value is not an instance of given class', () => {
-    const actual = '';
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect '' {{not}} to be an instance of Function`,
-    });
+    spyAllExcept(o, ['foo', 'bar']);
+
+    expect(jasmine.isSpy(o.foo)).toBe(false);
+    expect(jasmine.isSpy(o.bar)).toBe(false);
+    expect(jasmine.isSpy(o.baz)).toBe(true);
+
+    expect(o.id).toBe(1);
   });
 });

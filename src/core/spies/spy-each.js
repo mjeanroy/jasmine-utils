@@ -22,34 +22,26 @@
  * THE SOFTWARE.
  */
 
-import {toBeInstanceOf} from 'src/core/matchers/to-be-instance-of.js';
+import {isArray} from '../util/is-array.js';
+import {index} from '../util/index.js';
+import {has} from '../util/has.js';
+import {forEachWritableProperties} from './for-each-writable-properties.js';
+import {spyIfAndCallThrough} from './spy-if-and-call-through.js';
 
-describe('toBeInstanceOf', () => {
-  let Klass;
-
-  beforeEach(() => {
-    // eslint-disable-next-line
-    Klass = class Klass {
-      // eslint-disable-next-line
-      constructor() {}
-    };
+/**
+ * Spy all specified methods in object.
+ *
+ * @param {Object} obj Object to spy.
+ * @param {Array<string>|string} methods The method or the array of methods to spy.
+ * @return {void}
+ */
+export function spyEach(obj, methods = []) {
+  const array = isArray(methods) ? methods : [methods];
+  const isEmpty = array.length === 0;
+  const map = index(array, (x) => x);
+  forEachWritableProperties(obj, (target, i) => {
+    if (isEmpty || has(map, i)) {
+      spyIfAndCallThrough(target, i);
+    }
   });
-
-  it('should pass if value is an instance of given class', () => {
-    const actual = new Klass();
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: true,
-      message: 'Expect Klass({  }) {{not}} to be an instance of Function',
-    });
-  });
-
-  it('should not pass if value is not an instance of given class', () => {
-    const actual = '';
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect '' {{not}} to be an instance of Function`,
-    });
-  });
-});
+}

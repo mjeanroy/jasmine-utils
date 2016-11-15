@@ -22,34 +22,29 @@
  * THE SOFTWARE.
  */
 
-import {toBeInstanceOf} from 'src/core/matchers/to-be-instance-of.js';
+import {spyIf} from 'src/core/spies/spy-if.js';
 
-describe('toBeInstanceOf', () => {
-  let Klass;
-
-  beforeEach(() => {
-    // eslint-disable-next-line
-    Klass = class Klass {
-      // eslint-disable-next-line
-      constructor() {}
+describe('spyIf', () => {
+  it('should spy method', () => {
+    const o = {
+      foo() {},
     };
+
+    const result = spyIf(o, 'foo');
+
+    expect(result).toBeDefined();
+    expect(jasmine.isSpy(result)).toBe(true);
   });
 
-  it('should pass if value is an instance of given class', () => {
-    const actual = new Klass();
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: true,
-      message: 'Expect Klass({  }) {{not}} to be an instance of Function',
-    });
-  });
+  it('should not re-spy method', () => {
+    const spy = jasmine.createSpy('foo');
+    const o = {
+      foo: spy,
+    };
 
-  it('should not pass if value is not an instance of given class', () => {
-    const actual = '';
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect '' {{not}} to be an instance of Function`,
-    });
+    const result = spyIf(o, 'foo');
+
+    expect(result).toBeDefined();
+    expect(result).toBe(spy);
   });
 });

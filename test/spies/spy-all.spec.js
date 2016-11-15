@@ -22,34 +22,23 @@
  * THE SOFTWARE.
  */
 
-import {toBeInstanceOf} from 'src/core/matchers/to-be-instance-of.js';
+import {spyAll} from 'src/core/spies/spy-all.js';
 
-describe('toBeInstanceOf', () => {
-  let Klass;
-
-  beforeEach(() => {
-    // eslint-disable-next-line
-    Klass = class Klass {
-      // eslint-disable-next-line
-      constructor() {}
+describe('resetAll', () => {
+  it('should reset all spy of object', () => {
+    const o = {
+      id: 1,
+      foo() {},
+      bar() {},
+      baz() {},
     };
-  });
 
-  it('should pass if value is an instance of given class', () => {
-    const actual = new Klass();
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: true,
-      message: 'Expect Klass({  }) {{not}} to be an instance of Function',
-    });
-  });
+    spyAll(o);
 
-  it('should not pass if value is not an instance of given class', () => {
-    const actual = '';
-    const result = toBeInstanceOf({actual}, Klass);
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect '' {{not}} to be an instance of Function`,
-    });
+    expect(jasmine.isSpy(o.foo)).toBe(true);
+    expect(jasmine.isSpy(o.bar)).toBe(true);
+    expect(jasmine.isSpy(o.baz)).toBe(true);
+
+    expect(o.id).toBe(1);
   });
 });

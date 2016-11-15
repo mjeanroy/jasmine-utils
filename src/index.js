@@ -73,13 +73,33 @@ import {
   toBePartiallyEqualTo,
   toHaveBeenCalledOnce,
   toHaveBeenCalledOnceWith,
-  toBeAnInstanceOf,
+  toBeInstanceOf,
   toBeDOMElement,
   toBeDOMElementWithId,
   toBeDOMElementWithAttributes,
   toBeDOMElementWithClasses,
-} from './core/matchers/matchers.js';
+} from './core/matchers/index.js';
 
+import {
+  spyIf,
+  resetAll,
+  resetAllExcept,
+  resetEach,
+  spyAll,
+  spyAllExcept,
+  spyEach,
+} from './core/spies/index.js';
+
+// Expose utility functions.
+jasmine.spyIf = spyIf;
+jasmine.resetAll = resetAll;
+jasmine.resetAllExcept = resetAllExcept;
+jasmine.resetEach = resetEach;
+jasmine.spyAll = spyAll;
+jasmine.spyAllExcept = spyAllExcept;
+jasmine.spyEach = spyEach;
+
+// Create matchers and add it to the current jasmine environment.
 const jasmineMatchers = {
   toHaveKeys: createMatcher(toHaveKeys),
   toHaveFunctions: createMatcher(toHaveFunctions),
@@ -128,7 +148,7 @@ const jasmineMatchers = {
   toBePartiallyEqualTo: createMatcher(toBePartiallyEqualTo),
   toHaveBeenCalledOnce: createMatcher(toHaveBeenCalledOnce),
   toHaveBeenCalledOnceWith: createMatcher(toHaveBeenCalledOnceWith),
-  toBeAnInstanceOf: createMatcher(toBeAnInstanceOf),
+  toBeInstanceOf: createMatcher(toBeInstanceOf),
   toBeDOMElement: createMatcher(toBeDOMElement),
   toBeDOMElementWithId: createMatcher(toBeDOMElementWithId),
   toBeDOMElementWithAttributes: createMatcher(toBeDOMElementWithAttributes),
