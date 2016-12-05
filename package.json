@@ -22,7 +22,7 @@
     "eslint-config-google": "0.7.1",
     "gulp": "3.9.1",
     "gulp-babel": "6.1.2",
-    "gulp-bump": "1.0.0",
+    "gulp-bump": "2.5.1",
     "gulp-eslint": "3.0.1",
     "gulp-filter": "3.0.1",
     "gulp-git": "1.12.0",
