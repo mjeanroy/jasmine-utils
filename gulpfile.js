@@ -24,7 +24,6 @@
 
 const path = require('path');
 const gulp = require('gulp');
-const jshint = require('gulp-jshint');
 const KarmaServer = require('karma').Server;
 const git = require('gulp-git');
 const bump = require('gulp-bump');
@@ -59,7 +58,7 @@ function startKarma(singleRun, done) {
   karma.start();
 }
 
-gulp.task('eslint', () => {
+gulp.task('lint', () => {
   const sources = [
     path.join(options.root, '*.js'),
     path.join(options.src, '**', '*.js'),
@@ -70,12 +69,6 @@ gulp.task('eslint', () => {
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
-});
-
-gulp.task('lint', () => {
-  return gulp.src(path.join(options.src, '**', '*.js'))
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
 });
 
 gulp.task('test', (done) => {
