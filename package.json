@@ -33,7 +33,6 @@
     "karma-jasmine": "1.0.2",
     "karma-phantomjs-launcher": "1.0.2",
     "karma-rollup-plugin": "0.2.4",
-    "lodash": "4.17.1",
     "phantomjs-prebuilt": "2.1.13",
     "rollup": "0.36.4",
     "rollup-plugin-babel": "2.6.1",
