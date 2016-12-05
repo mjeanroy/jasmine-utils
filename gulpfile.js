@@ -93,17 +93,38 @@ gulp.task('build', ['clean', 'lint', 'test'], () => {
 
 // Release tasks
 ['minor', 'major', 'patch'].forEach(function(level) {
-  gulp.task('release:' + level, ['build'], function() {
-    const packageJsonFilter = gulpFilter((file) => file.relative === 'package.json');
-    const src = ['package.json', 'bower.json'].map((file) => path.join(options.root, file));
+  gulp.task(`release:${level}`, ['build'], function() {
+    const jsonFilter = gulpFilter('**/*.json', {restore: true});
+    const pkgJsonFilter = gulpFilter('**/package.json', {restore: true});
+    const bundleFilter = gulpFilter('**/*.js', {restore: true});
+
+    const src = [
+      path.join(options.root, 'package.json'),
+      path.join(options.root, 'bower.json'),
+      options.dest,
+    ];
 
     return gulp.src(src)
+
+      // Bump version.
+      .pipe(jsonFilter)
       .pipe(bump({type: level}))
       .pipe(gulp.dest(options.root))
+      .pipe(jsonFilter.restore)
+
+      // Commit release.
       .pipe(git.add({args: '-f'}))
       .pipe(git.commit('release: release version'))
-      .pipe(packageJsonFilter)
-      .pipe(tagVersion());
+
+      // Create tag.
+      .pipe(pkgJsonFilter)
+      .pipe(tagVersion())
+      .pipe(pkgJsonFilter.restore)
+
+      // Remove generated bundle and commit for the next release.
+      .pipe(bundleFilter)
+      .pipe(git.rm({args: '-r'}))
+      .pipe(git.commit('release: prepare next release'));
   });
 });
 
