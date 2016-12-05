@@ -31,14 +31,10 @@ const bump = require('gulp-bump');
 const gulpFilter = require('gulp-filter');
 const tagVersion = require('gulp-tag-version');
 const rollup = require('rollup');
-const rollupConf = require('./rollup.conf.js');
 const eslint = require('gulp-eslint');
-
-const options = {
-  root: __dirname,
-  src: path.join(__dirname, 'src'),
-  test: path.join(__dirname, 'test'),
-};
+const del = require('del');
+const rollupConf = require('./rollup.conf.js');
+const options = require('./conf.js');
 
 /**
  * Start Karma Server and run unit tests.
@@ -90,17 +86,13 @@ gulp.task('tdd', (done) => {
   startKarma(false, done);
 });
 
-gulp.task('test-es6', (done) => {
-  const opts = {
-    configFile: path.join(options.root, '/karma-es6.conf.js'),
-  };
-
-  const karma = new KarmaServer(opts, () => done());
-
-  karma.start();
+gulp.task('clean', () => {
+  return del([
+    options.dest,
+  ]);
 });
 
-gulp.task('build', () => {
+gulp.task('build', ['clean'], () => {
   return rollup
     .rollup(rollupConf)
     .then((bundle) => bundle.write(rollupConf));

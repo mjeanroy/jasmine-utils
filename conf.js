@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2016 Mickael Jeanroy
+ * Copyright (c) 2014,205,2016 Mickael Jeanroy <mickael.jeanroy@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -10,45 +10,27 @@
  * copies of the Software, and to permit persons to whom the Software is
  * furnished to do so, subject to the following conditions:
  *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
  *
  * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
  * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
  * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
  * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
  */
 
 const path = require('path');
-const babel = require('rollup-plugin-babel');
-const stripBanner = require('rollup-plugin-strip-banner');
-const license = require('rollup-plugin-license');
-const esformatter = require('rollup-plugin-esformatter');
-const conf = require('./conf.js');
+
+const root = path.join(__dirname);
+const src = path.join(root, 'src');
 
 module.exports = {
-  entry: conf.entry,
-  dest: conf.dest,
-  format: 'iife',
-  sourceMap: false,
-  plugins: [
-    // Transform code to old JavaScript.
-    babel(),
-
-    // Remove banner from single modules.
-    stripBanner(),
-
-    // Prepend banner.
-    license({
-      banner: {
-        file: path.join(__dirname, 'LICENSE'),
-      },
-    }),
-
-    // Beautify bundle.
-    esformatter(),
-  ],
+  root: root,
+  src: src,
+  test: path.join(__dirname, 'test'),
+  entry: path.join(src, 'index.js'),
+  dest: path.join(src, 'jasmine-utils.js'),
 };
