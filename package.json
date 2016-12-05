@@ -50,7 +50,6 @@
     "eslint": "gulp eslint",
     "lint": "gulp lint",
     "build": "gulp build",
-    "test6": "gulp test-es6",
     "test": "gulp test",
     "tdd": "gulp tdd",
     "release": "gulp release",

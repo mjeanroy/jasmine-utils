@@ -15,18 +15,7 @@ module.exports = (config) => {
     ],
 
     files: [
-      {
-        pattern: 'src/*.js',
-        watched: true,
-        served: true,
-        included: true,
-      },
-      {
-        pattern: 'test/*spec.js',
-        watched: true,
-        served: true,
-        included: true,
-      },
+      'test/**/*.spec.js',
     ],
 
     exclude: [
@@ -83,5 +72,22 @@ module.exports = (config) => {
     // report which specs are slower than 500ms
     // CLI --report-slower-than 500
     reportSlowerThan: 500,
+
+    preprocessors: {
+      'test/**/*.js': ['rollup'],
+      'src/**/*.js': ['rollup'],
+    },
+
+    // Rollup test configuration
+    rollupPreprocessor: {
+      format: 'iife',
+      plugins: [
+        includePaths({
+          path: [__dirname],
+        }),
+
+        babel(),
+      ],
+    },
   });
 };

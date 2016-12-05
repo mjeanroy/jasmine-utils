@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {Klass} from '../fixtures/klass.js';
 import {forEachWritableProperties} from 'src/core/spies/for-each-writable-properties.js';
 
 describe('forEachWritableProperties', () => {
@@ -87,54 +88,26 @@ describe('forEachWritableProperties', () => {
   });
 
   it('should execute callback for all class properties', () => {
-    // eslint-disable-next-line
-    class Test {
-      // eslint-disable-next-line
-      constructor() {
-        this.id = 1;
-      }
-
-      // eslint-disable-next-line
-      foo() {}
-
-      // eslint-disable-next-line
-      bar() {}
-    }
-
     const iteratee = jasmine.createSpy('iteratee');
 
-    forEachWritableProperties(Test, iteratee);
+    forEachWritableProperties(Klass, iteratee);
 
     expect(iteratee).toHaveBeenCalled();
-    expect(iteratee.calls.count()).toBe(3);
-    expect(iteratee).toHaveBeenCalledWith(Test.prototype, 'constructor');
-    expect(iteratee).toHaveBeenCalledWith(Test.prototype, 'foo');
-    expect(iteratee).toHaveBeenCalledWith(Test.prototype, 'bar');
+    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'constructor');
+    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'foo');
+    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'bar');
   });
 
   it('should execute callback for all instance of class', () => {
-    // eslint-disable-next-line
-    class Test {
-      // eslint-disable-next-line
-      constructor() {
-        this.id = 1;
-      }
-
-      // eslint-disable-next-line
-      foo() {}
-
-      // eslint-disable-next-line
-      bar() {}
-    }
-
-    const o = new Test();
-
+    const o = new Klass();
     const iteratee = jasmine.createSpy('iteratee');
 
     forEachWritableProperties(o, iteratee);
 
     expect(iteratee).toHaveBeenCalled();
-    expect(iteratee.calls.count()).toBe(1);
+    expect(iteratee.calls.count()).toBe(3);
     expect(iteratee).toHaveBeenCalledWith(o, 'id');
+    expect(iteratee).toHaveBeenCalledWith(o, 'foo');
+    expect(iteratee).toHaveBeenCalledWith(o, 'bar');
   });
 });

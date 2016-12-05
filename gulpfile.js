@@ -53,6 +53,7 @@ function startKarma(singleRun, done) {
   };
 
   if (singleRun) {
+    opts.autoWatch = true;
     opts.singleRun = true;
     opts.browsers = ['PhantomJS'];
   }
