@@ -58,7 +58,7 @@ function startKarma(singleRun, done) {
   karma.start();
 }
 
-gulp.task('lint', () => {
+gulp.task('lint', ['clean'], () => {
   const sources = [
     path.join(options.root, '*.js'),
     path.join(options.src, '**', '*.js'),
@@ -71,11 +71,11 @@ gulp.task('lint', () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('test', (done) => {
+gulp.task('test', ['clean'], (done) => {
   startKarma(true, done);
 });
 
-gulp.task('tdd', (done) => {
+gulp.task('tdd', ['clean'], (done) => {
   startKarma(false, done);
 });
 
@@ -85,7 +85,7 @@ gulp.task('clean', () => {
   ]);
 });
 
-gulp.task('build', ['clean'], () => {
+gulp.task('build', ['clean', 'lint', 'test'], () => {
   return rollup
     .rollup(rollupConf)
     .then((bundle) => bundle.write(rollupConf));
