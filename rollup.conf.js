@@ -24,17 +24,30 @@
 
 const path = require('path');
 const babel = require('rollup-plugin-babel');
-const includePaths = require('rollup-plugin-includepaths');
+const stripBanner = require('rollup-plugin-strip-banner');
+const license = require('rollup-plugin-license');
+const esformatter = require('rollup-plugin-esformatter');
 
 module.exports = {
-  moduleName: 'JasmineUtils',
   entry: path.join(__dirname, 'src', 'index.js'),
   dest: path.join(__dirname, 'dist', 'jasmine-utils.js'),
   format: 'iife',
+  sourceMap: false,
   plugins: [
+    // Transform code to old JavaScript.
     babel(),
-    includePaths({
-      path: [__dirname],
+
+    // Remove banner from single modules.
+    stripBanner(),
+
+    // Prepend banner.
+    license({
+      banner: {
+        file: path.join(__dirname, 'LICENSE'),
+      },
     }),
+
+    // Beautify bundle.
+    esformatter(),
   ],
 };

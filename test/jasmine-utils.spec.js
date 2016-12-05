@@ -477,13 +477,16 @@ describe('jasmine-utils', () => {
       expect('foo').not.toStartWith('bar');
 
       // Deprecated matcher
+      spyOn(console, 'warn');
+
       expect('foo').toStartsWith('foo');
       expect('foo').toStartsWith('fo');
       expect('foo').toStartsWith('f');
-
       expect('foo').not.toStartsWith('o');
       expect('foo').not.toStartsWith('oo');
       expect('foo').not.toStartsWith('bar');
+
+      expect(console.warn).toHaveBeenCalled();
     });
   });
 
@@ -498,13 +501,16 @@ describe('jasmine-utils', () => {
       expect('foo').not.toEndWith('bar');
 
       // Deprecated matcher
+      spyOn(console, 'warn');
+
       expect('foo').toEndsWith('foo');
       expect('foo').toEndsWith('oo');
       expect('foo').toEndsWith('o');
-
       expect('foo').not.toEndsWith('f');
       expect('foo').not.toEndsWith('fo');
       expect('foo').not.toEndsWith('bar');
+
+      expect(console.warn).toHaveBeenCalled();
     });
   });
 
@@ -517,11 +523,13 @@ describe('jasmine-utils', () => {
       expect('foo').not.toEqualIgnoringCase('bar');
 
       // Deprecated matcher
+      spyOn(console, 'warn');
+
       expect('foo').toEqualsIgnoringCase('Foo');
       expect('foo').toEqualsIgnoringCase('FOO');
       expect('foo').toEqualsIgnoringCase('foo');
-
       expect('foo').not.toEqualsIgnoringCase('bar');
+      expect(console.warn).toHaveBeenCalled();
     });
   });
 
@@ -951,8 +959,12 @@ describe('jasmine-utils', () => {
       expect(a).not.toBePartiallyEqualTo(c);
 
       // Deprecated matcher
+      spyOn(console, 'warn');
+
       expect(a).toBePartiallyEqualsTo(b);
       expect(a).not.toBePartiallyEqualsTo(c);
+
+      expect(console.warn).toHaveBeenCalled();
     });
 
     it('should pass with arrays', () => {
@@ -973,8 +985,12 @@ describe('jasmine-utils', () => {
       expect(array1).not.toBePartiallyEqualTo(array3);
 
       // Deprecated matcher
+      spyOn(console, 'warn');
+
       expect(array1).toBePartiallyEqualsTo(array2);
       expect(array1).not.toBePartiallyEqualsTo(array3);
+
+      expect(console.warn).toHaveBeenCalled();
     });
   });
 

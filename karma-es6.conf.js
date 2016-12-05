@@ -2,7 +2,8 @@
  * Karma Configuration.
  */
 
-const rollupConf = require('./rollup.conf.js');
+const includePaths = require('rollup-plugin-includepaths');
+const babel = require('rollup-plugin-babel');
 
 module.exports = (config) => {
   config.set({
@@ -77,7 +78,19 @@ module.exports = (config) => {
       'src/**/*.js': ['rollup'],
     },
 
-    // Rollup preprocessor configuration.
-    rollupPreprocessor: rollupConf,
+    // Rollup test configuration
+    rollupPreprocessor: {
+      format: 'iife',
+
+      plugins: [
+        includePaths({
+          path: [__dirname],
+        }),
+
+        babel({
+          babelrc: false,
+        }),
+      ],
+    },
   });
 };

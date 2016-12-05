@@ -2,6 +2,9 @@
  * Karma Configuration.
  */
 
+const includePaths = require('rollup-plugin-includepaths');
+const babel = require('rollup-plugin-babel');
+
 module.exports = (config) => {
   config.set({
     // base path, that will be used to resolve files and exclude
@@ -80,8 +83,5 @@ module.exports = (config) => {
     // report which specs are slower than 500ms
     // CLI --report-slower-than 500
     reportSlowerThan: 500,
-
-    preprocessors: {
-    },
   });
 };
