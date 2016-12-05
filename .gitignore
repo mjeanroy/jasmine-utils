@@ -3,3 +3,4 @@ node_modules/
 
 # Compiled file
 dist/
+src/jasmine-utils.js
