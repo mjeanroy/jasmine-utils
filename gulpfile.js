@@ -71,7 +71,7 @@ gulp.task('lint', ['clean'], () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('test', ['clean'], (done) => {
+gulp.task('test', ['clean', 'lint'], (done) => {
   startKarma(true, done);
 });
 
