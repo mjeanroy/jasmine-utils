@@ -24,15 +24,15 @@
 
 import 'src/index.js';
 
-describe('toBeASet', () => {
+describe('toBeAMap', () => {
   it('should pass', () => {
-    expect(new Set()).toBeASet();
+    expect(new Map()).toBeAMap();
 
-    expect(new Map()).not.toBeASet();
-    expect([]).not.toBeASet();
-    expect({}).not.toBeASet();
-    expect(null).not.toBeASet();
-    expect(undefined).not.toBeASet();
-    expect(false).not.toBeASet();
+    expect(new Set()).not.toBeAMap();
+    expect([]).not.toBeAMap();
+    expect({}).not.toBeAMap();
+    expect(null).not.toBeAMap();
+    expect(undefined).not.toBeAMap();
+    expect(false).not.toBeAMap();
   });
 });

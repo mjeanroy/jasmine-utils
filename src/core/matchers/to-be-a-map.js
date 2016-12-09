@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Mickael Jeanroy <mickael.jeanroy@gmail.com>
+ * Copyright (c) 2014-2016 Mickael Jeanroy <mickael.jeanroy@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,18 @@
  * THE SOFTWARE.
  */
 
-import 'src/index.js';
+import {isMap} from '../util/is-map.js';
 
-describe('toBeASet', () => {
-  it('should pass', () => {
-    expect(new Set()).toBeASet();
-
-    expect(new Map()).not.toBeASet();
-    expect([]).not.toBeASet();
-    expect({}).not.toBeASet();
-    expect(null).not.toBeASet();
-    expect(undefined).not.toBeASet();
-    expect(false).not.toBeASet();
-  });
-});
+/**
+ * Check that the tested object is a map.
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ */
+export function toBeAMap(ctx) {
+  const actual = ctx.actual;
+  return {
+    pass: isMap(actual),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be a map`,
+  };
+}

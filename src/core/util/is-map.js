@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Mickael Jeanroy <mickael.jeanroy@gmail.com>
+ * Copyright (c) 2014-2016 Mickael Jeanroy <mickael.jeanroy@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,12 @@
  * THE SOFTWARE.
  */
 
-import 'src/index.js';
-
-describe('toBeASet', () => {
-  it('should pass', () => {
-    expect(new Set()).toBeASet();
-
-    expect(new Map()).not.toBeASet();
-    expect([]).not.toBeASet();
-    expect({}).not.toBeASet();
-    expect(null).not.toBeASet();
-    expect(undefined).not.toBeASet();
-    expect(false).not.toBeASet();
-  });
-});
+/**
+ * Check that a given value is a map.
+ *
+ * @param {*} obj Value to check.
+ * @return {boolean} `true` if `obj` is a map, `false` otherwise.
+ */
+export function isMap(obj) {
+  return Object.prototype.toString.call(obj) === '[object Map]';
+}

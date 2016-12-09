@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2014 Mickael Jeanroy <mickael.jeanroy@gmail.com>
+ * Copyright (c) 2014-2016 Mickael Jeanroy <mickael.jeanroy@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,17 +22,24 @@
  * THE SOFTWARE.
  */
 
-import 'src/index.js';
+import {toBeAMap} from 'src/core/matchers/to-be-a-map.js';
 
-describe('toBeASet', () => {
-  it('should pass', () => {
-    expect(new Set()).toBeASet();
+describe('toBeAMap', () => {
+  it('should check that object is a map', () => {
+    const actual = new Map();
+    const result = toBeAMap({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to be a map`,
+    });
+  });
 
-    expect(new Map()).not.toBeASet();
-    expect([]).not.toBeASet();
-    expect({}).not.toBeASet();
-    expect(null).not.toBeASet();
-    expect(undefined).not.toBeASet();
-    expect(false).not.toBeASet();
+  it('should not pass without a map', () => {
+    const actual = [];
+    const result = toBeAMap({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect [  ] {{not}} to be a map`,
+    });
   });
 });
