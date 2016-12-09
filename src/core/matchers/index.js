@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+export {toBeASet} from './to-be-a-set.js';
 export {toHaveKeys} from './to-have-keys.js';
 export {toHaveFunctions} from './to-have-functions.js';
 export {toHaveSize} from './to-have-size.js';
