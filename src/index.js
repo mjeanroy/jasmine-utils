@@ -30,6 +30,7 @@ import {forEach} from './core/util/for-each.js';
 import {
   toBeASet,
   toBeAMap,
+  toBeIterable,
   toHaveKeys,
   toHaveFunctions,
   toHaveSize,
@@ -108,6 +109,7 @@ jasmine.spyEach = spyEach;
 const jasmineMatchers = {
   toBeASet: createMatcher(toBeASet),
   toBeAMap: createMatcher(toBeAMap),
+  toBeIterable: createMatcher(toBeIterable),
   toHaveKeys: createMatcher(toHaveKeys),
   toHaveFunctions: createMatcher(toHaveFunctions),
   toHaveSize: createMatcher(toHaveSize),
