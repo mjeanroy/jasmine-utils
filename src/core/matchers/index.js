@@ -41,6 +41,7 @@ export {toBeDateBeforeNow} from './to-be-date-before-now.js';
 export {toBeSameDay} from './to-be-same-day.js';
 export {toBeToday} from './to-be-today.js';
 export {toBeNull} from './to-be-null.js';
+export {toBeNil} from './to-be-nil.js';
 export {toBeANumber} from './to-be-a-number.js';
 export {toBeABoolean} from './to-be-a-boolean.js';
 export {toBeTrue} from './to-be-true.js';
