@@ -34,6 +34,7 @@ const eslint = require('gulp-eslint');
 const del = require('del');
 const rollupConf = require('./rollup.conf.js');
 const options = require('./conf.js');
+const babel = require('gulp-babel');
 
 /**
  * Start Karma Server and run unit tests.
@@ -51,20 +52,6 @@ function startKarma(singleRun, done) {
     opts.autoWatch = true;
     opts.singleRun = true;
     opts.browsers = ['PhantomJS'];
-    opts.files = [
-      {
-        pattern: 'test/example-es6-class.js',
-        watched: true,
-        served: true,
-        included: true
-      },
-      {
-        pattern: 'test/*spec.js',
-        watched: true,
-        served: true,
-        included: true
-      }
-    ];
   }
 
   const karma = new KarmaServer(opts, () => done());
@@ -85,18 +72,29 @@ gulp.task('lint', ['clean'], () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('test', ['clean', 'lint'], (done) => {
+gulp.task('test', ['clean', 'babel-test-class', 'lint'], (done) => {
   startKarma(true, done);
 });
 
-gulp.task('tdd', ['clean'], (done) => {
+gulp.task('tdd', ['clean', 'babel-test-class'], (done) => {
   startKarma(false, done);
 });
 
 gulp.task('clean', () => {
   return del([
     options.dest,
+    path.join(options.test, 'fixtures', 'transformed'),
   ]);
+});
+
+gulp.task('babel-test-class', () => {
+  return gulp.src(path.join(options.test, 'fixtures', '*.es6'))
+  .pipe(babel({
+    presets: [
+      ['es2015'],
+    ],
+  }))
+  .pipe(gulp.dest(options.test_include));
 });
 
 gulp.task('build', ['clean', 'lint', 'test'], () => {

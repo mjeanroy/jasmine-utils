@@ -34,8 +34,8 @@ import {isDate} from './is-date.js';
 export function isSameDay(date1, date2) {
   const d1 = isDate(date1) ? date1 : new Date(date1);
   const d2 = isDate(date2) ? date2 : new Date(date2);
-  const isSameYear = d1.getFullYear() === d2.getFullYear();
-  const isSameMonth = d1.getMonth() === d2.getMonth();
-  const isSameDate = d1.getDate() === d2.getDate();
+  const isSameYear = d1.getUTCFullYear() === d2.getUTCFullYear();
+  const isSameMonth = d1.getUTCMonth() === d2.getUTCMonth();
+  const isSameDate = d1.getUTCDate() === d2.getUTCDate();
   return isSameYear && isSameMonth && isSameDate;
 }

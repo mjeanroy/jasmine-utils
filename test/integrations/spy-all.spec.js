@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+/* eslint: global ExampleEs6Class */
+
 import 'src/index.js';
 import {Klass} from '../fixtures/klass.js';
 
@@ -139,5 +141,13 @@ describe('spyAll and spyAllExcept', () => {
 
     expect(jasmine.isSpy(Klass.prototype.foo)).toBeTruthy();
     expect(jasmine.isSpy(Klass.prototype.bar)).toBeTruthy();
+  });
+
+  it('should spy on babel transformed instance methods', () => {
+    const parent = new ExampleEs6Class();
+    jasmine.spyAll(parent);
+
+    expect(jasmine.isSpy(parent.methodOne)).toBeTruthy();
+    expect(jasmine.isSpy(parent.methodTwo)).toBeTruthy();
   });
 });

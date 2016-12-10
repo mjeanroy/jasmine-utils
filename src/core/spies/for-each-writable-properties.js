@@ -66,6 +66,9 @@ export function forEachWritableProperties(obj, iterator) {
       // Go up in the prototype chain.
       if (current.prototype) {
         current = current.prototype;
+      } else if(Object.getPrototypeOf) {
+        // for babel transformed es6 classes
+        current = Object.getPrototypeOf(obj);
       } else {
         current = null;
       }

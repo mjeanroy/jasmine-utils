@@ -17,6 +17,7 @@ module.exports = (config) => {
 
     files: [
       path.join(__dirname, 'node_modules', 'babel-polyfill', 'dist', 'polyfill.js'),
+      path.join(__dirname, 'test_include', '*.js'),
       path.join(__dirname, 'test', '**', '*.spec.js'),
     ],
 
