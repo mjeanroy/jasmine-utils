@@ -37,6 +37,37 @@ describe('toHaveSize', () => {
     expect(nodes).not.toHaveSize(1);
   });
 
+  it('should pass with set', () => {
+    const actual = new Set([0, 1]);
+    expect(actual).toHaveSize(2);
+    expect(actual).not.toHaveSize(0);
+  });
+
+  it('should pass with map', () => {
+    const actual = new Map();
+    actual.set('one', 1);
+    actual.set('two', 2);
+
+    expect(actual).toHaveSize(2);
+    expect(actual).not.toHaveSize(0);
+  });
+
+  it('should pass with iterable object', () => {
+    const actual = {
+      [Symbol.iterator]() {
+        let x = 0;
+        return {
+          next() {
+            return x === 2 ? {done: true} : {value: x++, done: false};
+          },
+        };
+      },
+    };
+
+    expect(actual).toHaveSize(2);
+    expect(actual).not.toHaveSize(0);
+  });
+
   it('should pass with an object', () => {
     const obj = {one: 1, two: 2, three: 3};
     expect(obj).toHaveSize(3);

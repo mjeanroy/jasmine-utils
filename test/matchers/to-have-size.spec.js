@@ -43,6 +43,46 @@ describe('toHaveSize', () => {
     });
   });
 
+  it('should check size of set', () => {
+    const actual = new Set([1]);
+    const result = toHaveSize({actual}, 1);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect size of ${jasmine.pp(actual)} {{not}} to be 1 but was 1`,
+    });
+  });
+
+  it('should check size of map', () => {
+    const actual = new Map();
+    actual.set('one', 1);
+
+    const result = toHaveSize({actual}, 1);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect size of ${jasmine.pp(actual)} {{not}} to be 1 but was 1`,
+    });
+  });
+
+  it('should check size of iterable object', () => {
+    const actual = {
+      [Symbol.iterator]() {
+        let x = 0;
+        return {
+          next() {
+            return x === 2 ? {done: true} : {value: x++, done: false};
+          },
+        };
+      },
+    };
+
+    const result = toHaveSize({actual}, 2);
+
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect size of ${jasmine.pp(actual)} {{not}} to be 2 but was 2`,
+    });
+  });
+
   it('should fail with non expected length', () => {
     const actual = {foo: 'bar'};
     const result = toHaveSize({actual}, 2);

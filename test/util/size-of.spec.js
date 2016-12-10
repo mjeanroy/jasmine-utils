@@ -44,4 +44,44 @@ describe('sizeOf', () => {
     const obj = {foo: 'bar', quix: 'bar'};
     expect(sizeOf(obj)).toBe(2);
   });
+
+  it('should return size of set', () => {
+    expect(sizeOf(new Set([1, 2]))).toBe(2);
+  });
+
+  it('should return size of map', () => {
+    const map = new Map();
+    map.set('one', 1);
+    map.set('two', 2);
+    expect(sizeOf(map)).toBe(2);
+  });
+
+  it('should return size of iterable object', () => {
+    const o = {
+      [Symbol.iterator]() {
+        let x = 0;
+        return {
+          next() {
+            return x === 2 ? {done: true} : {value: x++, done: false};
+          },
+        };
+      },
+    };
+
+    expect(sizeOf(o)).toBe(2);
+  });
+
+  it('should return zero with empty iterable object', () => {
+    const o = {
+      [Symbol.iterator]() {
+        return {
+          next() {
+            return {done: true};
+          },
+        };
+      },
+    };
+
+    expect(sizeOf(o)).toBe(0);
+  });
 });

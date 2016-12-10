@@ -56,7 +56,11 @@ describe('isIterable', () => {
   it('should return true with iterable object', () => {
     const o = {
       [Symbol.iterator]() {
-        return {done: true};
+        return {
+          next() {
+            return {done: true};
+          },
+        };
       },
     };
 

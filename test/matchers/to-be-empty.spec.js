@@ -34,6 +34,43 @@ describe('toBeEmpty', () => {
     });
   });
 
+  it('should check for empty set', () => {
+    const actual = new Set();
+    const result = toBeEmpty({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to be empty`,
+    });
+  });
+
+  it('should check for empty map', () => {
+    const actual = new Map();
+    const result = toBeEmpty({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to be empty`,
+    });
+  });
+
+  it('should check for empty iterable object', () => {
+    const actual = {
+      [Symbol.iterator]() {
+        return {
+          next() {
+            return {done: true};
+          },
+        };
+      },
+    };
+
+    const result = toBeEmpty({actual});
+
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to be empty`,
+    });
+  });
+
   it('should check for empty object', () => {
     const actual = {};
     const result = toBeEmpty({actual});

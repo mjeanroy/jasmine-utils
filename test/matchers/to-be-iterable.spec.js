@@ -82,7 +82,11 @@ describe('toBeIterable', () => {
   it('should check that object with iterator instance is iterable', () => {
     const actual = {
       [Symbol.iterator]() {
-        return {done: true};
+        return {
+          next() {
+            return {done: true};
+          },
+        };
       },
     };
 
