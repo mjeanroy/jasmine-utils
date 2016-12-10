@@ -56,11 +56,7 @@ describe('toVerify', () => {
   });
 
   it('should pass if set satisfies predicate function', () => {
-    const actual = new Map();
-    actual.set('one', 1);
-    actual.set('two', 2);
-    actual.set('three', 3);
-
+    const actual = new Map([['one', 1], ['two', 2], ['three', 3]]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
     const result = toVerify({actual}, predicate);
 

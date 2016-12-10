@@ -53,9 +53,7 @@ describe('toHaveSize', () => {
   });
 
   it('should check size of map', () => {
-    const actual = new Map();
-    actual.set('one', 1);
-
+    const actual = new Map([['one', 1]]);
     const result = toHaveSize({actual}, 1);
     expect(result).toEqual({
       pass: true,

@@ -44,10 +44,7 @@ describe('toHaveSize', () => {
   });
 
   it('should pass with map', () => {
-    const actual = new Map();
-    actual.set('one', 1);
-    actual.set('two', 2);
-
+    const actual = new Map([['one', 1], ['two', 2]]);
     expect(actual).toHaveSize(2);
     expect(actual).not.toHaveSize(0);
   });

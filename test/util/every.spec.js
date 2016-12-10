@@ -50,11 +50,7 @@ describe('every', () => {
   });
 
   it('should return true if predicate always returns a truthy value with a map', () => {
-    const map = new Map();
-    map.set('one', 1);
-    map.set('two', 2);
-    map.set('three', 3);
-
+    const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
 
     const result = every(map, predicate);
@@ -114,11 +110,7 @@ describe('every', () => {
   });
 
   it('should return true if predicate always returns a truthy value with a map', () => {
-    const map = new Map();
-    map.set('one', 1);
-    map.set('two', 2);
-    map.set('three', 3);
-
+    const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
     const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
       return x[1] < 3;
     });
