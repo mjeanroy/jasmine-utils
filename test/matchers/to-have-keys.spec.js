@@ -30,7 +30,16 @@ describe('toHaveKeys', () => {
     const result = toHaveKeys({actual}, 'foo');
     expect(result).toEqual({
       pass: true,
-      message: `Expect object Object({ foo: 'bar', quix: 'quix' }) {{not}} to contain keys [ 'foo' ]`,
+      message: `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo' ]`,
+    });
+  });
+
+  it('should check if map has key', () => {
+    const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
+    const result = toHaveKeys({actual}, 'foo');
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to have keys [ 'foo' ]`,
     });
   });
 
@@ -39,7 +48,16 @@ describe('toHaveKeys', () => {
     const result = toHaveKeys({actual}, 'foo', 'quix');
     expect(result).toEqual({
       pass: true,
-      message: `Expect object Object({ foo: 'bar', quix: 'quix' }) {{not}} to contain keys [ 'foo', 'quix' ]`,
+      message: `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'quix' ]`,
+    });
+  });
+
+  it('should check if map has all keys', () => {
+    const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
+    const result = toHaveKeys({actual}, 'foo', 'quix');
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`,
     });
   });
 
@@ -48,7 +66,16 @@ describe('toHaveKeys', () => {
     const result = toHaveKeys({actual}, 'bar');
     expect(result).toEqual({
       pass: false,
-      message: `Expect object Object({ foo: 'bar', quix: 'quix' }) {{not}} to contain keys [ 'bar' ]`,
+      message: `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'bar' ]`,
+    });
+  });
+
+  it('should fail if map does not have key', () => {
+    const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
+    const result = toHaveKeys({actual}, 'bar');
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to have keys [ 'bar' ]`,
     });
   });
 
@@ -57,7 +84,16 @@ describe('toHaveKeys', () => {
     const result = toHaveKeys({actual}, 'foo', 'bar');
     expect(result).toEqual({
       pass: false,
-      message: `Expect object Object({ foo: 'bar', quix: 'quix' }) {{not}} to contain keys [ 'foo', 'bar' ]`,
+      message: `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'bar' ]`,
+    });
+  });
+
+  it('should fail if map does not have all keys', () => {
+    const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
+    const result = toHaveKeys({actual}, 'foo', 'bar');
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`,
     });
   });
 });

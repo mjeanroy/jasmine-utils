@@ -22,26 +22,29 @@
  * THE SOFTWARE.
  */
 
-import {keys} from 'src/core/util/keys.js';
+import {isArrayLike} from './is-array-like.js';
+import {isIterable} from './is-iterable.js';
+import {map} from './map.js';
 
-describe('keys', () => {
-  it('should return all own keys of object', () => {
-    const obj = {
-      k1: true,
-      k2: false,
-    };
+/**
+ * Translate an array, an array-like object or an iterable object to a new
+ * new classic array.
+ *
+ * @param {array|object} collection The collection.
+ * @return {array<*>} The new array.
+ */
+export function toArray(collection) {
+  if (isArrayLike(collection)) {
+    return map(collection, (x) => x);
+  }
 
-    const results = keys(obj);
+  const results = [];
 
-    expect(results.length).toBe(2);
-    expect(results.sort()).toEqual(['k1', 'k2']);
-  });
+  if (isIterable(collection)) {
+    for (const value of collection) {
+      results.push(value);
+    }
+  }
 
-  it('should return map keys', () => {
-    const map = new Map([['one', 1], ['two', 2]]);
-    const results = keys(map);
-
-    expect(results.length).toBe(2);
-    expect(results.sort()).toEqual(['one', 'two']);
-  });
-});
+  return results;
+}

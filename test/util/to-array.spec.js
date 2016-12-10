@@ -22,26 +22,22 @@
  * THE SOFTWARE.
  */
 
-import {keys} from 'src/core/util/keys.js';
+import {toArray} from 'src/core/util/to-array.js';
 
-describe('keys', () => {
-  it('should return all own keys of object', () => {
-    const obj = {
-      k1: true,
-      k2: false,
-    };
-
-    const results = keys(obj);
-
-    expect(results.length).toBe(2);
-    expect(results.sort()).toEqual(['k1', 'k2']);
+describe('toArray', () => {
+  it('should create new array from array', () => {
+    const inputs = [0, 1, 2];
+    const outputs = toArray(inputs);
+    expect(outputs).not.toBe(inputs);
+    expect(outputs).toEqual(inputs);
   });
 
-  it('should return map keys', () => {
-    const map = new Map([['one', 1], ['two', 2]]);
-    const results = keys(map);
-
-    expect(results.length).toBe(2);
-    expect(results.sort()).toEqual(['one', 'two']);
+  it('should create new array from set', () => {
+    const inputs = new Set([0, 1, 2]);
+    const outputs = toArray(inputs);
+    expect(outputs.length).toBe(3);
+    expect(outputs).toContain(0);
+    expect(outputs).toContain(1);
+    expect(outputs).toContain(2);
   });
 });

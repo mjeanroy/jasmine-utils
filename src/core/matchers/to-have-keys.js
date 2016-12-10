@@ -47,6 +47,6 @@ export function toHaveKeys(ctx, ...expectedKeys) {
 
   return {
     pass: ok,
-    message: `Expect object ${jasmine.pp(actual)} {{not}} to contain keys ${jasmine.pp(expectedKeys)}`,
+    message: `Expect ${jasmine.pp(actual)} {{not}} to have keys ${jasmine.pp(expectedKeys)}`,
   };
 }

@@ -23,6 +23,8 @@
  */
 
 import {has} from './has.js';
+import {isMap} from './is-map.js';
+import {toArray} from './to-array.js';
 
 // Use a fallback for `Object.keys` if needed (for old browsers).
 const _keys = Object.keys || function _keys(o) {
@@ -44,5 +46,5 @@ const _keys = Object.keys || function _keys(o) {
  * @return {Array<string>} An array of all the keys in the object.
  */
 export function keys(obj) {
-  return _keys(obj);
+  return isMap(obj) ? toArray(obj.keys()) : _keys(obj);
 }

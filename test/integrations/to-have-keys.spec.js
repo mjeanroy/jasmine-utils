@@ -26,8 +26,10 @@ import 'src/index.js';
 
 describe('toHaveKeys', () => {
   it('should pass', () => {
-    const obj = {id: 1, name: 'foo'};
-    expect(obj).toHaveKeys('id', 'name');
-    expect(obj).not.toHaveKeys('foo', 'bar');
+    expect({id: 1, name: 'foo'}).toHaveKeys('id', 'name');
+    expect(new Map([['id', 1], ['name', 'foo']])).toHaveKeys('id', 'name');
+
+    expect({id: 1, name: 'foo'}).not.toHaveKeys('foo', 'bar');
+    expect(new Map([['id', 1], ['name', 'foo']])).not.toHaveKeys('foo', 'bar');
   });
 });
