@@ -18,7 +18,9 @@
     "test",
     "tests",
     "karma.conf.js",
-    "Gruntfile.js"
+    "gulpfile.js",
+    "conf.js",
+    "rollup.conf.js"
   ],
   "dependencies": {
     "jasmine-core": ">=1.3.0"

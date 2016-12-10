@@ -1,3 +1,7 @@
 # node
 node_modules/
-test/example-es6-class.js
+npm-debug.log
+
+# Compiled file
+dist/
+src/jasmine-utils.js

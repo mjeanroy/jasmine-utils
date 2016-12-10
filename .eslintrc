@@ -1,0 +1,26 @@
+{
+  "extends": "google",
+  "parserOptions": {
+    "ecmaVersion": 6,
+    "sourceType": "module"
+  },
+  "env": {
+    "node": true
+  },
+  "rules": {
+    "max-len": [2, 120, 2],
+    "valid-jsdoc": [2, {
+      "requireReturn": true,
+      "requireParamDescription": true,
+      "requireReturnDescription": true,
+      "prefer": {
+        "return": "return",
+        "arg": "param",
+        "argument": "param"
+      },
+      "preferType": {
+        "object": "object"
+      }
+    }]
+  }
+}

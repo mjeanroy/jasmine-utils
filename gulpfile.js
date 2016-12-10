@@ -22,28 +22,33 @@
  * THE SOFTWARE.
  */
 
-var path = require('path');
-var gulp = require('gulp');
-var jshint = require('gulp-jshint');
-var KarmaServer = require('karma').Server;
-var git = require('gulp-git');
-var bump = require('gulp-bump');
-var gulpFilter = require('gulp-filter');
-var tag_version = require('gulp-tag-version');
-var babel = require('gulp-babel');
+const path = require('path');
+const gulp = require('gulp');
+const KarmaServer = require('karma').Server;
+const git = require('gulp-git');
+const bump = require('gulp-bump');
+const gulpFilter = require('gulp-filter');
+const tagVersion = require('gulp-tag-version');
+const rollup = require('rollup');
+const eslint = require('gulp-eslint');
+const del = require('del');
+const rollupConf = require('./rollup.conf.js');
+const options = require('./conf.js');
 
-var options = {
-  root: __dirname,
-  src: path.join(__dirname, 'src'),
-  test: path.join(__dirname, 'test')
-};
-
+/**
+ * Start Karma Server and run unit tests.
+ *
+ * @param {boolean} singleRun If it runs once and exit or not.
+ * @param {function} done The done callback.
+ * @return {void}
+ */
 function startKarma(singleRun, done) {
-  var opts = {
-    configFile: path.join(options.root, '/karma.conf.js')
+  const opts = {
+    configFile: path.join(options.root, '/karma.conf.js'),
   };
 
   if (singleRun) {
+    opts.autoWatch = true;
     opts.singleRun = true;
     opts.browsers = ['PhantomJS'];
     opts.files = [
@@ -62,59 +67,79 @@ function startKarma(singleRun, done) {
     ];
   }
 
-  var karma = new KarmaServer(opts, function() {
-    done();
-  });
+  const karma = new KarmaServer(opts, () => done());
 
   karma.start();
 }
 
-gulp.task('babel', function() {
-  return gulp.src(options.test + '/*.es6' )
-    .pipe(babel({
-        presets: ['es2015']
-    }))
-    .pipe(gulp.dest(options.test));
+gulp.task('lint', ['clean'], () => {
+  const sources = [
+    path.join(options.root, '*.js'),
+    path.join(options.src, '**', '*.js'),
+    path.join(options.test, '**', '*.js'),
+  ];
+
+  return gulp.src(sources)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
 });
 
-gulp.task('lint', function() {
-  return gulp.src(options.src + '/**/*.js')
-    .pipe(jshint())
-    .pipe(jshint.reporter('default'));
-});
-
-gulp.task('test', function(done) {
+gulp.task('test', ['clean', 'lint'], (done) => {
   startKarma(true, done);
 });
 
-gulp.task('tdd', ['babel'], function(done) {
+gulp.task('tdd', ['clean'], (done) => {
   startKarma(false, done);
+});
+
+gulp.task('clean', () => {
+  return del([
+    options.dest,
+  ]);
+});
+
+gulp.task('build', ['clean', 'lint', 'test'], () => {
+  return rollup
+    .rollup(rollupConf)
+    .then((bundle) => bundle.write(rollupConf));
 });
 
 // Release tasks
 ['minor', 'major', 'patch'].forEach(function(level) {
-  gulp.task('release:' + level, ['build'], function() {
-    var packageJsonFilter = gulpFilter(function(file) {
-      return file.relative === 'package.json';
-    });
+  gulp.task(`release:${level}`, ['build'], function() {
+    const jsonFilter = gulpFilter('**/*.json', {restore: true});
+    const pkgJsonFilter = gulpFilter('**/package.json', {restore: true});
+    const bundleFilter = gulpFilter('**/*.js', {restore: true});
 
-    var distFilter = gulpFilter(function(file) {
-      return file.relative === 'dist';
-    });
-
-    var src = ['package.json', 'bower.json'].map(function(file) {
-      return path.join(options.root, file);
-    });
+    const src = [
+      path.join(options.root, 'package.json'),
+      path.join(options.root, 'bower.json'),
+      options.dest,
+    ];
 
     return gulp.src(src)
+
+      // Bump version.
+      .pipe(jsonFilter)
       .pipe(bump({type: level}))
       .pipe(gulp.dest(options.root))
+      .pipe(jsonFilter.restore)
+
+      // Commit release.
       .pipe(git.add({args: '-f'}))
       .pipe(git.commit('release: release version'))
-      .pipe(packageJsonFilter)
-      .pipe(tag_version());
+
+      // Create tag.
+      .pipe(pkgJsonFilter)
+      .pipe(tagVersion())
+      .pipe(pkgJsonFilter.restore)
+
+      // Remove generated bundle and commit for the next release.
+      .pipe(bundleFilter)
+      .pipe(git.rm({args: '-r'}))
+      .pipe(git.commit('release: prepare next release'));
   });
 });
 
 gulp.task('release', ['release:minor']);
-gulp.task('build', ['lint', 'babel', 'test']);

@@ -2,34 +2,22 @@
  * Karma Configuration.
  */
 
-module.exports = function(config) {
+const path = require('path');
+const includePaths = require('rollup-plugin-includepaths');
+const babel = require('rollup-plugin-babel');
+
+module.exports = (config) => {
   config.set({
     // base path, that will be used to resolve files and exclude
     basePath: '.',
 
     frameworks: [
-      'jasmine'
+      'jasmine',
     ],
 
     files: [
-      {
-        pattern: 'test/example-es6-class.js',
-        watched: true,
-        served: true,
-        included: true
-      },
-      {
-        pattern: 'src/*.js',
-        watched: true,
-        served: true,
-        included: true
-      },
-      {
-        pattern: 'test/*spec.js',
-        watched: true,
-        served: true,
-        included: true
-      }
+      path.join(__dirname, 'node_modules', 'babel-polyfill', 'dist', 'polyfill.js'),
+      path.join(__dirname, 'test', '**', '*.spec.js'),
     ],
 
     exclude: [
@@ -38,7 +26,7 @@ module.exports = function(config) {
     // possible values: 'dots', 'progress', 'junit', 'growl', 'coverage'
     // CLI --reporters progress
     reporters: [
-      'progress'
+      'progress',
     ],
 
     // web server port
@@ -72,7 +60,7 @@ module.exports = function(config) {
     // - IE (only Windows)
     // CLI --browsers Chrome,Firefox,Safari
     browsers: [
-      'Chrome'
+      'Chrome',
     ],
 
     // If browser does not capture in given timeout [ms], kill it
@@ -88,7 +76,20 @@ module.exports = function(config) {
     reportSlowerThan: 500,
 
     preprocessors: {
-    }
-  });
+      'test/**/*.js': ['rollup'],
+      'src/**/*.js': ['rollup'],
+    },
 
+    // Rollup test configuration
+    rollupPreprocessor: {
+      format: 'iife',
+      plugins: [
+        includePaths({
+          path: [__dirname],
+        }),
+
+        babel(),
+      ],
+    },
+  });
 };

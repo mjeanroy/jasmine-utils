@@ -1,0 +1,13 @@
+# node
+node_modules/
+
+# Only needed for development.
+.babelrc
+.bowerrc
+.eslintrc
+.gitignore
+test/
+gulpfile.js
+karma.conf.js
+conf.js
+rollup.conf.js
