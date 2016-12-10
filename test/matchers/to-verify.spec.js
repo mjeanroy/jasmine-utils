@@ -40,6 +40,65 @@ describe('toVerify', () => {
     expect(predicate).toHaveBeenCalledWith(2, 2, actual);
   });
 
+  it('should pass if set satisfies predicate function', () => {
+    const actual = new Set([0, 1, 2]);
+    const predicate = jasmine.createSpy('predicate').and.returnValue(true);
+    const result = toVerify({actual}, predicate);
+
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to verify condition`,
+    });
+
+    expect(predicate).toHaveBeenCalledWith(0, jasmine.any(Number), actual);
+    expect(predicate).toHaveBeenCalledWith(1, jasmine.any(Number), actual);
+    expect(predicate).toHaveBeenCalledWith(2, jasmine.any(Number), actual);
+  });
+
+  it('should pass if set satisfies predicate function', () => {
+    const actual = new Map();
+    actual.set('one', 1);
+    actual.set('two', 2);
+    actual.set('three', 3);
+
+    const predicate = jasmine.createSpy('predicate').and.returnValue(true);
+    const result = toVerify({actual}, predicate);
+
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to verify condition`,
+    });
+
+    expect(predicate).toHaveBeenCalledWith(['one', 1], jasmine.any(Number), actual);
+    expect(predicate).toHaveBeenCalledWith(['two', 2], jasmine.any(Number), actual);
+    expect(predicate).toHaveBeenCalledWith(['three', 3], jasmine.any(Number), actual);
+  });
+
+  it('should pass if iterable satisfies predicate function', () => {
+    const actual = {
+      [Symbol.iterator]() {
+        let x = 1;
+        return {
+          next() {
+            return x <= 3 ? {value: x++, done: false} : {done: true};
+          },
+        };
+      },
+    };
+
+    const predicate = jasmine.createSpy('predicate').and.returnValue(true);
+    const result = toVerify({actual}, predicate);
+
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to verify condition`,
+    });
+
+    expect(predicate).toHaveBeenCalledWith(1, 0, actual);
+    expect(predicate).toHaveBeenCalledWith(2, 1, actual);
+    expect(predicate).toHaveBeenCalledWith(3, 2, actual);
+  });
+
   it('should pass if array satisfies predicate function with custom message', () => {
     const actual = [0, 1, 2];
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);

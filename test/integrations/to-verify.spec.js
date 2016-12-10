@@ -25,10 +25,38 @@
 import 'src/index.js';
 
 describe('toVerify', () => {
-  it('should pass', () => {
+  it('should pass with array', () => {
     const iterator = (item) => item % 2 === 0;
     expect([2, 4, 6, 8]).toVerify(iterator);
     expect([2, 4, 6, 8, 9]).not.toVerify(iterator);
+  });
+
+  it('should pass with set', () => {
+    const iterator = (item) => item % 2 === 0;
+    expect(new Set([2, 4, 6, 8])).toVerify(iterator);
+    expect(new Set([2, 4, 6, 8, 9])).not.toVerify(iterator);
+  });
+
+  it('should pass with map', () => {
+    const iterator = (item) => item[1] % 2 === 0;
+    expect(new Map([['two', 2], ['four', 4], ['six', 6]])).toVerify(iterator);
+    expect(new Map([['two', 2], ['four', 4], ['seven', 7]])).not.toVerify(iterator);
+  });
+
+  it('should pass with iterable objects', () => {
+    const actual = {
+      [Symbol.iterator]() {
+        let x = 0;
+        return {
+          next() {
+            return x < 3 ? {value: x++, done: false} : {done: true};
+          },
+        };
+      },
+    };
+
+    expect(actual).toVerify((x) => x < 3);
+    expect(actual).not.toVerify((x) => x > 3);
   });
 
   it('should pass with a custom message', () => {
