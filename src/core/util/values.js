@@ -23,6 +23,8 @@
  */
 
 import {has} from './has.js';
+import {isMap} from './is-map.js';
+import {toArray} from './to-array.js';
 
 /**
  * Get all values of object.
@@ -31,6 +33,10 @@ import {has} from './has.js';
  * @return {Array<*>} Array of all values.
  */
 export function values(obj) {
+  if (isMap(obj)) {
+    return toArray(obj.values());
+  }
+
   const vals = [];
 
   for (let i in obj) {

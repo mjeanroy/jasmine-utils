@@ -46,6 +46,6 @@ export function toHaveValues(ctx, ...expectedValues) {
 
   return {
     pass: ok,
-    message: `Expect object ${jasmine.pp(actual)} {{not}} to contain values ${jasmine.pp(expectedValues)}`,
+    message: `Expect ${jasmine.pp(actual)} {{not}} to have values ${jasmine.pp(expectedValues)}`,
   };
 }

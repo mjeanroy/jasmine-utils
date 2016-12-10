@@ -25,7 +25,7 @@
 import 'src/index.js';
 
 describe('toHaveValues', () => {
-  it('should pass', () => {
+  it('should pass with object', () => {
     const obj = {
       id: 1,
       name: 'foo',
@@ -38,5 +38,18 @@ describe('toHaveValues', () => {
     expect(obj).toHaveValues(1, 'foo', [1, 2, 3], {id: 10});
     expect(obj).not.toHaveValues(2, 'bar');
     expect(obj).not.toHaveValues({id: 11});
+  });
+
+  it('should pass with map', () => {
+    const map = new Map([
+      ['id', 1],
+      ['name', 'foo'],
+      ['array', [1, 2, 3]],
+      ['o', {id: 10}],
+    ]);
+
+    expect(map).toHaveValues(1, 'foo', [1, 2, 3], {id: 10});
+    expect(map).not.toHaveValues(2, 'bar');
+    expect(map).not.toHaveValues({id: 11});
   });
 });

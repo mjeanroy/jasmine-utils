@@ -35,4 +35,15 @@ describe('values', () => {
 
     expect(vals.sort()).toEqual(['bar', 'foo']);
   });
+
+  it('should extract all map values', () => {
+    const map = new Map([
+      ['foo', 'bar'],
+      ['quix', 'foo'],
+    ]);
+
+    const vals = values(map);
+
+    expect(vals.sort()).toEqual(['bar', 'foo']);
+  });
 });
