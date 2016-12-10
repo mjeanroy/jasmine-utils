@@ -30,4 +30,32 @@ describe('toHaveSome', () => {
     expect([1, 2, 3]).toHaveSome(iterator);
     expect([1, 3, 5, 7]).not.toHaveSome(iterator);
   });
+
+  it('should pass with a set', () => {
+    const iterator = (item) => item % 2 === 0;
+    expect(new Set([1, 2, 3])).toHaveSome(iterator);
+    expect(new Set([1, 3, 5, 7])).not.toHaveSome(iterator);
+  });
+
+  it('should pass with a map', () => {
+    const iterator = (item) => item[1] % 2 === 0;
+    expect(new Map([['one', 1], ['two', 2], ['three', 3]])).toHaveSome(iterator);
+    expect(new Map([['one', 1], ['three', 3], ['five', 5]])).not.toHaveSome(iterator);
+  });
+
+  it('should pass with an iterable', () => {
+    const iterable = {
+      [Symbol.iterator]() {
+        let x = 0;
+        return {
+          next() {
+            return x < 3 ? {value: x++, done: false} : {done: true};
+          },
+        };
+      },
+    };
+
+    expect(iterable).toHaveSome((x) => x > 1);
+    expect(iterable).not.toHaveSome((x) => x > 3);
+  });
 });

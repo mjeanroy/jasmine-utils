@@ -37,6 +37,46 @@ describe('some', () => {
     expect(predicate).not.toHaveBeenCalledWith(3, 2, array);
   });
 
+  it('should return true if predicate always returns a truthy value with a set', () => {
+    const set = new Set([1, 2, 3]);
+    const predicate = jasmine.createSpy('predicate').and.returnValue(true);
+
+    const result = some(set, predicate);
+
+    expect(result).toBe(true);
+    expect(predicate).toHaveBeenCalled();
+  });
+
+  it('should return true if predicate always returns a truthy value with a map', () => {
+    const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
+    const predicate = jasmine.createSpy('predicate').and.returnValue(true);
+
+    const result = some(map, predicate);
+
+    expect(result).toBe(true);
+    expect(predicate).toHaveBeenCalled();
+  });
+
+  it('should return true if predicate always returns a truthy value with iterable object', () => {
+    const iterable = {
+      [Symbol.iterator]() {
+        let x = 1;
+        return {
+          next() {
+            return x < 3 ? {value: x++, done: false} : {done: true};
+          },
+        };
+      },
+    };
+
+    const predicate = jasmine.createSpy('predicate').and.returnValue(true);
+
+    const result = some(iterable, predicate);
+
+    expect(result).toBe(true);
+    expect(predicate).toHaveBeenCalledWith(1, 0, iterable);
+  });
+
   it('should return false if predicate never a truthy value', () => {
     const array = [1, 2, 3];
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
@@ -47,5 +87,51 @@ describe('some', () => {
     expect(predicate).toHaveBeenCalledWith(1, 0, array);
     expect(predicate).toHaveBeenCalledWith(2, 1, array);
     expect(predicate).toHaveBeenCalledWith(3, 2, array);
+  });
+
+  it('should return false if predicate never a truthy value with a set', () => {
+    const set = new Set([1, 2, 3]);
+    const predicate = jasmine.createSpy('predicate').and.returnValue(false);
+
+    const result = some(set, predicate);
+
+    expect(result).toBe(false);
+    expect(predicate).toHaveBeenCalledWith(1, jasmine.any(Number), set);
+    expect(predicate).toHaveBeenCalledWith(2, jasmine.any(Number), set);
+    expect(predicate).toHaveBeenCalledWith(3, jasmine.any(Number), set);
+  });
+
+  it('should return false if predicate never a truthy value with a map', () => {
+    const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
+    const predicate = jasmine.createSpy('predicate').and.returnValue(false);
+
+    const result = some(map, predicate);
+
+    expect(result).toBe(false);
+    expect(predicate).toHaveBeenCalledWith(['one', 1], jasmine.any(Number), map);
+    expect(predicate).toHaveBeenCalledWith(['two', 2], jasmine.any(Number), map);
+    expect(predicate).toHaveBeenCalledWith(['three', 3], jasmine.any(Number), map);
+  });
+
+  it('should return false if predicate never a truthy value with an iterable object', () => {
+    const iterable = {
+      [Symbol.iterator]() {
+        let x = 1;
+        return {
+          next() {
+            return x <= 3 ? {value: x++, done: false} : {done: true};
+          },
+        };
+      },
+    };
+
+    const predicate = jasmine.createSpy('predicate').and.returnValue(false);
+
+    const result = some(iterable, predicate);
+
+    expect(result).toBe(false);
+    expect(predicate).toHaveBeenCalledWith(1, 0, iterable);
+    expect(predicate).toHaveBeenCalledWith(2, 1, iterable);
+    expect(predicate).toHaveBeenCalledWith(3, 2, iterable);
   });
 });

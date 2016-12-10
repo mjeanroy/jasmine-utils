@@ -22,24 +22,79 @@
  * THE SOFTWARE.
  */
 
+import {isArrayLike} from './is-array-like.js';
+import {isIterable} from './is-iterable.js';
+
 /**
- * Check that a predicate satisfies at least one element in an array.
+ * Check that a predicate satisfies at least one element in an array (or an
+ * array-like object such as a string or the `arguments` object).
  *
  * The predicate function will be called with three arguments:
  *  - `value` The value for the given iteration.
  *  - `index` The index of the value being iterated.
  *  - `array` The array being traversed.
  *
- * @param {Array<*>} array The array to iterate.
+ * @param {Array|string} array The array to iterate.
  * @param {function} predicate The predicate function.
- * @return {boolean} `true` if the predicate returns a truthy value for at least one element
- *                   in the array, `false` otherwise.
+ * @return {boolean} `true` if the predicate returns a truthy value for at least one, `false` otherwise.
  */
-export function some(array, predicate) {
+function arraySome(array, predicate) {
   for (let i = 0, size = array.length; i < size; ++i) {
     if (predicate.call(null, array[i], i, array)) {
       return true;
     }
+  }
+
+  return false;
+}
+
+/**
+ * Check that a predicate satisfies at least one element in an iterable object (such
+ * as a set, a map or any iterable object).
+ *
+ * The predicate function will be called with three arguments:
+ *  - `value` The value for the given iteration.
+ *  - `index` The index of the value being iterated.
+ *  - `iterable` The iterable being traversed.
+ *
+ * @param {object} iterable The iterable to iterate.
+ * @param {function} predicate The predicate function.
+ * @return {boolean} `true` if the predicate returns a truthy value for at least one, `false` otherwise.
+ */
+function iterableSome(iterable, predicate) {
+  let i = 0;
+
+  for (const value of iterable) {
+    if (predicate.call(null, value, i, iterable)) {
+      return true;
+    }
+
+    i++;
+  }
+
+  return false;
+}
+
+/**
+ * Check that a predicate satisfies at least one element in a collection (array,
+ * set, map or an any iterable object).
+ *
+ * The predicate function will be called with three arguments:
+ *  - `value` The value for the given iteration.
+ *  - `index` The index of the value being iterated.
+ *  - `collection` The collection being traversed.
+ *
+ * @param {Array|string|object} collection The collection to iterate.
+ * @param {function} predicate The predicate function.
+ * @return {boolean} `true` if the predicate returns a truthy value for at least one, `false` otherwise.
+ */
+export function some(collection, predicate) {
+  if (isArrayLike(collection)) {
+    return arraySome(collection, predicate);
+  }
+
+  if (isIterable(collection)) {
+    return iterableSome(collection, predicate);
   }
 
   return false;
