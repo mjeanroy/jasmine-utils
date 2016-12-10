@@ -492,13 +492,6 @@
       };
     },
 
-    toContainIgnoringCase: function(string) {
-      return {
-        pass: isString(string) && isString(this.actual) && this.actual.toLowerCase().indexOf(string.toLowerCase()) !== -1,
-        message: pp('Expect {{%0}} {{not}} to contain {{%1}} (case insensitive)', this.actual, string)
-      };
-    },
-
     toStartWith: function(prefix) {
       return {
         pass: isString(prefix) && isString(this.actual) && this.actual.indexOf(prefix) === 0,
@@ -803,119 +796,6 @@
 
   var jasmineMatchers = {};
 
-  // if window is passed to spyAll, we only want to spy on the following methods
-  // taken from here: https://developer.mozilla.org/en-US/docs/Web/API/Window#Methods
-  var whiteListedWindowMethods = [
-    'alert',
-    'atob',
-    //'back', <- non standard
-    'blur',
-    'btoa',
-    'cancelAnimationFrame',
-    'captureEvents',
-    'clearImmediate',
-    'clearInterval',
-    'clearTimeout',
-    'close',
-    'confirm',
-    'convertPointFromNodeToPage',
-    'createImageBitmap',
-    'dump',
-    //'fetch',
-    'find',
-    'focus',
-    //'forward', <- non standard
-    'getAttention',
-    'getComputedStyle',
-    //'getDefaultComputedStyle', <- non standard
-    'getSelection',
-    //'home', <- non standard
-    'matchMedia',
-    'minimize',
-    'moveBy',
-    'moveTo',
-    'open',
-    'openDialog',
-    'postMessage',
-    'print',
-    'prompt',
-    'releaseEvents',
-    'requestAnimationFrame',
-    'resizeBy',
-    'resizeTo',
-    'restore',
-    'routeEvent',
-    'scroll',
-    'scrollBy',
-    'scrollByLines',
-    'scrollByPages',
-    'scrollTo',
-    'setCursor',
-    'setImmediate',
-    'setInterval',
-    'setTimeout',
-    'showModalDialog',
-    'sizeToContent',
-    'stop',
-    'updateCommands'
-  ];
-
-  // if document is passed to spyAll, we only want to spy on the following methods
-  // taken from here: https://developer.mozilla.org/en-US/docs/Web/API/Document#Methods
-  var whitelistDocumentMethods = [
-    'adoptNode',
-    'append',
-    'caretPositionFromPoint',
-    'caretRangeFromPoint',
-    'clear',
-    'close',
-    'createAttribute',
-    'createCDATASection',
-    'createComment',
-    'createDocumentFragment',
-    'createElement',
-    'createElementNS',
-    'createEntityReference',
-    'createEvent',
-    'createExpression',
-    'createNodeIterator',
-    'createNSResolver',
-    'createProcessingInstruction',
-    'createRange',
-    'createTextNode',
-    'createTouch',
-    'createTouchList',
-    'createTreeWalker',
-    'elementFromPoint',
-    'enableStyleSheetsForSet',
-    'evaluate',
-    'execCommand',
-    'exitFullscreen',
-    'exitPointerLock',
-    'getAnimations',
-    'getBoxObjectFor',
-    'getElementById',
-    'getElementsByClassName',
-    'getElementsByName',
-    'getElementsByTagName',
-    'getElementsByTagNameNS',
-    'getSelection',
-    'hasFocus',
-    'importNode',
-    'loadOverlay',
-    'mozSetImageElement',
-    'open',
-    'prepend',
-    'queryCommandEnabled',
-    'queryCommandSupported',
-    'querySelector',
-    'querySelectorAll',
-    'registerElement',
-    'releaseCapture',
-    'write',
-    'writeln'
-  ];
-
   var parseNegateMessage = function(isNot, message) {
     var notKey = isNot ? '{{not}}' : '{{not}} ';
     var notValue = isNot ? 'not' : '';
@@ -1087,15 +967,7 @@
 
   // Spy all methods on given object
   jasmine.spyAll = function(obj) {
-    if(obj === window) {
-      jasmine.spyAllOnly(obj, whiteListedWindowMethods);
-    }
-    else if(obj === document) {
-      jasmine.spyAllOnly(obj, whitelistDocumentMethods);
-    }
-    else {
-      jasmine.spyAllExcept(obj, []);
-    }
+    jasmine.spyAllExcept(obj, []);
   };
 
   jasmine.spyEach = function(obj, methods) {
@@ -1148,15 +1020,7 @@
   };
 
   jasmine.resetAll = function(obj) {
-    if(obj === window) {
-      jasmine.resetAllOnly(obj, whiteListedWindowMethods);
-    }
-    else if(obj === document) {
-      jasmine.resetAllOnly(obj, whitelistDocumentMethods);
-    }
-    else {
-      jasmine.resetAllExcept(obj, []);
-    }
+    jasmine.resetAllExcept(obj, []);
   };
 
   jasmine.resetEach = function(obj, methods) {

@@ -223,32 +223,6 @@ describe('jasmine-utils', function() {
     });
   });
 
-  describe('spyAll on window, document', function () {
-    it('should gracefully spyAll on the window object', function () {
-      jasmine.spyAll(window);
-      expect(jasmine.isSpy(window.alert)).toBe(true);
-      expect(jasmine.isSpy(window.scroll)).toBe(true);
-      expect(jasmine.isSpy(window.close)).toBe(true);
-      window.close.and.returnValue(undefined);
-      window.close();
-      expect(window.close).toHaveBeenCalledTimes(1);
-      jasmine.resetAll(window);
-      expect(window.close).not.toHaveBeenCalled();
-    });
-
-    it('should gracefully spyAll on the document object', function () {
-      jasmine.spyAll(document);
-      expect(jasmine.isSpy(document.createElement)).toBe(true);
-      expect(jasmine.isSpy(document.querySelector)).toBe(true);
-      expect(jasmine.isSpy(document.getElementById)).toBe(true);
-      document.createElement.and.returnValue({what: 'ever'});
-      document.createElement('blah');
-      expect(document.createElement).toHaveBeenCalledTimes(1);
-      jasmine.resetAll(document);
-      expect(document.createElement).not.toHaveBeenCalled();
-    });
-  });
-
   describe('resetAll, resetEach and resetAllExcept', function() {
     beforeEach(function() {
       this.Klass = function() {
@@ -632,18 +606,6 @@ describe('jasmine-utils', function() {
       expect('foo').not.toEqualsIgnoringCase('bar');
     });
   });
-
-  describe('toContainIgnoringCase', function() {
-    it('should pass', function() {
-      expect('some other foO stuff').toContainIgnoringCase('Foo');
-      expect('Some other foO stuff').toContainIgnoringCase('FOO');
-      expect('foo').toContainIgnoringCase('foo');
-
-      expect('foo').not.toContainIgnoringCase('bar');
-      expect('Some other foO stuff').not.toContainIgnoringCase('BAR');
-    });
-  });
-
 
   describe('toBeZero', function() {
     it('should pass', function() {

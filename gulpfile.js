@@ -55,12 +55,6 @@ function startKarma(singleRun, done) {
         included: true
       },
       {
-        pattern: 'dist/index.js',
-        watched: true,
-        served: true,
-        included: true
-      },
-      {
         pattern: 'test/*spec.js',
         watched: true,
         served: true,
@@ -94,14 +88,8 @@ gulp.task('test', function(done) {
   startKarma(true, done);
 });
 
-gulp.task('tdd', ['babel', 'dist'], function(done) {
+gulp.task('tdd', ['babel'], function(done) {
   startKarma(false, done);
-});
-
-gulp.task('dist', function() {
-  return gulp.src(['./src/jasmine-utils.js', './src/jasmine-utils-auto-spy.js'])
-      .pipe(concat('index.js'))
-      .pipe(gulp.dest('./dist/'));
 });
 
 // Release tasks
@@ -130,4 +118,4 @@ gulp.task('dist', function() {
 });
 
 gulp.task('release', ['release:minor']);
-gulp.task('build', ['lint', 'babel', 'dist', 'test']);
+gulp.task('build', ['lint', 'babel', 'test']);
