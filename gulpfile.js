@@ -31,7 +31,6 @@ var bump = require('gulp-bump');
 var gulpFilter = require('gulp-filter');
 var tag_version = require('gulp-tag-version');
 var babel = require('gulp-babel');
-var concat = require('gulp-concat');
 
 var options = {
   root: __dirname,

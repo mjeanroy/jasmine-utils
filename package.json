@@ -20,7 +20,6 @@
     "gulp": "3.9.1",
     "gulp-babel": "6.1.2",
     "gulp-bump": "1.0.0",
-    "gulp-concat": "2.6.0",
     "gulp-filter": "3.0.1",
     "gulp-git": "1.7.0",
     "gulp-jshint": "2.0.0",
