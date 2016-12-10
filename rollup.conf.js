@@ -35,11 +35,11 @@ module.exports = {
   format: 'iife',
   sourceMap: false,
   plugins: [
-    // Transform code to old JavaScript.
-    babel(),
-
     // Remove banner from single modules.
     stripBanner(),
+
+    // Transform code to old JavaScript.
+    babel(),
 
     // Prepend banner.
     license({
