@@ -33,5 +33,4 @@ module.exports = {
   test: path.join(__dirname, 'test'),
   entry: path.join(src, 'index.js'),
   dest: path.join(src, 'jasmine-utils.js'),
-  test_include: path.join(__dirname, 'test_include'),
 };

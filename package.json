@@ -4,9 +4,6 @@
   "main": "src/jasmine-utils.js",
   "version": "0.2.3",
   "license": "MIT",
-  "contributors": [
-    "Geoff Dutton <g.dutton@gmail.com> (https://github.com/geoffdutton)"
-  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/mjeanroy/jasmine-utils.git"
@@ -30,6 +27,7 @@
     "gulp-eslint": "3.0.1",
     "gulp-filter": "4.0.0",
     "gulp-git": "1.12.0",
+    "gulp-rename": "^1.2.2",
     "gulp-tag-version": "1.3.0",
     "jasmine-core": ">=1.3.0",
     "karma": "1.3.0",
@@ -46,7 +44,7 @@
     "rollup-plugin-strip-banner": "0.1.0"
   },
   "engines": {
-    "node": ">=4.0.0"
+    "node": ">=0.10.0"
   },
   "scripts": {
     "clean": "gulp clean",
@@ -55,7 +53,6 @@
     "test": "gulp test",
     "tdd": "gulp tdd",
     "release": "gulp release",
-    "babel": "gulp babel",
     "release:patch": "gulp release:patch",
     "release:minor": "gulp release:minor",
     "release:major": "gulp release:major"

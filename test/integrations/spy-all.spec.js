@@ -23,7 +23,6 @@
  */
 
 /* eslint: global ExampleEs6Class */
-
 import 'src/index.js';
 import {Klass} from '../fixtures/klass.js';
 
@@ -143,11 +142,11 @@ describe('spyAll and spyAllExcept', () => {
     expect(jasmine.isSpy(Klass.prototype.bar)).toBeTruthy();
   });
 
-  it('should spy on babel transformed instance methods', () => {
-    const parent = new ExampleEs6Class();
-    jasmine.spyAll(parent);
+  it('should spy babel transformed instance methods', () => {
+    const instance = new ExampleEs6Class();
+    jasmine.spyAll(instance);
 
-    expect(jasmine.isSpy(parent.methodOne)).toBeTruthy();
-    expect(jasmine.isSpy(parent.methodTwo)).toBeTruthy();
+    expect(jasmine.isSpy(instance.methodOne)).toBeTruthy();
+    expect(jasmine.isSpy(instance.methodTwo)).toBeTruthy();
   });
 });

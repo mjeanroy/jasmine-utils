@@ -1,5 +1,3 @@
-![](https://travis-ci.org/geoffdutton/jasmine-utils.svg?branch=master)
-
 jasmine-utils
 =============
 
@@ -1068,7 +1066,6 @@ it('should check that a spy has been called once with given arguments', function
   expect(spy).not.toHaveBeenCalledOnceWith('bar');
 });
 ```
-
 
 ## Licence
 

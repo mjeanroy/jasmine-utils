@@ -37,7 +37,6 @@ export function forEachWritableProperties(obj, iterator) {
 
     while (current) {
       const foundProps = {};
-
       // First, use the for .. in loop.
       // eslint-disable-next-line guard-for-in
       for (let i in current) {
@@ -68,7 +67,11 @@ export function forEachWritableProperties(obj, iterator) {
         current = current.prototype;
       } else if(Object.getPrototypeOf) {
         // for babel transformed es6 classes
-        current = Object.getPrototypeOf(obj);
+        current = Object.getPrototypeOf(current);
+        // if it's just the default Object prototype, we don't want to continue
+        if(current === Object.getPrototypeOf({})) {
+          current = null;
+        }
       } else {
         current = null;
       }
