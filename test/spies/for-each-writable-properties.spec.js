@@ -98,7 +98,7 @@ describe('forEachWritableProperties', () => {
     expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'bar');
   });
 
-  fit('should execute callback for all instance of class', () => {
+  it('should execute callback for all instance of class', () => {
     const o = new Klass();
     const iteratee = jasmine.createSpy('iteratee');
     forEachWritableProperties(o, iteratee);
