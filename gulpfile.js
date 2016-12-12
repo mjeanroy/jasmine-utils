@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+'use strict';
 const path = require('path');
 const gulp = require('gulp');
 const KarmaServer = require('karma').Server;
@@ -34,8 +35,6 @@ const eslint = require('gulp-eslint');
 const del = require('del');
 const rollupConf = require('./rollup.conf.js');
 const options = require('./conf.js');
-const babel = require('gulp-babel');
-const rename = require('gulp-rename');
 
 /**
  * Start Karma Server and run unit tests.
@@ -73,11 +72,11 @@ gulp.task('lint', ['clean'], () => {
     .pipe(eslint.failAfterError());
 });
 
-gulp.task('test', ['clean', 'lint', 'babel-test-class'], (done) => {
+gulp.task('test', ['clean', 'lint'], (done) => {
   startKarma(true, done);
 });
 
-gulp.task('tdd', ['clean', 'babel-test-class'], (done) => {
+gulp.task('tdd', ['clean'], (done) => {
   startKarma(false, done);
 });
 
@@ -85,19 +84,6 @@ gulp.task('clean', () => {
   return del([
     options.dest,
   ]);
-});
-
-gulp.task('babel-test-class', () => {
-  return gulp.src(path.join(options.test, 'fixtures', '*.es6'))
-  .pipe(babel({
-    presets: [
-      // Not using loose mode on purpose because we want to test that our .spyAll method will work
-      // on classes transformed without loose mode.
-      ['es2015'],
-    ],
-  }))
-  .pipe(rename('example-es6-class.ignore.js'))
-  .pipe(gulp.dest(path.join(options.test, 'fixtures')));
 });
 
 gulp.task('build', ['clean', 'lint'], () => {

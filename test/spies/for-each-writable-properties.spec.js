@@ -23,7 +23,9 @@
  */
 
 import {Klass} from '../fixtures/klass.js';
+import {nonLooseClassFactory} from '../fixtures/non-loose-class-generator';
 import {forEachWritableProperties} from 'src/core/spies/for-each-writable-properties.js';
+const NonLooseClass = nonLooseClassFactory();
 
 describe('forEachWritableProperties', () => {
   it('should execute callback for all object properties', () => {
@@ -92,21 +94,43 @@ describe('forEachWritableProperties', () => {
 
     forEachWritableProperties(Klass, iteratee);
 
-    expect(iteratee).toHaveBeenCalled();
+    expect(iteratee).toHaveBeenCalledTimes(3);
+
     expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'constructor');
     expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'foo');
     expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'bar');
   });
 
+  it('should execute callback for all class properties of a non-loose class', () => {
+    const iteratee = jasmine.createSpy('iteratee');
+
+    forEachWritableProperties(NonLooseClass, iteratee);
+    expect(iteratee).toHaveBeenCalledTimes(4);
+
+    expect(iteratee).toHaveBeenCalledWith(NonLooseClass, 'staticMethodOne');
+    expect(iteratee).toHaveBeenCalledWith(NonLooseClass.prototype, 'constructor');
+    expect(iteratee).toHaveBeenCalledWith(NonLooseClass.prototype, 'methodOne');
+    expect(iteratee).toHaveBeenCalledWith(NonLooseClass.prototype, 'methodTwo');
+  });
+
   it('should execute callback for all instance of class', () => {
     const o = new Klass();
     const iteratee = jasmine.createSpy('iteratee');
-    forEachWritableProperties(o, iteratee);
 
-    expect(iteratee).toHaveBeenCalled();
-    expect(iteratee.calls.count()).toBe(3);
+    forEachWritableProperties(o, iteratee);
+    expect(iteratee).toHaveBeenCalledTimes(3);
     expect(iteratee).toHaveBeenCalledWith(o, 'id');
     expect(iteratee).toHaveBeenCalledWith(o, 'foo');
     expect(iteratee).toHaveBeenCalledWith(o, 'bar');
+  });
+
+  it('should execute callback for all instance of a non-loose class', () => {
+    const o = new NonLooseClass();
+    const iteratee = jasmine.createSpy('iteratee');
+    forEachWritableProperties(o, iteratee);
+    expect(iteratee).toHaveBeenCalledTimes(3);
+    expect(iteratee).toHaveBeenCalledWith(o, 'id');
+    expect(iteratee).toHaveBeenCalledWith(o, 'methodOne');
+    expect(iteratee).toHaveBeenCalledWith(o, 'methodTwo');
   });
 });

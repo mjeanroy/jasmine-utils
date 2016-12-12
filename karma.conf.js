@@ -1,7 +1,6 @@
 /**
  * Karma Configuration.
  */
-
 const path = require('path');
 const includePaths = require('rollup-plugin-includepaths');
 const babel = require('rollup-plugin-babel');
@@ -17,7 +16,6 @@ module.exports = (config) => {
 
     files: [
       path.join(__dirname, 'node_modules', 'babel-polyfill', 'dist', 'polyfill.js'),
-      path.join(__dirname, 'test', 'fixtures', 'example-es6-class.ignore.js'),
       path.join(__dirname, 'test', '**', '*.spec.js'),
     ],
 
@@ -84,6 +82,7 @@ module.exports = (config) => {
     // Rollup test configuration
     rollupPreprocessor: {
       format: 'iife',
+      moduleName: 'jasmine-utils', // required for 'iife' format
       plugins: [
         includePaths({
           path: [__dirname],

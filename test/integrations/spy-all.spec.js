@@ -22,9 +22,10 @@
  * THE SOFTWARE.
  */
 
-/* eslint: global ExampleEs6Class */
 import 'src/index.js';
 import {Klass} from '../fixtures/klass.js';
+import {nonLooseClassFactory} from '../fixtures/non-loose-class-generator';
+const NonLooseClass = nonLooseClassFactory();
 
 describe('spyAll and spyAllExcept', () => {
   it('should spy all methods', () => {
@@ -143,9 +144,8 @@ describe('spyAll and spyAllExcept', () => {
   });
 
   it('should spy babel transformed instance methods', () => {
-    const instance = new ExampleEs6Class();
+    const instance = new NonLooseClass();
     jasmine.spyAll(instance);
-
     expect(jasmine.isSpy(instance.methodOne)).toBeTruthy();
     expect(jasmine.isSpy(instance.methodTwo)).toBeTruthy();
   });

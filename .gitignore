@@ -5,4 +5,3 @@ npm-debug.log
 # Compiled file
 dist/
 src/jasmine-utils.js
-test/fixtures/example-es6-class.ignore.js
