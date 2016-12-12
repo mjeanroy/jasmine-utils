@@ -56,12 +56,11 @@ export function forEachWritableProperties(obj, iterator) {
           getProtoResult = Object.getPrototypeOf(current);
           if(getProtoResult !== Object.getPrototypeOf({})) {
             Object.getOwnPropertyNames(getProtoResult).map((p) => {
-              if(p !== 'constructor' && props.indexOf(p) === -1) {
+              if (p !== 'constructor' && props.indexOf(p) === -1) {
                 props.push(p);
               }
             });
           }
-
         }
         const size = props.length;
         for (let i = 0; i < size; ++i) {
