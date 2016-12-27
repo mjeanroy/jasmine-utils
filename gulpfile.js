@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+'use strict';
 const path = require('path');
 const gulp = require('gulp');
 const KarmaServer = require('karma').Server;
@@ -85,7 +86,7 @@ gulp.task('clean', () => {
   ]);
 });
 
-gulp.task('build', ['clean', 'lint', 'test'], () => {
+gulp.task('build', ['clean', 'lint'], () => {
   return rollup
     .rollup(rollupConf)
     .then((bundle) => bundle.write(rollupConf));

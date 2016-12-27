@@ -35,29 +35,45 @@ export function forEachWritableProperties(obj, iterator) {
   if (!isNil(obj)) {
     let current = obj;
 
+    const foundProps = new Set();
     while (current) {
-      const foundProps = {};
-
       // First, use the for .. in loop.
       // eslint-disable-next-line guard-for-in
       for (let i in current) {
-        foundProps[i] = true;
-        iterator(current, i);
+        const prop = current[i];
+        if(!foundProps.has(prop)) {
+          foundProps.add(prop);
+          iterator(current, i);
+        }
       }
 
       // Spy non enumerable properties.
       // Object.getOwnPropertyNames is supported since IE9.
       if (Object.getOwnPropertyNames) {
+        let getProtoResult = null;
         const props = Object.getOwnPropertyNames(current);
+        if(!current.prototype && Object.getPrototypeOf) {
+          getProtoResult = Object.getPrototypeOf(current);
+          if(getProtoResult !== Object.getPrototypeOf({})) {
+            Object.getOwnPropertyNames(getProtoResult).map((p) => {
+              if (p !== 'constructor' && props.indexOf(p) === -1) {
+                props.push(p);
+              }
+            });
+          }
+        }
         const size = props.length;
         for (let i = 0; i < size; ++i) {
           const propName = props[i];
-
+          const prop = current[propName];
           // Handle property if it is as not been seen yet.
-          if (foundProps[propName] !== true) {
-            const descriptor = Object.getOwnPropertyDescriptor(current, propName);
+          if (propName !== 'prototype' && !foundProps.has(prop)) {
+            const descriptor = Object.getOwnPropertyDescriptor(current, propName) ||
+              Object.getOwnPropertyDescriptor(Object.getPrototypeOf(current), propName);
+
             if (descriptor.writable) {
-              iterator(current, props[i]);
+              foundProps.add(prop);
+              iterator(current, propName);
             }
           }
         }

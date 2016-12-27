@@ -24,6 +24,8 @@
 
 import 'src/index.js';
 import {Klass} from '../fixtures/klass.js';
+import {nonLooseClassFactory} from '../fixtures/non-loose-class-generator';
+const NonLooseClass = nonLooseClassFactory();
 
 describe('spyAll and spyAllExcept', () => {
   it('should spy all methods', () => {
@@ -139,5 +141,12 @@ describe('spyAll and spyAllExcept', () => {
 
     expect(jasmine.isSpy(Klass.prototype.foo)).toBeTruthy();
     expect(jasmine.isSpy(Klass.prototype.bar)).toBeTruthy();
+  });
+
+  it('should spy babel transformed instance methods', () => {
+    const instance = new NonLooseClass();
+    jasmine.spyAll(instance);
+    expect(jasmine.isSpy(instance.methodOne)).toBeTruthy();
+    expect(jasmine.isSpy(instance.methodTwo)).toBeTruthy();
   });
 });

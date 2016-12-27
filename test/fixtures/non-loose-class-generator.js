@@ -22,20 +22,46 @@
  * THE SOFTWARE.
  */
 
-import {isDate} from './is-date.js';
-
 /**
- * Check that both dates are the same day (do not compare hours, minutes, etc.).
- *
- * @param {Date|number|string} date1 First date.
- * @param {Date|number|string} date2 Second date.
- * @return {boolean} `true` if both dates are the same day, `false` otherwise.
+ * This is meant to replicate a real-world babel transformed class that isn't using the 'loose'
+ * preset.
  */
-export function isSameDay(date1, date2) {
-  const d1 = isDate(date1) ? date1 : new Date(date1);
-  const d2 = isDate(date2) ? date2 : new Date(date2);
-  const isSameYear = d1.getUTCFullYear() === d2.getUTCFullYear();
-  const isSameMonth = d1.getUTCMonth() === d2.getUTCMonth();
-  const isSameDate = d1.getUTCDate() === d2.getUTCDate();
-  return isSameYear && isSameMonth && isSameDate;
-}
+
+const defineProperties = function(target, props) {
+  for (let i = 0; i < props.length; i++) {
+    const descriptor = props[i];
+    descriptor.enumerable = descriptor.enumerable || false;
+    descriptor.configurable = true;
+    if ('value' in descriptor) descriptor.writable = true;
+    Object.defineProperty(target, descriptor.key, descriptor);
+  }
+};
+
+const nonLooseClassFactory = function() {
+  /**
+   * @constructor NonLooseClass
+   */
+  function NonLooseClass() {
+    this.id = 42;
+  }
+
+  defineProperties(NonLooseClass.prototype, [{
+    key: 'methodOne',
+    value: function methodOne() {
+    },
+  }, {
+    key: 'methodTwo',
+    value: function methodTwo() {
+    },
+  }]);
+
+  defineProperties(NonLooseClass, [{
+    key: 'staticMethodOne',
+    value: function staticMethodOne() {
+    },
+  }]);
+
+  return NonLooseClass;
+};
+
+export {nonLooseClassFactory};

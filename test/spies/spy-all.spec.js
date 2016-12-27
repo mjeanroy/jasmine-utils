@@ -24,8 +24,8 @@
 
 import {spyAll} from 'src/core/spies/spy-all.js';
 
-describe('resetAll', () => {
-  it('should reset all spy of object', () => {
+describe('spyAll', () => {
+  it('should spy on all methods of object', () => {
     const o = {
       id: 1,
       foo() {},

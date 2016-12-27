@@ -4,6 +4,7 @@
   ],
 
   "plugins": [
-    "transform-undefined-to-void"
+    "transform-undefined-to-void",
+    "external-helpers"
   ]
 }
