@@ -23,6 +23,7 @@
  */
 
 import {isNil} from '../util/is-nil.js';
+import {filter} from '../util/filter.js';
 
 /**
  * Iterate over all entries in object and execute iterator function on it.
@@ -41,7 +42,7 @@ export function forEachWritableProperties(obj, iterator) {
       // eslint-disable-next-line guard-for-in
       for (let i in current) {
         const prop = current[i];
-        if(!foundProps.has(prop)) {
+        if (!foundProps.has(prop)) {
           foundProps.add(prop);
           iterator(current, i);
         }
@@ -51,10 +52,21 @@ export function forEachWritableProperties(obj, iterator) {
       // Object.getOwnPropertyNames is supported since IE9.
       if (Object.getOwnPropertyNames) {
         let getProtoResult = null;
-        const props = Object.getOwnPropertyNames(current);
-        if(!current.prototype && Object.getPrototypeOf) {
+
+        // Be careful, some browsers (like PhantomJS) may return restricted property
+        // such as `arguments` or `caller` that cannot be read.
+        const props = filter(Object.getOwnPropertyNames(current), (name) => {
+          try {
+            current[name];
+            return false;
+          } catch(e) {
+            return true;
+          }
+        });
+
+        if (!current.prototype && Object.getPrototypeOf) {
           getProtoResult = Object.getPrototypeOf(current);
-          if(getProtoResult !== Object.getPrototypeOf({})) {
+          if (getProtoResult !== Object.getPrototypeOf({})) {
             Object.getOwnPropertyNames(getProtoResult).map((p) => {
               if (p !== 'constructor' && props.indexOf(p) === -1) {
                 props.push(p);
@@ -62,13 +74,16 @@ export function forEachWritableProperties(obj, iterator) {
             });
           }
         }
+
         const size = props.length;
         for (let i = 0; i < size; ++i) {
           const propName = props[i];
           const prop = current[propName];
-          // Handle property if it is as not been seen yet.
+
+          // Handle property if it is has not been seen yet.
           if (propName !== 'prototype' && !foundProps.has(prop)) {
-            const descriptor = Object.getOwnPropertyDescriptor(current, propName) ||
+            const descriptor =
+              Object.getOwnPropertyDescriptor(current, propName) ||
               Object.getOwnPropertyDescriptor(Object.getPrototypeOf(current), propName);
 
             if (descriptor.writable) {
