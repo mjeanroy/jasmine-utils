@@ -23,8 +23,10 @@
  */
 
 'use strict';
+
 const path = require('path');
 const gulp = require('gulp');
+const gutil = require('gulp-util');
 const KarmaServer = require('karma').Server;
 const git = require('gulp-git');
 const bump = require('gulp-bump');
@@ -39,23 +41,15 @@ const options = require('./conf.js');
 /**
  * Start Karma Server and run unit tests.
  *
- * @param {boolean} singleRun If it runs once and exit or not.
+ * @param {string} mode The test mode (test or tdd).
  * @param {function} done The done callback.
  * @return {void}
  */
-function startKarma(singleRun, done) {
-  const opts = {
-    configFile: path.join(options.root, '/karma.conf.js'),
-  };
-
-  if (singleRun) {
-    opts.autoWatch = true;
-    opts.singleRun = true;
-    opts.browsers = ['PhantomJS'];
-  }
-
-  const karma = new KarmaServer(opts, () => done());
-
+function startKarma(mode, done) {
+  const fileName = `karma.${mode}.conf.js`;
+  const configFile = path.join(options.root, fileName);
+  const karma = new KarmaServer({configFile}, () => done());
+  gutil.log(gutil.colors.grey(`Running karma with configuration: ${fileName}`));
   karma.start();
 }
 
@@ -73,11 +67,15 @@ gulp.task('lint', ['clean'], () => {
 });
 
 gulp.task('test', ['clean', 'lint'], (done) => {
-  startKarma(true, done);
+  startKarma('test', done);
 });
 
 gulp.task('tdd', ['clean'], (done) => {
-  startKarma(false, done);
+  startKarma('tdd', done);
+});
+
+gulp.task('saucelab', ['clean'], (done) => {
+  startKarma('saucelab', done);
 });
 
 gulp.task('clean', () => {
