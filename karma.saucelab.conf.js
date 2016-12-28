@@ -44,7 +44,9 @@ module.exports = (config) => {
     customLaunchers: browsers,
 
     sauceLabs: {
+      build: `TRAVIS #${process.env.TRAVIS_BUILD_NUMBER} (${process.env.TRAVIS_BUILD_ID})`,
       startConnect: false,
+      tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
     },
   }));
 };
