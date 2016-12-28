@@ -48,7 +48,12 @@ const options = require('./conf.js');
 function startKarma(mode, done) {
   const fileName = `karma.${mode}.conf.js`;
   const configFile = path.join(options.root, fileName);
-  const karma = new KarmaServer({configFile}, () => done());
+
+  const karma = new KarmaServer({configFile}, () => {
+    gutil.log(gutil.colors.grey('Calling done callback of Karma'));
+    done();
+  });
+
   gutil.log(gutil.colors.grey(`Running karma with configuration: ${fileName}`));
   karma.start();
 }
@@ -76,6 +81,15 @@ gulp.task('tdd', ['clean'], (done) => {
 
 gulp.task('saucelab', ['clean'], (done) => {
   startKarma('saucelab', done);
+});
+
+gulp.task('travis', ['clean'], (done) => {
+  if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
+    gutil.log(gutil.colors.grey('SauceLab environment not set, running classic test suite'));
+    startKarma('test', done);
+  } else {
+    startKarma('saucelab', done);
+  }
 });
 
 gulp.task('clean', () => {

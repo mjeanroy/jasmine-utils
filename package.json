@@ -50,7 +50,7 @@
     "rollup-plugin-strip-banner": "0.1.0"
   },
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
     "clean": "gulp clean",
@@ -59,6 +59,7 @@
     "test": "gulp test",
     "tdd": "gulp tdd",
     "saucelab": "gulp saucelab",
+    "travis": "gulp travis",
     "release": "gulp release",
     "release:patch": "gulp release:patch",
     "release:minor": "gulp release:minor",
