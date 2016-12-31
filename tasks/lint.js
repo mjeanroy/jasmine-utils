@@ -22,16 +22,23 @@
  * THE SOFTWARE.
  */
 
+'use strict';
+
 const path = require('path');
+const gulp = require('gulp');
+const eslint = require('gulp-eslint');
+const options = require('../conf.js');
 
-const root = path.join(__dirname);
-const src = path.join(root, 'src');
+gulp.task('lint', ['clean'], () => {
+  const sources = [
+    path.join(options.root, '*.js'),
+    path.join(options.src, '**', '*.js'),
+    path.join(options.test, '**', '*.js'),
+    path.join(options.tasks, '**', '*.js'),
+  ];
 
-module.exports = {
-  root: root,
-  src: src,
-  test: path.join(root, 'test'),
-  entry: path.join(src, 'index.js'),
-  dest: path.join(src, 'jasmine-utils.js'),
-  tasks: path.join(src, 'tasks'),
-};
+  return gulp.src(sources)
+    .pipe(eslint())
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError());
+});

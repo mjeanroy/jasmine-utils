@@ -22,16 +22,16 @@
  * THE SOFTWARE.
  */
 
-const path = require('path');
+'use strict';
 
-const root = path.join(__dirname);
-const src = path.join(root, 'src');
+const gulp = require('gulp');
+const rollup = require('rollup');
+const rollupConf = require('../rollup.conf.js');
 
-module.exports = {
-  root: root,
-  src: src,
-  test: path.join(root, 'test'),
-  entry: path.join(src, 'index.js'),
-  dest: path.join(src, 'jasmine-utils.js'),
-  tasks: path.join(src, 'tasks'),
-};
+gulp.task('build', ['clean', 'lint'], () => {
+  return rollup
+    .rollup(rollupConf)
+    .then((bundle) => {
+      return bundle.write(rollupConf);
+    });
+});
