@@ -28,8 +28,11 @@ describe('isFloat', () => {
   it('should return true with a float value', () => {
     expect(isFloat(0.5)).toBe(true);
     expect(isFloat(1.8)).toBe(true);
-    expect(isFloat('1.8')).toBe(true);
+  });
+
+  it('should return true with a string numeric value', () => {
     expect(isFloat('0.5')).toBe(true);
+    expect(isFloat('1.8')).toBe(true);
   });
 
   it('should return false without a float value', () => {
