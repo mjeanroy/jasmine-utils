@@ -25,11 +25,28 @@
 import {dateDiff} from '../util/date-diff.js';
 
 /**
- * Check that the tested object is a date close to 'now' (i.e `Date.now()`).
+ * Check that the tested object is a date close to 'now'.
+ *
+ * The tested date may be:
+ * - A date instance.
+ * - A timestamp.
+ * - A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+ *
+ * **Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+ *
+ * @message Expect date [actual] (not) to be close to now
+ * @example
+ *   expect(Date.now()).toBeDateCloseToNow();
+ *   expect(Date.now() + 1000).toBeDateCloseToNow(2000);
+ *   expect(Date.now() - 1000).toBeDateCloseToNow(2000);
+ *   expect(new Date()).toBeDateCloseToNow();
+ *   expect(new Date(Date.now() + 1000)).not.toBeDateCloseToNow(2000);
+ *   expect(new Date(Date.now() - 1000)).not.toBeDateCloseToNow(2000);
  *
  * @param {Object} ctx Test context.
- * @param {number} max The maximum difference (in milliseconds). Defaults to 1000.
+ * @param {number} max The maximum difference (in milliseconds), defaults to 1000.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
 export function toBeDateCloseToNow(ctx, max = 1000) {
   const actual = ctx.actual;

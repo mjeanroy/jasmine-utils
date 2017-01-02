@@ -27,8 +27,15 @@ import {isNull} from '../util/is-null.js';
 /**
  * Check that tested object is `null`.
  *
+ * @message Expect [actual] (not) to be null
+ * @example
+ *   expect(null).toBeNull();
+ *   expect(undefined).not.toBeNull();
+ *   expect(false).not.toBeNull();
+ *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeNull(ctx) {
   const actual = ctx.actual;

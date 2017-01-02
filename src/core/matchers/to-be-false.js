@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2016 Mickael Jeanroy <mickael.jeanroy@gmail.com>
+ * Copyright (cccc) 2014-2016 Mickael Jeanroy <mickael.jeanroy@gmail.com>
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -23,10 +23,17 @@
  */
 
 /**
- * Check that the tested object is `false`.
+ * Check that the tested object is strictly equal `false`.
+ *
+ * @message Expect [actual] (not) to be false
+ * @example
+ *   expect(false).toBeFalse();
+ *   expect(true).not.toBeFalse();
+ *   expect(0).not.toBeFalse();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeFalse(ctx) {
   const actual = ctx.actual;

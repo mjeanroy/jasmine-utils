@@ -25,10 +25,24 @@
 import {dateDiff} from '../util/date-diff.js';
 
 /**
- * Check that the tested date object is a date "after" now (i.e `Date.now()`).
+ * Check that the tested date object is a date "after" `now`.
+ *
+ * The tested date may be:
+ * - A date instance.
+ * - A timestamp.
+ * - A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+ *
+ * **Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+ *
+ * @message Expect date [actual] (not) to be after now
+ * @example
+ *   expect(Date.now() + 1000).toBeDateAfterNow();
+ *   expect(new Date(Date.now() + 1000)).toBeDateAfterNow();
+ *   expect(new Date(Date.now() - 1000)).not.toBeDateAfterNow();
  *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
 export function toBeDateAfterNow(ctx) {
   const actual = ctx.actual;
@@ -37,4 +51,4 @@ export function toBeDateAfterNow(ctx) {
     pass: diff >= 0,
     message: `Expect date ${jasmine.pp(actual)} {{not}} to be after now`,
   };
- }
+}

@@ -26,11 +26,23 @@ import {isDOMElement} from '../util/is-dom-element.js';
 import {keys} from '../util/keys.js';
 
 /**
- * Check that the tested object is a DOM element with expected attributes.
+ * Check that the tested object is a DOM element with expected attributes (using
+ * the `getAttribute` function).
+ *
+ * Note that the attribute value can also be a jasmine matcher (`jasmine.any(String)` for example).
+ *
+ * @message Expect [actual] (not) to be a DOM element with attributes [attributes] but was [actualAttributes]
+ * @example
+ *   const span = document.createElement('span');
+ *   span.setAttribute('foo', 'foo');
+ *   span.setAttribute('bar', 'bar');
+ *
+ *   expect(span).toBeDOMElementWithAttributes({ foo: 'foo', bar: jasmine.any(String) });
  *
  * @param {Object} ctx Test context.
- * @param {Object} attributes The set of expected attributes.
+ * @param {Object} attributes Expected attributes.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeDOMElementWithAttributes(ctx, attributes) {
   const {actual, equals} = ctx;

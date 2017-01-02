@@ -27,8 +27,17 @@ import {isString} from '../util/is-string.js';
 /**
  * Check that the tested object is a string.
  *
+ * @message Expect [actual] (not) to be a string
+ * @example
+ *   expect('').toBeAString();
+ *   expect('foo').toBeAString();
+ *   expect(String('foo')).toBeAString();
+ *   expect(false).not.toBeAString();
+ *   expect(0).not.toBeAString();
+ *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
 export function toBeAString(ctx) {
   const actual = ctx.actual;

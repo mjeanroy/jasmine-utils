@@ -25,10 +25,25 @@
 import {isInteger} from '../util/is-integer.js';
 
 /**
- * Check that the tested object is an integer value.
+ * Check that the tested object is an `integer` value.
+ *
+ * Note that for this matcher, an `integer` is a numeric value (see `toBeNumeric` matcher) that
+ * is not a `float` (a numeric value may be a `number` *or* a `string` containing a number).
+ *
+ * *JavaScript makes no distinction between integers and floats so
+ * both 1 and 1.0 are considered integers.*
+ *
+ * @message Expect [actual] (not) to be an integer
+ * @example
+ *   expect(1).toBeInteger();
+ *   expect(1.0).toBeInteger();
+ *   expect('1').toBeInteger();
+ *   expect('1.0').toBeInteger();
+ *   expect(1.5).not.toBeInteger();
  *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
 export function toBeInteger(ctx) {
   const actual = ctx.actual;

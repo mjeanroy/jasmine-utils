@@ -25,15 +25,21 @@
 import {isMap} from '../util/is-map.js';
 
 /**
- * Check that the tested object is a map.
+ * Check that the tested object is a `Map`.
+ *
+ * @message Expect [actual] (not) to be a Map
+ * @example
+ *   expect(new Map()).toBeAMap();
+ *   expect({}).not.toBeAMap();
  *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
+ * @since 0.4.0
  */
 export function toBeAMap(ctx) {
   const actual = ctx.actual;
   return {
     pass: isMap(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be a map`,
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be a Map`,
   };
 }

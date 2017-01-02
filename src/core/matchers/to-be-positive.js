@@ -25,10 +25,17 @@
 import {isNumber} from '../util/is-number.js';
 
 /**
- * Check that the tested object is a number greater than zero.
+ * Check that the tested object is a number strictly greater than zero.
+ *
+ * @message Expect [actual] (not) to be a positive number
+ * @example
+ *   expect(1).toBePositive();
+ *   expect(0).not.toBePositive();
+ *   expect(-1).not.toBePositive();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBePositive(ctx) {
   const actual = ctx.actual;

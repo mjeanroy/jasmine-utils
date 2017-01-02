@@ -29,9 +29,25 @@ import {isSorted} from '../util/is-sorted.js';
  * Check that the tested object is an array and is sorted (i.e for each elements in
  * the array, `array[i - 1] <= array[i]`).
  *
+ * A custom comparator can be specified as parameter:
+ * - Takes values to compare as arguments.
+ * - Must return a number:
+ *   - Less than zero if first argument is less than the second.
+ *   - Greater than zero if first argument is greater than the second.
+ *   - Zero if both parameters are "equivalent".
+ *
+ * @message Expect [actual] (not) to be sorted
+ * @example
+ *   expect([0, 1, 2, 3]).toBeSorted();
+ *   expect(['bar', 'foo']).toBeSorted();
+ *   expect([false, false, true, true]).toBeSorted();
+ *   expect([{ id: 1 }, { id: 2 }, { id: 3 }]).toBeSorted((a, b) => a.id - b.id);
+ *   expect([1, 0, 2, 3]).not.toBeSorted();
+ *
  * @param {Object} ctx Test context.
  * @param {function} comparator Comparator function (optional).
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeSorted(ctx, comparator) {
   const actual = ctx.actual;

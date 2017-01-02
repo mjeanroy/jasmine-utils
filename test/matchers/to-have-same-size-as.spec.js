@@ -31,7 +31,7 @@ describe('toHaveSameSizeAs', () => {
     const result = toHaveSameSizeAs({actual}, expected);
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of [ 1, 2, 3 ] {{not}} to be 3 but was 3`,
+      message: `Expect [ 1, 2, 3 ] {{not}} to have same size as [ 4, 5, 6 ]`,
     });
   });
 
@@ -41,7 +41,7 @@ describe('toHaveSameSizeAs', () => {
     const result = toHaveSameSizeAs({actual}, expected);
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of Object({ foo: 'bar' }) {{not}} to be 1 but was 1`,
+      message: `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({ bar: 'foo' })`,
     });
   });
 
@@ -51,7 +51,7 @@ describe('toHaveSameSizeAs', () => {
     const result = toHaveSameSizeAs({actual}, expected);
     expect(result).toEqual({
       pass: false,
-      message: `Expect size of Object({ foo: 'bar' }) {{not}} to be 0 but was 1`,
+      message: `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({  })`,
     });
   });
 });

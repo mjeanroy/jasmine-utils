@@ -27,8 +27,25 @@ import {isSameDay} from '../util/is-same-day.js';
 /**
  * Check that the tested object is the same day as now (i.e `Date.now()`).
  *
+ * The tested date may be:
+ * - A date instance.
+ * - A timestamp.
+ * - A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+ *
+ * **Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+ *
+ * @message Expect [actual] (not) to be today
+ * @example
+ *   const date1 = new Date();
+ *   const date2 = new Date();
+ *   date2.setDate(date1.getDate() - 1);
+ *
+ *   expect(date1).toBeToday();
+ *   expect(date2).not.toBeToday();
+ *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeToday(ctx) {
   const actual = ctx.actual;

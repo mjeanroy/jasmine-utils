@@ -28,9 +28,16 @@ import {contains} from '../util/contains.js';
 /**
  * Check that actual object contains all given expected keys.
  *
+ * @message Expect [actual] (not) to have keys [expectedKeys]
+ * @example
+ *   const obj = { id: 1, name: 'foo' };
+ *   expect(obj).toHaveKeys('id', 'name');
+ *   expect(obj).not.toHaveKeys('foo', 'bar');
+ *
  * @param {Object} ctx Test context containing tested object.
- * @param {Array<string>} expectedKeys Keys to look for in tested object.
+ * @param {...string} expectedKeys Keys to look for in tested object.
  * @return {Object} Matcher result.
+ * @since 0.1.0
  */
 export function toHaveKeys(ctx, ...expectedKeys) {
   const actual = ctx.actual;

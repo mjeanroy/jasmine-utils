@@ -27,9 +27,17 @@ import {isString} from '../util/is-string.js';
 /**
  * Check that the tested object is a string and start with an expected prefix.
  *
+ * @message Expect [actual] (not) to start with [prefix]
+ * @example
+ *   expect('foo').toStartWith('f');
+ *   expect('foo').toStartWith('fo');
+ *   expect('foo').toStartWith('foo');
+ *   expect('foo').not.toStartWith('bar');
+ *
  * @param {Object} ctx Test context.
  * @param {string} prefix The prefix to look for.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toStartWith(ctx, prefix) {
   const actual = ctx.actual;

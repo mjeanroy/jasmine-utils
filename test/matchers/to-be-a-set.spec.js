@@ -30,7 +30,7 @@ describe('toBeASet', () => {
     const result = toBeASet({actual});
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to be a set`,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to be a Set`,
     });
   });
 
@@ -39,7 +39,7 @@ describe('toBeASet', () => {
     const result = toBeASet({actual});
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be a set`,
+      message: `Expect [  ] {{not}} to be a Set`,
     });
   });
 });

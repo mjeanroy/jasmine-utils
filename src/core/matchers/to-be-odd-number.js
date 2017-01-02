@@ -27,8 +27,15 @@ import {isNumber} from '../util/is-number.js';
 /**
  * Check that the tested object is an odd number.
  *
+ * @message Expect [actual] (not) to be an odd number
+ * @example
+ *   expect(1).toBeOddNumber();
+ *   expect(2).not.toBeOddNumber();
+ *   expect(0).not.toBeOddNumber();
+ *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeOddNumber(ctx) {
   const actual = ctx.actual;

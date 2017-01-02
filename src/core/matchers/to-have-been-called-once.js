@@ -25,14 +25,28 @@
 /**
  * Check that the tested object is a spy that has been called once (and only once).
  *
+ * @message Expect [actual] (not) to have been called once but was called [count] time(s)
+ * @example
+ *   const spy = jasmine.createSpy('foo');
+ *   expect(spy).not.toHaveBeenCalledOnce();
+ *
+ *   spy();
+ *   expect(spy).toHaveBeenCalledOnce();
+ *
+ *   spy();
+ *   expect(spy).not.toHaveBeenCalledOnce();
+ *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toHaveBeenCalledOnce(ctx) {
   const {callCount, actual} = ctx;
   const count = callCount(actual) || 0;
   return {
     pass: count === 1,
-    message: `Expect spy {{not}} to have been called once but was called ${jasmine.pp(count)} time(s)`,
+    message:
+      `Expect ${jasmine.pp(actual)} {{not}} to have been called once but ` +
+      `was called ${jasmine.pp(count)} time(s)`,
   };
 }

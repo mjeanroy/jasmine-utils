@@ -28,9 +28,19 @@ import {every} from '../util/every.js';
 /**
  * Check that actual object contains all given expected functions.
  *
+ * @message Expect [actual] (not) to contain functions [methods]
+ * @example
+ *   const foo = jasmine.createSpy('foo');
+ *   const bar = jasmine.createSpy('bar');
+ *   const obj = { id: 1, name: 'foo', foo, bar };
+ *
+ *   expect(obj).toHaveFunctions('foo', 'bar');
+ *   expect(obj).not.toHaveFunctions('id', 'name');
+ *
  * @param {Object} ctx Test context containing tested object.
- * @param {Array<string>} methods List of methods to look for.
+ * @param {...string} methods List of methods to look for.
  * @return {Object} Matcher result.
+ * @since 0.1.0
  */
 export function toHaveFunctions(ctx, ...methods) {
   const actual = ctx.actual;

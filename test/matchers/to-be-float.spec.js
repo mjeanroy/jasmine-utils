@@ -26,6 +26,15 @@ import {toBeFloat} from 'src/core/matchers/to-be-float.js';
 
 describe('toBeFloat', () => {
   it('should check that object is a float value', () => {
+    const actual = 1.5;
+    const result = toBeFloat({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect 1.5 {{not}} to be a float`,
+    });
+  });
+
+  it('should check that object is a float value with a numeric string value', () => {
     const actual = '1.5';
     const result = toBeFloat({actual});
     expect(result).toEqual({

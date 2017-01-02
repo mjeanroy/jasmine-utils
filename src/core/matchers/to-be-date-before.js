@@ -27,9 +27,22 @@ import {dateDiff} from '../util/date-diff.js';
 /**
  * Check that the tested date object is a date "before" an other date.
  *
+ * The tested date and the date to compare may be:
+ * - A date instance.
+ * - A timestamp.
+ * - A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+ *
+ * **Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+ *
+ * @message Expect date [actual] (not) to be before [lower]
+ * @example
+ *   expect(Date.now()).toBeDateBefore(Date.now() + 1000));
+ *   expect(Date.now() + 1000).toBeDateBefore(Date.now()));
+ *
  * @param {Object} ctx Test context.
- * @param {Date|number|string} upper Second date.
+ * @param {Date|number|string} upper The upper bound.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
 export function toBeDateBefore(ctx, upper) {
   const actual = ctx.actual;
@@ -38,4 +51,4 @@ export function toBeDateBefore(ctx, upper) {
     pass: diff <= 0,
     message: `Expect date ${jasmine.pp(actual)} {{not}} to be before ${jasmine.pp(upper)}`,
   };
- }
+}

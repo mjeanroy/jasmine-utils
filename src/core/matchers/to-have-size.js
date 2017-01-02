@@ -27,9 +27,23 @@ import {sizeOf} from '../util/size-of.js';
 /**
  * Check that tested object has an expected size.
  *
+ * A size may be computed from:
+ * - An array (or an array-like object) with the `length` property.
+ * - A `Map` or a `Set` using its `size` property.
+ * - Any iterable object (using a `for..of` loop).
+ * - An object (number of own enumerable properties).
+ *
+ * @message Expect size of [actual] (not) to be [expectedSize]
+ * @example
+ *   expect([1, 2, 3]).toHaveSize(3);
+ *   expect('foo bar').toHaveSize(7);
+ *   expect(new Set([0, 1, 2])).toHaveSize(3);
+ *   expect({ foo: 'bar' }).toHaveSize(1);
+ *
  * @param {Object} ctx Test context.
  * @param {number} expectedSize The expected size.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toHaveSize(ctx, expectedSize) {
   const actual = ctx.actual;

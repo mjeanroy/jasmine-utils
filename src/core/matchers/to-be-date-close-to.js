@@ -26,13 +26,28 @@ import {dateDiff} from '../util/date-diff.js';
 
 /**
  * Check that the tested date object and an actual date object are close.
+ *
  * By default, the difference in milliseconds between both dates must not exceed 1000ms,
  * but the last parameter may be set to increase/decrease this value.
  *
+ * The tested date and the date to compare may be:
+ * - A date instance.
+ * - A timestamp.
+ * - A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+ *
+ * **Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+ *
+ * @message Expect date [actual] (not) to be close to [date]
+ * @example
+ *   expect(new Date(1995, 1, 1, 10, 0, 0, 0)).toBeDateCloseTo(new Date(1995, 1, 1, 10, 0, 0, 500));
+ *   expect(new Date(1995, 1, 1, 10, 0, 0, 0)).toBeDateCloseTo(new Date(1995, 1, 1, 10, 0, 0, 500), 1000);
+ *   expect(new Date(1995, 1, 1, 10, 0, 0, 0)).toBeDateCloseTo(new Date(1995, 1, 1, 10, 0, 0, 500), 100);
+ *
  * @param {Object} ctx Test context.
- * @param {Date|number|string} date Second date.
- * @param {number} max The maximum difference in milliseconds between both dates.
+ * @param {Date|number|string} date The second date to compare with.
+ * @param {number} max The maximum difference in milliseconds between both dates, default to 1000.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
 export function toBeDateCloseTo(ctx, date, max = 1000) {
   const actual = ctx.actual;
@@ -41,4 +56,4 @@ export function toBeDateCloseTo(ctx, date, max = 1000) {
     pass: diff <= max,
     message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to ${jasmine.pp(date)}`,
   };
- }
+}

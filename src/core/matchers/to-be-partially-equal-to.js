@@ -27,6 +27,49 @@ import {isObject} from '../util/is-object.js';
 import {every} from '../util/every.js';
 
 /**
+ * Check that the tested object is partially equals to a second one.
+ * Note that this matcher works fine with custom equality matchers.
+ *
+ * @message Expect [actual] (not) to be partially equal to [other]
+ * @example
+ *   const a1 = { id: 1, foo: 'bar' };
+ *   const a2 = { id: 2, foo: 'bar' };
+ *
+ *   const b1 = { id: 1 };
+ *   const b2 = { id: 2 };
+ *
+ *   const c1 = { id: 2 };
+ *   const c2 = { id: 2 };
+ *
+ *   const array1 = [a1, a2];
+ *   const array2 = [b1, b2];
+ *   const array3 = [c1, c2];
+ *   expect(array1).toBePartiallyEqualTo(array2);
+ *   expect(array1).not.toBePartiallyEqualTo(array3);
+ *
+ * @param {Object} ctx Test context.
+ * @param {Array<*>|Object} other The second object to use for equality.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBePartiallyEqualTo(ctx, other) {
+  const {actual, equals} = ctx;
+
+  let pass = false;
+
+  if (isArray(other) && isArray(actual)) {
+    pass = checkArray(actual, other, equals);
+  } else if (isObject(other) && isObject(actual)) {
+    pass = checkObject(actual, other, equals);
+  }
+
+  return {
+    pass: pass,
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be partially equal to ${jasmine.pp(other)}`,
+  };
+}
+
+/**
  * Check that two array are equals, using a partial comparison between
  * values in array.
  *
@@ -56,28 +99,4 @@ function checkArray(a, b, equalsFunction) {
  */
 function checkObject(a, b, equalsFunction) {
   return equalsFunction(a, jasmine.objectContaining(b));
-}
-
-/**
- * Check that the tested object is partially equals to a second one.
- *
- * @param {Object} ctx Test context.
- * @param {Array<*>|Object} other The second object to use for equality.
- * @return {Object} Test result.
- */
-export function toBePartiallyEqualTo(ctx, other) {
-  const {actual, equals} = ctx;
-
-  let pass = false;
-
-  if (isArray(other) && isArray(actual)) {
-    pass = checkArray(actual, other, equals);
-  } else if (isObject(other) && isObject(actual)) {
-    pass = checkObject(actual, other, equals);
-  }
-
-  return {
-    pass: pass,
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be partially equal to ${jasmine.pp(other)}`,
-  };
 }

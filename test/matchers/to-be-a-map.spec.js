@@ -30,7 +30,7 @@ describe('toBeAMap', () => {
     const result = toBeAMap({actual});
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to be a map`,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to be a Map`,
     });
   });
 
@@ -39,7 +39,7 @@ describe('toBeAMap', () => {
     const result = toBeAMap({actual});
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be a map`,
+      message: `Expect [  ] {{not}} to be a Map`,
     });
   });
 });

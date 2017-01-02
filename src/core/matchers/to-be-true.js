@@ -23,10 +23,17 @@
  */
 
 /**
- * Check that the tested object is `true`.
+ * Check that the tested object is strictly equal to `true`.
+ *
+ * @message Expect [actual] (not) to be true
+ * @example
+ *   expect(true).toBeTrue();
+ *   expect(false).not.toBeTrue();
+ *   expect(1).not.toBeTrue();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeTrue(ctx) {
   const actual = ctx.actual;

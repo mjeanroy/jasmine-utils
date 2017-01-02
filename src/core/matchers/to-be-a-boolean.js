@@ -25,10 +25,19 @@
 import {isBoolean} from '../util/is-boolean.js';
 
 /**
- * Check that the tested object is a boolean.
+ * Check that the tested object is a `boolean` (a `boolean` is exactly `true`
+ * or `false`).
+ *
+ * @message Expect [actual] (not) to be a boolean
+ * @example
+ *   expect(true).toBeABoolean();
+ *   expect(false).toBeABoolean();
+ *   expect(null).not.toBeABoolean();
+ *   expect(undefined).not.toBeABoolean();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeABoolean(ctx) {
   const actual = ctx.actual;

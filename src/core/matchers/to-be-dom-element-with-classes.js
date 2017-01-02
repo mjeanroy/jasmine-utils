@@ -32,25 +32,22 @@ import {contains} from '../util/contains.js';
 import {trim} from '../util/trim.js';
 
 /**
- * Translate a list of class as a string or as an array to a new array where:
- * - Each class name is trimmed.
- * _ Each falsy value is removed.
- *
- * @param {Array<string>|string} classes List of class names.
- * @return {Array<string>} New array of class names.
- */
-function toClassArray(classes) {
-  const array = isArray(classes) ? classes : classes.split(' ');
-  const trimmedArray = map(array, (className) => trim(className));
-  return filter(trimmedArray, isFalsy);
-};
-
-/**
  * Check that the tested object is a DOM element with expected class names.
+ *
+ * @message Expect [actual] (not) to be a DOM element with classes [classes] but was [actualClasses]
+ * @example
+ *   const span = document.createElement('span');
+ *   span.className = 'foo bar';
+ *
+ *   expect(span).toBeDOMElementWithClasses('foo');
+ *   expect(span).toBeDOMElementWithClasses('bar');
+ *   expect(span).toBeDOMElementWithClasses('foo bar');
+ *   expect(span).toBeDOMElementWithClasses(['foo', 'bar']);
  *
  * @param {Object} ctx Test context.
  * @param {Array<string>|string} classes Expected class names.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeDOMElementWithClasses(ctx, classes) {
   const actual = ctx.actual;
@@ -73,3 +70,17 @@ export function toBeDOMElementWithClasses(ctx, classes) {
     message: msg,
   };
 }
+
+/**
+ * Translate a list of class as a string or as an array to a new array where:
+ * - Each class name is trimmed.
+ * _ Each falsy value is removed.
+ *
+ * @param {Array<string>|string} classes List of class names.
+ * @return {Array<string>} New array of class names.
+ */
+function toClassArray(classes) {
+  const array = isArray(classes) ? classes : classes.split(' ');
+  const trimmedArray = map(array, (className) => trim(className));
+  return filter(trimmedArray, isFalsy);
+};

@@ -27,8 +27,15 @@ import {isNumber} from '../util/is-number.js';
 /**
  * Check that the tested object is an even number.
  *
+ * @message Expect [actual] to be an even number
+ * @example
+ *   expect(2).toBeEvenNumber();
+ *   expect(0).not.toBeEvenNumber();
+ *   expect(1).not.toBeEvenNumber();
+ *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeEvenNumber(ctx) {
   const actual = ctx.actual;

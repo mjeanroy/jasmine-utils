@@ -25,11 +25,22 @@
 import {sizeOf} from '../util/size-of.js';
 
 /**
- * Check that tested object is empty (have a length of zero for an array, or don't
- * have any property if it is an object).
+ * Check that tested object is empty:
+ * - If it is an `array` or an array-like, check that the length is equal to zero.
+ * - If it is an object, check that it does not have any property.
+ * - If it is a `map` or a `set`, check that the size is equal to zero.
+ *
+ * @message Expect [actual] (not) to be empty.
+ * @example
+ *   expect('').toBeEmpty();
+ *   expect([]).toBeEmpty();
+ *   expect({}).toBeEmpty();
+ *   expect(new Map()).toBeEmpty();
+ *   expect(new Set()).toBeEmpty();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeEmpty(ctx) {
   const actual = ctx.actual;

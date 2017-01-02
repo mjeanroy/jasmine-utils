@@ -27,8 +27,18 @@ import {isNil} from '../util/is-nil.js';
 /**
  * Check that the tested object is nil (i.e `null` or `undefined`).
  *
+ * @message Expect [actual] (not) to be nil (null or undefined)
+ * @example
+ *   expect(null).toBeNil();
+ *   expect(undefined).toBeNil();
+ *   expect(void 0).toBeNil();
+ *   expect(false).not.toBeNil();
+ *   expect(0).not.toBeNil();
+ *   expect(NaN).not.toBeNil();
+ *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.4.0
  */
 export function toBeNil(ctx) {
   const actual = ctx.actual;

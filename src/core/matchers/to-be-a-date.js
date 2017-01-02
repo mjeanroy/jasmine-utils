@@ -25,10 +25,17 @@
 import {isDate} from '../util/is-date.js';
 
 /**
- * Check that the tested object is an instance of Date.
+ * Check that the tested object is an instance of `Date`.
+ *
+ * @message Expect [actual] (not) to be a date
+ * @example
+ *   expect(new Date()).toBeADate();
+ *   expect(null).not.toBeADate();
+ *   expect(123).not.toBeADate();
  *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
 export function toBeADate(ctx) {
   const actual = ctx.actual;

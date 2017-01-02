@@ -25,12 +25,19 @@
 import {isString} from '../util/is-string.js';
 
 /**
- * Check that the tested object is a string equal to an other string: comparison is
+ * Check that the tested object is a `string` equal to an other `string`: comparison is
  * case-insensitive.
+ *
+ * @message Expect [actual] (not) to be equal to [other] (case insensitive)
+ * @example
+ *   expect('foo').toEqualIgnoringCase('foo');
+ *   expect('foo').toEqualIgnoringCase('FOO');
+ *   expect('foo').not.toEqualIgnoringCase('bar');
  *
  * @param {Object} ctx Test context.
  * @param {string} other Other string to compare.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toEqualIgnoringCase(ctx, other) {
   const actual = ctx.actual;

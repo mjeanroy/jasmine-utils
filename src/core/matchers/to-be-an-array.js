@@ -26,9 +26,21 @@ import {isArray} from '../util/is-array.js';
 
 /**
  * Check that the tested object is an array (a real array, not an array-like object).
+ * This matcher will use `Array.isArray` or a fallback if it is not available.
+ *
+ * @message Expect [actual] (not) to be an array
+ * @example
+ *   expect([]).toBeAnArray();
+ *   expect('123').not.toBeAnArray();
+ *   expect(1).not.toBeAnArray();
+ *   expect(false).not.toBeAnArray();
+ *   expect({}).not.toBeAnArray();
+ *   expect(null).not.toBeAnArray();
+ *   expect(undefined).not.toBeAnArray();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeAnArray(ctx) {
   const actual = ctx.actual;

@@ -23,11 +23,19 @@
  */
 
 /**
- * Check that tested object has an expected length.
+ * Check that tested object has a `length` property with expected value.
+ *
+ * @message Expect length of [actual] (not) to be [expectedLength]
+ * @example
+ *   expect([]).toHaveLength(0);
+ *   expect([0, 1, 2]).toHaveLength(3);
+ *   expect('').toHaveLength(0);
+ *   expect('foo').toHaveLength(3);
  *
  * @param {Object} ctx Test context.
  * @param {number} expectedLength The expected length value.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toHaveLength(ctx, expectedLength) {
   const actual = ctx.actual;

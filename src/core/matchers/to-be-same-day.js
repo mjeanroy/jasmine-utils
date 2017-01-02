@@ -25,11 +25,28 @@
 import {isSameDay} from '../util/is-same-day.js';
 
 /**
- * Check that the tested object is the same as an other date.
+ * Check that the tested object is the same *day* as an other date.
+ *
+ * The tested date and the date to compare may be:
+ * - A date instance.
+ * - A timestamp.
+ * - A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+ *
+ * **Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+ *
+ * @message Expect [actual] (not) the same day as [day]
+ * @example
+ *   const date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
+ *   const date2 = new Date(2014, 5, 5, 15, 0, 0, 0);
+ *   const date3 = new Date(2014, 5, 6, 10, 0, 0, 0);
+ *
+ *   expect(date1).toBeSameDay(date2);
+ *   expect(date1).not.toBeSameDay(date3);
  *
  * @param {Object} ctx Test context.
  * @param {Date|number|string} day The other date.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeSameDay(ctx, day) {
   const actual = ctx.actual;

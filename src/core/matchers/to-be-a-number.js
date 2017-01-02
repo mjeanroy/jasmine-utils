@@ -25,10 +25,19 @@
 import {isNumber} from '../util/is-number.js';
 
 /**
- * Check that the tested object is a number.
+ * Check that the tested object is a `number`.
+ *
+ * @message Expect [actual] (not) to be a number
+ * @example
+ *  expect(0).toBeANumber();
+ *  expect(1).toBeANumber();
+ *  expect(1.5).toBeANumber();
+ *  expect('0').not.toBeANumber();
+ *  expect('1').not.toBeANumber();
  *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
 export function toBeANumber(ctx) {
   const actual = ctx.actual;

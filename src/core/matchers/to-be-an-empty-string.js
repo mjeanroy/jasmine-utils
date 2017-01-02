@@ -25,10 +25,17 @@
 import {isString} from '../util/is-string.js';
 
 /**
- * Check that the tested object is an empty string (i.e `=== ''`).
+ * Check that the tested object is an empty string (a `string` equals to `''`).
+ *
+ * @message Expect [actual] (not) to be an empty string
+ * @example
+ *   expect('').toBeAnEmptyString();
+ *   expect('  ').not.toBeAnEmptyString();
+ *   expect('foo').not.toBeAnEmptyString();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeAnEmptyString(ctx) {
   const actual = ctx.actual;

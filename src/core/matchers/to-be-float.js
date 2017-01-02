@@ -25,10 +25,24 @@
 import {isFloat} from '../util/is-float.js';
 
 /**
- * Check that the tested object is a float value.
+ * Check that the tested object is a `float` value.
+ *
+ * Note that for this matcher, a `float` is a numeric value (see `toBeNumeric` matcher) that
+ * is not an integer (a numeric value may be a `number` *or* a `string` containing a number).
+ *
+ * *JavaScript makes no distinction between integers and floats
+ * so 1.0 is considered integer.*
+ *
+ * @message Expect [actual] (not) to be a float
+ * @example
+ *   expect(1.5).toBeFloat();
+ *   expect('1.5').toBeFloat();
+ *   expect(1).not.toBeFloat();
+ *   expect(1.0).not.toBeFloat();
  *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
 export function toBeFloat(ctx) {
   const actual = ctx.actual;

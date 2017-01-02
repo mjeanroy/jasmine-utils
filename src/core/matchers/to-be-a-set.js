@@ -25,15 +25,22 @@
 import {isSet} from '../util/is-set.js';
 
 /**
- * Check that the tested object is a set.
+ * Check that the tested object is a `Set`.
+ *
+ * @message Expect [actual] (not) to be a Set
+ * @example
+ *   expect(new Set()).toBeASet();
+ *   expect({}).not.toBeASet();
+ *   expect([]).not.toBeASet();
  *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
+ * @since 0.4.0
  */
 export function toBeASet(ctx) {
   const actual = ctx.actual;
   return {
     pass: isSet(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be a set`,
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be a Set`,
   };
 }

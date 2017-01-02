@@ -28,9 +28,24 @@ import {every} from '../util/every.js';
 
 /**
  * Check that the tested object contains only falsy values.
+ * The tested object may be an array or any iterable object (i.e that can be
+ * traversed with the `for..of` loop).
+ *
+ * Note that this matcher works fine with custom equality matchers.
+ *
+ * @message Expect [actual] (not) to contains only falsy values
+ * @example
+ *   expect([0, false, null, undefined, '']).toContainsOnlyFalsyValues();
+ *
+ *   expect([1, false, null, undefined, '']).not.toContainsOnlyFalsyValues();
+ *   expect([0, true, null, undefined, '']).not.toContainsOnlyFalsyValues();
+ *   expect([0, false, {}, undefined, '']).not.toContainsOnlyFalsyValues();
+ *   expect([0, false, null, [], '']).not.toContainsOnlyFalsyValues();
+ *   expect([0, false, null, undefined, 'foo']).not.toContainsOnlyFalsyValues();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toContainsOnlyFalsyValues(ctx) {
   const actual = ctx.actual;

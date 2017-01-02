@@ -27,12 +27,31 @@ import {isFunction} from '../util/is-function.js';
 
 /**
  * Verifies that the tested object satisfies a predicate function for at
- * at least one element in the array.
+ * at least one element in the collection.
+ *
+ * The collection may be an `array` or any iterable object.
+ *
+ * The predicate function is executed with three arguments:
+ * - The value being iterated.
+ * - The index of the value being iterated.
+ * - The collection being iterated.
+ *
+ * This matcher may take an optional first argument: the error message that will
+ * be displayed if the matcher does not pass.
+ *
+ * @message
+ *   Expect [actual] (not) to have at least one element that verify condition
+ *   Expect [actual] (not) to have at least one element that verify "[message]"
+ *
+ * @example
+ *   expect([1, 2, 3]).toHaveSome(x => x % 2 === 0);
+ *   expect([1, 3, 5, 7]).not.toHaveSome(x => x % 2 === 0);
  *
  * @param {Object} ctx Test context.
  * @param {string} message Custom error message (optional).
  * @param {function} iterator Predicate function.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toHaveSome(ctx, message, iterator) {
   const actual = ctx.actual;

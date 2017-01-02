@@ -31,7 +31,7 @@ describe('toHaveSameLengthAs', () => {
     const result = toHaveSameLengthAs({actual}, expected);
     expect(result).toEqual({
       pass: true,
-      message: `Expect length of [ 1, 2, 3 ] {{not}} to be 3 but was 3`,
+      message: `Expect [ 1, 2, 3 ] {{not}} to have same length as [ 4, 5, 6 ]`,
     });
   });
 
@@ -41,7 +41,9 @@ describe('toHaveSameLengthAs', () => {
     const result = toHaveSameLengthAs({actual}, expected);
     expect(result).toEqual({
       pass: true,
-      message: `Expect length of Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be 3 but was 3`,
+      message:
+        `Expect Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to have same ` +
+        `length as Object({ 0: 4, 1: 5, 2: 6, length: 3 })`,
     });
   });
 
@@ -51,7 +53,7 @@ describe('toHaveSameLengthAs', () => {
     const result = toHaveSameLengthAs({actual}, expected);
     expect(result).toEqual({
       pass: false,
-      message: `Expect length of [  ] {{not}} to be 3 but was 0`,
+      message: `Expect [  ] {{not}} to have same length as [ 1, 2, 3 ]`,
     });
   });
 });

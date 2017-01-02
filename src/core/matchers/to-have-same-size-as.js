@@ -27,9 +27,22 @@ import {sizeOf} from '../util/size-of.js';
 /**
  * Check that tested object has the same size as an other one.
  *
+ * A size may be computed from:
+ * - An array (or an array-like object) with the `length` property.
+ * - A `Map` or a `Set` using its `size` property.
+ * - Any iterable object (using a `for..of` loop).
+ * - An object (number of own enumerable properties).
+ *
+ * @message Expect [actual] to have same size as [expected]
+ * @example
+ *   expect('foo').toHaveSameSizeAs('foo');
+ *   expect('bar').toHaveSameSizeAs({ b: 1, a: 1, r: 1 });
+ *   expect([ 'foo', 'bar' ]).toHaveSameSizeAs(new Set(['foo', 'bar']));
+ *
  * @param {Object} ctx Test context.
  * @param {*} expected The other object (or array, or array-like object).
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toHaveSameSizeAs(ctx, expected) {
   const actual = ctx.actual;
@@ -37,8 +50,6 @@ export function toHaveSameSizeAs(ctx, expected) {
   const expectedSize = sizeOf(expected);
   return {
     pass: actualSize === expectedSize,
-    message:
-      `Expect size of ${jasmine.pp(actual)} {{not}} to be ${jasmine.pp(expectedSize)} ` +
-      `but was ${jasmine.pp(actualSize)}`,
+    message: `Expect ${jasmine.pp(actual)} {{not}} to have same size as ${jasmine.pp(expected)}`,
   };
 }

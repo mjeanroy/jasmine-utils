@@ -27,9 +27,19 @@ import {containsDistinct} from '../util/contains-distinct.js';
 
 /**
  * Check that the tested object is an array containing only distinct values.
+ * The tested object may be an array or any iterable object (i.e that can be
+ * traversed with the `for..of` loop).
+ *
+ * Note that this matcher works fine with custom equality matchers.
+ *
+ * @message Expect [actual] (not) to contains only distinct values
+ * @example
+ *   expect([0, 1, 2, 3]).toContainsDistinctValues();
+ *   expect([0, 1, 2, 3, 0]).not.toContainsDistinctValues();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toContainsDistinctValues(ctx) {
   const {actual, equals} = ctx;

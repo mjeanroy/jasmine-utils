@@ -25,11 +25,19 @@
 import {isDOMElement} from '../util/is-dom-element.js';
 
 /**
- * Check that the tested object is a DOM element with an expected id.
+ * Check that the tested object is a DOM element with an expected id (note that
+ * the `id` is retrieved using `getAttribute('id')`).
+ *
+ * @message Expect [actual] (not) to be a DOM element with id [id] but was [actualId]
+ * @example
+ *   const span = document.createElement('span');
+ *   span.setAttribute('id', 'mySpan');
+ *   expect(span).toBeDOMElementWithId('mySpan');
  *
  * @param {Object} ctx Test context.
  * @param {string} id Expected id.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeDOMElementWithId(ctx, id) {
   const actual = ctx.actual;

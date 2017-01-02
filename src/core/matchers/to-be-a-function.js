@@ -25,10 +25,18 @@
 import {isFunction} from '../util/is-function.js';
 
 /**
- * Check that the tested object is a function.
+ * Check that the tested object is a `function`.
+ *
+ * @message Expect [actual] (not) to be a function
+ * @example
+ *   expect(() => {}).toBeAFunction();
+ *   expect(function() {}).toBeAFunction();
+ *   expect(undefined).not.toBeAFunction();
+ *   expect(null).not.toBeAFunction();
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeAFunction(ctx) {
   const actual = ctx.actual;

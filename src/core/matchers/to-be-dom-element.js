@@ -28,10 +28,24 @@ import {isNil} from '../util/is-nil.js';
 
 /**
  * Check that the tested object is DOM element with an expected tag name.
+ * The tag name is optional, if not set this matcher will juste check that the actual
+ * object is a DOM element.
+ *
+ * @message
+ *   Expect [actual] (not) to be a DOM element
+ *   Expect [actual] (not) to be [tagName] element but was [actualTagName]
+ *
+ * @example
+ *   const span = document.createElement('span');
+ *   expect(span).toBeDOMElement();
+ *   expect(span).toBeDOMElement('span');
+ *   expect(span).toBeDOMElement('SPAN');
+ *   expect(span).not.toBeDOMElement('div');
  *
  * @param {Object} ctx Test context.
  * @param {string} tagName Expected tag name (optional).
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeDOMElement(ctx, tagName) {
   const actual = ctx.actual;

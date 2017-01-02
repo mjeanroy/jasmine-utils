@@ -25,11 +25,19 @@
 import {isString} from '../util/is-string.js';
 
 /**
- * Check that the tested object is a string and end with an expected suffix.
+ * Check that the tested object is a `string` and end with an expected suffix.
+ *
+ * @message Expect [actual] (not) to end with [suffix]
+ * @example
+ *   expect('foo').toEndWith('o');
+ *   expect('foo').toEndWith('oo');
+ *   expect('foo').toEndWith('foo');
+ *   expect('foo').not.toEndWith('bar');
  *
  * @param {Object} ctx Test context.
  * @param {string} suffix The suffix to look for.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toEndWith(ctx, suffix) {
   const actual = ctx.actual;

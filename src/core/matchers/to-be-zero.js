@@ -23,10 +23,17 @@
  */
 
 /**
- * Check that the tested object is a number.
+ * Check that the tested object is a number strictly equal to zero.
+ *
+ * @message Expect [actual] (not) to be zero
+ * @example
+ *   expect(0).toBeZero();
+ *   expect(1).not.toBeZero();
+ *   expect('0').not.toBeZero();
  *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
+ * @since 0.1.0
  */
  export function toBeZero(ctx) {
    const actual = ctx.actual;

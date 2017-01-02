@@ -25,13 +25,20 @@
 import {isNumber} from '../util/is-number.js';
 
 /**
- * Check that the tested object is a number greater than a lower bound and less
- * than a lower bound.
+ * Check that the tested object is a `number` (strictly) greater than a lower bound
+ * and (strictly) less than a lower bound.
+ *
+ * @message Expect [actual] (not) to be between [lower] and [upper]
+ * @example
+ *   expect(2).toBeInRange(1, 3);
+ *   expect(1).not.toBeInRange(1, 3);
+ *   expect(3).not.toBeInRange(1, 3);
  *
  * @param {Object} ctx Test context.
  * @param {number} lower The lower bound.
  * @param {number} upper The upper bound.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toBeInRange(ctx, lower, upper) {
   const actual = ctx.actual;

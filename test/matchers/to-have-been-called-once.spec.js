@@ -34,7 +34,7 @@ describe('toHaveBeenCalledOnce', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(result).toEqual({
       pass: true,
-      message: `Expect spy {{not}} to have been called once but was called 1 time(s)`,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to have been called once but was called 1 time(s)`,
     });
   });
 
@@ -47,7 +47,7 @@ describe('toHaveBeenCalledOnce', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(result).toEqual({
       pass: false,
-      message: `Expect spy {{not}} to have been called once but was called 0 time(s)`,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to have been called once but was called 0 time(s)`,
     });
   });
 
@@ -60,7 +60,7 @@ describe('toHaveBeenCalledOnce', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(result).toEqual({
       pass: false,
-      message: `Expect spy {{not}} to have been called once but was called 2 time(s)`,
+      message: `Expect ${jasmine.pp(actual)} {{not}} to have been called once but was called 2 time(s)`,
     });
   });
 });

@@ -26,9 +26,22 @@
  * Check that the tested object is a spy that has been called once (and exactly
  * once) with expected arguments.
  *
+ * @message
+ *   Expect [actual] to have been called once but was called [count] time(s)
+ *   Expect [actual] to have been called once but was called [count] time(s) with different arguments
+ *
+ * @example
+ *   const spy = jasmine.createSpy('foo');
+ *   expect(spy).not.toHaveBeenCalledOnce();
+ *
+ *   spy('foo');
+ *   expect(spy).toHaveBeenCalledOnceWith('foo');
+ *   expect(spy).not.toHaveBeenCalledOnceWith('bar');
+ *
  * @param {Object} ctx Test context.
- * @param {Array<*>} args Expected call arguments.
+ * @param {...*} args Expected call arguments.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toHaveBeenCalledOnceWith(ctx, ...args) {
   const {actual, callCount, equals, argsFor} = ctx;
@@ -36,7 +49,10 @@ export function toHaveBeenCalledOnceWith(ctx, ...args) {
   const wasCalledOnce = count === 1;
   const ok = wasCalledOnce && equals(argsFor(actual, 0), args);
   const msg = wasCalledOnce && !ok ? ' with different arguments' : '';
-  const error = `Expect spy {{not}} to have been called once but was called ${jasmine.pp(count)} time(s)${msg}`;
+  const error =
+    `Expect ${jasmine.pp(actual)} {{not}} to have been called once but ` +
+    `was called ${jasmine.pp(count)} time(s)${msg}`;
+
   return {
     pass: ok,
     message: error,

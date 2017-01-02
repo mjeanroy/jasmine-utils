@@ -23,11 +23,20 @@
  */
 
 /**
- * Check that tested object has the same length as an other array.
+ * Check that tested object has the same length as an other value with `length`
+ * property.
+ *
+ * @message Expect [actual] (not) to have same length as [expected]
+ * @example
+ *   expect([]).toHaveSameLengthAs('');
+ *   expect(['f', 'o', 'o']).toHaveSameLengthAs('foo');
+ *   expect('').toHaveSameLengthAs([]);
+ *   expect('foo').toHaveSameLengthAs(['f', 'o', 'o']);
  *
  * @param {Object} ctx Test context.
  * @param {Array<*>} expected The other array.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
 export function toHaveSameLengthAs(ctx, expected) {
   const actual = ctx.actual;
@@ -35,8 +44,6 @@ export function toHaveSameLengthAs(ctx, expected) {
   const expectedLength = expected.length;
   return {
     pass: actualLength === expectedLength,
-    message:
-      `Expect length of ${jasmine.pp(actual)} {{not}} to be ${jasmine.pp(expectedLength)} ` +
-      `but was ${jasmine.pp(actualLength)}`,
+    message: `Expect ${jasmine.pp(actual)} {{not}} to have same length as ${jasmine.pp(expected)}`,
   };
 }

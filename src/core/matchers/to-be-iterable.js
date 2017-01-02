@@ -27,9 +27,25 @@ import {isIterable} from '../util/is-iterable.js';
 /**
  * Check that the tested object is an iterable value.
  *
+ * An iterable value allows is an object that can define or customize its iteration behavior,
+ * such as what values are looped over in a `for..of` construct.
+ *
+ * An iterable value may be:
+ * - An `array`.
+ * - A `Map`.
+ * - A `Set`.
+ * - An object that implement the `@@iterator` method.
+ *
+ * @message Expect [actual] (not) to be iterable
+ * @example
+ *   expect([]).toBeIterable();
+ *   expect(new Map()).toBeIterable();
+ *   expect(new Set()).toBeIterable();
+ *
  * @param {Object} ctx Test context.
  * @param {*} Klass Expected class.
  * @return {Object} Test result.
+ * @since 0.4.0
  */
 export function toBeIterable(ctx, Klass) {
   const actual = ctx.actual;

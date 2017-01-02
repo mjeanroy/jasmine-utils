@@ -23,16 +23,25 @@
  */
 
 /**
- * Check that the tested object is an instance of a given class.
+ * Check that the tested object is an instance of a given `constructor`.
+ *
+ * @message Expect [actual] (not) to be an instance of [constructor]
+ * @example
+ *   expect(new Date()).toBeInstanceOf(Date);
+ *   expect('foo').toBeInstanceOf(String);
+ *
+ *   class Foo { }
+ *   expect(new Foo()).toBeInstanceOf(Foo);
  *
  * @param {Object} ctx Test context.
- * @param {*} Klass Expected class.
+ * @param {*} ctor Expected constructor.
  * @return {Object} Test result.
+ * @since 0.1.0
  */
-export function toBeInstanceOf(ctx, Klass) {
+export function toBeInstanceOf(ctx, ctor) {
   const actual = ctx.actual;
   return {
-    pass: (actual instanceof Klass),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be an instance of ${jasmine.pp(Klass)}`,
+    pass: (actual instanceof ctor),
+    message: `Expect ${jasmine.pp(actual)} {{not}} to be an instance of ${jasmine.pp(ctor)}`,
   };
 }
