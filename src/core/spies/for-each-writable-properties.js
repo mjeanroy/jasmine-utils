@@ -24,6 +24,7 @@
 
 import {isNil} from '../util/is-nil.js';
 import {filter} from '../util/filter.js';
+import {forEach} from '../util/for-each.js';
 
 /**
  * Iterate over all entries in object and execute iterator function on it.
@@ -67,7 +68,7 @@ export function forEachWritableProperties(obj, iterator) {
         if (!current.prototype && Object.getPrototypeOf) {
           getProtoResult = Object.getPrototypeOf(current);
           if (getProtoResult !== Object.getPrototypeOf({})) {
-            Object.getOwnPropertyNames(getProtoResult).map((p) => {
+            forEach(Object.getOwnPropertyNames(getProtoResult), (p) => {
               if (p !== 'constructor' && props.indexOf(p) === -1) {
                 props.push(p);
               }
