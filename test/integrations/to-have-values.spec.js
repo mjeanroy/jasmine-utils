@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {assumeMap} from '../detect/assume-map.js';
 import 'src/index.js';
 
 describe('toHaveValues', () => {
@@ -41,6 +42,8 @@ describe('toHaveValues', () => {
   });
 
   it('should pass with map', () => {
+    assumeMap();
+
     const map = new Map([
       ['id', 1],
       ['name', 'foo'],

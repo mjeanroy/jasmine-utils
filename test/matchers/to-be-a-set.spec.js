@@ -22,10 +22,13 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
 import {toBeASet} from 'src/core/matchers/to-be-a-set.js';
 
 describe('toBeASet', () => {
   it('should check that object is a set', () => {
+    assumeSet();
+
     const actual = new Set();
     const result = toBeASet({actual});
     expect(result).toEqual({

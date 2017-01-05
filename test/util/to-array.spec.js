@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
 import {toArray} from 'src/core/util/to-array.js';
 
 describe('toArray', () => {
@@ -33,6 +34,8 @@ describe('toArray', () => {
   });
 
   it('should create new array from set', () => {
+    assumeSet();
+
     const inputs = new Set([0, 1, 2]);
     const outputs = toArray(inputs);
     expect(outputs.length).toBe(3);

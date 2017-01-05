@@ -22,13 +22,22 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
 import 'src/index.js';
 
 describe('toBeAMap', () => {
-  it('should pass', () => {
+  it('should pass with a map', () => {
+    assumeMap();
     expect(new Map()).toBeAMap();
+  });
 
+  it('should not pass with a set', () => {
+    assumeSet();
     expect(new Set()).not.toBeAMap();
+  });
+
+  it('should not pass', () => {
     expect([]).not.toBeAMap();
     expect({}).not.toBeAMap();
     expect(null).not.toBeAMap();

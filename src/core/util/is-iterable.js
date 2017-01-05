@@ -29,6 +29,8 @@ import {isMap} from './is-map.js';
 import {isSet} from './is-set.js';
 import {isFunction} from './is-function.js';
 
+const SUPPORT_SYMBOL = typeof Symbol !== 'undefined';
+
 /**
  * Check that a given value is iterable (i.e can be iterated with for...of).
  *
@@ -47,5 +49,5 @@ export function isIterable(value) {
   }
 
   // We must check for the iterator method.
-  return !!Symbol && isFunction(value[Symbol.iterator]);
+  return SUPPORT_SYMBOL && isFunction(value[Symbol.iterator]);
 }

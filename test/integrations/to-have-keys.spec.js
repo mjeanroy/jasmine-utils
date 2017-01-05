@@ -22,14 +22,19 @@
  * THE SOFTWARE.
  */
 
+import {assumeMap} from '../detect/assume-map.js';
 import 'src/index.js';
 
 describe('toHaveKeys', () => {
   it('should pass', () => {
     expect({id: 1, name: 'foo'}).toHaveKeys('id', 'name');
-    expect(new Map([['id', 1], ['name', 'foo']])).toHaveKeys('id', 'name');
-
     expect({id: 1, name: 'foo'}).not.toHaveKeys('foo', 'bar');
+  });
+
+  it('should pass with map', () => {
+    assumeMap();
+
+    expect(new Map([['id', 1], ['name', 'foo']])).toHaveKeys('id', 'name');
     expect(new Map([['id', 1], ['name', 'foo']])).not.toHaveKeys('foo', 'bar');
   });
 });

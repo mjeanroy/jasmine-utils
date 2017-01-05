@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {assumeMap} from '../detect/assume-map.js';
 import {toHaveKeys} from 'src/core/matchers/to-have-keys.js';
 
 describe('toHaveKeys', () => {
@@ -35,6 +36,8 @@ describe('toHaveKeys', () => {
   });
 
   it('should check if map has key', () => {
+    assumeMap();
+
     const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
     const result = toHaveKeys({actual}, 'foo');
     expect(result).toEqual({
@@ -53,6 +56,8 @@ describe('toHaveKeys', () => {
   });
 
   it('should check if map has all keys', () => {
+    assumeMap();
+
     const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
     const result = toHaveKeys({actual}, 'foo', 'quix');
     expect(result).toEqual({
@@ -71,6 +76,8 @@ describe('toHaveKeys', () => {
   });
 
   it('should fail if map does not have key', () => {
+    assumeMap();
+
     const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
     const result = toHaveKeys({actual}, 'bar');
     expect(result).toEqual({
@@ -89,6 +96,8 @@ describe('toHaveKeys', () => {
   });
 
   it('should fail if map does not have all keys', () => {
+    assumeMap();
+
     const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
     const result = toHaveKeys({actual}, 'foo', 'bar');
     expect(result).toEqual({

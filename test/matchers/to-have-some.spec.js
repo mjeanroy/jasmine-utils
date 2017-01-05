@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import {toHaveSome} from 'src/core/matchers/to-have-some.js';
 
 describe('toHaveSome', () => {
@@ -41,6 +44,8 @@ describe('toHaveSome', () => {
   });
 
   it('should pass if set satisfies predicate function for at least one element', () => {
+    assumeSet();
+
     const actual = new Set([0, 1, 2]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
     const result = toHaveSome({actual}, predicate);
@@ -54,6 +59,8 @@ describe('toHaveSome', () => {
   });
 
   it('should pass if map satisfies predicate function for at least one element', () => {
+    assumeMap();
+
     const actual = new Map([['zero', 0], ['one', 1], ['two', 2]]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
     const result = toHaveSome({actual}, predicate);
@@ -67,6 +74,8 @@ describe('toHaveSome', () => {
   });
 
   it('should pass if iterable satisfies predicate function for at least one element', () => {
+    assumeSymbol();
+
     const actual = {
       [Symbol.iterator]() {
         let x = 1;
@@ -122,6 +131,8 @@ describe('toHaveSome', () => {
   });
 
   it('should not pass if set does not satisfies predicate function for all elements', () => {
+    assumeSet();
+
     const actual = new Set([0, 1, 2]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
     const result = toHaveSome({actual}, predicate);
@@ -137,6 +148,8 @@ describe('toHaveSome', () => {
   });
 
   it('should not pass if map does not satisfies predicate function for all elements', () => {
+    assumeMap();
+
     const actual = new Map([['zero', 0], ['one', 1], ['two', 2]]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
     const result = toHaveSome({actual}, predicate);
@@ -152,6 +165,8 @@ describe('toHaveSome', () => {
   });
 
   it('should not pass if iterable does not satisfies predicate function for all elements', () => {
+    assumeSymbol();
+
     const actual = {
       [Symbol.iterator]() {
         let x = 1;

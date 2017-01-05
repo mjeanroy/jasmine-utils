@@ -22,31 +22,13 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../detect/assume-map.js';
-import {values} from 'src/core/util/values.js';
-
-describe('values', () => {
-  it('should extract all object values', () => {
-    const object = {
-      foo: 'bar',
-      quix: 'foo',
-    };
-
-    const vals = values(object);
-
-    expect(vals.sort()).toEqual(['bar', 'foo']);
-  });
-
-  it('should extract all map values', () => {
-    assumeMap();
-
-    const map = new Map([
-      ['foo', 'bar'],
-      ['quix', 'foo'],
-    ]);
-
-    const vals = values(map);
-
-    expect(vals.sort()).toEqual(['bar', 'foo']);
-  });
-});
+/**
+ * Mark test as pending if `Map` is not supported in the
+ * environment.
+ * @return {void}
+ */
+export function assumeMap() {
+  if (typeof Map === 'undefined') {
+    pending('Map is not supported in this environment');
+  }
+}

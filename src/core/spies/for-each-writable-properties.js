@@ -37,7 +37,11 @@ export function forEachWritableProperties(obj, iterator) {
   if (!isNil(obj)) {
     let current = obj;
 
-    const foundProps = new Set();
+    // Create a Set, with a fallback for old browsers without `Set` structure.
+    const foundProps = typeof Set === 'undefined' ?
+      new ArraySet() :
+      new Set();
+
     while (current) {
       // First, use the for .. in loop.
       // eslint-disable-next-line guard-for-in
@@ -102,5 +106,36 @@ export function forEachWritableProperties(obj, iterator) {
         current = null;
       }
     }
+  }
+}
+
+/**
+ * Fallback implementation for set ES6 datastructure.
+ */
+class ArraySet {
+  /**
+   * Create the new Set.
+   */
+  constructor() {
+    this.o = [];
+  }
+
+  /**
+   * Check that given value has been added to the set.
+   * @param {*} x Value to check.
+   * @return {boolean} `true` if `x` is in the set, false otherwise.
+   */
+  has(x) {
+    return this.o.indexOf(x) >= 0;
+  }
+
+  /**
+   * Add new value to the set.
+   * @param {*} x Value to add.
+   * @return {ArraySet} The current set.
+   */
+  add(x) {
+    this.o.push(x);
+    return this;
   }
 }

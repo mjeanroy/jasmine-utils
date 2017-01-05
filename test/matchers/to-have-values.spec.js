@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {assumeMap} from '../detect/assume-map.js';
 import {toHaveValues} from 'src/core/matchers/to-have-values.js';
 
 describe('toHaveValues', () => {
@@ -35,6 +36,8 @@ describe('toHaveValues', () => {
   });
 
   it('should check for map values', () => {
+    assumeMap();
+
     const actual = new Map([['foo', 'bar'], ['quix', 'foo']]);
     const result = toHaveValues({actual}, 'foo', 'bar');
     expect(result).toEqual({
@@ -53,6 +56,8 @@ describe('toHaveValues', () => {
   });
 
   it('should fail with map without non expected values', () => {
+    assumeMap();
+
     const actual = new Map([['foo', 'bar']]);
     const result = toHaveValues({actual}, 'foo', 'bar');
     expect(result).toEqual({

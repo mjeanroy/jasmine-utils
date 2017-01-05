@@ -22,10 +22,13 @@
  * THE SOFTWARE.
  */
 
+import {assumeMap} from '../detect/assume-map.js';
 import {toBeAMap} from 'src/core/matchers/to-be-a-map.js';
 
 describe('toBeAMap', () => {
   it('should check that object is a map', () => {
+    assumeMap();
+
     const actual = new Map();
     const result = toBeAMap({actual});
     expect(result).toEqual({

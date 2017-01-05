@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import {isIterable} from 'src/core/util/is-iterable.js';
 
 describe('isIterable', () => {
@@ -42,10 +45,12 @@ describe('isIterable', () => {
   });
 
   it('should return true with set', () => {
+    assumeSet();
     expect(isIterable(new Set())).toBe(true);
   });
 
   it('should return true with map', () => {
+    assumeMap();
     expect(isIterable(new Map())).toBe(true);
   });
 
@@ -54,6 +59,8 @@ describe('isIterable', () => {
   });
 
   it('should return true with iterable object', () => {
+    assumeSymbol();
+
     const o = {
       [Symbol.iterator]() {
         return {

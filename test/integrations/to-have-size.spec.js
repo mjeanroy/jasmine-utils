@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import 'src/index.js';
 
 describe('toHaveSize', () => {
@@ -38,18 +41,24 @@ describe('toHaveSize', () => {
   });
 
   it('should pass with set', () => {
+    assumeSet();
+
     const actual = new Set([0, 1]);
     expect(actual).toHaveSize(2);
     expect(actual).not.toHaveSize(0);
   });
 
   it('should pass with map', () => {
+    assumeMap();
+
     const actual = new Map([['one', 1], ['two', 2]]);
     expect(actual).toHaveSize(2);
     expect(actual).not.toHaveSize(0);
   });
 
   it('should pass with iterable object', () => {
+    assumeSymbol();
+
     const actual = {
       [Symbol.iterator]() {
         let x = 0;

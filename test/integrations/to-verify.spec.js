@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import 'src/index.js';
 
 describe('toVerify', () => {
@@ -32,18 +35,24 @@ describe('toVerify', () => {
   });
 
   it('should pass with set', () => {
+    assumeSet();
+
     const iterator = (item) => item % 2 === 0;
     expect(new Set([2, 4, 6, 8])).toVerify(iterator);
     expect(new Set([2, 4, 6, 8, 9])).not.toVerify(iterator);
   });
 
   it('should pass with map', () => {
+    assumeMap();
+
     const iterator = (item) => item[1] % 2 === 0;
     expect(new Map([['two', 2], ['four', 4], ['six', 6]])).toVerify(iterator);
     expect(new Map([['two', 2], ['four', 4], ['seven', 7]])).not.toVerify(iterator);
   });
 
   it('should pass with iterable objects', () => {
+    assumeSymbol();
+
     const actual = {
       [Symbol.iterator]() {
         let x = 0;

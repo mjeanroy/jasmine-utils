@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {assumeMap} from '../detect/assume-map.js';
 import {keys} from 'src/core/util/keys.js';
 
 describe('keys', () => {
@@ -38,6 +39,8 @@ describe('keys', () => {
   });
 
   it('should return map keys', () => {
+    assumeMap();
+
     const map = new Map([['one', 1], ['two', 2]]);
     const results = keys(map);
 

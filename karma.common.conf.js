@@ -1,9 +1,11 @@
 /**
  * Karma Configuration.
  */
+
 const path = require('path');
 const includePaths = require('rollup-plugin-includepaths');
 const babel = require('rollup-plugin-babel');
+const conf = require('./conf.js');
 
 module.exports = (config) => ({
   // base path, that will be used to resolve files and exclude
@@ -14,8 +16,7 @@ module.exports = (config) => ({
   ],
 
   files: [
-    path.join(__dirname, 'node_modules', 'babel-polyfill', 'dist', 'polyfill.js'),
-    path.join(__dirname, 'test', '**', '*.spec.js'),
+    path.join(conf.test, '**', '*.spec.js'),
   ],
 
   exclude: [

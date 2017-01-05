@@ -22,10 +22,12 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
 import {isSet} from 'src/core/util/is-set.js';
 
 describe('isSet', () => {
   it('should return true with a set', () => {
+    assumeSet();
     expect(isSet(new Set())).toBe(true);
   });
 

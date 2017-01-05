@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import {toBeEmpty} from 'src/core/matchers/to-be-empty.js';
 
 describe('toBeEmpty', () => {
@@ -35,6 +38,8 @@ describe('toBeEmpty', () => {
   });
 
   it('should check for empty set', () => {
+    assumeSet();
+
     const actual = new Set();
     const result = toBeEmpty({actual});
     expect(result).toEqual({
@@ -44,6 +49,8 @@ describe('toBeEmpty', () => {
   });
 
   it('should check for empty map', () => {
+    assumeMap();
+
     const actual = new Map();
     const result = toBeEmpty({actual});
     expect(result).toEqual({
@@ -53,6 +60,8 @@ describe('toBeEmpty', () => {
   });
 
   it('should check for empty iterable object', () => {
+    assumeSymbol();
+
     const actual = {
       [Symbol.iterator]() {
         return {

@@ -22,18 +22,28 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
 import 'src/index.js';
 
 describe('toBeIterable', () => {
   it('should pass', () => {
     expect([]).toBeIterable();
     expect('').toBeIterable();
-    expect(new Set()).toBeIterable();
-    expect(new Map()).toBeIterable();
 
     expect(0).not.toBeIterable();
     expect(false).not.toBeIterable();
     expect({}).not.toBeIterable();
     expect(NaN).not.toBeNil();
+  });
+
+  it('should pass with Map', () => {
+    assumeMap();
+    expect(new Map()).toBeIterable();
+  });
+
+  it('should pass with Set', () => {
+    assumeSet();
+    expect(new Set()).toBeIterable();
   });
 });

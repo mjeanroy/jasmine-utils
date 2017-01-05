@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import {toBeIterable} from 'src/core/matchers/to-be-iterable.js';
 
 describe('toBeIterable', () => {
@@ -62,6 +65,8 @@ describe('toBeIterable', () => {
   });
 
   it('should check that set is iterable', () => {
+    assumeSet();
+
     const actual = new Set();
     const result = toBeIterable({actual});
     expect(result).toEqual({
@@ -71,6 +76,8 @@ describe('toBeIterable', () => {
   });
 
   it('should check that map is iterable', () => {
+    assumeMap();
+
     const actual = new Map();
     const result = toBeIterable({actual});
     expect(result).toEqual({
@@ -80,6 +87,8 @@ describe('toBeIterable', () => {
   });
 
   it('should check that object with iterator instance is iterable', () => {
+    assumeSymbol();
+
     const actual = {
       [Symbol.iterator]() {
         return {

@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import {toHaveSize} from 'src/core/matchers/to-have-size.js';
 
 describe('toHaveSize', () => {
@@ -44,6 +47,8 @@ describe('toHaveSize', () => {
   });
 
   it('should check size of set', () => {
+    assumeSet();
+
     const actual = new Set([1]);
     const result = toHaveSize({actual}, 1);
     expect(result).toEqual({
@@ -53,6 +58,8 @@ describe('toHaveSize', () => {
   });
 
   it('should check size of map', () => {
+    assumeMap();
+
     const actual = new Map([['one', 1]]);
     const result = toHaveSize({actual}, 1);
     expect(result).toEqual({
@@ -62,6 +69,8 @@ describe('toHaveSize', () => {
   });
 
   it('should check size of iterable object', () => {
+    assumeSymbol();
+
     const actual = {
       [Symbol.iterator]() {
         let x = 0;

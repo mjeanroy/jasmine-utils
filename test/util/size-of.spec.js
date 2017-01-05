@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import {sizeOf} from 'src/core/util/size-of.js';
 
 describe('sizeOf', () => {
@@ -46,10 +49,12 @@ describe('sizeOf', () => {
   });
 
   it('should return size of set', () => {
+    assumeSet();
     expect(sizeOf(new Set([1, 2]))).toBe(2);
   });
 
   it('should return size of map', () => {
+    assumeMap();
     const map = new Map();
     map.set('one', 1);
     map.set('two', 2);
@@ -57,6 +62,8 @@ describe('sizeOf', () => {
   });
 
   it('should return size of iterable object', () => {
+    assumeSymbol();
+
     const o = {
       [Symbol.iterator]() {
         let x = 0;
@@ -72,6 +79,8 @@ describe('sizeOf', () => {
   });
 
   it('should return zero with empty iterable object', () => {
+    assumeSymbol();
+
     const o = {
       [Symbol.iterator]() {
         return {

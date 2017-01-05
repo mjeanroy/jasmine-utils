@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import {every} from 'src/core/util/every.js';
 
 describe('every', () => {
@@ -38,6 +41,8 @@ describe('every', () => {
   });
 
   it('should return true if predicate always returns a truthy value with a set', () => {
+    assumeSet();
+
     const set = new Set([1, 2, 3]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
 
@@ -50,6 +55,8 @@ describe('every', () => {
   });
 
   it('should return true if predicate always returns a truthy value with a map', () => {
+    assumeMap();
+
     const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
 
@@ -62,6 +69,8 @@ describe('every', () => {
   });
 
   it('should return true if predicate always returns a truthy value with an iterable object', () => {
+    assumeSymbol();
+
     const iterable = {
       [Symbol.iterator]() {
         let x = 1;
@@ -98,6 +107,8 @@ describe('every', () => {
   });
 
   it('should return false if predicate always returns a falsy value with a set', () => {
+    assumeSet();
+
     const set = new Set([1, 2, 3]);
     const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
       return x < 3;
@@ -110,6 +121,8 @@ describe('every', () => {
   });
 
   it('should return true if predicate always returns a truthy value with a map', () => {
+    assumeMap();
+
     const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
     const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
       return x[1] < 3;
@@ -122,6 +135,8 @@ describe('every', () => {
   });
 
   it('should return true if predicate always returns a truthy value with an iterable object', () => {
+    assumeSymbol();
+
     const iterable = {
       [Symbol.iterator]() {
         let x = 1;

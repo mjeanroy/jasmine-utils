@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {assumeSet} from '../detect/assume-set.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSymbol} from '../detect/assume-symbol.js';
 import {toVerify} from 'src/core/matchers/to-verify.js';
 
 describe('toVerify', () => {
@@ -41,6 +44,8 @@ describe('toVerify', () => {
   });
 
   it('should pass if set satisfies predicate function', () => {
+    assumeSet();
+
     const actual = new Set([0, 1, 2]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
     const result = toVerify({actual}, predicate);
@@ -56,6 +61,8 @@ describe('toVerify', () => {
   });
 
   it('should pass if set satisfies predicate function', () => {
+    assumeMap();
+
     const actual = new Map([['one', 1], ['two', 2], ['three', 3]]);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
     const result = toVerify({actual}, predicate);
@@ -71,6 +78,8 @@ describe('toVerify', () => {
   });
 
   it('should pass if iterable satisfies predicate function', () => {
+    assumeSymbol();
+
     const actual = {
       [Symbol.iterator]() {
         let x = 1;
