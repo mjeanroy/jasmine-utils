@@ -81,7 +81,7 @@ it('should spy selected method', function() {
     }
   };
 
-  jasmine.spyEach(obj, ['method1', 'method2');
+  jasmine.spyEach(obj, ['method1', 'method2']);
 });
 ```
 
