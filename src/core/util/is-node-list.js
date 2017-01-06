@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {tagName} from './tag-name.js';
+
 /**
  * Check that a given value is a NodeList instance.
  *
@@ -29,6 +31,6 @@
  * @return {boolean} `true` if `obj` is a NodeList instance, `false` otherwise.
  */
 export function isNodeList(obj) {
-  const output = Object.prototype.toString.call(obj);
+  const output = tagName(obj);
   return output === '[object NodeList]' || output === '[object HTMLCollection]';
 }

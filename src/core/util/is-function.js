@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {tagName} from './tag-name.js';
+
 /**
  * Check that a given value is a function.
  *
@@ -29,5 +31,5 @@
  * @return {boolean} `true` if `value` is a function, `false` otherwise.
  */
 export function isFunction(value) {
-  return Object.prototype.toString.call(value) === '[object Function]';
+  return tagName(value) === '[object Function]';
 }

@@ -22,8 +22,10 @@
  * THE SOFTWARE.
  */
 
+import {tagName} from './tag-name.js';
+
 const _isArray = Array.isArray || function _isArray(obj) {
-  return Object.prototype.toString.call(obj) === '[object Array]';
+  return tagName(obj) === '[object Array]';
 };
 
 /**

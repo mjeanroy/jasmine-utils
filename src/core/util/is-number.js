@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {tagName} from './tag-name.js';
+
 /**
  * Check that a given value is a number.
  *
@@ -29,5 +31,5 @@
  * @return {boolean} `true` if `obj` is a number, `false` otherwise.
  */
 export function isNumber(obj) {
-  return Object.prototype.toString.call(obj) === '[object Number]';
+  return tagName(obj) === '[object Number]';
 }

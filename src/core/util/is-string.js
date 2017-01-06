@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {tagName} from './tag-name.js';
+
 /**
  * Check that a given value is a string.
  *
@@ -29,5 +31,5 @@
  * @return {boolean} `true` if `obj` is a string, `false` otherwise.
  */
 export function isString(obj) {
-  return Object.prototype.toString.call(obj) === '[object String]';
+  return tagName(obj) === '[object String]';
 }

@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {tagName} from './tag-name.js';
+
 /**
  * Check that given object is a date instance.
  *
@@ -29,5 +31,5 @@
  * @return {boolean} `true` if `obj` is a date, `false` otherwise.
  */
 export function isDate(obj) {
-  return Object.prototype.toString.call(obj) === '[object Date]';
+  return tagName(obj) === '[object Date]';
 }

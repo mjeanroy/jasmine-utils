@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {tagName} from './tag-name.js';
+
 /**
  * Check that a given value is a boolean.
  *
@@ -31,5 +33,5 @@
 export function isBoolean(obj) {
   return obj === true ||
     obj === false ||
-    Object.prototype.toString.call(obj) === '[object Boolean]';
+    tagName(obj) === '[object Boolean]';
 }

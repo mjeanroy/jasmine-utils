@@ -22,14 +22,12 @@
  * THE SOFTWARE.
  */
 
-import {tagName} from './tag-name.js';
-
 /**
- * Check that a given value is a map.
+ * Return the tag name of the object (a.k.a the result of `Object.prototype.toString`).
  *
- * @param {*} obj Value to check.
- * @return {boolean} `true` if `obj` is a map, `false` otherwise.
+ * @param {*} obj Object to get tag name.
+ * @return {string} Tag name.
  */
-export function isMap(obj) {
-  return tagName(obj) === '[object Map]';
+export function tagName(obj) {
+  return Object.prototype.toString.call(obj);
 }

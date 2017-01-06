@@ -22,14 +22,39 @@
  * THE SOFTWARE.
  */
 
-import {tagName} from './tag-name.js';
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSet} from '../detect/assume-set.js';
+import {tagName} from 'src/core/util/tag-name.js';
 
-/**
- * Check that a given value is a map.
- *
- * @param {*} obj Value to check.
- * @return {boolean} `true` if `obj` is a map, `false` otherwise.
- */
-export function isMap(obj) {
-  return tagName(obj) === '[object Map]';
-}
+describe('tagName', () => {
+  it('should get [object Array] with array', () => {
+    expect(tagName([])).toBe('[object Array]');
+  });
+
+  it('should get [object String] with string', () => {
+    expect(tagName('')).toBe('[object String]');
+    expect(tagName(String(''))).toBe('[object String]');
+
+    // eslint-disable-next-line no-new-wrappers
+    expect(tagName(new String(''))).toBe('[object String]');
+  });
+
+  it('should get [object Date] with date', () => {
+    expect(tagName(new Date())).toBe('[object Date]');
+  });
+
+  it('should get [object Boolean] with booleans', () => {
+    expect(tagName(true)).toBe('[object Boolean]');
+    expect(tagName(false)).toBe('[object Boolean]');
+  });
+
+  it('should get [object Map] with map', () => {
+    assumeMap();
+    expect(tagName(new Map())).toBe('[object Map]');
+  });
+
+  it('should get [object Set] with map', () => {
+    assumeSet();
+    expect(tagName(new Set())).toBe('[object Set]');
+  });
+});
