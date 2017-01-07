@@ -29,5 +29,29 @@
  * @return {string} Tag name.
  */
 export function tagName(obj) {
-  return Object.prototype.toString.call(obj);
+  const tag = Object.prototype.toString.call(obj);
+
+  // IE11 on Win10 returns `[object Object]` with `Map` and `Set`.
+  // Try to patch this bug and return the appropriate tag value.
+  // The best way seems to compare the constructor source with `Map` or `Set` sources.
+  if (tag === '[object Object]') {
+    const src = toSource(obj.constructor);
+    if (src === toSource(Map)) {
+      return '[object Map]';
+    } else if (src === toSource(Set)) {
+      return '[object Set]';
+    }
+  }
+
+  return tag;
+}
+
+/**
+ * Get the function source of parameter.
+ *
+ * @param {*} obj Parameter to get source.
+ * @return {string} Function source.
+ */
+function toSource(obj) {
+  return typeof obj === 'function' ? Function.prototype.toString.call(obj) : '';
 }

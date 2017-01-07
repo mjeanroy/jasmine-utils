@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {tagName} from './tag-name.js';
+
 /**
  * Check that a given value is a set.
  *
@@ -29,5 +31,5 @@
  * @return {boolean} `true` if `obj` is a set, `false` otherwise.
  */
 export function isSet(obj) {
-  return Object.prototype.toString.call(obj) === '[object Set]';
+  return tagName(obj) === '[object Set]';
 }

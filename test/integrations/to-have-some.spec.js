@@ -38,16 +38,37 @@ describe('toHaveSome', () => {
     assumeSet();
 
     const iterator = (item) => item % 2 === 0;
-    expect(new Set([1, 2, 3])).toHaveSome(iterator);
-    expect(new Set([1, 3, 5, 7])).not.toHaveSome(iterator);
+
+    const s1 = new Set();
+    s1.add(1);
+    s1.add(2);
+    s1.add(3);
+    expect(s1).toHaveSome(iterator);
+
+    const s2 = new Set();
+    s2.add(1);
+    s2.add(3);
+    s2.add(5);
+    s2.add(7);
+    expect(s2).not.toHaveSome(iterator);
   });
 
   it('should pass with a map', () => {
     assumeMap();
 
     const iterator = (item) => item[1] % 2 === 0;
-    expect(new Map([['one', 1], ['two', 2], ['three', 3]])).toHaveSome(iterator);
-    expect(new Map([['one', 1], ['three', 3], ['five', 5]])).not.toHaveSome(iterator);
+
+    const m1 = new Map();
+    m1.set('one', 1);
+    m1.set('two', 2);
+    m1.set('three', 3);
+    expect(m1).toHaveSome(iterator);
+
+    const m2 = new Map();
+    m2.set('one', 1);
+    m2.set('three', 3);
+    m2.set('five', 5);
+    expect(m2).not.toHaveSome(iterator);
   });
 
   it('should pass with an iterable', () => {

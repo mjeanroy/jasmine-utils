@@ -43,7 +43,10 @@ describe('some', () => {
   it('should return true if predicate always returns a truthy value with a set', () => {
     assumeSet();
 
-    const set = new Set([1, 2, 3]);
+    const set = new Set();
+    set.add(1);
+    set.add(2);
+    set.add(3);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
 
     const result = some(set, predicate);
@@ -101,7 +104,10 @@ describe('some', () => {
   it('should return false if predicate never a truthy value with a set', () => {
     assumeSet();
 
-    const set = new Set([1, 2, 3]);
+    const set = new Set();
+    set.add(1);
+    set.add(2);
+    set.add(3);
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
 
     const result = some(set, predicate);

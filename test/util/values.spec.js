@@ -40,10 +40,9 @@ describe('values', () => {
   it('should extract all map values', () => {
     assumeMap();
 
-    const map = new Map([
-      ['foo', 'bar'],
-      ['quix', 'foo'],
-    ]);
+    const map = new Map();
+    map.set('foo', 'bar');
+    map.set('quix', 'foo');
 
     const vals = values(map);
 

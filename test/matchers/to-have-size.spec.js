@@ -49,7 +49,9 @@ describe('toHaveSize', () => {
   it('should check size of set', () => {
     assumeSet();
 
-    const actual = new Set([1]);
+    const actual = new Set();
+    actual.add(1);
+
     const result = toHaveSize({actual}, 1);
     expect(result).toEqual({
       pass: true,
@@ -60,7 +62,9 @@ describe('toHaveSize', () => {
   it('should check size of map', () => {
     assumeMap();
 
-    const actual = new Map([['one', 1]]);
+    const actual = new Map();
+    actual.set('one', 1);
+
     const result = toHaveSize({actual}, 1);
     expect(result).toEqual({
       pass: true,

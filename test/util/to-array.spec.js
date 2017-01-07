@@ -36,8 +36,13 @@ describe('toArray', () => {
   it('should create new array from set', () => {
     assumeSet();
 
-    const inputs = new Set([0, 1, 2]);
+    const inputs = new Set();
+    inputs.add(0);
+    inputs.add(1);
+    inputs.add(2);
+
     const outputs = toArray(inputs);
+
     expect(outputs.length).toBe(3);
     expect(outputs).toContain(0);
     expect(outputs).toContain(1);

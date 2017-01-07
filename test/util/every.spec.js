@@ -43,7 +43,11 @@ describe('every', () => {
   it('should return true if predicate always returns a truthy value with a set', () => {
     assumeSet();
 
-    const set = new Set([1, 2, 3]);
+    const set = new Set();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
 
     const result = every(set, predicate);
@@ -57,7 +61,11 @@ describe('every', () => {
   it('should return true if predicate always returns a truthy value with a map', () => {
     assumeMap();
 
-    const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
+    const map = new Map();
+    map.set('one', 1);
+    map.set('two', 2);
+    map.set('three', 3);
+
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
 
     const result = every(map, predicate);
@@ -109,7 +117,11 @@ describe('every', () => {
   it('should return false if predicate always returns a falsy value with a set', () => {
     assumeSet();
 
-    const set = new Set([1, 2, 3]);
+    const set = new Set();
+    set.add(1);
+    set.add(2);
+    set.add(3);
+
     const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
       return x < 3;
     });
@@ -123,7 +135,11 @@ describe('every', () => {
   it('should return true if predicate always returns a truthy value with a map', () => {
     assumeMap();
 
-    const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
+    const map = new Map();
+    map.set('one', 1);
+    map.set('two', 2);
+    map.set('three', 3);
+
     const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
       return x[1] < 3;
     });

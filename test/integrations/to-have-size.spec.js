@@ -43,7 +43,10 @@ describe('toHaveSize', () => {
   it('should pass with set', () => {
     assumeSet();
 
-    const actual = new Set([0, 1]);
+    const actual = new Set();
+    actual.add(0);
+    actual.add(1);
+
     expect(actual).toHaveSize(2);
     expect(actual).not.toHaveSize(0);
   });
@@ -51,7 +54,10 @@ describe('toHaveSize', () => {
   it('should pass with map', () => {
     assumeMap();
 
-    const actual = new Map([['one', 1], ['two', 2]]);
+    const actual = new Map();
+    actual.set('one', 1);
+    actual.set('two', 2);
+
     expect(actual).toHaveSize(2);
     expect(actual).not.toHaveSize(0);
   });

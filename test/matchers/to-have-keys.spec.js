@@ -38,7 +38,10 @@ describe('toHaveKeys', () => {
   it('should check if map has key', () => {
     assumeMap();
 
-    const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
+    const actual = new Map();
+    actual.set('foo', 'bar');
+    actual.set('quix', 'quix');
+
     const result = toHaveKeys({actual}, 'foo');
     expect(result).toEqual({
       pass: true,
@@ -58,7 +61,10 @@ describe('toHaveKeys', () => {
   it('should check if map has all keys', () => {
     assumeMap();
 
-    const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
+    const actual = new Map();
+    actual.set('foo', 'bar');
+    actual.set('quix', 'quix');
+
     const result = toHaveKeys({actual}, 'foo', 'quix');
     expect(result).toEqual({
       pass: true,
@@ -78,7 +84,10 @@ describe('toHaveKeys', () => {
   it('should fail if map does not have key', () => {
     assumeMap();
 
-    const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
+    const actual = new Map();
+    actual.set('foo', 'bar');
+    actual.set('quix', 'quix');
+
     const result = toHaveKeys({actual}, 'bar');
     expect(result).toEqual({
       pass: false,
@@ -98,7 +107,10 @@ describe('toHaveKeys', () => {
   it('should fail if map does not have all keys', () => {
     assumeMap();
 
-    const actual = new Map([['foo', 'bar'], ['quix', 'quix']]);
+    const actual = new Map();
+    actual.set('foo', 'bar');
+    actual.set('quix', 'quix');
+
     const result = toHaveKeys({actual}, 'foo', 'bar');
     expect(result).toEqual({
       pass: false,

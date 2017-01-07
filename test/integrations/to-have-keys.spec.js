@@ -34,7 +34,11 @@ describe('toHaveKeys', () => {
   it('should pass with map', () => {
     assumeMap();
 
-    expect(new Map([['id', 1], ['name', 'foo']])).toHaveKeys('id', 'name');
-    expect(new Map([['id', 1], ['name', 'foo']])).not.toHaveKeys('foo', 'bar');
+    const map = new Map();
+    map.set('id', 1);
+    map.set('name', 'foo');
+
+    expect(map).toHaveKeys('id', 'name');
+    expect(map).not.toHaveKeys('foo', 'bar');
   });
 });

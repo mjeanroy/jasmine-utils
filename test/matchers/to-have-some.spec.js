@@ -46,7 +46,11 @@ describe('toHaveSome', () => {
   it('should pass if set satisfies predicate function for at least one element', () => {
     assumeSet();
 
-    const actual = new Set([0, 1, 2]);
+    const actual = new Set();
+    actual.add(0);
+    actual.add(1);
+    actual.add(2);
+
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
     const result = toHaveSome({actual}, predicate);
 
@@ -61,7 +65,11 @@ describe('toHaveSome', () => {
   it('should pass if map satisfies predicate function for at least one element', () => {
     assumeMap();
 
-    const actual = new Map([['zero', 0], ['one', 1], ['two', 2]]);
+    const actual = new Map();
+    actual.set('zero', 0);
+    actual.set('one', 1);
+    actual.set('two', 2);
+
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
     const result = toHaveSome({actual}, predicate);
 
@@ -133,7 +141,11 @@ describe('toHaveSome', () => {
   it('should not pass if set does not satisfies predicate function for all elements', () => {
     assumeSet();
 
-    const actual = new Set([0, 1, 2]);
+    const actual = new Set();
+    actual.add(0);
+    actual.add(1);
+    actual.add(2);
+
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
     const result = toHaveSome({actual}, predicate);
 
@@ -150,7 +162,11 @@ describe('toHaveSome', () => {
   it('should not pass if map does not satisfies predicate function for all elements', () => {
     assumeMap();
 
-    const actual = new Map([['zero', 0], ['one', 1], ['two', 2]]);
+    const actual = new Map();
+    actual.set('zero', 0);
+    actual.set('one', 1);
+    actual.set('two', 2);
+
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
     const result = toHaveSome({actual}, predicate);
 

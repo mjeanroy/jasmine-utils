@@ -38,16 +38,39 @@ describe('toVerify', () => {
     assumeSet();
 
     const iterator = (item) => item % 2 === 0;
-    expect(new Set([2, 4, 6, 8])).toVerify(iterator);
-    expect(new Set([2, 4, 6, 8, 9])).not.toVerify(iterator);
+
+    const s1 = new Set();
+    s1.add(2);
+    s1.add(4);
+    s1.add(6);
+    s1.add(8);
+    expect(s1).toVerify(iterator);
+
+    const s2 = new Set();
+    s2.add(2);
+    s2.add(4);
+    s2.add(6);
+    s2.add(8);
+    s2.add(9);
+    expect(s2).not.toVerify(iterator);
   });
 
   it('should pass with map', () => {
     assumeMap();
 
     const iterator = (item) => item[1] % 2 === 0;
-    expect(new Map([['two', 2], ['four', 4], ['six', 6]])).toVerify(iterator);
-    expect(new Map([['two', 2], ['four', 4], ['seven', 7]])).not.toVerify(iterator);
+
+    const m1 = new Map();
+    m1.set('two', 2);
+    m1.set('four', 4);
+    m1.set('six', 6);
+    expect(m1).toVerify(iterator);
+
+    const m2 = new Map();
+    m2.set('two', 2);
+    m2.set('four', 4);
+    m2.set('seven', 7);
+    expect(m2).not.toVerify(iterator);
   });
 
   it('should pass with iterable objects', () => {

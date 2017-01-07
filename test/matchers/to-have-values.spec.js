@@ -38,7 +38,10 @@ describe('toHaveValues', () => {
   it('should check for map values', () => {
     assumeMap();
 
-    const actual = new Map([['foo', 'bar'], ['quix', 'foo']]);
+    const actual = new Map();
+    actual.set('foo', 'bar');
+    actual.set('quix', 'foo');
+
     const result = toHaveValues({actual}, 'foo', 'bar');
     expect(result).toEqual({
       pass: true,
@@ -58,7 +61,9 @@ describe('toHaveValues', () => {
   it('should fail with map without non expected values', () => {
     assumeMap();
 
-    const actual = new Map([['foo', 'bar']]);
+    const actual = new Map();
+    actual.set('foo', 'bar');
+
     const result = toHaveValues({actual}, 'foo', 'bar');
     expect(result).toEqual({
       pass: false,

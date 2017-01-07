@@ -50,14 +50,21 @@ describe('sizeOf', () => {
 
   it('should return size of set', () => {
     assumeSet();
-    expect(sizeOf(new Set([1, 2]))).toBe(2);
+
+    const set = new Set();
+    set.add(1);
+    set.add(2);
+
+    expect(sizeOf(set)).toBe(2);
   });
 
   it('should return size of map', () => {
     assumeMap();
+
     const map = new Map();
     map.set('one', 1);
     map.set('two', 2);
+
     expect(sizeOf(map)).toBe(2);
   });
 

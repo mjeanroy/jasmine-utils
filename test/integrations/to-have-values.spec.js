@@ -44,12 +44,11 @@ describe('toHaveValues', () => {
   it('should pass with map', () => {
     assumeMap();
 
-    const map = new Map([
-      ['id', 1],
-      ['name', 'foo'],
-      ['array', [1, 2, 3]],
-      ['o', {id: 10}],
-    ]);
+    const map = new Map();
+    map.set('id', 1);
+    map.set('name', 'foo');
+    map.set('array', [1, 2, 3]);
+    map.set('o', {id: 10});
 
     expect(map).toHaveValues(1, 'foo', [1, 2, 3], {id: 10});
     expect(map).not.toHaveValues(2, 'bar');
