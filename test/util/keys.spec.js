@@ -41,7 +41,10 @@ describe('keys', () => {
   it('should return map keys', () => {
     assumeMap();
 
-    const map = new Map([['one', 1], ['two', 2]]);
+    const map = new Map();
+    map.set('one', 1);
+    map.set('two', 2);
+
     const results = keys(map);
 
     expect(results.length).toBe(2);

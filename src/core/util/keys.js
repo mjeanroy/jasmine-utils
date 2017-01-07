@@ -24,10 +24,9 @@
 
 import {has} from './has.js';
 import {isMap} from './is-map.js';
-import {toArray} from './to-array.js';
 
 // Use a fallback for `Object.keys` if needed (for old browsers).
-const _keys = Object.keys || function _keys(o) {
+const objectKeys = Object.keys || function _keys(o) {
   const results = [];
 
   for (let key in o) {
@@ -40,11 +39,25 @@ const _keys = Object.keys || function _keys(o) {
 };
 
 /**
+ * Get all keys of map instance.
+ *
+ * @param {Map} map Map instance.
+ * @return {Array<String>} An array of all map keys.
+ */
+function mapKeys(map) {
+  // IE11 on Win10 does not support `keys` function, so
+  // use the good old `forEach` function.
+  const allKeys = [];
+  map.forEach((v, k) => allKeys.push(k));
+  return allKeys;
+}
+
+/**
  * Get all own and enumerable keys of an object.
  *
  * @param {Object} obj Object to extract keys.
  * @return {Array<string>} An array of all the keys in the object.
  */
 export function keys(obj) {
-  return isMap(obj) ? toArray(obj.keys()) : _keys(obj);
+  return isMap(obj) ? mapKeys(obj) : objectKeys(obj);
 }

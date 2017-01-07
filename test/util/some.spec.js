@@ -58,7 +58,11 @@ describe('some', () => {
   it('should return true if predicate always returns a truthy value with a map', () => {
     assumeMap();
 
-    const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
+    const map = new Map();
+    map.set('one', 1);
+    map.set('two', 2);
+    map.set('three', 3);
+
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
 
     const result = some(map, predicate);
@@ -121,7 +125,11 @@ describe('some', () => {
   it('should return false if predicate never a truthy value with a map', () => {
     assumeMap();
 
-    const map = new Map([['one', 1], ['two', 2], ['three', 3]]);
+    const map = new Map();
+    map.set('one', 1);
+    map.set('two', 2);
+    map.set('three', 3);
+
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
 
     const result = some(map, predicate);
