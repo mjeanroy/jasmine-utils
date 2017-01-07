@@ -24,19 +24,25 @@
 
 import {has} from './has.js';
 import {isMap} from './is-map.js';
-import {toArray} from './to-array.js';
 
 /**
  * Get all values of object.
+ * This function also support `Map` instances.
  *
- * @param {*} obj The object.
+ * @param {Map|Object} obj The object.
  * @return {Array<*>} Array of all values.
  */
 export function values(obj) {
-  if (isMap(obj)) {
-    return toArray(obj.values());
-  }
+  return isMap(obj) ? mapValues(obj) : objectValues(obj);
+}
 
+/**
+ * Get all object values.
+ *
+ * @param {Object} obj Object.
+ * @return {Array<*>} Object values.
+ */
+function objectValues(obj) {
   const vals = [];
 
   for (let i in obj) {
@@ -46,4 +52,18 @@ export function values(obj) {
   }
 
   return vals;
+}
+
+/**
+ * Get all map values.
+ *
+ * @param {Map} map Map instance.
+ * @return {Array<*>} Map values.
+ */
+function mapValues(map) {
+  // IE11 on Win10 does not support `keys` function, so
+  // use the good old `forEach` function.
+  const allValues = [];
+  map.forEach((x) => allValues.push(x));
+  return allValues;
 }
