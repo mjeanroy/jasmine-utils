@@ -59,12 +59,12 @@ describe('toVerify', () => {
       message: `Expect ${jasmine.pp(actual)} {{not}} to verify condition`,
     });
 
-    expect(predicate).toHaveBeenCalledWith(0, jasmine.any(Number), actual);
-    expect(predicate).toHaveBeenCalledWith(1, jasmine.any(Number), actual);
-    expect(predicate).toHaveBeenCalledWith(2, jasmine.any(Number), actual);
+    expect(predicate).toHaveBeenCalledWith(0, 0, actual);
+    expect(predicate).toHaveBeenCalledWith(1, 1, actual);
+    expect(predicate).toHaveBeenCalledWith(2, 2, actual);
   });
 
-  it('should pass if set satisfies predicate function', () => {
+  it('should pass if map satisfies predicate function', () => {
     assumeMap();
 
     const actual = new Map();
@@ -80,9 +80,9 @@ describe('toVerify', () => {
       message: `Expect ${jasmine.pp(actual)} {{not}} to verify condition`,
     });
 
-    expect(predicate).toHaveBeenCalledWith(['one', 1], jasmine.any(Number), actual);
-    expect(predicate).toHaveBeenCalledWith(['two', 2], jasmine.any(Number), actual);
-    expect(predicate).toHaveBeenCalledWith(['three', 3], jasmine.any(Number), actual);
+    expect(predicate).toHaveBeenCalledWith(1, 'one', actual);
+    expect(predicate).toHaveBeenCalledWith(2, 'two', actual);
+    expect(predicate).toHaveBeenCalledWith(3, 'three', actual);
   });
 
   it('should pass if iterable satisfies predicate function', () => {

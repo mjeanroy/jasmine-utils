@@ -27,13 +27,22 @@ import {isFunction} from '../util/is-function.js';
 
 /**
  * Check that the tested object satisfies a given predicate.
- *
- * The collection may be an `array` or any iterable object.
+ * The collection may be an `array`, a `set`, a `map` or any iterable object.
  *
  * The predicate function is executed with three arguments:
  * - The value being iterated.
- * - The index of the value being iterated.
+ * - The key of the value being iterated.
  * - The collection being iterated.
+ *
+ * **Important:**
+ * Note that the key may be different with arrays and map/set:
+ * - With an array or an iterable object, the key will be the index of the value being traversed.
+ * - With a map, the key will be the index value of the value being traversed.
+ * - With a set, the key will be the same value being traversed (since a `Set` does not have any keys).
+ *
+ * See the documentation of the `forEach` functions of `Map` and `Set` structure:
+ * - https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Set/forEach
+ * - https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Map
  *
  * This matcher may take an optional first argument: the error message that will
  * be displayed if the matcher does not pass.

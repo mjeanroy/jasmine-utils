@@ -56,7 +56,7 @@ describe('toHaveSome', () => {
   it('should pass with a map', () => {
     assumeMap();
 
-    const iterator = (item) => item[1] % 2 === 0;
+    const iterator = (item) => item % 2 === 0;
 
     const m1 = new Map();
     m1.set('one', 1);

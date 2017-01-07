@@ -117,9 +117,9 @@ describe('some', () => {
     const result = some(set, predicate);
 
     expect(result).toBe(false);
-    expect(predicate).toHaveBeenCalledWith(1, jasmine.any(Number), set);
-    expect(predicate).toHaveBeenCalledWith(2, jasmine.any(Number), set);
-    expect(predicate).toHaveBeenCalledWith(3, jasmine.any(Number), set);
+    expect(predicate).toHaveBeenCalledWith(1, 1, set);
+    expect(predicate).toHaveBeenCalledWith(2, 2, set);
+    expect(predicate).toHaveBeenCalledWith(3, 3, set);
   });
 
   it('should return false if predicate never a truthy value with a map', () => {
@@ -135,9 +135,9 @@ describe('some', () => {
     const result = some(map, predicate);
 
     expect(result).toBe(false);
-    expect(predicate).toHaveBeenCalledWith(['one', 1], jasmine.any(Number), map);
-    expect(predicate).toHaveBeenCalledWith(['two', 2], jasmine.any(Number), map);
-    expect(predicate).toHaveBeenCalledWith(['three', 3], jasmine.any(Number), map);
+    expect(predicate).toHaveBeenCalledWith(1, 'one', map);
+    expect(predicate).toHaveBeenCalledWith(2, 'two', map);
+    expect(predicate).toHaveBeenCalledWith(3, 'three', map);
   });
 
   it('should return false if predicate never a truthy value with an iterable object', () => {

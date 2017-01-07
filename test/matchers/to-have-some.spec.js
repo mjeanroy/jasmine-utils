@@ -154,9 +154,9 @@ describe('toHaveSome', () => {
       message: `Expect ${jasmine.pp(actual)} {{not}} to have at least one element that verify condition`,
     });
 
-    expect(predicate).toHaveBeenCalledWith(0, jasmine.any(Number), actual);
-    expect(predicate).toHaveBeenCalledWith(1, jasmine.any(Number), actual);
-    expect(predicate).toHaveBeenCalledWith(2, jasmine.any(Number), actual);
+    expect(predicate).toHaveBeenCalledWith(0, 0, actual);
+    expect(predicate).toHaveBeenCalledWith(1, 1, actual);
+    expect(predicate).toHaveBeenCalledWith(2, 2, actual);
   });
 
   it('should not pass if map does not satisfies predicate function for all elements', () => {
@@ -175,9 +175,9 @@ describe('toHaveSome', () => {
       message: `Expect ${jasmine.pp(actual)} {{not}} to have at least one element that verify condition`,
     });
 
-    expect(predicate).toHaveBeenCalledWith(['zero', 0], jasmine.any(Number), actual);
-    expect(predicate).toHaveBeenCalledWith(['one', 1], jasmine.any(Number), actual);
-    expect(predicate).toHaveBeenCalledWith(['two', 2], jasmine.any(Number), actual);
+    expect(predicate).toHaveBeenCalledWith(0, 'zero', actual);
+    expect(predicate).toHaveBeenCalledWith(1, 'one', actual);
+    expect(predicate).toHaveBeenCalledWith(2, 'two', actual);
   });
 
   it('should not pass if iterable does not satisfies predicate function for all elements', () => {

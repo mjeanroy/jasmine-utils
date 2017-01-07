@@ -23,6 +23,8 @@
  */
 
 import {isArrayLike} from './is-array-like.js';
+import {isSet} from './is-set.js';
+import {isMap} from './is-map.js';
 import {isIterable} from './is-iterable.js';
 
 /**
@@ -60,7 +62,7 @@ function iterableEvery(iterable, predicate) {
   let i = 0;
 
   for (const value of iterable) {
-    if (!predicate.call(null, value, i, iterable)) {
+    if (!predicate.call(undefined, value, i, iterable)) {
       return false;
     }
 
@@ -71,28 +73,64 @@ function iterableEvery(iterable, predicate) {
 }
 
 /**
+ * Check that a predicate satisfies each elements in a `Set` or a `Map`.
+ * If the map or the set is empty, this function will returns `true`.
+ *
+ * @param {Map|Set} mapOrSet Iterable object.
+ * @param {function} predicate The predicate function.
+ * @return {boolean} `true` if the predicate function returns `true` for each elements, `false` otherwise.
+ */
+function mapOrSetEvery(mapOrSet, predicate) {
+  let hasFalse = false;
+
+  mapOrSet.forEach((v, k, c) => {
+    hasFalse = hasFalse || !predicate.call(undefined, v, k, c);
+  });
+
+  return !hasFalse;
+}
+
+/**
  * Check that a predicate satisfies each elements in an array or an iterable
  * structure.
  *
+ * This function supports:
+ * - Array.
+ * - Array-Like objects.
+ * - Map instances.
+ * - Set instances.
+ * - Any iterable objects.
+ *
  * The predicate function will be called with three arguments:
  *  - `value` The value for the given iteration.
- *  - `index` The index of the value being iterated.
+ *  - `key` The key of the value being iterated.
  *  - `array` The array being traversed.
  *
- * @param {Array<*>} array The array to iterate.
+ * Note that the key may be different with arrays and map/set:
+ * - With an array or an iterable object, the key will be the index of the value being traversed.
+ * - With a map, the key will be the index value of the value being traversed.
+ * - With a set, the key will be the same value being traversed (since a `Set` does not have any keys).
+ *
+ * See the documentation of the `forEach` functions of `Map` and `Set` structure.
+ *
+ * @param {Array|Map|Set} collection The collection to iterate.
  * @param {function} predicate The predicate function.
  * @return {boolean} `true` if the predicate returns a truthy value for each element
  *                   in the array, `false` otherwise.
  */
-export function every(array, predicate) {
+export function every(collection, predicate) {
   // First, test with an array.
-  if (isArrayLike(array)) {
-    return arrayEvery(array, predicate);
+  if (isArrayLike(collection)) {
+    return arrayEvery(collection, predicate);
   }
 
-  // Then, try with iterable (map, set, object with iterator function).
-  if (isIterable(array)) {
-    return iterableEvery(array, predicate);
+  if (isSet(collection) || isMap(collection)) {
+    return mapOrSetEvery(collection, predicate);
+  }
+
+  // Then, try with iterable (object with iterator function).
+  if (isIterable(collection)) {
+    return iterableEvery(collection, predicate);
   }
 
   return true;

@@ -58,7 +58,7 @@ describe('toVerify', () => {
   it('should pass with map', () => {
     assumeMap();
 
-    const iterator = (item) => item[1] % 2 === 0;
+    const iterator = (item) => item % 2 === 0;
 
     const m1 = new Map();
     m1.set('two', 2);

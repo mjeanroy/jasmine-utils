@@ -71,9 +71,9 @@ describe('every', () => {
     const result = every(map, predicate);
 
     expect(result).toBe(true);
-    expect(predicate).toHaveBeenCalledWith(['one', 1], jasmine.any(Number), map);
-    expect(predicate).toHaveBeenCalledWith(['two', 2], jasmine.any(Number), map);
-    expect(predicate).toHaveBeenCalledWith(['three', 3], jasmine.any(Number), map);
+    expect(predicate).toHaveBeenCalledWith(1, 'one', map);
+    expect(predicate).toHaveBeenCalledWith(2, 'two', map);
+    expect(predicate).toHaveBeenCalledWith(3, 'three', map);
   });
 
   it('should return true if predicate always returns a truthy value with an iterable object', () => {
@@ -129,10 +129,10 @@ describe('every', () => {
     const result = every(set, predicate);
 
     expect(result).toBe(false);
-    expect(predicate).toHaveBeenCalledWith(3, jasmine.any(Number), set);
+    expect(predicate).toHaveBeenCalledWith(3, 3, set);
   });
 
-  it('should return true if predicate always returns a truthy value with a map', () => {
+  it('should return false if predicate returns a falsy value with a map', () => {
     assumeMap();
 
     const map = new Map();
@@ -147,7 +147,7 @@ describe('every', () => {
     const result = every(map, predicate);
 
     expect(result).toBe(false);
-    expect(predicate).toHaveBeenCalledWith(['three', 3], jasmine.any(Number), map);
+    expect(predicate).toHaveBeenCalled();
   });
 
   it('should return true if predicate always returns a truthy value with an iterable object', () => {
