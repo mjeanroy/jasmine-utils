@@ -83,8 +83,10 @@ function iterableEvery(iterable, predicate) {
 function mapOrSetEvery(mapOrSet, predicate) {
   let hasFalse = false;
 
-  mapOrSet.forEach((v, k, c) => {
-    hasFalse = hasFalse || !predicate.call(undefined, v, k, c);
+  mapOrSet.forEach(function(v, k) {
+    // Be careful, `forEach` function on Safari miss the second parameter when
+    // iterating over a `Set`...
+    hasFalse = hasFalse || !predicate.call(undefined, v, arguments.length === 1 ? v : k, mapOrSet);
   });
 
   return !hasFalse;
