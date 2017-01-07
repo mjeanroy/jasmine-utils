@@ -35,10 +35,10 @@ export function tagName(obj) {
   // Try to patch this bug and return the appropriate tag value.
   // The best way seems to compare the constructor source with `Map` or `Set` sources.
   if (tag === '[object Object]') {
-    const src = toSource(obj.constructor);
-    if (src === toSource(Map)) {
+    const src = typeof obj.constructor === 'function' ? toSource(obj.constructor) : '';
+    if (typeof Map === 'function' && src === toSource(Map)) {
       return '[object Map]';
-    } else if (src === toSource(Set)) {
+    } else if (typeof Set === 'function' && src === toSource(Set)) {
       return '[object Set]';
     }
   }
@@ -53,5 +53,5 @@ export function tagName(obj) {
  * @return {string} Function source.
  */
 function toSource(obj) {
-  return typeof obj === 'function' ? Function.prototype.toString.call(obj) : '';
+  return Function.prototype.toString.call(obj);
 }
