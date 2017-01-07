@@ -13,6 +13,13 @@ const browsers = {
     version: '11',
   },
 
+  SL_ie_10: {
+    base: 'SauceLabs',
+    browserName: 'internet explorer',
+    platform: 'Windows 8',
+    version: '10',
+  },
+
   SL_ie_9: {
     base: 'SauceLabs',
     browserName: 'internet explorer',
