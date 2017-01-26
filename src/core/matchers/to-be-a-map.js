@@ -34,7 +34,7 @@ import {isMap} from '../util/is-map.js';
  *
  * @param {Object} ctx Test context.
  * @return {Object} The test result.
- * @since 0.4.0
+ * @since 0.3.0
  */
 export function toBeAMap(ctx) {
   const actual = ctx.actual;

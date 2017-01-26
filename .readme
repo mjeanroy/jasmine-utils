@@ -1,0 +1,219 @@
+jasmine-utils
+=============
+
+Jasmine-Utils is a set of custom matchers that I used in my previous projects.
+
+Jasmine-Utils is compatible with __Jasmine 1.3__ and __Jasmine 2.0__.
+
+## Utils Functions
+
+- `jasmine.spyAll(object)`
+  - Spy all functions of given object.
+  - Spies are configured with `callThrough`
+
+```javascript
+it('should spy all methods', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    }
+  };
+
+  jasmine.spyAll(obj);
+
+  expect(obj.method1).not.toHaveBeenCalled();
+  expect(obj.method2).not.toHaveBeenCalled();
+});
+```
+
+- `jasmine.spyIf(function)`
+  - Spy function if and only if function is not already a spy.
+  - Spy is returned.
+
+```javascript
+it('should spy method once', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    }
+  };
+
+  jasmine.spyIf(obj, 'method1');
+  jasmine.spyIf(obj, 'method1');
+});
+```
+
+- `jasmine.spyAllExcept(object, [excepts])`
+  - Spy all functions of given object, excepts function names given in array (second arguments).
+  - Spies are configured with `callThrough`
+
+```javascript
+it('should spy selected method', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    }
+  };
+
+  jasmine.spyAllExcept(obj, 'method2');
+});
+```
+
+- `jasmine.spyEach(object, [only])`
+  - Spy all functions of given object that are specified in array as second arguments.
+  - Spies are configured with `callThrough`
+
+```javascript
+it('should spy selected method', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    },
+    method3: function() {
+    }
+  };
+
+  jasmine.spyEach(obj, ['method1', 'method2']);
+});
+```
+
+- `jasmine.resetAll(object)`
+  - Reset all spy of given object.
+
+```javascript
+it('should reset all methods', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    }
+  };
+
+  spyOn(obj, 'method1');
+  spyOn(obj, 'method2');
+
+  obj.method1();
+  obj.method2();
+
+  expect(obj.method1).toHaveBeenCalled();
+  expect(obj.method2).toHaveBeenCalled();
+
+  jasmine.resetAll(obj);
+
+  expect(obj.method1).not.toHaveBeenCalled();
+  expect(obj.method2).not.toHaveBeenCalled();
+});
+```
+
+- `jasmine.resetEach(object, [methods])`
+  - Reset each specified spies of given object.
+
+```javascript
+it('should reset all methods', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    }
+  };
+
+  spyOn(obj, 'method1');
+  spyOn(obj, 'method2');
+
+  obj.method1();
+  obj.method2();
+
+  expect(obj.method1).toHaveBeenCalled();
+  expect(obj.method2).toHaveBeenCalled();
+
+  jasmine.resetEach(obj, ['method1']);
+
+  expect(obj.method1).not.toHaveBeenCalled();
+  expect(obj.method2).toHaveBeenCalled();
+});
+```
+
+- `jasmine.resetAllExcept(object, [methods])`
+  - Reset all spies of given object except specified methods.
+
+```javascript
+it('should reset all methods', function() {
+  var obj = {
+    id: 1,
+    method1: function() {
+    },
+    method2: function() {
+    }
+  };
+
+  spyOn(obj, 'method1');
+  spyOn(obj, 'method2');
+
+  obj.method1();
+  obj.method2();
+
+  expect(obj.method1).toHaveBeenCalled();
+  expect(obj.method2).toHaveBeenCalled();
+
+  jasmine.resetAllExcept(obj, ['method1']);
+
+  expect(obj.method1).toHaveBeenCalled();
+  expect(obj.method2).not.toHaveBeenCalled();
+});
+```
+
+## Matchers
+
+{{#each matchers}}
+### {{ name }}
+
+{{{ description }}}
+
+#### Since
+
+{{{ since }}}
+
+#### Parameters
+
+{{#if params.length }}
+| Name | Type | Description |
+|------|------|-------------|
+{{#each params}}
+| `{{{ this.name }}}` | `{{#if this.variable}}...{{/if}}{{{ this.types }}}` | {{{ this.description}}} |
+{{/each}}
+{{else}}
+**No parameters**
+{{/if}}
+
+#### Message
+
+{{#each messages}}
+`{{{ this }}}`
+{{/each}}
+
+#### Example:
+
+{{#each examples}}
+```javascript
+{{{ this }}}
+```
+{{/each}}
+{{/each}}
+
+## Licence
+
+MIT License (MIT)
+
+## Contributing
+
+If you think some matchers are missing or error messages are not useful enough, feel free to contribute and submit an issue or a pull request.

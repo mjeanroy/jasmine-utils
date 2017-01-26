@@ -38,7 +38,7 @@ import {isNil} from '../util/is-nil.js';
  *
  * @param {Object} ctx Test context.
  * @return {Object} Test result.
- * @since 0.4.0
+ * @since 0.3.0
  */
 export function toBeNil(ctx) {
   const actual = ctx.actual;
