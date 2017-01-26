@@ -44,7 +44,7 @@
     "lodash": "4.17.4",
     "phantomjs-prebuilt": "2.1.14",
     "q": "1.4.1",
-    "rollup": "0.41.1",
+    "rollup": "0.41.4",
     "rollup-plugin-babel": "2.7.1",
     "rollup-plugin-esformatter": "0.1.0",
     "rollup-plugin-includepaths": "0.1.8",
