@@ -30,6 +30,12 @@ const _ = require('lodash');
 const conf = require('./karma.common.conf.js');
 
 const browsers = {
+  SL_Win10_edge: {
+    base: 'SauceLabs',
+    browserName: 'microsoftedge',
+    platform: 'Windows 10',
+  },
+
   SL_Win10_ie_11: {
     base: 'SauceLabs',
     browserName: 'internet explorer',
