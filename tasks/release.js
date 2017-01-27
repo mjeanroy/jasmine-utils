@@ -33,7 +33,7 @@ const tagVersion = require('gulp-tag-version');
 const options = require('../conf.js');
 
 // Release tasks
-['minor', 'major', 'patch'].forEach(function(level) {
+['minor', 'major', 'patch'].forEach((level) => {
   gulp.task(`release:${level}`, ['build', 'docs'], function() {
     const jsonFilter = gulpFilter('**/*.json', {restore: true});
     const pkgJsonFilter = gulpFilter('**/package.json', {restore: true});
@@ -42,7 +42,7 @@ const options = require('../conf.js');
     const src = [
       path.join(options.root, 'package.json'),
       path.join(options.root, 'bower.json'),
-      path.join(options.docs, '**', '*.md'),
+      path.join(options.root, 'README.md'),
       options.dest,
     ];
 
