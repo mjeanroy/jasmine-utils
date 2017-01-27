@@ -208,6 +208,7 @@ it('should reset all methods', function() {
 {{{ this }}}
 ```
 {{/each}}
+
 {{/each}}
 
 ## Licence
