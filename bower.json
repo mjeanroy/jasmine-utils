@@ -17,7 +17,11 @@
     "bower_components",
     "test",
     "tests",
-    "karma.conf.js",
+    "tasks",
+    "karma.common.conf.js",
+    "karma.saucelab.conf.js",
+    "karma.tdd.conf.js",
+    "karma.test.conf.js",
     "gulpfile.js",
     "conf.js",
     "rollup.conf.js"

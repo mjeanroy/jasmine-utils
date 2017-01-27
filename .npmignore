@@ -6,8 +6,14 @@ node_modules/
 .bowerrc
 .eslintrc
 .gitignore
+.readme
+.travis.yml
 test/
+tasks/
 gulpfile.js
-karma.conf.js
+karma.common.conf.js
+karma.saucelab.conf.js
+karma.tdd.conf.js
+karma.test.conf.js
 conf.js
 rollup.conf.js
