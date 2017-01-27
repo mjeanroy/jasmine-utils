@@ -1,6 +1,11 @@
 jasmine-utils
 =============
 
+[![Build Status](https://travis-ci.org/mjeanroy/jasmine-utils.svg?branch=master)](https://travis-ci.org/mjeanroy/jasmine-utils)
+[![GitHub version](https://badge.fury.io/gh/mjeanroy%2Fjasmine-utils.svg)](https://badge.fury.io/gh/mjeanroy%2Fjasmine-utils)
+[![Npm version](https://badge.fury.io/js/jasmine-utils.svg)](https://badge.fury.io/js/jasmine-utils)
+[![Bower version](https://badge.fury.io/bo/jasmine-utils.svg)](https://badge.fury.io/bo/jasmine-utils)
+
 Jasmine-Utils is a set of custom matchers that I used in my previous projects.
 
 Jasmine-Utils is compatible with __Jasmine 1.3__ and __Jasmine 2.0__.
@@ -174,898 +179,1652 @@ it('should reset all methods', function() {
 
 ## Matchers
 
-### Booleans
+### toBeABoolean
 
-- `toBeABoolean()`
-  - Check that a given value is a boolean object
-  - Error message: 'Expect value (not) to be a boolean'
+Check that the tested object is a `boolean` (a `boolean` is exactly `true`
+or `false`).
 
-```javascript
-it('should check if object is a boolean', function() {
-  expect(true).toBeABoolean();
-  expect(false).toBeABoolean();
-  expect(0).not.toBeABoolean();
-  expect('').not.toBeABoolean();
-  expect(null).not.toBeABoolean();
-  expect(undefined).not.toBeABoolean();
-});
-```
+#### Since
 
-- `toBeTrue()`
-  - Check that a given value is strictly equals to true
-  - Error message: 'Expect value (not) to be true'
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a boolean`
+
+#### Example:
 
 ```javascript
-it('should check if object is true', function() {
-  expect(true).toBeTrue();
-  expect(false).not.toBeTrue();
-});
+expect(true).toBeABoolean();
+expect(false).toBeABoolean();
+expect(null).not.toBeABoolean();
+expect(undefined).not.toBeABoolean();
 ```
 
-- `toBeFalse()`
-  - Check that a given value is strictly equals to false
-  - Error message: 'Expect value (not) to be false'
+### toBeADate
+
+Check that the tested object is an instance of `Date`.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a date`
+
+#### Example:
 
 ```javascript
-it('should check if object is false', function() {
-  expect(false).toBeFalse();
-  expect(true).not.toBeFalse();
-});
+expect(new Date()).toBeADate();
+expect(null).not.toBeADate();
+expect(123).not.toBeADate();
 ```
 
-### Strings
+### toBeAFunction
 
-- `toBeAString()`
-  - Check that a given string is a string object
-  - Error message: 'Expect value (not) to be a string'
+Check that the tested object is a `function`.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a function`
+
+#### Example:
 
 ```javascript
-it('should check if object is a string', function() {
-  expect('').toBeAString();
-  expect('foo').toBeAString();
-  expect(false).not.toBeAString();
-  expect(0).not.toBeAString();
-});
+expect(() => {}).toBeAFunction();
+expect(function() {}).toBeAFunction();
+expect(undefined).not.toBeAFunction();
+expect(null).not.toBeAFunction();
 ```
 
-- `toBeAnEmptyString()`
-  - Check that a given string is empty (i.e. === '')
-  - Error message: 'Expect value (not) to be an empty string'
+### toBeAMap
+
+Check that the tested object is a `Map`.
+
+#### Since
+
+0.3.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a Map`
+
+#### Example:
 
 ```javascript
-it('should check if string is empty', function() {
-  expect('').toBeAnEmptyString();
-  expect('foo').not.toBeAnEmptyString();
-});
+expect(new Map()).toBeAMap();
+expect({}).not.toBeAMap();
 ```
 
-- `toBeEmpty()`
-  - Same as `toBeAnEmptyString`
-  - Error message: 'Expect value (not) to be empty'
+### toBeANumber
+
+Check that the tested object is a `number`.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a number`
+
+#### Example:
 
 ```javascript
-it('should check if string is empty', function() {
-  expect('').toBeEmpty();
-  expect('foo').not.toBeAnEmpty();
-});
+expect(0).toBeANumber();
+expect(1).toBeANumber();
+expect(1.5).toBeANumber();
+expect('0').not.toBeANumber();
+expect('1').not.toBeANumber();
 ```
 
-- `toHaveLength(length)`
-  - Check that a given string has a length equals to expected length
-  - Error message: 'Expect length of actual (not) to be length but was actual.length'
+### toBeASet
+
+Check that the tested object is a `Set`.
+
+#### Since
+
+0.3.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a Set`
+
+#### Example:
 
 ```javascript
-it('should check length of string', function() {
-  expect('').toHaveLength(0);
-  expect('foo').toHaveLength(3);
-  expect('foo').not.toHaveLength(0);
-});
+expect(new Set()).toBeASet();
+expect({}).not.toBeASet();
+expect([]).not.toBeASet();
 ```
 
-- `toHaveSize(size)`
-  - Same as `toHaveLength`
-  - Error message: 'Expect size of actual (not) to be size but was actual.length'
+### toBeAString
+
+Check that the tested object is a string.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a string`
+
+#### Example:
 
 ```javascript
-it('should check size of string', function() {
-  expect('').toHaveSize(0);
-  expect('foo').toHaveSize(3);
-  expect('foo').not.toHaveSize(0);
-});
+expect('').toBeAString();
+expect('foo').toBeAString();
+expect(String('foo')).toBeAString();
+expect(false).not.toBeAString();
+expect(0).not.toBeAString();
 ```
 
-- `toHaveSameLengthAs(array|string)`
-  - Check that a given string has a length equals to length of array or string in parameter
-  - Error message: 'Expect length of actual (not) to be param.length but was actual.length'
+### toBeAnArray
+
+Check that the tested object is an array (a real array, not an array-like object).
+This matcher will use `Array.isArray` or a fallback if it is not available.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be an array`
+
+#### Example:
 
 ```javascript
-it('should check that length are equals', function() {
-  expect('').toHaveSameLengthAs([]);
-  expect('foo').toHaveSameLengthAs(['f', 'o', 'o']);
-  expect('foo').not.toHaveSameLengthAs(['f', 'o', 'o', 'b', 'a', 'r']);
-});
+expect([]).toBeAnArray();
+expect('123').not.toBeAnArray();
+expect(1).not.toBeAnArray();
+expect(false).not.toBeAnArray();
+expect({}).not.toBeAnArray();
+expect(null).not.toBeAnArray();
+expect(undefined).not.toBeAnArray();
 ```
 
-- `toHaveSameSizeAs(object|array|string)`
-  - Check that a given string has a length equals to parameter size
-  - Error message: 'Expect size of actual (not) to be size(param) but was actual.length'
+### toBeAnEmptyString
+
+Check that the tested object is an empty string (a `string` equals to `''`).
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be an empty string`
+
+#### Example:
 
 ```javascript
-it('should check that size are equals', function() {
-  expect('').toHaveSameSizeAs([]);
-  expect('').toHaveSameSizeAs({});
-  expect('foo').toHaveSameSizeAs(['f', 'o', 'o']);
-
-  expect('bar').toHaveSameSizeAs({
-    b: 1,
-    a: 1,
-    r: 1
-  });
-
-  expect('foo').not.toHaveSameSizeAs({
-    f: 1,
-    o: 2
-  });
-});
+expect('').toBeAnEmptyString();
+expect('  ').not.toBeAnEmptyString();
+expect('foo').not.toBeAnEmptyString();
 ```
 
-- `toEqualIgnoringCase(string)`
-  - Check that a given string is equal to an other string ignoring case
-  - Error message: 'Expect actual (not) to be equal to string (case insensitive)'
+### toBeDateAfterNow
+
+Check that the tested date object is a date "after" `now`.
+
+The tested date may be:
+- A date instance.
+- A timestamp.
+- A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+
+**Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect date [actual] (not) to be after now`
+
+#### Example:
 
 ```javascript
-it('should check that strings are equal ignoring case', function() {
-  expect('foo').toEqualIgnoringCase('foo');
-  expect('foo').toEqualIgnoringCase('FOO');
-  expect('foo').not.toEqualIgnoringCase('bar');
-});
+expect(Date.now() + 1000).toBeDateAfterNow();
+expect(new Date(Date.now() + 1000)).toBeDateAfterNow();
+expect(new Date(Date.now() - 1000)).not.toBeDateAfterNow();
 ```
 
-- `toStartWith(prefix)`
-  - Check that a given string start with given prefix
-  - Error message: 'Expect actual (not) to start with prefix'
+### toBeDateAfter
+
+Check that the tested date object is a date "after" an other date.
+
+The tested date and the date to compare may be:
+- A date instance.
+- A timestamp.
+- A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+
+**Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `lower` | `Date,number,string` | The lower bound. |
+
+#### Message
+
+`Expect date [actual] (not) to be after [lower]`
+
+#### Example:
 
 ```javascript
-it('should check that string start with expected prefix', function() {
-  expect('foo').toStartWith('f');
-  expect('foo').toStartWith('fo');
-  expect('foo').toStartWith('foo');
-  expect('foo').not.toStartWith('bar');
-});
+expect(Date.now()).toBeDateAfter(Date.now() - 1000));
+expect(Date.now() - 1000).toBeDateAfter(Date.now()));
 ```
 
-- `toEndWith(suffix)`
-  - Check that a given string end with given suffix
-  - Error message: 'Expect actual (not) to end with suffix'
+### toBeDateBeforeNow
+
+Check that the tested date object is a date "before" `now`.
+
+The tested date may be:
+- A date instance.
+- A timestamp.
+- A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+
+**Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect date [actual] (not) to be before now`
+
+#### Example:
 
 ```javascript
-it('should check that string end with expected suffix', function() {
-  expect('foo').toEndWith('o');
-  expect('foo').toEndWith('oo');
-  expect('foo').toEndWith('foo');
-  expect('foo').not.toEndWith('bar');
-});
+expect(Date.now() - 1000).toBeDateBeforeNow();
+expect(new Date(Date.now() - 1000)).toBeDateBeforeNow();
+expect(new Date(Date.now() + 1000)).not.toBeDateBeforeNow();
 ```
 
-### Numbers
+### toBeDateBefore
 
-- `toBeANumber()`
-  - Check that a given value is a number object.
-  - Error message: 'Expect actual (not) to be a number'
+Check that the tested date object is a date "before" an other date.
+
+The tested date and the date to compare may be:
+- A date instance.
+- A timestamp.
+- A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+
+**Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `upper` | `Date,number,string` | The upper bound. |
+
+#### Message
+
+`Expect date [actual] (not) to be before [lower]`
+
+#### Example:
 
 ```javascript
-it('should check if object is a number', function() {
-  expect(0).toBeANumber();
-  expect(1).toBeANumber();
-  expect(1.5).toBeANumber();
-  expect('0').not.toBeANumber();
-});
+expect(Date.now()).toBeDateBefore(Date.now() + 1000));
+expect(Date.now() + 1000).toBeDateBefore(Date.now()));
 ```
 
-- `toBeZero()`
-  - Check that a given value is strictly equals to zero.
-  - Error message: 'Expect actual (not) to be zero'
+### toBeDateCloseToNow
+
+Check that the tested object is a date close to 'now'.
+
+The tested date may be:
+- A date instance.
+- A timestamp.
+- A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+
+**Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `max` | `number` | The maximum difference (in milliseconds), defaults to 1000. |
+
+#### Message
+
+`Expect date [actual] (not) to be close to now`
+
+#### Example:
 
 ```javascript
-it('should check if object is zero', function() {
-  expect(0).toBeZero();
-  expect(1).not.toBeZero();
-  expect('0').not.toBeZero();
-});
+expect(Date.now()).toBeDateCloseToNow();
+expect(Date.now() + 1000).toBeDateCloseToNow(2000);
+expect(Date.now() - 1000).toBeDateCloseToNow(2000);
+expect(new Date()).toBeDateCloseToNow();
+expect(new Date(Date.now() + 1000)).not.toBeDateCloseToNow(2000);
+expect(new Date(Date.now() - 1000)).not.toBeDateCloseToNow(2000);
 ```
 
-- `toBePositive()`
-  - Check that a given value is strictly greater than zero.
-  - Error message: 'Expect actual (not) to be positive'
+### toBeDateCloseTo
+
+Check that the tested date object and an actual date object are close.
+
+By default, the difference in milliseconds between both dates must not exceed 1000ms,
+but the last parameter may be set to increase/decrease this value.
+
+The tested date and the date to compare may be:
+- A date instance.
+- A timestamp.
+- A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+
+**Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `date` | `Date,number,string` | The second date to compare with. |
+| `max` | `number` | The maximum difference in milliseconds between both dates, default to 1000. |
+
+#### Message
+
+`Expect date [actual] (not) to be close to [date]`
+
+#### Example:
 
 ```javascript
-it('should check if number is positive', function() {
-  expect(1).toBePositive();
-  expect(0).not.toBePositive();
-  expect(-1).not.toBePositive();
-});
+expect(new Date(1995, 1, 1, 10, 0, 0, 0)).toBeDateCloseTo(new Date(1995, 1, 1, 10, 0, 0, 500));
+expect(new Date(1995, 1, 1, 10, 0, 0, 0)).toBeDateCloseTo(new Date(1995, 1, 1, 10, 0, 0, 500), 1000);
+expect(new Date(1995, 1, 1, 10, 0, 0, 0)).toBeDateCloseTo(new Date(1995, 1, 1, 10, 0, 0, 500), 100);
 ```
 
-- `toBeNegative()`
-  - Check that a given value is strictly lower than zero.
-  - Error message: 'Expect actual (not) to be negative'
+### toBeDOMElementWithAttributes
+
+Check that the tested object is a DOM element with expected attributes (using
+the `getAttribute` function).
+
+Note that the attribute value can also be a jasmine matcher (`jasmine.any(String)` for example).
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `attributes` | `Object` | Expected attributes. |
+
+#### Message
+
+`Expect [actual] (not) to be a DOM element with attributes [attributes] but was [actualAttributes]`
+
+#### Example:
 
 ```javascript
-it('should check if number is negative', function() {
-  expect(-1).toBeNegative();
-  expect(0).not.toBeNegative();
-  expect(1).not.toBeNegative();
-});
+const span = document.createElement('span');
+span.setAttribute('foo', 'foo');
+span.setAttribute('bar', 'bar');
+
+expect(span).toBeDOMElementWithAttributes({ foo: 'foo', bar: jasmine.any(String) });
 ```
 
-- `toBeOddNumber()`
-  - Check that a given value is an odd number.
-  - Error message: 'Expect actual (not) to be an odd number'
+### toBeDOMElementWithClasses
+
+Check that the tested object is a DOM element with expected class names.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `classes` | `Array.<string>,string` | Expected class names. |
+
+#### Message
+
+`Expect [actual] (not) to be a DOM element with classes [classes] but was [actualClasses]`
+
+#### Example:
 
 ```javascript
-it('should check if number is an odd number', function() {
-  expect(1).toBeOddNumber();
-  expect(2).not.toBeOddNumber();
-  expect(0).not.toBeOddNumber();
-});
+const span = document.createElement('span');
+span.className = 'foo bar';
+
+expect(span).toBeDOMElementWithClasses('foo');
+expect(span).toBeDOMElementWithClasses('bar');
+expect(span).toBeDOMElementWithClasses('foo bar');
+expect(span).toBeDOMElementWithClasses(['foo', 'bar']);
 ```
 
-- `toBeEvenNumber()`
-  - Check that a given value is an even number.
-  - Error message: 'Expect actual (not) to be an even number'
+### toBeDOMElementWithId
+
+Check that the tested object is a DOM element with an expected id (note that
+the `id` is retrieved using `getAttribute('id')`).
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `id` | `string` | Expected id. |
+
+#### Message
+
+`Expect [actual] (not) to be a DOM element with id [id] but was [actualId]`
+
+#### Example:
 
 ```javascript
-it('should check if number is an even number', function() {
-  expect(2).toBeEvenNumber();
-  expect(0).not.toBeEvenNumber();
-  expect(1).not.toBeEvenNumber();
-});
+const span = document.createElement('span');
+span.setAttribute('id', 'mySpan');
+expect(span).toBeDOMElementWithId('mySpan');
 ```
 
-- `toBeNumeric()`
-  - Check that a given value is a numeric value (i.e. a number or a string that is a numeric value).
-  - Error message: 'Expect actual (not) to be a numeric value'
+### toBeDOMElement
+
+Check that the tested object is DOM element with an expected tag name.
+The tag name is optional, if not set this matcher will juste check that the actual
+object is a DOM element.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `tagName` | `string` | Expected tag name (optional). |
+
+#### Message
+
+`Expect [actual] (not) to be a DOM element
+Expect [actual] (not) to be [tagName] element but was [actualTagName]`
+
+#### Example:
 
 ```javascript
-it('should check if value is numeric', function() {
-  expect(2).toBeNumeric();
-  expect(1.5).toBeNumeric();
-  expect('2').toBeNumeric();
-  expect('1.5').toBeNumeric();
-  expect('foo').not.toBeNumeric();
-});
+const span = document.createElement('span');
+expect(span).toBeDOMElement();
+expect(span).toBeDOMElement('span');
+expect(span).toBeDOMElement('SPAN');
+expect(span).not.toBeDOMElement('div');
 ```
 
-- `toBeInteger()`
-  - Check that a given value is a numeric and an integer value (some integers: 1, 1.0)
-  - Error message: 'Expect actual (not) to be an integer'
+### toBeEmpty
+
+Check that tested object is empty:
+- If it is an `array` or an array-like, check that the length is equal to zero.
+- If it is an object, check that it does not have any property.
+- If it is a `map` or a `set`, check that the size is equal to zero.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be empty.`
+
+#### Example:
 
 ```javascript
-it('should check if value is an integer', function() {
-  expect(1).toBeInteger();
-  expect(1.0).toBeInteger();
-  expect('1').toBeInteger();
-  expect('1.0').toBeInteger();
-  expect(1.5).not.toBeInteger();
-});
+expect('').toBeEmpty();
+expect([]).toBeEmpty();
+expect({}).toBeEmpty();
+expect(new Map()).toBeEmpty();
+expect(new Set()).toBeEmpty();
 ```
 
-- `toBeFloat()`
-  - Check that a given value is a numeric and not an integer value (some floats: 1.5)
-  - Error message: 'Expect actual (not) to be a float'
+### toBeEvenNumber
+
+Check that the tested object is an even number.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] to be an even number`
+
+#### Example:
 
 ```javascript
-it('should check if value is a float', function() {
-  expect(1.5).toBeFloat();
-  expect('1.5').toBeFloat();
-  expect(1).not.toBeFloat();
-  expect('1.0').not.toBeFloat();
-});
+expect(2).toBeEvenNumber();
+expect(0).not.toBeEvenNumber();
+expect(1).not.toBeEvenNumber();
 ```
 
-- `toBeInRange(lower, upper)`
-  - Check that a given value is number that is strictly greater than lower bound and strictly lower than upper bound.
-  - Error message: 'Expect actual (not) to be between lower and upper'
+### toBeFalse
+
+Check that the tested object is strictly equal `false`.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be false`
+
+#### Example:
 
 ```javascript
-it('should check if value is in given range', function() {
-  expect(2).toBeInRange(1, 3);
-  expect(1).not.toBeInRange(1, 3);
-  expect(3).not.toBeInRange(1, 3);
-});
+expect(false).toBeFalse();
+expect(true).not.toBeFalse();
+expect(0).not.toBeFalse();
 ```
 
-### Dates
+### toBeFloat
 
-- `toBeADate()`
-  - Check that a given value is a date object
-  - Error message: 'Expect value (not) to be a date'
+Check that the tested object is a `float` value.
+
+Note that for this matcher, a `float` is a numeric value (see `toBeNumeric` matcher) that
+is not an integer (a numeric value may be a `number` *or* a `string` containing a number).
+
+*JavaScript makes no distinction between integers and floats
+so 1.0 is considered integer.*
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a float`
+
+#### Example:
 
 ```javascript
-it('should check if object is a date object', function() {
-  expect(new Date()).toBeADate();
-  expect(null).not.toBeADate();
-  expect(123).not.toBeADate();
-});
+expect(1.5).toBeFloat();
+expect('1.5').toBeFloat();
+expect(1).not.toBeFloat();
+expect(1.0).not.toBeFloat();
 ```
 
-- `toBeDateCloseTo(date, maxDiff)`
-  - Check that a given value is a date object close to an other date.
-  - Default `maxDiff` value is 1000 ms.
-  - Error message: 'Expect date actual (not) to be close to date'
+### toBeInRange
+
+Check that the tested object is a `number` (strictly) greater than a lower bound
+and (strictly) less than a lower bound.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `lower` | `number` | The lower bound. |
+| `upper` | `number` | The upper bound. |
+
+#### Message
+
+`Expect [actual] (not) to be between [lower] and [upper]`
+
+#### Example:
 
 ```javascript
-it('should check if a date is close to another date', function() {
-  var date1 = new Date(2014, 6, 6, 10, 0, 0, 0);
-  var date2 = new Date(2014, 6, 6, 10, 0, 0, 1000);
-
-  expect(date1).toBeDateCloseTo(date2, 1000);
-  expect(date1).toBeDateCloseTo(date2);
-  expect(date1).not.toBeDateCloseTo(date2, 999);
-});
+expect(2).toBeInRange(1, 3);
+expect(1).not.toBeInRange(1, 3);
+expect(3).not.toBeInRange(1, 3);
 ```
 
-- `toBeDateCloseToNow(maxDiff)`
-  - Check that a given value is a date object close to current timestamp.
-  - Default `maxDiff` value is 1000 ms.
-  - Error message: 'Expect date actual (not) to be close to now'
+### toBeInstanceOf
+
+Check that the tested object is an instance of a given `constructor`.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `ctor` | `*` | Expected constructor. |
+
+#### Message
+
+`Expect [actual] (not) to be an instance of [constructor]`
+
+#### Example:
 
 ```javascript
-it('should check if a date is close to current date', function() {
-  var date = new Date(new Date().getTime() + 900);
+expect(new Date()).toBeInstanceOf(Date);
+expect('foo').toBeInstanceOf(String);
 
-  expect(date).toBeDateCloseToNow(1000);
-  expect(date).toBeDateCloseToNow();
-  expect(date).not.toBeDateCloseToNow(890);
-});
+class Foo { }
+expect(new Foo()).toBeInstanceOf(Foo);
 ```
 
-- `toBeDateAfter(lower)`
-  - Check that a given value is a date object that is strictly after an other date.
-  - Error message: 'Expect date actual (not) to be after lower'
+### toBeInteger
+
+Check that the tested object is an `integer` value.
+
+Note that for this matcher, an `integer` is a numeric value (see `toBeNumeric` matcher) that
+is not a `float` (a numeric value may be a `number` *or* a `string` containing a number).
+
+*JavaScript makes no distinction between integers and floats so
+both 1 and 1.0 are considered integers.*
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be an integer`
+
+#### Example:
 
 ```javascript
-it('should check if a date is after an other date', function() {
-  var date1 = new Date(new Date().getTime() + 1000);
-  var date2 = new Date(new Date().getTime() + 2000);
-
-  expect(date2).toBeDateAfter(date1);
-  expect(date1).not.toBeDateAfter(date2);
-});
+expect(1).toBeInteger();
+expect(1.0).toBeInteger();
+expect('1').toBeInteger();
+expect('1.0').toBeInteger();
+expect(1.5).not.toBeInteger();
 ```
 
-- `toBeDateAfterNow()`
-  - Check that a given value is a date object that is strictly after current timestamp.
-  - Error message: 'Expect date actual (not) to be after now'
+### toBeIterable
+
+Check that the tested object is an iterable value.
+
+An iterable value allows is an object that can define or customize its iteration behavior,
+such as what values are looped over in a `for..of` construct.
+
+An iterable value may be:
+- An `array`.
+- A `Map`.
+- A `Set`.
+- An object that implement the `@@iterator` method.
+
+#### Since
+
+0.3.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `Klass` | `*` | Expected class. |
+
+#### Message
+
+`Expect [actual] (not) to be iterable`
+
+#### Example:
 
 ```javascript
-it('should check if a date is after current date', function() {
-  var date1 = new Date(new Date().getTime() + 1000);
-  expect(date1).toBeDateAfterNow();
-});
+expect([]).toBeIterable();
+expect(new Map()).toBeIterable();
+expect(new Set()).toBeIterable();
 ```
 
-- `toBeDateBefore(upper)`
-  - Check that a given value is a date object that is strictly before an other date.
-  - Error message: 'Expect date actual (not) to be before upper'
+### toBeNegative
+
+Check that the tested object is a number strictly less than zero.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a negative number`
+
+#### Example:
 
 ```javascript
-it('should check if a date is before an other date', function() {
-  var date1 = new Date(new Date().getTime() - 2000);
-  var date2 = new Date(new Date().getTime() - 1000);
-
-  expect(date1).toBeDateBefore(date2);
-  expect(date2).not.toBeDateBefore(date1);
-});
+expect(-1).toBeNegative();
+expect(0).not.toBeNegative();
+expect(1).not.toBeNegative();
 ```
 
-- `toBeDateBeforeNow()`
-  - Check that a given value is a date object that is strictly before current timestamp.
-  - Error message: 'Expect date actual (not) to be before now'
+### toBeNil
+
+Check that the tested object is nil (i.e `null` or `undefined`).
+
+#### Since
+
+0.3.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be nil (null or undefined)`
+
+#### Example:
 
 ```javascript
-it('should check if a date is before current date', function() {
-  var date1 = new Date(new Date().getTime() - 2000);
-  expect(date1).toBeDateBeforeNow();
-});
+expect(null).toBeNil();
+expect(undefined).toBeNil();
+expect(void 0).toBeNil();
+expect(false).not.toBeNil();
+expect(0).not.toBeNil();
+expect(NaN).not.toBeNil();
 ```
 
-- `toBeSameDay(date)`
-  - Check that a given value is a date object and is the same day as an other date.
-  - Error message: 'Expect date actual (not) to be same day as date'
+### toBeNull
+
+Check that tested object is `null`.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be null`
+
+#### Example:
 
 ```javascript
-it('should check if a date same day as an other date', function() {
-  var date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
-  var date2 = new Date(2014, 5, 5, 15, 0, 0, 0);
-  var date3 = new Date(2014, 5, 6, 10, 0, 0, 0);
-
-  expect(date1).toBeSameDay(date2);
-  expect(date1).not.toBeSameDay(date3);
-});
+expect(null).toBeNull();
+expect(undefined).not.toBeNull();
+expect(false).not.toBeNull();
 ```
 
-- `toBeToday()`
-  - Check that a given value is a date object and is today.
-  - Error message: 'Expect date actual (not) to be today'
+### toBeNumeric
+
+Check that the tested object is a numeric value.
+A numeric is something that contains a numeric value, regardless of its type (it
+can be a `string` containing a numeric value or a `number`).
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a numeric value`
+
+#### Example:
 
 ```javascript
-it('should check if a date same day as current date', function() {
-  var date1 = new Date();
-  var date2 = new Date();
-  date2.setDate(date1.getDate() - 1);
-
-  expect(date1).toBeToday();
-  expect(date2).not.toBeToday();
-});
+expect(2).toBeNumeric();
+expect(1.5).toBeNumeric();
+expect('2').toBeNumeric();
+expect('1.5').toBeNumeric();
+expect('foo').not.toBeNumeric();
 ```
 
-### Arrays
+### toBeOddNumber
 
-- `toBeAnArray()`
-  - Check that a given value is an array
-  - Error message: 'Expect actual (not) to be an array'
+Check that the tested object is an odd number.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be an odd number`
+
+#### Example:
 
 ```javascript
-it('should check if an object is array', function() {
-  expect([]).toBeAnArray();
-  expect('123').not.toBeAnArray();
-  expect(1).not.toBeAnArray();
-  expect(false).not.toBeAnArray();
-  expect({}).not.toBeAnArray();
-  expect(null).not.toBeAnArray();
-  expect(undefined).not.toBeAnArray();
-});
+expect(1).toBeOddNumber();
+expect(2).not.toBeOddNumber();
+expect(0).not.toBeOddNumber();
 ```
 
-- `toHaveSize(expectedSize)`
-  - Check that a given array has an expected size (i.e. length of array)
-  - Error message: 'Expect size of actual (not) to be expectedSize but was array.length'
+### toBePartiallyEqualTo
+
+Check that the tested object is partially equals to a second one.
+Note that this matcher works fine with custom equality matchers.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `other` | `Array.<*>,Object` | The second object to use for equality. |
+
+#### Message
+
+`Expect [actual] (not) to be partially equal to [other]`
+
+#### Example:
 
 ```javascript
-it('should check if size of array', function() {
-  expect([1, 2, 3]).toHaveSize(3);
-  expect([1, 2, 3]).not.toHaveSize(1);
-});
+const a1 = { id: 1, foo: 'bar' };
+const a2 = { id: 2, foo: 'bar' };
+
+const b1 = { id: 1 };
+const b2 = { id: 2 };
+
+const c1 = { id: 2 };
+const c2 = { id: 2 };
+
+const array1 = [a1, a2];
+const array2 = [b1, b2];
+const array3 = [c1, c2];
+expect(array1).toBePartiallyEqualTo(array2);
+expect(array1).not.toBePartiallyEqualTo(array3);
 ```
 
-- `toHaveLength(expectedLength)`
-  - Check that a given array has an expected length
-  - Error message: 'Expect length of actual (not) to be expectedLength but was array.length'
+### toBePositive
+
+Check that the tested object is a number strictly greater than zero.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be a positive number`
+
+#### Example:
 
 ```javascript
-it('should check if length of array', function() {
-  expect([1, 2, 3]).toHaveLength(3);
-  expect([1, 2, 3]).not.toHaveLength(1);
-});
+expect(1).toBePositive();
+expect(0).not.toBePositive();
+expect(-1).not.toBePositive();
 ```
 
-- `toHaveSameLengthAs(array|string)`
-  - Check that a given array has a length equals to length of array or string in parameter
-  - Error message: 'Expect length of actual (not) to be param.length but was array.length'
+### toBeSameDay
+
+Check that the tested object is the same *day* as an other date.
+
+The tested date and the date to compare may be:
+- A date instance.
+- A timestamp.
+- A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+
+**Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `day` | `Date,number,string` | The other date. |
+
+#### Message
+
+`Expect [actual] (not) the same day as [day]`
+
+#### Example:
 
 ```javascript
-it('should check if length of array is equal to the length of an other object', function() {
-  expect(['f', 'o', 'o']).toHaveSameLengthAs('foo');
-  expect(['f', 'o']).not.toHaveSameLengthAs('foo');
-});
+const date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
+const date2 = new Date(2014, 5, 5, 15, 0, 0, 0);
+const date3 = new Date(2014, 5, 6, 10, 0, 0, 0);
+
+expect(date1).toBeSameDay(date2);
+expect(date1).not.toBeSameDay(date3);
 ```
 
-- `toHaveSameSizeAs(object|array|string)`
-  - Check that a given array has a length equals to the size of parameter
-  - Error message: 'Expect size of actual (not) to be size(param) but was array.length'
+### toBeSorted
+
+Check that the tested object is an array and is sorted (i.e for each elements in
+the array, `array[i - 1] <= array[i]`).
+
+A custom comparator can be specified as parameter:
+- Takes values to compare as arguments.
+- Must return a number:
+  - Less than zero if first argument is less than the second.
+  - Greater than zero if first argument is greater than the second.
+  - Zero if both parameters are "equivalent".
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `comparator` | `function` | Comparator function (optional). |
+
+#### Message
+
+`Expect [actual] (not) to be sorted`
+
+#### Example:
 
 ```javascript
-it('should check if size of array is equal to the size of an other object', function() {
-  expect(['f', 'o', 'o']).toHaveSameSizeAs('foo');
-  expect(['f', 'o', 'o']).not.toHaveSameSizeAs({
-    f: 1,
-    o: 2
-  });
-});
+expect([0, 1, 2, 3]).toBeSorted();
+expect(['bar', 'foo']).toBeSorted();
+expect([false, false, true, true]).toBeSorted();
+expect([{ id: 1 }, { id: 2 }, { id: 3 }]).toBeSorted((a, b) => a.id - b.id);
+expect([1, 0, 2, 3]).not.toBeSorted();
 ```
 
-- `toBeEmpty()`
-  - Check that a given array is empty (i.e. has a length equal to zero)
-  - Error message: 'Expect actual (not) to be empty'
+### toBeToday
+
+Check that the tested object is the same day as now (i.e `Date.now()`).
+
+The tested date may be:
+- A date instance.
+- A timestamp.
+- A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+
+**Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be today`
+
+#### Example:
 
 ```javascript
-it('should check if array is empty', function() {
-  expect([]).toBeEmpty();
-  expect([1, 2, 3]).not.toBeEmpty();
-});
+const date1 = new Date();
+const date2 = new Date();
+date2.setDate(date1.getDate() - 1);
+
+expect(date1).toBeToday();
+expect(date2).not.toBeToday();
 ```
 
-- `toBeSorted(comparator)`
-  - Check that a given array is sorted (using given comparator if given)
-  - Error message: 'Expect actual (not) to be sorted'
+### toBeTrue
+
+Check that the tested object is strictly equal to `true`.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be true`
+
+#### Example:
 
 ```javascript
-it('should check if an array is sorted', function() {
-  expect([0, 1, 2, 3]).toBeSorted();
-  expect(['bar', 'foo']).toBeSorted();
-  expect([false, false, true, true]).toBeSorted();
-  expect([{ id: 1 }, { id: 2 }, { id: 3 }]).toBeSorted(function(a, b) {
-    return a.id - b.id;
-  });
-
-  expect([1, 0, 2, 3]).not.toBeSorted();
-});
+expect(true).toBeTrue();
+expect(false).not.toBeTrue();
+expect(1).not.toBeTrue();
 ```
 
-- `toVerify(iterator)`
-  - Check that all values of array verify function iterator (must return a truthy / falsy value).
-  - Error message: 'Expect actual (not) to verify condition'
+### toBeZero
+
+Check that the tested object is a number strictly equal to zero.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to be zero`
+
+#### Example:
 
 ```javascript
-it('should check that each element of an array verify a condition', function() {
-  var condition = function(item) {
-    return item % 2 === 0;
-  };
-
-  expect([2, 4, 6, 8]).toVerify(condition);
-  expect([2, 4, 6, 8, 9]).not.toVerify(condition);
-});
+expect(0).toBeZero();
+expect(1).not.toBeZero();
+expect('0').not.toBeZero();
 ```
 
-- `toHaveSome(iterator)`
-  - Check that at least one values of array verify function iterator (must return a truthy / falsy value).
-  - Error message: 'Expect actual (not) to have at least one element that verify condition'
+### toContainsDistinctValues
+
+Check that the tested object is an array containing only distinct values.
+The tested object may be an array or any iterable object (i.e that can be
+traversed with the `for..of` loop).
+
+Note that this matcher works fine with custom equality matchers.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to contains only distinct values`
+
+#### Example:
 
 ```javascript
-it('should check that at least one element of an array verify a condition', function() {
-  var condition = function(item) {
-    return item % 2 === 0;
-  };
-
-  expect([1, 2, 3]).toHaveSome(condition);
-  expect([1, 3, 5, 7]).not.toHaveSome(condition);
-});
+expect([0, 1, 2, 3]).toContainsDistinctValues();
+expect([0, 1, 2, 3, 0]).not.toContainsDistinctValues();
 ```
 
-- `toContainsDistinctValues()`
-  - Check that a given array contains only distinct values.
-  - Error message: 'Expect actual (not) to contains only distinct values'
+### toContainsOnlyFalsyValues
+
+Check that the tested object contains only falsy values.
+The tested object may be an array or any iterable object (i.e that can be
+traversed with the `for..of` loop).
+
+Note that this matcher works fine with custom equality matchers.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to contains only falsy values`
+
+#### Example:
 
 ```javascript
-it('should check that an array contains only distinct values', function() {
-  expect([0, 1, 2, 3]).toContainsDistinctValues();
-  expect([0, 1, 2, 3, 0]).not.toContainsDistinctValues();
-});
+expect([0, false, null, undefined, '']).toContainsOnlyFalsyValues();
+
+expect([1, false, null, undefined, '']).not.toContainsOnlyFalsyValues();
+expect([0, true, null, undefined, '']).not.toContainsOnlyFalsyValues();
+expect([0, false, {}, undefined, '']).not.toContainsOnlyFalsyValues();
+expect([0, false, null, [], '']).not.toContainsOnlyFalsyValues();
+expect([0, false, null, undefined, 'foo']).not.toContainsOnlyFalsyValues();
 ```
 
-- `toContainsOnlyTruthyValues()`
-  - Check that a given array contains only truthy values.
-  - Error message: 'Expect actual (not) to contains only truthy values'
+### toContainsOnlyTruthyValues
+
+Check that the tested object contains only truthy values.
+The tested object may be an array or any iterable object (i.e that can be
+traversed with the `for..of` loop).
+
+Note that this matcher works fine with custom equality matchers.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to contains only truthy values.`
+
+#### Example:
 
 ```javascript
-it('should check that an array contains only truthy values', function() {
-  expect([1, 2, true, 'foo', {}, []]).toContainsOnlyTruthyValues();
+expect([1, 2, true, 'foo', {}, []]).toContainsOnlyTruthyValues();
 
-  expect([1, 2, false, 'foo', {}, []]).not.toContainsOnlyTruthyValues();
-  expect([1, 2, true, '', {}, []]).not.toContainsOnlyTruthyValues();
-  expect([0, 2, true, 'foo', {}, []]).not.toContainsOnlyTruthyValues();
-});
+expect([1, 2, false, 'foo', {}, []]).not.toContainsOnlyTruthyValues();
+expect([1, 2, true, '', {}, []]).not.toContainsOnlyTruthyValues();
+expect([0, 2, true, 'foo', {}, []]).not.toContainsOnlyTruthyValues();
 ```
 
-- `toContainsOnlyFalsyValues()`
-  - Check that a given array contains only falsy values.
-  - Error message: 'Expect actual (not) to contains only falsy values'
+### toEndWith
+
+Check that the tested object is a `string` and end with an expected suffix.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `suffix` | `string` | The suffix to look for. |
+
+#### Message
+
+`Expect [actual] (not) to end with [suffix]`
+
+#### Example:
 
 ```javascript
-it('should check that an array contains only falsy values', function() {
-  expect([0, false, null, undefined, '']).toContainsOnlyFalsyValues();
-
-  expect([1, false, null, undefined, '']).not.toContainsOnlyFalsyValues();
-  expect([0, true, null, undefined, '']).not.toContainsOnlyFalsyValues();
-  expect([0, false, {}, undefined, '']).not.toContainsOnlyFalsyValues();
-  expect([0, false, null, [], '']).not.toContainsOnlyFalsyValues();
-  expect([0, false, null, undefined, 'foo']).not.toContainsOnlyFalsyValues();
-});
+expect('foo').toEndWith('o');
+expect('foo').toEndWith('oo');
+expect('foo').toEndWith('foo');
+expect('foo').not.toEndWith('bar');
 ```
 
-- `toBePartiallyEqualTo(array)`
-  - Check that two arrays are equals using only item properties properties of array in parameter (ignoring other properties).
-  - Error message: 'Expect actual (not) to be partially equals to param'
+### toEqualIgnoringCase
+
+Check that the tested object is a `string` equal to an other `string`: comparison is
+case-insensitive.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `other` | `string` | Other string to compare. |
+
+#### Message
+
+`Expect [actual] (not) to be equal to [other] (case insensitive)`
+
+#### Example:
 
 ```javascript
-it('should check that an object is partially equal to an other object', function() {
-  var a1 = {
-    id: 1,
-    foo: 'bar'
-  };
-
-  var a2 = {
-    id: 2,
-    foo: 'bar'
-  };
-
-  var b1 = {
-    id: 1
-  };
-
-  var b2 = {
-    id: 2,
-  };
-
-  var c1 = {
-    id: 2
-  };
-
-  var c2 = {
-    id: 2
-  };
-
-  var array1 = [a1, a2];
-  var array2 = [b1, b2];
-  var array3 = [c1, c2];
-
-  expect(array1).toBePartiallyEqualTo(array2);
-  expect(array1).not.toBePartiallyEqualTo(array3);
-});
+expect('foo').toEqualIgnoringCase('foo');
+expect('foo').toEqualIgnoringCase('FOO');
+expect('foo').not.toEqualIgnoringCase('bar');
 ```
 
-### Objects
+### toHaveBeenCalledOnceWith
 
-- `toBeInstanceOf(Klass)`
-  - Check that a given object is an instance of given class.
-  - Error message: 'Expect actual (not) to be an instance of Klass'
+Check that the tested object is a spy that has been called once (and exactly
+once) with expected arguments.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `args` | `...*` | Expected call arguments. |
+
+#### Message
+
+`Expect [actual] to have been called once but was called [count] time(s)
+Expect [actual] to have been called once but was called [count] time(s) with different arguments`
+
+#### Example:
 
 ```javascript
-it('should check that an object is an instance of given class', function() {
-  var Klass = function() {
-  };
+const spy = jasmine.createSpy('foo');
+expect(spy).not.toHaveBeenCalledOnce();
 
-  expect(new Klass()).toBeInstanceOf(Klass);
-});
+spy('foo');
+expect(spy).toHaveBeenCalledOnceWith('foo');
+expect(spy).not.toHaveBeenCalledOnceWith('bar');
 ```
 
-- `toHaveKeys(keys...)`
-  - Check that a given object contains given keys
-  - Error message: 'Expect object actual (not) to contain keys keys'
+### toHaveBeenCalledOnce
+
+Check that the tested object is a spy that has been called once (and only once).
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+**No parameters**
+
+#### Message
+
+`Expect [actual] (not) to have been called once but was called [count] time(s)`
+
+#### Example:
 
 ```javascript
-it('should check that an object contains keys', function() {
-  var obj = {
-    id: 1,
-    name: 'foo'
-  };
+const spy = jasmine.createSpy('foo');
+expect(spy).not.toHaveBeenCalledOnce();
 
-  expect(obj).toHaveKeys('id', 'name');
-  expect(obj).not.toHaveKeys('foo', 'bar');
-});
+spy();
+expect(spy).toHaveBeenCalledOnce();
+
+spy();
+expect(spy).not.toHaveBeenCalledOnce();
 ```
 
-- `toHaveValues(values...)`
-  - Check that a given object contains given values
-  - Error message: 'Expect object actual to contain values values'
+### toHaveFunctions
+
+Check that actual object contains all given expected functions.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `methods` | `...string` | List of methods to look for. |
+
+#### Message
+
+`Expect [actual] (not) to contain functions [methods]`
+
+#### Example:
 
 ```javascript
-it('should check that an object contains values', function() {
-  var obj = {
-    id: 1,
-    name: 'foo',
-    array: [1, 2, 3],
-    o: {
-      id: 10
-    }
-  };
+const foo = jasmine.createSpy('foo');
+const bar = jasmine.createSpy('bar');
+const obj = { id: 1, name: 'foo', foo, bar };
 
-  expect(obj).toHaveValues(1, 'foo', [1, 2, 3], { id: 10 });
-  expect(obj).not.toHaveValues(2, 'bar');
-  expect(obj).not.toHaveValues({ id: 11 });
-});
+expect(obj).toHaveFunctions('foo', 'bar');
+expect(obj).not.toHaveFunctions('id', 'name');
 ```
 
-- `toHaveFunctions(functionNames...)`
-  - Check that a given object contains given functions
-  - Error message: 'Expect object actual to contain functions functionNames'
+### toHaveKeys
+
+Check that actual object contains all given expected keys.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `expectedKeys` | `...string` | Keys to look for in tested object. |
+
+#### Message
+
+`Expect [actual] (not) to have keys [expectedKeys]`
+
+#### Example:
 
 ```javascript
-it('should check that an object contains functions', function() {
-  var obj = {
-    id: 1,
-    name: 'foo',
-    foo: jasmine.createSpy('foo'),
-    bar: jasmine.createSpy('bar')
-  };
-
-  expect(obj).toHaveFunctions('foo', 'bar');
-  expect(obj).not.toHaveFunctions('id', 'name');
-});
+const obj = { id: 1, name: 'foo' };
+expect(obj).toHaveKeys('id', 'name');
+expect(obj).not.toHaveKeys('foo', 'bar');
 ```
 
-- `toHaveSize(expectedSize)`
-  - Check that a given object has an expected size (i.e. number of keys)
-  - Error message: 'Expect size of actual (not) to be expectedSize but was object.size'
+### toHaveLength
+
+Check that tested object has a `length` property with expected value.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `expectedLength` | `number` | The expected length value. |
+
+#### Message
+
+`Expect length of [actual] (not) to be [expectedLength]`
+
+#### Example:
 
 ```javascript
-it('should check that an object has expected size', function() {
-  var obj = {
-    one: 1,
-    two: 2,
-    three: 3
-  };
-
-  expect(obj).toHaveSize(3);
-  expect(obj).not.toHaveSize(1);
-});
+expect([]).toHaveLength(0);
+expect([0, 1, 2]).toHaveLength(3);
+expect('').toHaveLength(0);
+expect('foo').toHaveLength(3);
 ```
 
-- `toHaveSameSizeAs(object|array|string)`
-  - Check that a given object has a size equals to the size of parameter
-  - Error message: 'Expect size of actual (not) to be size(param) but was size(actual)'
+### toHaveSameLengthAs
+
+Check that tested object has the same length as an other value with `length`
+property.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `expected` | `Array.<*>` | The other array. |
+
+#### Message
+
+`Expect [actual] (not) to have same length as [expected]`
+
+#### Example:
 
 ```javascript
-it('should check that an object has same size as an other object', function() {
-  var obj = {
-    b: 1,
-    a: 1,
-    r: 1
-  };
-
-  expect(obj).toHaveSameSizeAs('bar');
-  expect(obj).toHaveSameSizeAs(['b', 'a', 'r']);
-  expect(obj).not.toHaveSameSizeAs('foobar');
-});
+expect([]).toHaveSameLengthAs('');
+expect(['f', 'o', 'o']).toHaveSameLengthAs('foo');
+expect('').toHaveSameLengthAs([]);
+expect('foo').toHaveSameLengthAs(['f', 'o', 'o']);
 ```
 
-- `toBeEmpty()`
-  - Check that a given object is empty (i.e. does not have any key)
-  - Error message: 'Expect actual (not) to be empty'
+### toHaveSameSizeAs
+
+Check that tested object has the same size as an other one.
+
+A size may be computed from:
+- An array (or an array-like object) with the `length` property.
+- A `Map` or a `Set` using its `size` property.
+- Any iterable object (using a `for..of` loop).
+- An object (number of own enumerable properties).
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `expected` | `*` | The other object (or array, or array-like object). |
+
+#### Message
+
+`Expect [actual] to have same size as [expected]`
+
+#### Example:
 
 ```javascript
-it('should check that an object is empty', function() {
-  expect({}).toBeEmpty();
-  expect({ id: 1 }).not.toBeEmpty();
-});
+expect('foo').toHaveSameSizeAs('foo');
+expect('bar').toHaveSameSizeAs({ b: 1, a: 1, r: 1 });
+expect([ 'foo', 'bar' ]).toHaveSameSizeAs(new Set(['foo', 'bar']));
 ```
 
-- `toBePartiallyEqualsTo(object)`
-  - Check that two objects are equals using only properties of parameter object (ignoring other properties).
-  - Error message: 'Expect actual (not) to be partially equals to param'
+### toHaveSize
+
+Check that tested object has an expected size.
+
+A size may be computed from:
+- An array (or an array-like object) with the `length` property.
+- A `Map` or a `Set` using its `size` property.
+- Any iterable object (using a `for..of` loop).
+- An object (number of own enumerable properties).
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `expectedSize` | `number` | The expected size. |
+
+#### Message
+
+`Expect size of [actual] (not) to be [expectedSize]`
+
+#### Example:
 
 ```javascript
-it('should check that an object is partially equals to an other object', function() {
-  var a = {
-    id: 1,
-    foo: 'bar',
-    bar: 'foo'
-  };
-
-  var b = {
-    id: 1,
-    foo: 'bar'
-  };
-
-  var c = {
-    id: 2
-  };
-
-  expect(a).toBePartiallyEqualsTo(b);
-  expect(a).not.toBePartiallyEqualsTo(c);
-});
+expect([1, 2, 3]).toHaveSize(3);
+expect('foo bar').toHaveSize(7);
+expect(new Set([0, 1, 2])).toHaveSize(3);
+expect({ foo: 'bar' }).toHaveSize(1);
 ```
 
-### DOM
+### toHaveSome
 
-- `toBeDOMElement(tagName)`
-  - Check that a given object is a dom element (and check tag name if an argument is provided)
-  - Error message: - 'Expect actual (not) to be a dom element'
+Verifies that the tested object satisfies a predicate function for at
+at least one element in the collection.
+
+The collection may be an `array`, a `set`, a `map` or any iterable object.
+
+The predicate function is executed with three arguments:
+- The value being iterated.
+- The key of the value being iterated.
+- The collection being iterated.
+
+**Important:**
+Note that the key may be different with arrays and map/set:
+- With an array or an iterable object, the key will be the index of the value being traversed.
+- With a map, the key will be the index value of the value being traversed.
+- With a set, the key will be the same value being traversed (since a `Set` does not have any keys).
+
+See the documentation of the `forEach` functions of `Map` and `Set` structure:
+- https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Set/forEach
+- https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Map
+
+This matcher may take an optional first argument: the error message that will
+be displayed if the matcher does not pass.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `message` | `string` | Custom error message (optional). |
+| `iterator` | `function` | Predicate function. |
+
+#### Message
+
+`Expect [actual] (not) to have at least one element that verify condition
+Expect [actual] (not) to have at least one element that verify "[message]"`
+
+#### Example:
 
 ```javascript
-it('should check that an object is a dom element', function() {
-  var span = document.createElement('span');
-  expect(span).toBeDOMElement();
-  expect(span).toBeDOMElement('span');
-  expect(span).not.toBeDOMElement('p');
-
-  expect([]).not.toBeDOMElement();
-  expect({}).not.toBeDOMElement();
-});
+expect([1, 2, 3]).toHaveSome(x => x % 2 === 0);
+expect([1, 3, 5, 7]).not.toHaveSome(x => x % 2 === 0);
 ```
 
-- `toBeDOMElementWithId(id)`
-  - Check that a given object is a dom element with expected id
-  - Error message: - 'Expect actual (not) to be a dom element with id expectedId but was actualId'
+### toHaveValues
+
+Check that the tested object contains expected values (the key is not checked,
+only the value).
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `expectedValues` | `...*` | The values to look for. |
+
+#### Message
+
+`Expect [actual] (not) to have values [values]`
+
+#### Example:
 
 ```javascript
-it('should check that an object is a dom element', function() {
-  var span = document.createElement('span');
-  span.setAttribute('id', 'foo');
-
-  expect(span).toBeDOMElementWithId('foo');
-  expect(span).not.toBeDOMElementWithId('bar');
-});
+const obj = { id: 1, name: 'foo', array: [1, 2, 3] };
+expect(obj).toHaveValues(1, 'foo', [1, 2, 3]);
+expect(obj).not.toHaveValues(2, 'bar');
+expect(obj).not.toHaveValues([ 1, 2, 3, 4 ]);
 ```
 
-- `toBeDOMElementWithAttributes(attributes)`
-  - Check that a given object is a dom element with expected attributes
-  - Error message: - 'Expect actual (not) to be a dom element with attributes expectedAttributes but was actualAttributes'
+### toStartWith
+
+Check that the tested object is a string and start with an expected prefix.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `prefix` | `string` | The prefix to look for. |
+
+#### Message
+
+`Expect [actual] (not) to start with [prefix]`
+
+#### Example:
 
 ```javascript
-it('should check that an object is a dom element', function() {
-  var span = document.createElement('span');
-  span.setAttribute('foo', 'foo');
-  span.setAttribute('bar', 'bar');
-
-  expect(span).toBeDOMElementWithAttributes({
-    foo: 'foo',
-    bar: 'bar'
-  });
-
-  expect(span).not.toBeDOMElementWithAttributes({
-    foo: 'bar',
-    bar: 'foo'
-  });
-});
+expect('foo').toStartWith('f');
+expect('foo').toStartWith('fo');
+expect('foo').toStartWith('foo');
+expect('foo').not.toStartWith('bar');
 ```
 
-- `toBeDOMElementWithClasses(classes)`
-  - Check that a given object is a dom element with expected css classes
-  - Error message: - 'Expect actual (not) to be a dom element with classes expectedClasses but was actualClasses'
+### toVerify
+
+Check that the tested object satisfies a given predicate.
+The collection may be an `array`, a `set`, a `map` or any iterable object.
+
+The predicate function is executed with three arguments:
+- The value being iterated.
+- The key of the value being iterated.
+- The collection being iterated.
+
+**Important:**
+Note that the key may be different with arrays and map/set:
+- With an array or an iterable object, the key will be the index of the value being traversed.
+- With a map, the key will be the index value of the value being traversed.
+- With a set, the key will be the same value being traversed (since a `Set` does not have any keys).
+
+See the documentation of the `forEach` functions of `Map` and `Set` structure:
+- https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Set/forEach
+- https://developer.mozilla.org/fr/docs/Web/JavaScript/Reference/Objets_globaux/Map
+
+This matcher may take an optional first argument: the error message that will
+be displayed if the matcher does not pass.
+
+#### Since
+
+0.1.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `message` | `string` | Error message thrown when the test fail (optional). |
+| `iterator` | `function` | Predicate function. |
+
+#### Message
+
+`Expect [actual] (not) to verify condition
+Expect [actual] (not) to verify "[message]"`
+
+#### Example:
 
 ```javascript
-it('should check that an object is a dom element', function() {
-  var span = document.createElement('span');
-  span.className = 'foo bar'
-
-  expect(span).toBeDOMElementWithClasses('foo');
-  expect(span).toBeDOMElementWithClasses('bar');
-  expect(span).toBeDOMElementWithClasses(['foo', 'bar']);
-  expect(span).toBeDOMElementWithClasses('foo bar');
-
-  expect(span).not.toBeDOMElementWithClasses('foobar');
-});
+expect([2, 4, 6, 8]).toVerify(x => x % 2 === 0);
+expect([2, 4, 6, 8, 9]).not.toVerify(x => x % 2 === 0);
 ```
 
-### Functions
-
-- `toBeAFunction()`
-  - Check that a given value is a function
-  - Error message: 'Expect actual (not) to be a function'
-
-```javascript
-it('should check that an object is a function', function() {
-  var myFunc = function() {};
-  expect(myFunc).toBeAFunction();
-
-  expect(0).not.toBeAFunction();
-  expect(null).not.toBeAFunction();
-});
-```
-
-- `toHaveBeenCalledOnce()`
-  - Check that a given spy has been called exactly one time
-  - Error message: 'Expect spy to have been called once but was called actual.callCount time(s)'
-
-```javascript
-it('should check that a spy has been called once', function() {
-  var spy = jasmine.createSpy('foo');
-  expect(spy).not.toHaveBeenCalledOnce();
-
-  spy();
-  expect(spy).toHaveBeenCalledOnce();
-
-  spy();
-  expect(spy).not.toHaveBeenCalledOnce();
-});
-```
-
-- `toHaveBeenCalledOnceWith(args...)`
-  - Check that a given spy has been called exactly one time with given arguments
-  - Error message: 'Expect spy to have been called once but was called actual.callCount time(s) (with different arguments)'
-
-```javascript
-it('should check that a spy has been called once with given arguments', function() {
-  var spy = jasmine.createSpy('foo');
-  expect(spy).not.toHaveBeenCalledOnce();
-
-  spy('foo');
-  expect(spy).toHaveBeenCalledOnceWith('foo');
-  expect(spy).not.toHaveBeenCalledOnceWith('bar');
-});
-```
 
 ## Licence
 
@@ -1074,3 +1833,5 @@ MIT License (MIT)
 ## Contributing
 
 If you think some matchers are missing or error messages are not useful enough, feel free to contribute and submit an issue or a pull request.
+
+Thanks to [@geoffdutton](https://github.com/geoffdutton) for his [contribution](https://github.com/mjeanroy/jasmine-utils/pull/5)!
