@@ -1,6 +1,11 @@
 jasmine-utils
 =============
 
+[![Build Status](https://travis-ci.org/mjeanroy/jasmine-utils.svg?branch=master)](https://travis-ci.org/mjeanroy/jasmine-utils)
+[![GitHub version](https://badge.fury.io/gh/mjeanroy%2Fjasmine-utils.svg)](https://badge.fury.io/gh/mjeanroy%2Fjasmine-utils)
+[![Npm version](https://badge.fury.io/js/jasmine-utils.svg)](https://badge.fury.io/js/jasmine-utils)
+[![Bower version](https://badge.fury.io/bo/jasmine-utils.svg)](https://badge.fury.io/bo/jasmine-utils)
+
 Jasmine-Utils is a set of custom matchers that I used in my previous projects.
 
 Jasmine-Utils is compatible with __Jasmine 1.3__ and __Jasmine 2.0__.
