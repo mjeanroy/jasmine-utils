@@ -197,7 +197,7 @@ it('should reset all methods', function() {
 | `{{{ this.name }}}` | `{{#if this.variable}}...{{/if}}{{{ this.types }}}` | {{{ this.description}}} |
 {{/each}}
 {{else}}
-**No parameters**
+*No parameters*
 {{/if}}
 
 #### Message

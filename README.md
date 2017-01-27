@@ -190,7 +190,7 @@ or `false`).
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -215,7 +215,7 @@ Check that the tested object is an instance of `Date`.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -239,7 +239,7 @@ Check that the tested object is a `function`.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -264,7 +264,7 @@ Check that the tested object is a `Map`.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -287,7 +287,7 @@ Check that the tested object is a `number`.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -313,7 +313,7 @@ Check that the tested object is a `Set`.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -337,7 +337,7 @@ Check that the tested object is a string.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -364,7 +364,7 @@ This matcher will use `Array.isArray` or a fallback if it is not available.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -392,7 +392,7 @@ Check that the tested object is an empty string (a `string` equals to `''`).
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -423,7 +423,7 @@ The tested date may be:
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -486,7 +486,7 @@ The tested date may be:
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -737,7 +737,7 @@ Check that tested object is empty:
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -763,7 +763,7 @@ Check that the tested object is an even number.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -787,7 +787,7 @@ Check that the tested object is strictly equal `false`.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -817,7 +817,7 @@ so 1.0 is considered integer.*
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -904,7 +904,7 @@ both 1 and 1.0 are considered integers.*
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -965,7 +965,7 @@ Check that the tested object is a number strictly less than zero.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -989,7 +989,7 @@ Check that the tested object is nil (i.e `null` or `undefined`).
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1016,7 +1016,7 @@ Check that tested object is `null`.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1042,7 +1042,7 @@ can be a `string` containing a numeric value or a `number`).
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1068,7 +1068,7 @@ Check that the tested object is an odd number.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1130,7 +1130,7 @@ Check that the tested object is a number strictly greater than zero.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1233,7 +1233,7 @@ The tested date may be:
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1260,7 +1260,7 @@ Check that the tested object is strictly equal to `true`.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1284,7 +1284,7 @@ Check that the tested object is a number strictly equal to zero.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1312,7 +1312,7 @@ Note that this matcher works fine with custom equality matchers.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1339,7 +1339,7 @@ Note that this matcher works fine with custom equality matchers.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1371,7 +1371,7 @@ Note that this matcher works fine with custom equality matchers.
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
@@ -1482,7 +1482,7 @@ Check that the tested object is a spy that has been called once (and only once).
 
 #### Parameters
 
-**No parameters**
+*No parameters*
 
 #### Message
 
