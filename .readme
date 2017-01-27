@@ -218,3 +218,5 @@ MIT License (MIT)
 ## Contributing
 
 If you think some matchers are missing or error messages are not useful enough, feel free to contribute and submit an issue or a pull request.
+
+Thanks to [@geoffdutton](https://github.com/geoffdutton) for his [contribution](https://github.com/mjeanroy/jasmine-utils/pull/5)!
