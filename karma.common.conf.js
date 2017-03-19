@@ -40,7 +40,7 @@ module.exports = (config) => ({
   ],
 
   files: [
-    path.join(conf.test, '**', '*.spec.js'),
+    path.join(conf.test, 'index.js'),
   ],
 
   exclude: [
