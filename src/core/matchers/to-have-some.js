@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {some} from '../util/some.js';
 import {isFunction} from '../util/is-function.js';
 
@@ -79,6 +80,6 @@ export function toHaveSome(ctx, message, iterator) {
 
   return {
     pass: some(actual, _iterator),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to have at least one element that verify ${_message}`,
+    message: `Expect ${pp(actual)} {{not}} to have at least one element that verify ${_message}`,
   };
 }

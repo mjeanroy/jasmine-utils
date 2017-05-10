@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isDOMElement} from '../util/is-dom-element.js';
 import {isArray} from '../util/is-array.js';
 import {map} from '../util/map.js';
@@ -54,14 +55,14 @@ export function toBeDOMElementWithClasses(ctx, classes) {
   const isElement = isDOMElement(actual);
 
   let ok = isElement;
-  let msg = `Expect ${jasmine.pp(actual)} {{not}} to be a DOM element`;
+  let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
 
   if (isElement) {
     const classArray = toClassArray(classes);
     const actualClassArray = toClassArray(actual.className);
     const containsAll = every(classArray, (className) => contains(actualClassArray, className));
 
-    msg += ` with classes ${jasmine.pp(classArray)} but was ${jasmine.pp(actualClassArray)}`;
+    msg += ` with classes ${pp(classArray)} but was ${pp(actualClassArray)}`;
     ok = ok && containsAll;
   }
 

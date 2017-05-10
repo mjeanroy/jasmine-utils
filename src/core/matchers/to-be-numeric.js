@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isNumeric} from '../util/is-numeric.js';
 
 /**
@@ -45,6 +46,6 @@ export function toBeNumeric(ctx) {
   const actual = ctx.actual;
   return {
     pass: isNumeric(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be a numeric value`,
+    message: `Expect ${pp(actual)} {{not}} to be a numeric value`,
   };
 }

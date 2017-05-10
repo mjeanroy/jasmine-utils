@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isArray} from '../util/is-array.js';
 import {isFalsy} from '../util/is-falsy.js';
 import {every} from '../util/every.js';
@@ -51,6 +52,6 @@ export function toContainsOnlyFalsyValues(ctx) {
   const actual = ctx.actual;
   return {
     pass: isArray(actual) && every(actual, isFalsy),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to contains only falsy values`,
+    message: `Expect ${pp(actual)} {{not}} to contains only falsy values`,
   };
 }

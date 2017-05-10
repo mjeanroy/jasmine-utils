@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isString} from '../util/is-string.js';
 
 /**
@@ -47,6 +48,6 @@ export function toEndWith(ctx, suffix) {
 
   return {
     pass: ok,
-    message: `Expect ${jasmine.pp(actual)} {{not}} to end with ${jasmine.pp(suffix)}`,
+    message: `Expect ${pp(actual)} {{not}} to end with ${pp(suffix)}`,
   };
 }

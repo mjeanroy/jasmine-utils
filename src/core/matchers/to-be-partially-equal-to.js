@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isArray} from '../util/is-array.js';
 import {isObject} from '../util/is-object.js';
 import {every} from '../util/every.js';
@@ -65,7 +66,7 @@ export function toBePartiallyEqualTo(ctx, other) {
 
   return {
     pass: pass,
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be partially equal to ${jasmine.pp(other)}`,
+    message: `Expect ${pp(actual)} {{not}} to be partially equal to ${pp(other)}`,
   };
 }
 

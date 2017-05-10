@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isBoolean} from '../util/is-boolean.js';
 
 /**
@@ -43,6 +44,6 @@ export function toBeABoolean(ctx) {
   const actual = ctx.actual;
   return {
     pass: isBoolean(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be a boolean`,
+    message: `Expect ${pp(actual)} {{not}} to be a boolean`,
   };
 }

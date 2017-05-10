@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isString} from '../util/is-string.js';
 
 /**
@@ -43,6 +44,6 @@ export function toBeAString(ctx) {
   const actual = ctx.actual;
   return {
     pass: isString(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be a string`,
+    message: `Expect ${pp(actual)} {{not}} to be a string`,
   };
 }

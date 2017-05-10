@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from 'src/core/jasmine/pp.js';
 import {toBeSameDay} from 'src/core/matchers/to-be-same-day.js';
 
 describe('toBeSameDay', () => {
@@ -31,7 +32,7 @@ describe('toBeSameDay', () => {
     const result = toBeSameDay({actual}, other);
     expect(result).toEqual({
       pass: true,
-      message: `Expect date ${jasmine.pp(actual)} {{not}} to be same day as ${jasmine.pp(other)}`,
+      message: `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`,
     });
   });
 
@@ -41,7 +42,7 @@ describe('toBeSameDay', () => {
     const result = toBeSameDay({actual}, other);
     expect(result).toEqual({
       pass: false,
-      message: `Expect date ${jasmine.pp(actual)} {{not}} to be same day as ${jasmine.pp(other)}`,
+      message: `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`,
     });
   });
 });

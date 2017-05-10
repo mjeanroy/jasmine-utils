@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isIterable} from '../util/is-iterable.js';
 
 /**
@@ -51,6 +52,6 @@ export function toBeIterable(ctx, Klass) {
   const actual = ctx.actual;
   return {
     pass: isIterable(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be iterable`,
+    message: `Expect ${pp(actual)} {{not}} to be iterable`,
   };
 }

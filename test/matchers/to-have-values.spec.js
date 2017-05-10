@@ -23,6 +23,7 @@
  */
 
 import {assumeMap} from '../detect/assume-map.js';
+import {pp} from 'src/core/jasmine/pp.js';
 import {toHaveValues} from 'src/core/matchers/to-have-values.js';
 
 describe('toHaveValues', () => {
@@ -45,7 +46,7 @@ describe('toHaveValues', () => {
     const result = toHaveValues({actual}, 'foo', 'bar');
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`,
+      message: `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`,
     });
   });
 
@@ -67,7 +68,7 @@ describe('toHaveValues', () => {
     const result = toHaveValues({actual}, 'foo', 'bar');
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`,
+      message: `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`,
     });
   });
 });

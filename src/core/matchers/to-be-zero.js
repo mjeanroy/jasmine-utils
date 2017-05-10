@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
+
 /**
  * Check that the tested object is a number strictly equal to zero.
  *
@@ -39,6 +41,6 @@
    const actual = ctx.actual;
    return {
      pass: actual === 0,
-     message: `Expect ${jasmine.pp(actual)} {{not}} to be zero`,
+     message: `Expect ${pp(actual)} {{not}} to be zero`,
    };
  }

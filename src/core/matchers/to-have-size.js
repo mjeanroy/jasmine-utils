@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {sizeOf} from '../util/size-of.js';
 
 /**
@@ -51,7 +52,7 @@ export function toHaveSize(ctx, expectedSize) {
   return {
     pass: size === expectedSize,
     message:
-      `Expect size of ${jasmine.pp(actual)} {{not}} to be ${jasmine.pp(expectedSize)} ` +
-      `but was ${jasmine.pp(size)}`,
+      `Expect size of ${pp(actual)} {{not}} to be ${pp(expectedSize)} ` +
+      `but was ${pp(size)}`,
   };
 }

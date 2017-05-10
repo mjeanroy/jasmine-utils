@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isSet} from '../util/is-set.js';
 
 /**
@@ -41,6 +42,6 @@ export function toBeASet(ctx) {
   const actual = ctx.actual;
   return {
     pass: isSet(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be a Set`,
+    message: `Expect ${pp(actual)} {{not}} to be a Set`,
   };
 }

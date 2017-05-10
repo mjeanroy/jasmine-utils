@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isMap} from '../util/is-map.js';
 
 /**
@@ -40,6 +41,6 @@ export function toBeAMap(ctx) {
   const actual = ctx.actual;
   return {
     pass: isMap(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be a Map`,
+    message: `Expect ${pp(actual)} {{not}} to be a Map`,
   };
 }

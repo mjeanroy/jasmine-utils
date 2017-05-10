@@ -22,36 +22,37 @@
  * THE SOFTWARE.
  */
 
- import {toBeDateCloseToNow} from 'src/core/matchers/to-be-date-close-to-now.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeDateCloseToNow} from 'src/core/matchers/to-be-date-close-to-now.js';
 
- describe('toBeDateCloseToNow', () => {
-   it('should check that object is a date close to "now"', () => {
-     const now = new Date().getTime();
-     const actual = new Date(now + 100);
-     const result = toBeDateCloseToNow({actual});
-     expect(result).toEqual({
-       pass: true,
-       message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to now`,
-     });
-   });
+describe('toBeDateCloseToNow', () => {
+  it('should check that object is a date close to "now"', () => {
+    const now = new Date().getTime();
+    const actual = new Date(now + 100);
+    const result = toBeDateCloseToNow({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect date ${pp(actual)} {{not}} to be close to now`,
+    });
+  });
 
-   it('should check that object is a date close to now with a custom diff', () => {
-     const now = new Date().getTime();
-     const actual = new Date(now + 9000);
-     const result = toBeDateCloseToNow({actual}, 10000);
-     expect(result).toEqual({
-       pass: true,
-       message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to now`,
-     });
-   });
+  it('should check that object is a date close to now with a custom diff', () => {
+    const now = new Date().getTime();
+    const actual = new Date(now + 9000);
+    const result = toBeDateCloseToNow({actual}, 10000);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect date ${pp(actual)} {{not}} to be close to now`,
+    });
+  });
 
-   it('should not pass with a date not close to now', () => {
-     const now = new Date().getTime();
-     const actual = new Date(now + 10000);
-     const result = toBeDateCloseToNow({actual});
-     expect(result).toEqual({
-       pass: false,
-       message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to now`,
-     });
-   });
- });
+  it('should not pass with a date not close to now', () => {
+    const now = new Date().getTime();
+    const actual = new Date(now + 10000);
+    const result = toBeDateCloseToNow({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect date ${pp(actual)} {{not}} to be close to now`,
+    });
+  });
+});

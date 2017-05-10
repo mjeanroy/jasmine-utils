@@ -23,6 +23,7 @@
  */
 
 import {assumeMap} from '../detect/assume-map.js';
+import {pp} from 'src/core/jasmine/pp.js';
 import {toHaveKeys} from 'src/core/matchers/to-have-keys.js';
 
 describe('toHaveKeys', () => {
@@ -45,7 +46,7 @@ describe('toHaveKeys', () => {
     const result = toHaveKeys({actual}, 'foo');
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have keys [ 'foo' ]`,
+      message: `Expect ${pp(actual)} {{not}} to have keys [ 'foo' ]`,
     });
   });
 
@@ -68,7 +69,7 @@ describe('toHaveKeys', () => {
     const result = toHaveKeys({actual}, 'foo', 'quix');
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`,
+      message: `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`,
     });
   });
 
@@ -91,7 +92,7 @@ describe('toHaveKeys', () => {
     const result = toHaveKeys({actual}, 'bar');
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have keys [ 'bar' ]`,
+      message: `Expect ${pp(actual)} {{not}} to have keys [ 'bar' ]`,
     });
   });
 
@@ -114,7 +115,7 @@ describe('toHaveKeys', () => {
     const result = toHaveKeys({actual}, 'foo', 'bar');
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`,
+      message: `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`,
     });
   });
 });

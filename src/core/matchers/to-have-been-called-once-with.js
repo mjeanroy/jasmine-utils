@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
+
 /**
  * Check that the tested object is a spy that has been called once (and exactly
  * once) with expected arguments.
@@ -50,8 +52,8 @@ export function toHaveBeenCalledOnceWith(ctx, ...args) {
   const ok = wasCalledOnce && equals(argsFor(actual, 0), args);
   const msg = wasCalledOnce && !ok ? ' with different arguments' : '';
   const error =
-    `Expect ${jasmine.pp(actual)} {{not}} to have been called once but ` +
-    `was called ${jasmine.pp(count)} time(s)${msg}`;
+    `Expect ${pp(actual)} {{not}} to have been called once but ` +
+    `was called ${pp(count)} time(s)${msg}`;
 
   return {
     pass: ok,

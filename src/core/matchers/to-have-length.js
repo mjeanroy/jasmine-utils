@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
+
 /**
  * Check that tested object has a `length` property with expected value.
  *
@@ -43,7 +45,7 @@ export function toHaveLength(ctx, expectedLength) {
   return {
     pass: actualLength === expectedLength,
     message:
-      `Expect length of ${jasmine.pp(actual)} {{not}} to be ${jasmine.pp(expectedLength)} ` +
-      `but was ${jasmine.pp(actualLength)}`,
+      `Expect length of ${pp(actual)} {{not}} to be ${pp(expectedLength)} ` +
+      `but was ${pp(actualLength)}`,
   };
 }

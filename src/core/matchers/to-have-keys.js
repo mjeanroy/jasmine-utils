@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {keys} from '../util/keys.js';
 import {contains} from '../util/contains.js';
 
@@ -54,6 +55,6 @@ export function toHaveKeys(ctx, ...expectedKeys) {
 
   return {
     pass: ok,
-    message: `Expect ${jasmine.pp(actual)} {{not}} to have keys ${jasmine.pp(expectedKeys)}`,
+    message: `Expect ${pp(actual)} {{not}} to have keys ${pp(expectedKeys)}`,
   };
 }

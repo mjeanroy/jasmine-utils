@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isString} from '../util/is-string.js';
 
 /**
@@ -41,6 +42,6 @@ export function toBeAnEmptyString(ctx) {
   const actual = ctx.actual;
   return {
     pass: isString(actual) && actual === '',
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be an empty string`,
+    message: `Expect ${pp(actual)} {{not}} to be an empty string`,
   };
 }

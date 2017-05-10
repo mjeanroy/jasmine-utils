@@ -22,26 +22,27 @@
  * THE SOFTWARE.
  */
 
- import {toBeDateBefore} from 'src/core/matchers/to-be-date-before.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeDateBefore} from 'src/core/matchers/to-be-date-before.js';
 
- describe('toBeDateBefore', () => {
-   it('should check that object is a date before an other date', () => {
-     const lower = new Date(2016, 10, 12, 17, 55, 38, 0);
-     const actual = new Date(2016, 10, 12, 17, 55, 37, 0);
-     const result = toBeDateBefore({actual}, lower);
-     expect(result).toEqual({
-       pass: true,
-       message: `Expect date ${jasmine.pp(actual)} {{not}} to be before ${jasmine.pp(lower)}`,
-     });
-   });
+describe('toBeDateBefore', () => {
+  it('should check that object is a date before an other date', () => {
+    const lower = new Date(2016, 10, 12, 17, 55, 38, 0);
+    const actual = new Date(2016, 10, 12, 17, 55, 37, 0);
+    const result = toBeDateBefore({actual}, lower);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`,
+    });
+  });
 
-   it('should not pass with a date after', () => {
-     const lower = new Date(2016, 10, 12, 17, 55, 37, 0);
-     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
-     const result = toBeDateBefore({actual}, lower);
-     expect(result).toEqual({
-       pass: false,
-       message: `Expect date ${jasmine.pp(actual)} {{not}} to be before ${jasmine.pp(lower)}`,
-     });
-   });
- });
+  it('should not pass with a date after', () => {
+    const lower = new Date(2016, 10, 12, 17, 55, 37, 0);
+    const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
+    const result = toBeDateBefore({actual}, lower);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`,
+    });
+  });
+});

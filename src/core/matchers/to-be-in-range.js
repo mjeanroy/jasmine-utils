@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isNumber} from '../util/is-number.js';
 
 /**
@@ -44,6 +45,6 @@ export function toBeInRange(ctx, lower, upper) {
   const actual = ctx.actual;
   return {
     pass: isNumber(actual) && actual > lower && actual < upper,
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be between ${jasmine.pp(lower)} and ${jasmine.pp(upper)}`,
+    message: `Expect ${pp(actual)} {{not}} to be between ${pp(lower)} and ${pp(upper)}`,
   };
 }

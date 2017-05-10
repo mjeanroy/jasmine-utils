@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isNil} from '../util/is-nil.js';
 
 /**
@@ -44,6 +45,6 @@ export function toBeNil(ctx) {
   const actual = ctx.actual;
   return {
     pass: isNil(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be nil (null or undefined)`,
+    message: `Expect ${pp(actual)} {{not}} to be nil (null or undefined)`,
   };
 }

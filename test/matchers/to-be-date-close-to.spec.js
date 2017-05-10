@@ -22,36 +22,37 @@
  * THE SOFTWARE.
  */
 
- import {toBeDateCloseTo} from 'src/core/matchers/to-be-date-close-to.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeDateCloseTo} from 'src/core/matchers/to-be-date-close-to.js';
 
- describe('toBeADateCloseTo', () => {
-   it('should check that object is a date close to an other date', () => {
-     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
-     const other = new Date(2016, 10, 12, 17, 55, 38, 100);
-     const result = toBeDateCloseTo({actual}, other);
-     expect(result).toEqual({
-       pass: true,
-       message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to ${jasmine.pp(other)}`,
-     });
-   });
+describe('toBeADateCloseTo', () => {
+  it('should check that object is a date close to an other date', () => {
+    const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
+    const other = new Date(2016, 10, 12, 17, 55, 38, 100);
+    const result = toBeDateCloseTo({actual}, other);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect date ${pp(actual)} {{not}} to be close to ${pp(other)}`,
+    });
+  });
 
-   it('should check that object is a date close to an other date with a custom diff', () => {
-     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
-     const other = new Date(2016, 10, 12, 17, 55, 39, 0);
-     const result = toBeDateCloseTo({actual}, other, 10000);
-     expect(result).toEqual({
-       pass: true,
-       message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to ${jasmine.pp(other)}`,
-     });
-   });
+  it('should check that object is a date close to an other date with a custom diff', () => {
+    const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
+    const other = new Date(2016, 10, 12, 17, 55, 39, 0);
+    const result = toBeDateCloseTo({actual}, other, 10000);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect date ${pp(actual)} {{not}} to be close to ${pp(other)}`,
+    });
+  });
 
-   it('should not pass with a date not close', () => {
-     const actual = new Date(2016, 10, 12, 17, 55, 38, 11);
-     const other = new Date(2016, 10, 12, 17, 55, 38, 0);
-     const result = toBeDateCloseTo({actual}, other, 10);
-     expect(result).toEqual({
-       pass: false,
-       message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to ${jasmine.pp(other)}`,
-     });
-   });
- });
+  it('should not pass with a date not close', () => {
+    const actual = new Date(2016, 10, 12, 17, 55, 38, 11);
+    const other = new Date(2016, 10, 12, 17, 55, 38, 0);
+    const result = toBeDateCloseTo({actual}, other, 10);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect date ${pp(actual)} {{not}} to be close to ${pp(other)}`,
+    });
+  });
+});
