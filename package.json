@@ -46,7 +46,7 @@
     "rollup-plugin-babel": "2.7.1",
     "rollup-plugin-esformatter": "0.2.0",
     "rollup-plugin-includepaths": "0.2.2",
-    "rollup-plugin-license": "0.3.0",
+    "rollup-plugin-license": "0.4.0",
     "rollup-plugin-strip-banner": "0.1.0",
     "touch": "1.0.0"
   },
