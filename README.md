@@ -2,7 +2,6 @@ jasmine-utils
 =============
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/mjeanroy/jasmine-utils.svg)](https://greenkeeper.io/)
-
 [![Build Status](https://travis-ci.org/mjeanroy/jasmine-utils.svg?branch=master)](https://travis-ci.org/mjeanroy/jasmine-utils)
 [![GitHub version](https://badge.fury.io/gh/mjeanroy%2Fjasmine-utils.svg)](https://badge.fury.io/gh/mjeanroy%2Fjasmine-utils)
 [![Npm version](https://badge.fury.io/js/jasmine-utils.svg)](https://badge.fury.io/js/jasmine-utils)
