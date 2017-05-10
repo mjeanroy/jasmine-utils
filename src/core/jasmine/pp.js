@@ -22,25 +22,19 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeToday} from 'src/core/matchers/to-be-today.js';
-
-describe('toBeToday', () => {
-  it('should check that a date is today', () => {
-    const actual = new Date();
-    const result = toBeToday({actual});
-    expect(result).toEqual({
-      pass: true,
-      message: `Expect date ${pp(actual)} {{not}} to be today`,
-    });
-  });
-
-  it('should not pass with a date that is not today', () => {
-    const actual = new Date(2010, 10, 13, 17, 55, 38, 0);
-    const result = toBeToday({actual});
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect date ${pp(actual)} {{not}} to be today`,
-    });
-  });
-});
+/**
+ * Pretty-Print object (use `jasmine.pp` by default).
+ *
+ * @param {*} value Object to pretty-print.
+ * @return {string} The string representation of object.
+ */
+export function pp(value) {
+  try {
+    return jasmine.pp(value);
+  } catch(e) {
+    // Fallback using object `toString` implementation.
+    // Don't worry about `null` or `undefined` since it should be handled
+    // by `jasmine.pp`
+    return value.toString();
+  }
+}

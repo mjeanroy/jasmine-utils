@@ -23,6 +23,7 @@
  */
 
 import {assumeMap} from '../detect/assume-map.js';
+import {pp} from 'src/core/jasmine/pp.js';
 import {toBeAMap} from 'src/core/matchers/to-be-a-map.js';
 
 describe('toBeAMap', () => {
@@ -33,7 +34,7 @@ describe('toBeAMap', () => {
     const result = toBeAMap({actual});
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to be a Map`,
+      message: `Expect ${pp(actual)} {{not}} to be a Map`,
     });
   });
 

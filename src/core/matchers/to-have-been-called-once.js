@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
+
 /**
  * Check that the tested object is a spy that has been called once (and only once).
  *
@@ -46,7 +48,7 @@ export function toHaveBeenCalledOnce(ctx) {
   return {
     pass: count === 1,
     message:
-      `Expect ${jasmine.pp(actual)} {{not}} to have been called once but ` +
-      `was called ${jasmine.pp(count)} time(s)`,
+      `Expect ${pp(actual)} {{not}} to have been called once but ` +
+      `was called ${pp(count)} time(s)`,
   };
 }

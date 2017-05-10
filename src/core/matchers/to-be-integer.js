@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isInteger} from '../util/is-integer.js';
 
 /**
@@ -49,6 +50,6 @@ export function toBeInteger(ctx) {
   const actual = ctx.actual;
   return {
     pass: isInteger(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be an integer`,
+    message: `Expect ${pp(actual)} {{not}} to be an integer`,
   };
 }

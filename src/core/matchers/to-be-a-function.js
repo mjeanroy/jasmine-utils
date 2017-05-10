@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isFunction} from '../util/is-function.js';
 
 /**
@@ -42,6 +43,6 @@ export function toBeAFunction(ctx) {
   const actual = ctx.actual;
   return {
     pass: isFunction(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be a function`,
+    message: `Expect ${pp(actual)} {{not}} to be a function`,
   };
 }

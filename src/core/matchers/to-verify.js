@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {every} from '../util/every.js';
 import {isFunction} from '../util/is-function.js';
 
@@ -77,6 +78,6 @@ export function toVerify(ctx, message, iterator) {
 
   return {
     pass: every(actual, _iterator),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to verify ${_message}`,
+    message: `Expect ${pp(actual)} {{not}} to verify ${_message}`,
   };
 }

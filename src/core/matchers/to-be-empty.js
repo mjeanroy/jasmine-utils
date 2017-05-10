@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {sizeOf} from '../util/size-of.js';
 
 /**
@@ -47,6 +48,6 @@ export function toBeEmpty(ctx) {
   const size = sizeOf(actual);
   return {
     pass: size === 0,
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be empty`,
+    message: `Expect ${pp(actual)} {{not}} to be empty`,
   };
 }

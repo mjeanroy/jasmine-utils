@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isArray} from '../util/is-array.js';
 import {isTruthy} from '../util/is-truthy.js';
 import {every} from '../util/every.js';
@@ -49,6 +50,6 @@ export function toContainsOnlyTruthyValues(ctx) {
   const actual = ctx.actual;
   return {
     pass: isArray(actual) && every(actual, isTruthy),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to contains only truthy values`,
+    message: `Expect ${pp(actual)} {{not}} to contains only truthy values`,
   };
 }

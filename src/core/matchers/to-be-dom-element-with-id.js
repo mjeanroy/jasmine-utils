@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isDOMElement} from '../util/is-dom-element.js';
 
 /**
@@ -44,11 +45,11 @@ export function toBeDOMElementWithId(ctx, id) {
   const isElement = isDOMElement(actual);
 
   let ok = isElement;
-  let msg = `Expect ${jasmine.pp(actual)} {{not}} to be a DOM element`;
+  let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
 
   if (isElement) {
     const actualId = actual.getAttribute('id');
-    msg += ` with id ${jasmine.pp(id)} but was ${jasmine.pp(actualId)}`;
+    msg += ` with id ${pp(id)} but was ${pp(actualId)}`;
     ok = ok && actualId === id;
   }
 

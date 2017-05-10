@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from 'src/core/jasmine/pp.js';
 import {toHaveBeenCalledOnce} from 'src/core/matchers/to-have-been-called-once.js';
 
 describe('toHaveBeenCalledOnce', () => {
@@ -34,7 +35,7 @@ describe('toHaveBeenCalledOnce', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have been called once but was called 1 time(s)`,
+      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s)`,
     });
   });
 
@@ -47,7 +48,7 @@ describe('toHaveBeenCalledOnce', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have been called once but was called 0 time(s)`,
+      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 0 time(s)`,
     });
   });
 
@@ -60,7 +61,7 @@ describe('toHaveBeenCalledOnce', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have been called once but was called 2 time(s)`,
+      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 2 time(s)`,
     });
   });
 });

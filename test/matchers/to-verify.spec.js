@@ -25,6 +25,7 @@
 import {assumeSet} from '../detect/assume-set.js';
 import {assumeMap} from '../detect/assume-map.js';
 import {assumeSymbol} from '../detect/assume-symbol.js';
+import {pp} from 'src/core/jasmine/pp.js';
 import {toVerify} from 'src/core/matchers/to-verify.js';
 
 describe('toVerify', () => {
@@ -56,7 +57,7 @@ describe('toVerify', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to verify condition`,
+      message: `Expect ${pp(actual)} {{not}} to verify condition`,
     });
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -77,7 +78,7 @@ describe('toVerify', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to verify condition`,
+      message: `Expect ${pp(actual)} {{not}} to verify condition`,
     });
 
     expect(predicate).toHaveBeenCalledWith(1, 'one', actual);
@@ -104,7 +105,7 @@ describe('toVerify', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to verify condition`,
+      message: `Expect ${pp(actual)} {{not}} to verify condition`,
     });
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);

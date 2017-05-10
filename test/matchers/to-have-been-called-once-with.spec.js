@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from 'src/core/jasmine/pp.js';
 import {toHaveBeenCalledOnceWith} from 'src/core/matchers/to-have-been-called-once-with.js';
 
 describe('toHaveBeenCalledOnceWith', () => {
@@ -40,7 +41,7 @@ describe('toHaveBeenCalledOnceWith', () => {
     expect(equals).toHaveBeenCalledWith(args, expectedArgs);
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have been called once but was called 1 time(s)`,
+      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s)`,
     });
   });
 
@@ -59,7 +60,7 @@ describe('toHaveBeenCalledOnceWith', () => {
     expect(equals).not.toHaveBeenCalled();
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have been called once but was called 0 time(s)`,
+      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 0 time(s)`,
     });
   });
 
@@ -78,7 +79,7 @@ describe('toHaveBeenCalledOnceWith', () => {
     expect(equals).not.toHaveBeenCalled();
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to have been called once but was called 2 time(s)`,
+      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 2 time(s)`,
     });
   });
 
@@ -98,7 +99,7 @@ describe('toHaveBeenCalledOnceWith', () => {
     expect(result).toEqual({
       pass: false,
       message:
-        `Expect ${jasmine.pp(actual)} {{not}} to have been called once but ` +
+        `Expect ${pp(actual)} {{not}} to have been called once but ` +
         `was called 1 time(s) with different arguments`,
     });
   });

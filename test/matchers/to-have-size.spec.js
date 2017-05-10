@@ -25,6 +25,7 @@
 import {assumeSet} from '../detect/assume-set.js';
 import {assumeMap} from '../detect/assume-map.js';
 import {assumeSymbol} from '../detect/assume-symbol.js';
+import {pp} from 'src/core/jasmine/pp.js';
 import {toHaveSize} from 'src/core/matchers/to-have-size.js';
 
 describe('toHaveSize', () => {
@@ -55,7 +56,7 @@ describe('toHaveSize', () => {
     const result = toHaveSize({actual}, 1);
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of ${jasmine.pp(actual)} {{not}} to be 1 but was 1`,
+      message: `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`,
     });
   });
 
@@ -68,7 +69,7 @@ describe('toHaveSize', () => {
     const result = toHaveSize({actual}, 1);
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of ${jasmine.pp(actual)} {{not}} to be 1 but was 1`,
+      message: `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`,
     });
   });
 
@@ -90,7 +91,7 @@ describe('toHaveSize', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of ${jasmine.pp(actual)} {{not}} to be 2 but was 2`,
+      message: `Expect size of ${pp(actual)} {{not}} to be 2 but was 2`,
     });
   });
 

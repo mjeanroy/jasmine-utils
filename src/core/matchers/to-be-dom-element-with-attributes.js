@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isDOMElement} from '../util/is-dom-element.js';
 import {keys} from '../util/keys.js';
 
@@ -48,7 +49,7 @@ export function toBeDOMElementWithAttributes(ctx, attributes) {
   const {actual, equals} = ctx;
   const isElement = isDOMElement(actual);
 
-  let msg = `Expect ${jasmine.pp(actual)} {{not}} to be a DOM element`;
+  let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
   let ok = isElement;
 
   if (isElement) {

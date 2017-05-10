@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from 'src/core/jasmine/pp.js';
 import {toBeADate} from 'src/core/matchers/to-be-a-date.js';
 
 describe('toBeADate', () => {
@@ -30,7 +31,7 @@ describe('toBeADate', () => {
     const result = toBeADate({actual});
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to be a date`,
+      message: `Expect ${pp(actual)} {{not}} to be a date`,
     });
   });
 

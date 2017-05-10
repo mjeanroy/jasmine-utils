@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isNumber} from '../util/is-number.js';
 
 /**
@@ -43,6 +44,6 @@ export function toBeANumber(ctx) {
   const actual = ctx.actual;
   return {
     pass: isNumber(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be a number`,
+    message: `Expect ${pp(actual)} {{not}} to be a number`,
   };
 }

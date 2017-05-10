@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isNull} from '../util/is-null.js';
 
 /**
@@ -41,6 +42,6 @@ export function toBeNull(ctx) {
   const actual = ctx.actual;
   return {
     pass: isNull(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be null`,
+    message: `Expect ${pp(actual)} {{not}} to be null`,
   };
 }

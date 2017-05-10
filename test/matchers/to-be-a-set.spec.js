@@ -23,6 +23,7 @@
  */
 
 import {assumeSet} from '../detect/assume-set.js';
+import {pp} from 'src/core/jasmine/pp.js';
 import {toBeASet} from 'src/core/matchers/to-be-a-set.js';
 
 describe('toBeASet', () => {
@@ -33,7 +34,7 @@ describe('toBeASet', () => {
     const result = toBeASet({actual});
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to be a Set`,
+      message: `Expect ${pp(actual)} {{not}} to be a Set`,
     });
   });
 

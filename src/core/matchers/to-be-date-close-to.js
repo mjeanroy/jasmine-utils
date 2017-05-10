@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {dateDiff} from '../util/date-diff.js';
 
 /**
@@ -54,6 +55,6 @@ export function toBeDateCloseTo(ctx, date, max = 1000) {
   const diff = Math.abs(dateDiff(actual, date));
   return {
     pass: diff <= max,
-    message: `Expect date ${jasmine.pp(actual)} {{not}} to be close to ${jasmine.pp(date)}`,
+    message: `Expect date ${pp(actual)} {{not}} to be close to ${pp(date)}`,
   };
 }

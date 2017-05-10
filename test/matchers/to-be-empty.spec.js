@@ -25,6 +25,7 @@
 import {assumeSet} from '../detect/assume-set.js';
 import {assumeMap} from '../detect/assume-map.js';
 import {assumeSymbol} from '../detect/assume-symbol.js';
+import {pp} from 'src/core/jasmine/pp.js';
 import {toBeEmpty} from 'src/core/matchers/to-be-empty.js';
 
 describe('toBeEmpty', () => {
@@ -44,7 +45,7 @@ describe('toBeEmpty', () => {
     const result = toBeEmpty({actual});
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to be empty`,
+      message: `Expect ${pp(actual)} {{not}} to be empty`,
     });
   });
 
@@ -55,7 +56,7 @@ describe('toBeEmpty', () => {
     const result = toBeEmpty({actual});
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to be empty`,
+      message: `Expect ${pp(actual)} {{not}} to be empty`,
     });
   });
 
@@ -76,7 +77,7 @@ describe('toBeEmpty', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${jasmine.pp(actual)} {{not}} to be empty`,
+      message: `Expect ${pp(actual)} {{not}} to be empty`,
     });
   });
 

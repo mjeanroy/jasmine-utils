@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isSameDay} from '../util/is-same-day.js';
 
 /**
@@ -53,6 +54,6 @@ export function toBeToday(ctx) {
   const d2 = new Date();
   return {
     pass: isSameDay(d1, d2),
-    message: `Expect date ${jasmine.pp(d1)} {{not}} to be today`,
+    message: `Expect date ${pp(d1)} {{not}} to be today`,
   };
 }

@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isArray} from '../util/is-array.js';
 
 /**
@@ -46,6 +47,6 @@ export function toBeAnArray(ctx) {
   const actual = ctx.actual;
   return {
     pass: isArray(actual),
-    message: `Expect ${jasmine.pp(actual)} {{not}} to be an array`,
+    message: `Expect ${pp(actual)} {{not}} to be an array`,
   };
 }

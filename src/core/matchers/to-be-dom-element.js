@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {pp} from '../jasmine/pp.js';
 import {isDOMElement} from '../util/is-dom-element.js';
 import {isString} from '../util/is-string.js';
 import {isNil} from '../util/is-nil.js';
@@ -51,16 +52,16 @@ export function toBeDOMElement(ctx, tagName) {
   const actual = ctx.actual;
   const isElement = isDOMElement(actual);
 
-  let msg = `Expect ${jasmine.pp(actual)} {{not}} to be a DOM element`;
+  let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
   let ok = isElement;
 
   // Add more details to the message if it is appropriate.
   if (isString(tagName)) {
-    msg = `Expect ${jasmine.pp(actual)} {{not}} to be ${jasmine.pp(tagName.toUpperCase())} element`;
+    msg = `Expect ${pp(actual)} {{not}} to be ${pp(tagName.toUpperCase())} element`;
     ok = ok && tagName.toUpperCase() === actual.tagName.toUpperCase();
 
     if (isElement) {
-      msg += ` but was ${jasmine.pp(actual.tagName.toUpperCase())}`;
+      msg += ` but was ${pp(actual.tagName.toUpperCase())}`;
     }
   } else {
     ok = ok && isNil(tagName);

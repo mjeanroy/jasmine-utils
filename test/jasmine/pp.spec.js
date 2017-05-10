@@ -22,25 +22,32 @@
  * THE SOFTWARE.
  */
 
+import {assumeMap} from '../detect/assume-map.js';
+import {assumeSet} from '../detect/assume-set.js';
 import {pp} from 'src/core/jasmine/pp.js';
-import {toBeToday} from 'src/core/matchers/to-be-today.js';
 
-describe('toBeToday', () => {
-  it('should check that a date is today', () => {
-    const actual = new Date();
-    const result = toBeToday({actual});
-    expect(result).toEqual({
-      pass: true,
-      message: `Expect date ${pp(actual)} {{not}} to be today`,
-    });
+describe('pp', () => {
+  it('should pretty-print null', () => {
+    expect(pp(null)).toBe('null');
   });
 
-  it('should not pass with a date that is not today', () => {
-    const actual = new Date(2010, 10, 13, 17, 55, 38, 0);
-    const result = toBeToday({actual});
-    expect(result).toEqual({
-      pass: false,
-      message: `Expect date ${pp(actual)} {{not}} to be today`,
-    });
+  it('should pretty-print undefined', () => {
+    expect(pp(undefined)).toBe('undefined');
+  });
+
+  it('should pretty-print empty array', () => {
+    expect(pp([])).toBe('[  ]');
+  });
+
+  it('should pretty-print Set', () => {
+    assumeSet();
+    expect(pp(new Set())).toBeDefined();
+    expect(pp(new Set())).not.toBe('');
+  });
+
+  it('should pretty-print Map', () => {
+    assumeMap();
+    expect(pp(new Map())).toBeDefined();
+    expect(pp(new Map())).not.toBe('');
   });
 });
