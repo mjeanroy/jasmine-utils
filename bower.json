@@ -2,7 +2,7 @@
   "name": "jasmine-utils",
   "version": "0.3.0",
   "authors": [
-    "Mickael Jeanroy <mickael.jeanroy@gmail.com>"
+    "Mickael Jeanroy"
   ],
   "description": "Simple Plugin to add a lot of custom matchers to jasmine framework",
   "main": "src/jasmine-utils.js",

@@ -1,6 +1,6 @@
 {
   "name": "jasmine-utils",
-  "author": "mickael.jeanroy@gmail.com",
+  "author": "Mickael Jeanroy",
   "main": "src/jasmine-utils.js",
   "version": "0.3.0",
   "license": "MIT",
