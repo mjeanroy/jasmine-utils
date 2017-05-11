@@ -51,11 +51,17 @@ describe('forEachWritableProperties', () => {
 
     forEachWritableProperties(Klass, iteratee);
 
-    expect(iteratee).toHaveBeenCalledTimes(3);
-
-    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'constructor');
     expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'foo');
     expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'bar');
+
+    // The `constructor` property will be scanned only with `Object.getOwnPropertyNames`.
+    if (Object.getOwnPropertyNames) {
+      expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'constructor');
+      expect(iteratee).toHaveBeenCalledTimes(3);
+    } else {
+      expect(iteratee).not.toHaveBeenCalledWith(Klass.prototype, 'constructor');
+      expect(iteratee).toHaveBeenCalledTimes(2);
+    }
   });
 
   it('should execute callback for all instance of class', () => {
@@ -63,6 +69,7 @@ describe('forEachWritableProperties', () => {
     const iteratee = jasmine.createSpy('iteratee');
 
     forEachWritableProperties(o, iteratee);
+
     expect(iteratee).toHaveBeenCalledTimes(3);
     expect(iteratee).toHaveBeenCalledWith(o, 'id');
     expect(iteratee).toHaveBeenCalledWith(o, 'foo');

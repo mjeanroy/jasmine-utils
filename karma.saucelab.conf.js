@@ -64,6 +64,12 @@ const browsers = {
     version: '9',
   },
 
+  SL_ie_8: {
+    base: 'SauceLabs',
+    browserName: 'internet explorer',
+    version: '8',
+  },
+
   SL_chrome: {
     base: 'SauceLabs',
     browserName: 'chrome',

@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {skip} from './skip.js';
+
 /**
  * Mark test as pending if `Set` is not supported in the
  * environment.
@@ -29,6 +31,6 @@
  */
 export function assumeSet() {
   if (typeof Set === 'undefined') {
-    pending('Set is not supported in this environment');
+    skip('Set is not supported in this environment');
   }
 }

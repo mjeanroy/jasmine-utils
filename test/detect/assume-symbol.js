@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {skip} from './skip.js';
+
 /**
  * Mark test as pending if `Symbol` is not supported in the
  * environment.
@@ -29,6 +31,6 @@
  */
 export function assumeSymbol() {
   if (typeof Symbol === 'undefined') {
-    pending('Symbol is not supported in this environment');
+    skip('Symbol is not supported in this environment');
   }
 }

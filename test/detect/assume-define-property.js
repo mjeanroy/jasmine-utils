@@ -22,13 +22,29 @@
  * THE SOFTWARE.
  */
 
+import {skip} from './skip.js';
+
+const SUPPORT_DEFINE_PROPERTY = (() => {
+  if (!Object.defineProperty) {
+    return false;
+  }
+
+  // On IE8, Object.defineProperty only works with DOM Node...
+  try {
+    Object.defineProperty({}, 'foobar', {value: 'foobar'});
+    return true;
+  } catch(e) {
+    return false;
+  }
+})();
+
 /**
  * Mark test as pending if `Object.defineProperty` is not supported in the
  * environment.
  * @return {void}
  */
 export function assumeDefineProperty() {
-  if (!Object.defineProperty) {
-    pending('Object#defineProperty is not supported in this environment');
+  if (!SUPPORT_DEFINE_PROPERTY) {
+    skip('Object#defineProperty is not supported in this environment');
   }
 }

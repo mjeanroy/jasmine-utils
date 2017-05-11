@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+import {skip} from './skip.js';
+
 /**
  * Mark test as pending if `Object.getOwnPropertyNames` is not supported in the
  * environment.
@@ -29,6 +31,6 @@
  */
 export function assumeGetOwnPropertyNames() {
   if (!Object.getOwnPropertyNames) {
-    pending('Object#getOwnPropertyNames is not supported in this environment');
+    skip('Object#getOwnPropertyNames is not supported in this environment');
   }
 }

@@ -22,15 +22,22 @@
  * THE SOFTWARE.
  */
 
-import {skip} from './skip.js';
+/**
+ * This is the prefix used by Jasmine to ensure that the exception should
+ * be catched properly.
+ */
+const JASMINE_PREFIX = '=> marked Pending';
 
 /**
- * Mark test as pending if `Map` is not supported in the
- * environment.
+ * Throw an exception meaning that a test must be skipped (he exception will be
+ * catched by jasmine).
+ *
+ * The `pending` function should do the trick but it seems a mysterious
+ * bug in IE8 mark the test as failing...
+ *
+ * @param {string} message Skip message.
  * @return {void}
  */
-export function assumeMap() {
-  if (typeof Map === 'undefined') {
-    skip('Map is not supported in this environment');
-  }
+export function skip(message) {
+  throw new Error(`${JASMINE_PREFIX}${message}`);
 }
