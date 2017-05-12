@@ -36,5 +36,6 @@ module.exports = (config) => {
     captureTimeout: 10000,
     singleRun: false,
     reportSlowerThan: 2000,
+    reporters: ['progress', 'kjhtml'],
   }));
 };
