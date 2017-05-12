@@ -27,6 +27,14 @@ import {assumeSet} from '../detect/assume-set.js';
 import {tagName} from 'src/core/util/tag-name.js';
 
 describe('tagName', () => {
+  it('should get [object Null] with null', () => {
+    expect(tagName(null)).toBe('[object Null]');
+  });
+
+  it('should get [object Undefined] with undefined', () => {
+    expect(tagName(undefined)).toBe('[object Undefined]');
+  });
+
   it('should get [object Array] with array', () => {
     expect(tagName([])).toBe('[object Array]');
   });

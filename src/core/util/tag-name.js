@@ -22,6 +22,9 @@
  * THE SOFTWARE.
  */
 
+import {isNull} from './is-null.js';
+import {isUndefined} from './is-undefined.js';
+
 /**
  * Return the tag name of the object (a.k.a the result of `Object.prototype.toString`).
  *
@@ -29,6 +32,16 @@
  * @return {string} Tag name.
  */
 export function tagName(obj) {
+  // Handle null and undefined since it may fail on some browser.
+
+  if (isNull(obj)) {
+    return '[object Null]';
+  }
+
+  if (isUndefined(obj)) {
+    return '[object Undefined]';
+  }
+
   const tag = Object.prototype.toString.call(obj);
 
   // IE11 on Win10 returns `[object Object]` with `Map` and `Set`.
