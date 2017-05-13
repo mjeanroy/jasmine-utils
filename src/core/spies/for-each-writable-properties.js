@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {indexOf} from '../util/index-of.js';
 import {isNil} from '../util/is-nil.js';
 import {filter} from '../util/filter.js';
 import {forEach} from '../util/for-each.js';
@@ -73,7 +74,7 @@ export function forEachWritableProperties(obj, iterator) {
           getProtoResult = Object.getPrototypeOf(current);
           if (getProtoResult !== Object.getPrototypeOf({})) {
             forEach(Object.getOwnPropertyNames(getProtoResult), (p) => {
-              if (p !== 'constructor' && props.indexOf(p) === -1) {
+              if (p !== 'constructor' && indexOf(props, p) === -1) {
                 props.push(p);
               }
             });
@@ -126,7 +127,7 @@ class ArraySet {
    * @return {boolean} `true` if `x` is in the set, false otherwise.
    */
   has(x) {
-    return this.o.indexOf(x) >= 0;
+    return indexOf(this.o, x) >= 0;
   }
 
   /**
