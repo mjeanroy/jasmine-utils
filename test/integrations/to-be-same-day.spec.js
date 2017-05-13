@@ -37,7 +37,7 @@ describe('toBeSameDay', () => {
   it('should pass with strings', () => {
     const date1 = new Date(2014, 5, 5, 10, 0, 0, 0);
 
-    expect(date1).toBeSameDay('2014-06-05');
-    expect(date1).not.toBeSameDay('2014-06-06');
+    expect(date1).toBeSameDay('2014-06-05T10:00:00.000Z');
+    expect(date1).not.toBeSameDay('2014-06-06T10:00:00.000Z');
   });
 });

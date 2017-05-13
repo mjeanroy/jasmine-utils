@@ -55,6 +55,8 @@ import './is-truthy.spec.js';
 import './is-undefined.spec.js';
 import './keys.spec.js';
 import './map.spec.js';
+import './now.spec.js';
+import './parse-date.spec.js';
 import './size-of.spec.js';
 import './some.spec.js';
 import './strict-equals.spec.js';

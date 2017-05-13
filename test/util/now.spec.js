@@ -22,35 +22,25 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../jasmine/pp.js';
-import {now} from '../util/now.js';
-import {dateDiff} from '../util/date-diff.js';
+import {now} from 'src/core/util/now.js';
 
-/**
- * Check that the tested date object is a date "after" `now`.
- *
- * The tested date may be:
- * - A date instance.
- * - A timestamp.
- * - A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
- *
- * **Note:** Using date strings should be avoided due to browser differences and inconsistencies.
- *
- * @message Expect date [actual] (not) to be after now
- * @example
- *   expect(Date.now() + 1000).toBeDateAfterNow();
- *   expect(new Date(Date.now() + 1000)).toBeDateAfterNow();
- *   expect(new Date(Date.now() - 1000)).not.toBeDateAfterNow();
- *
- * @param {Object} ctx Test context.
- * @return {Object} The test result.
- * @since 0.1.0
- */
-export function toBeDateAfterNow(ctx) {
-  const actual = ctx.actual;
-  const diff = dateDiff(actual, now());
-  return {
-    pass: diff >= 0,
-    message: `Expect date ${pp(actual)} {{not}} to be after now`,
-  };
-}
+describe('now', () => {
+  let baseDate;
+
+  beforeEach(() => {
+    baseDate = new Date();
+
+    jasmine.clock().install();
+    jasmine.clock().mockDate(baseDate);
+  });
+
+  afterEach(() => {
+    jasmine.clock().uninstall();
+  });
+
+  it('should get current date', () => {
+    expect(now().getTime()).toEqual(baseDate.getTime());
+    jasmine.clock().tick(1000);
+    expect(now().getTime()).toEqual(baseDate.getTime() + 1000);
+  });
+});

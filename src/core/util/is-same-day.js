@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isDate} from './is-date.js';
+import {parseDate} from './parse-date.js';
 
 /**
  * Check that both dates are the same day (do not compare hours, minutes, etc.).
@@ -32,10 +32,9 @@ import {isDate} from './is-date.js';
  * @return {boolean} `true` if both dates are the same day, `false` otherwise.
  */
 export function isSameDay(date1, date2) {
-  const d1 = isDate(date1) ? date1 : new Date(date1);
-  const d2 = isDate(date2) ? date2 : new Date(date2);
-  const isSameYear = d1.getUTCFullYear() === d2.getUTCFullYear();
-  const isSameMonth = d1.getUTCMonth() === d2.getUTCMonth();
-  const isSameDate = d1.getUTCDate() === d2.getUTCDate();
-  return isSameYear && isSameMonth && isSameDate;
+  const d1 = parseDate(date1);
+  const d2 = parseDate(date2);
+  return d1.getUTCFullYear() === d2.getUTCFullYear() &&
+    d1.getUTCMonth() === d2.getUTCMonth() &&
+    d1.getUTCDate() === d2.getUTCDate();
 }

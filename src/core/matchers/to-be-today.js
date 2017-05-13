@@ -23,6 +23,8 @@
  */
 
 import {pp} from '../jasmine/pp.js';
+import {now} from '../util/now.js';
+import {parseDate} from '../util/parse-date.js';
 import {isSameDay} from '../util/is-same-day.js';
 
 /**
@@ -50,8 +52,8 @@ import {isSameDay} from '../util/is-same-day.js';
  */
 export function toBeToday(ctx) {
   const actual = ctx.actual;
-  const d1 = new Date(actual);
-  const d2 = new Date();
+  const d1 = parseDate(actual);
+  const d2 = now();
   return {
     pass: isSameDay(d1, d2),
     message: `Expect date ${pp(d1)} {{not}} to be today`,

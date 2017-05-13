@@ -23,6 +23,7 @@
  */
 
 import {pp} from '../jasmine/pp.js';
+import {parseDate} from '../util/parse-date.js';
 import {isSameDay} from '../util/is-same-day.js';
 
 /**
@@ -51,8 +52,8 @@ import {isSameDay} from '../util/is-same-day.js';
  */
 export function toBeSameDay(ctx, day) {
   const actual = ctx.actual;
-  const d1 = new Date(actual);
-  const d2 = new Date(day);
+  const d1 = parseDate(actual);
+  const d2 = parseDate(day);
   return {
     pass: isSameDay(d1, d2),
     message: `Expect date ${pp(d1)} {{not}} to be same day as ${pp(d2)}`,

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isDate} from './is-date.js';
+import {parseDate} from './parse-date.js';
 
 /**
  * Get the difference in milliseconds between two dates.
@@ -36,7 +36,7 @@ import {isDate} from './is-date.js';
  * @return {number} The number of milliseconds between dates.
  */
 export function dateDiff(d1, d2) {
-  const t1 = isDate(d1) ? d1.getTime() : new Date(d1).getTime();
-  const t2 = isDate(d2) ? d2.getTime() : new Date(d2).getTime();
+  const t1 = parseDate(d1).getTime();
+  const t2 = parseDate(d2).getTime();
   return t1 - t2;
 }
