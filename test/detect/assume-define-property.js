@@ -23,46 +23,12 @@
  */
 
 /**
- * This is meant to replicate a real-world babel transformed class that isn't using the 'loose'
- * preset.
+ * Mark test as pending if `Object.defineProperty` is not supported in the
+ * environment.
+ * @return {void}
  */
-
-export const nonLooseClassFactory = function() {
-  /**
-   * Define property on target object using native `Object.defineProperty`.
-   *
-   * @param {Object} target Target object.
-   * @param {Array<Object>} props The properties.
-   * @return {void}
-   */
-  function defineProperties(target, props) {
-    for (let i = 0; i < props.length; i++) {
-      const descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ('value' in descriptor) {
-        descriptor.writable = true;
-      }
-
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
+export function assumeDefineProperty() {
+  if (!Object.defineProperty) {
+    pending('Object#defineProperty is not supported in this environment');
   }
-
-  /**
-   * @constructor NonLooseClass
-   */
-  function NonLooseClass() {
-    this.id = 42;
-  }
-
-  defineProperties(NonLooseClass.prototype, [
-    {key: 'methodOne', value: function methodOne() {}},
-    {key: 'methodTwo', value: function methodTwo() {}},
-  ]);
-
-  defineProperties(NonLooseClass, [
-    {key: 'staticMethodOne', value: function staticMethodOne() {}},
-  ]);
-
-  return NonLooseClass;
-};
+}

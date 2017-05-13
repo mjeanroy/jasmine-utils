@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
+import {assumeDefineProperty} from '../detect/assume-define-property.js';
 import {Klass} from '../fixtures/klass.js';
-import {nonLooseClassFactory} from '../fixtures/non-loose-class-generator';
+import {nonLooseClassFactory} from '../fixtures/non-loose-class-generator.js';
 import {forEachWritableProperties} from 'src/core/spies/for-each-writable-properties.js';
-const NonLooseClass = nonLooseClassFactory();
 
 describe('forEachWritableProperties', () => {
   it('should execute callback for all object properties', () => {
@@ -46,7 +46,32 @@ describe('forEachWritableProperties', () => {
     expect(iteratee).toHaveBeenCalledWith(o, 'bar');
   });
 
+  it('should execute callback for all class properties', () => {
+    const iteratee = jasmine.createSpy('iteratee');
+
+    forEachWritableProperties(Klass, iteratee);
+
+    expect(iteratee).toHaveBeenCalledTimes(3);
+
+    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'constructor');
+    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'foo');
+    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'bar');
+  });
+
+  it('should execute callback for all instance of class', () => {
+    const o = new Klass();
+    const iteratee = jasmine.createSpy('iteratee');
+
+    forEachWritableProperties(o, iteratee);
+    expect(iteratee).toHaveBeenCalledTimes(3);
+    expect(iteratee).toHaveBeenCalledWith(o, 'id');
+    expect(iteratee).toHaveBeenCalledWith(o, 'foo');
+    expect(iteratee).toHaveBeenCalledWith(o, 'bar');
+  });
+
   it('should execute callback for non enumerable and writable properties', () => {
+    assumeDefineProperty();
+
     const o = {
       foo() {},
     };
@@ -69,6 +94,8 @@ describe('forEachWritableProperties', () => {
   });
 
   it('should execute callback and ignore non writable properties', () => {
+    assumeDefineProperty();
+
     const o = {
       foo() {},
     };
@@ -89,45 +116,30 @@ describe('forEachWritableProperties', () => {
     expect(iteratee).toHaveBeenCalledWith(o, 'foo');
   });
 
-  it('should execute callback for all class properties', () => {
-    const iteratee = jasmine.createSpy('iteratee');
-
-    forEachWritableProperties(Klass, iteratee);
-
-    expect(iteratee).toHaveBeenCalledTimes(3);
-
-    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'constructor');
-    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'foo');
-    expect(iteratee).toHaveBeenCalledWith(Klass.prototype, 'bar');
-  });
-
   it('should execute callback for all class properties of a non-loose class', () => {
+    assumeDefineProperty();
+
+    const NonLooseClass = nonLooseClassFactory();
     const iteratee = jasmine.createSpy('iteratee');
 
     forEachWritableProperties(NonLooseClass, iteratee);
-    expect(iteratee).toHaveBeenCalledTimes(4);
 
+    expect(iteratee).toHaveBeenCalledTimes(4);
     expect(iteratee).toHaveBeenCalledWith(NonLooseClass, 'staticMethodOne');
     expect(iteratee).toHaveBeenCalledWith(NonLooseClass.prototype, 'constructor');
     expect(iteratee).toHaveBeenCalledWith(NonLooseClass.prototype, 'methodOne');
     expect(iteratee).toHaveBeenCalledWith(NonLooseClass.prototype, 'methodTwo');
   });
 
-  it('should execute callback for all instance of class', () => {
-    const o = new Klass();
-    const iteratee = jasmine.createSpy('iteratee');
-
-    forEachWritableProperties(o, iteratee);
-    expect(iteratee).toHaveBeenCalledTimes(3);
-    expect(iteratee).toHaveBeenCalledWith(o, 'id');
-    expect(iteratee).toHaveBeenCalledWith(o, 'foo');
-    expect(iteratee).toHaveBeenCalledWith(o, 'bar');
-  });
-
   it('should execute callback for all instance of a non-loose class', () => {
+    assumeDefineProperty();
+
+    const NonLooseClass = nonLooseClassFactory();
     const o = new NonLooseClass();
     const iteratee = jasmine.createSpy('iteratee');
+
     forEachWritableProperties(o, iteratee);
+
     expect(iteratee).toHaveBeenCalledTimes(3);
     expect(iteratee).toHaveBeenCalledWith(o, 'id');
     expect(iteratee).toHaveBeenCalledWith(o, 'methodOne');

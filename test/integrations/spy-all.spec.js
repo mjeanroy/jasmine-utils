@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
+import {assumeDefineProperty} from '../detect/assume-define-property.js';
 import {assumeGetOwnPropertyNames} from '../detect/assume-get-own-property-names.js';
-import 'src/index.js';
 import {Klass} from '../fixtures/klass.js';
 import {nonLooseClassFactory} from '../fixtures/non-loose-class-generator';
-const NonLooseClass = nonLooseClassFactory();
+import 'src/index.js';
 
 describe('spyAll and spyAllExcept', () => {
   it('should spy all methods', () => {
@@ -39,44 +39,6 @@ describe('spyAll and spyAllExcept', () => {
 
     expect(jasmine.isSpy(obj.foo)).toBeTruthy();
     expect(jasmine.isSpy(obj.bar)).toBeTruthy();
-  });
-
-  it('should spy all methods with non-enumerable writable property', () => {
-    assumeGetOwnPropertyNames();
-
-    const obj = new Klass();
-
-    Object.defineProperty(obj, 'nonEnumerableProperty', {
-      value: () => {},
-      enumerable: false,
-      writable: true,
-    });
-
-    expect(obj.nonEnumerableProperty).toBeDefined();
-    expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
-
-    jasmine.spyAll(obj);
-
-    expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeTruthy();
-  });
-
-  it('should not try to spy non-enumerable methods and non writable property', () => {
-    assumeGetOwnPropertyNames();
-
-    const obj = new Klass();
-
-    Object.defineProperty(obj, 'nonEnumerableProperty', {
-      value: () => {},
-      enumerable: false,
-      writable: false,
-    });
-
-    expect(obj.nonEnumerableProperty).toBeDefined();
-    expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
-
-    jasmine.spyAll(obj);
-
-    expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
   });
 
   it('should spy all methods except bar', () => {
@@ -146,9 +108,54 @@ describe('spyAll and spyAllExcept', () => {
     expect(jasmine.isSpy(Klass.prototype.bar)).toBeTruthy();
   });
 
+  it('should spy all methods with non-enumerable writable property', () => {
+    assumeDefineProperty();
+    assumeGetOwnPropertyNames();
+
+    const obj = new Klass();
+
+    Object.defineProperty(obj, 'nonEnumerableProperty', {
+      value: () => {},
+      enumerable: false,
+      writable: true,
+    });
+
+    expect(obj.nonEnumerableProperty).toBeDefined();
+    expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
+
+    jasmine.spyAll(obj);
+
+    expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeTruthy();
+  });
+
+  it('should not try to spy non-enumerable methods and non writable property', () => {
+    assumeDefineProperty();
+    assumeGetOwnPropertyNames();
+
+    const obj = new Klass();
+
+    Object.defineProperty(obj, 'nonEnumerableProperty', {
+      value: () => {},
+      enumerable: false,
+      writable: false,
+    });
+
+    expect(obj.nonEnumerableProperty).toBeDefined();
+    expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
+
+    jasmine.spyAll(obj);
+
+    expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
+  });
+
   it('should spy babel transformed instance methods', () => {
+    assumeDefineProperty();
+
+    const NonLooseClass = nonLooseClassFactory();
     const instance = new NonLooseClass();
+
     jasmine.spyAll(instance);
+
     expect(jasmine.isSpy(instance.methodOne)).toBeTruthy();
     expect(jasmine.isSpy(instance.methodTwo)).toBeTruthy();
   });
