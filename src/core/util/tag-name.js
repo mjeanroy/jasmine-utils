@@ -45,14 +45,29 @@ export function tagName(obj) {
   const tag = Object.prototype.toString.call(obj);
 
   // IE11 on Win10 returns `[object Object]` with `Map` and `Set`.
+  // IE8 returns `[object Object]` with NodeList and HTMLCollection.
   // Try to patch this bug and return the appropriate tag value.
-  // The best way seems to compare the constructor source with `Map` or `Set` sources.
   if (tag === '[object Object]') {
+    // -- IE11 Patch
+
+    // Handle `Map` or `Set` (IE11).
     const src = typeof obj.constructor === 'function' ? toSource(obj.constructor) : '';
     if (typeof Map === 'function' && src === toSource(Map)) {
       return '[object Map]';
     } else if (typeof Set === 'function' && src === toSource(Set)) {
       return '[object Set]';
+    }
+
+    // -- IE8 Patch
+
+    // Handle NodeList (IE8 only).
+    if (obj instanceof NodeList) {
+      return '[object NodeList]';
+    }
+
+    // Handle HTMLCollection (IE8 only).
+    if (obj instanceof HTMLCollection) {
+      return '[object HTMLCollection]';
     }
   }
 
