@@ -22,25 +22,16 @@
  * THE SOFTWARE.
  */
 
+import {Klass} from '../fixtures/klass.js';
 import {toBeInstanceOf} from 'src/core/matchers/to-be-instance-of.js';
 
 describe('toBeInstanceOf', () => {
-  let Klass;
-
-  beforeEach(() => {
-    // eslint-disable-next-line
-    Klass = class Klass {
-      // eslint-disable-next-line
-      constructor() {}
-    };
-  });
-
   it('should pass if value is an instance of given class', () => {
     const actual = new Klass();
     const result = toBeInstanceOf({actual}, Klass);
     expect(result).toEqual({
       pass: true,
-      message: 'Expect Klass({  }) {{not}} to be an instance of Function',
+      message: 'Expect Klass({ id: 0 }) {{not}} to be an instance of Function',
     });
   });
 
