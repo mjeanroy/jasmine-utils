@@ -1,19 +1,23 @@
-# node
+# Node/NPM
 node_modules/
 
 # Only needed for development.
-.babelrc
-.bowerrc
-.eslintrc
-.gitignore
-.readme
-.travis.yml
-test/
-tasks/
-gulpfile.js
-karma.common.conf.js
-karma.saucelab.conf.js
-karma.tdd.conf.js
-karma.test.conf.js
-conf.js
-rollup.conf.js
+/.babelrc
+/.bowerrc
+/.eslintrc
+/.gitignore
+/.readme
+/.travis.yml
+/test
+/tasks
+/gulpfile.js
+/karma.common.conf.js
+/karma.saucelab.conf.js
+/karma.tdd.conf.js
+/karma.test.conf.js
+/conf.js
+/rollup.conf.js
+
+# Ignore dev source files
+/src/core
+/src/index.js
