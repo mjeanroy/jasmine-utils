@@ -37,8 +37,7 @@ import {isMap} from '../util/is-map.js';
  * @return {Object} The test result.
  * @since 0.3.0
  */
-export function toBeAMap(ctx) {
-  const actual = ctx.actual;
+export function toBeAMap({actual}) {
   return {
     pass: isMap(actual),
     message: `Expect ${pp(actual)} {{not}} to be a Map`,

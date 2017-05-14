@@ -40,8 +40,7 @@ import {contains} from '../util/contains.js';
  * @return {Object} Matcher result.
  * @since 0.1.0
  */
-export function toHaveKeys(ctx, ...expectedKeys) {
-  const actual = ctx.actual;
+export function toHaveKeys({actual}, ...expectedKeys) {
   const actualKeys = keys(actual);
   const size = expectedKeys.length;
 

@@ -50,8 +50,7 @@ import {dateDiff} from '../util/date-diff.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeDateCloseTo(ctx, date, max = 1000) {
-  const actual = ctx.actual;
+export function toBeDateCloseTo({actual}, date, max = 1000) {
   const diff = Math.abs(dateDiff(actual, date));
   return {
     pass: diff <= max,

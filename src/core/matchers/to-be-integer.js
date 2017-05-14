@@ -46,8 +46,7 @@ import {isInteger} from '../util/is-integer.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeInteger(ctx) {
-  const actual = ctx.actual;
+export function toBeInteger({actual}) {
   return {
     pass: isInteger(actual),
     message: `Expect ${pp(actual)} {{not}} to be an integer`,

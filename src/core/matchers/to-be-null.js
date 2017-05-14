@@ -38,8 +38,7 @@ import {isNull} from '../util/is-null.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeNull(ctx) {
-  const actual = ctx.actual;
+export function toBeNull({actual}) {
   return {
     pass: isNull(actual),
     message: `Expect ${pp(actual)} {{not}} to be null`,

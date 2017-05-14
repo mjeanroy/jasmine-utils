@@ -38,8 +38,7 @@ import {isNumber} from '../util/is-number.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeNegative(ctx) {
-  const actual = ctx.actual;
+export function toBeNegative({actual}) {
   return {
     pass: isNumber(actual) && actual < 0,
     message: `Expect ${pp(actual)} {{not}} to be a negative number`,

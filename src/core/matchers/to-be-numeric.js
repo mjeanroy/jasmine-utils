@@ -42,8 +42,7 @@ import {isNumeric} from '../util/is-numeric.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeNumeric(ctx) {
-  const actual = ctx.actual;
+export function toBeNumeric({actual}) {
   return {
     pass: isNumeric(actual),
     message: `Expect ${pp(actual)} {{not}} to be a numeric value`,

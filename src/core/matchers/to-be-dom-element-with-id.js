@@ -40,8 +40,7 @@ import {isDOMElement} from '../util/is-dom-element.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElementWithId(ctx, id) {
-  const actual = ctx.actual;
+export function toBeDOMElementWithId({actual}, id) {
   const isElement = isDOMElement(actual);
 
   let ok = isElement;

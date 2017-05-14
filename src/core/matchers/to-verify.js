@@ -62,7 +62,7 @@ import {isFunction} from '../util/is-function.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toVerify(ctx, message, iterator) {
+export function toVerify({actual}, message, iterator) {
   let _message;
   let _iterator;
 
@@ -73,8 +73,6 @@ export function toVerify(ctx, message, iterator) {
     _message = `"${message}"`;
     _iterator = iterator;
   }
-
-  const actual = ctx.actual;
 
   return {
     pass: every(actual, _iterator),

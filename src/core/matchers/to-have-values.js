@@ -42,8 +42,7 @@ import {values} from '../util/values.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toHaveValues(ctx, ...expectedValues) {
-  const {actual, equals} = ctx;
+export function toHaveValues({actual, equals}, ...expectedValues) {
   const actualValues = values(actual);
 
   let ok = true;

@@ -46,8 +46,7 @@ import {sizeOf} from '../util/size-of.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveSize(ctx, expectedSize) {
-  const actual = ctx.actual;
+export function toHaveSize({actual}, expectedSize) {
   const size = sizeOf(actual);
   return {
     pass: size === expectedSize,

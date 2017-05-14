@@ -43,8 +43,7 @@ import {containsDistinct} from '../util/contains-distinct.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toContainsDistinctValues(ctx) {
-  const {actual, equals} = ctx;
+export function toContainsDistinctValues({actual, equals}) {
   return {
     pass: isArray(actual) && containsDistinct(actual, equals),
     message: `Expect ${pp(actual)} {{not}} to contains only distinct values`,

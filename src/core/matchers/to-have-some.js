@@ -64,9 +64,7 @@ import {isFunction} from '../util/is-function.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveSome(ctx, message, iterator) {
-  const actual = ctx.actual;
-
+export function toHaveSome({actual}, message, iterator) {
   let _message;
   let _iterator;
 

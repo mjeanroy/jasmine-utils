@@ -40,8 +40,7 @@ import {isNumber} from '../util/is-number.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeANumber(ctx) {
-  const actual = ctx.actual;
+export function toBeANumber({actual}) {
   return {
     pass: isNumber(actual),
     message: `Expect ${pp(actual)} {{not}} to be a number`,

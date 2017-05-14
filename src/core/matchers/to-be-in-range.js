@@ -41,8 +41,7 @@ import {isNumber} from '../util/is-number.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeInRange(ctx, lower, upper) {
-  const actual = ctx.actual;
+export function toBeInRange({actual}, lower, upper) {
   return {
     pass: isNumber(actual) && actual > lower && actual < upper,
     message: `Expect ${pp(actual)} {{not}} to be between ${pp(lower)} and ${pp(upper)}`,

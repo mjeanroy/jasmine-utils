@@ -37,8 +37,7 @@ import {pp} from '../jasmine/pp.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeTrue(ctx) {
-  const actual = ctx.actual;
+export function toBeTrue({actual}) {
   return {
     pass: actual === true,
     message: `Expect ${pp(actual)} {{not}} to be true`,

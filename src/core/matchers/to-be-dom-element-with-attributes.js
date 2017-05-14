@@ -45,8 +45,7 @@ import {keys} from '../util/keys.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElementWithAttributes(ctx, attributes) {
-  const {actual, equals} = ctx;
+export function toBeDOMElementWithAttributes({actual, equals}, attributes) {
   const isElement = isDOMElement(actual);
 
   let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;

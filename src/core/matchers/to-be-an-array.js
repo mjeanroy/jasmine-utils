@@ -43,8 +43,7 @@ import {isArray} from '../util/is-array.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeAnArray(ctx) {
-  const actual = ctx.actual;
+export function toBeAnArray({actual}) {
   return {
     pass: isArray(actual),
     message: `Expect ${pp(actual)} {{not}} to be an array`,

@@ -42,8 +42,7 @@ import {pp} from '../jasmine/pp.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveBeenCalledOnce(ctx) {
-  const {callCount, actual} = ctx;
+export function toHaveBeenCalledOnce({callCount, actual}) {
   const count = callCount(actual) || 0;
   return {
     pass: count === 1,

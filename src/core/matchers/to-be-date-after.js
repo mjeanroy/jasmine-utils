@@ -45,8 +45,7 @@ import {dateDiff} from '../util/date-diff.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeDateAfter(ctx, lower) {
-  const actual = ctx.actual;
+export function toBeDateAfter({actual}, lower) {
   const diff = dateDiff(actual, lower);
   return {
     pass: diff >= 0,

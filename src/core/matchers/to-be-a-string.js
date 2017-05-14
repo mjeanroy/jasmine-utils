@@ -40,8 +40,7 @@ import {isString} from '../util/is-string.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeAString(ctx) {
-  const actual = ctx.actual;
+export function toBeAString({actual}) {
   return {
     pass: isString(actual),
     message: `Expect ${pp(actual)} {{not}} to be a string`,

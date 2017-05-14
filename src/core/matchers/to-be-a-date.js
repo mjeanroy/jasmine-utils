@@ -38,8 +38,7 @@ import {isDate} from '../util/is-date.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeADate(ctx) {
-  const actual = ctx.actual;
+export function toBeADate({actual}) {
   return {
     pass: isDate(actual),
     message: `Expect ${pp(actual)} {{not}} to be a date`,

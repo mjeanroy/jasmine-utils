@@ -39,8 +39,7 @@ import {pp} from '../jasmine/pp.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveLength(ctx, expectedLength) {
-  const actual = ctx.actual;
+export function toHaveLength({actual}, expectedLength) {
   const actualLength = actual.length;
   return {
     pass: actualLength === expectedLength,

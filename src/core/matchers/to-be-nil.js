@@ -41,8 +41,7 @@ import {isNil} from '../util/is-nil.js';
  * @return {Object} Test result.
  * @since 0.3.0
  */
-export function toBeNil(ctx) {
-  const actual = ctx.actual;
+export function toBeNil({actual}) {
   return {
     pass: isNil(actual),
     message: `Expect ${pp(actual)} {{not}} to be nil (null or undefined)`,

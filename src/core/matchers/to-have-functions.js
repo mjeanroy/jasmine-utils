@@ -43,8 +43,7 @@ import {every} from '../util/every.js';
  * @return {Object} Matcher result.
  * @since 0.1.0
  */
-export function toHaveFunctions(ctx, ...methods) {
-  const actual = ctx.actual;
+export function toHaveFunctions({actual}, ...methods) {
   const ok = every(methods, (method) => isFunction(actual[method]));
   return {
     pass: ok,

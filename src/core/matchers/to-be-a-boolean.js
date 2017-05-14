@@ -40,8 +40,7 @@ import {isBoolean} from '../util/is-boolean.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeABoolean(ctx) {
-  const actual = ctx.actual;
+export function toBeABoolean({actual}) {
   return {
     pass: isBoolean(actual),
     message: `Expect ${pp(actual)} {{not}} to be a boolean`,

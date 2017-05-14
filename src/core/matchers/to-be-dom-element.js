@@ -48,8 +48,7 @@ import {isNil} from '../util/is-nil.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElement(ctx, tagName) {
-  const actual = ctx.actual;
+export function toBeDOMElement({actual}, tagName) {
   const isElement = isDOMElement(actual);
 
   let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;

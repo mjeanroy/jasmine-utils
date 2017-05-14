@@ -50,8 +50,7 @@ import {isSameDay} from '../util/is-same-day.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeToday(ctx) {
-  const actual = ctx.actual;
+export function toBeToday({actual}) {
   const d1 = parseDate(actual);
   const d2 = now();
   return {

@@ -50,8 +50,7 @@ import {isSorted} from '../util/is-sorted.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeSorted(ctx, comparator) {
-  const actual = ctx.actual;
+export function toBeSorted({actual}, comparator) {
   return {
     pass: isArray(actual) && isSorted(actual, comparator),
     message: `Expect ${pp(actual)} {{not}} to be sorted`,

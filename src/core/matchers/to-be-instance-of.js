@@ -40,8 +40,7 @@ import {pp} from '../jasmine/pp.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeInstanceOf(ctx, ctor) {
-  const actual = ctx.actual;
+export function toBeInstanceOf({actual}, ctor) {
   return {
     pass: (actual instanceof ctor),
     message: `Expect ${pp(actual)} {{not}} to be an instance of ${pp(ctor)}`,

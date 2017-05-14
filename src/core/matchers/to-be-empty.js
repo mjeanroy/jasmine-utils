@@ -43,8 +43,7 @@ import {sizeOf} from '../util/size-of.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeEmpty(ctx) {
-  const actual = ctx.actual;
+export function toBeEmpty({actual}) {
   const size = sizeOf(actual);
   return {
     pass: size === 0,

@@ -48,8 +48,7 @@ import {isIterable} from '../util/is-iterable.js';
  * @return {Object} Test result.
  * @since 0.3.0
  */
-export function toBeIterable(ctx, Klass) {
-  const actual = ctx.actual;
+export function toBeIterable({actual}, Klass) {
   return {
     pass: isIterable(actual),
     message: `Expect ${pp(actual)} {{not}} to be iterable`,

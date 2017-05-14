@@ -40,8 +40,7 @@ import {isString} from '../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toEndWith(ctx, suffix) {
-  const actual = ctx.actual;
+export function toEndWith({actual}, suffix) {
   const ok = isString(suffix) && isString(actual) &&
     actual.length >= suffix.length &&
     actual.indexOf(suffix, actual.length - suffix.length) !== -1;

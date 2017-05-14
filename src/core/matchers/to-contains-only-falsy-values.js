@@ -48,8 +48,7 @@ import {every} from '../util/every.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toContainsOnlyFalsyValues(ctx) {
-  const actual = ctx.actual;
+export function toContainsOnlyFalsyValues({actual}) {
   return {
     pass: isArray(actual) && every(actual, isFalsy),
     message: `Expect ${pp(actual)} {{not}} to contains only falsy values`,

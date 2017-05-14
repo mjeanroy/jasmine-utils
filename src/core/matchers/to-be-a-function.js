@@ -39,8 +39,7 @@ import {isFunction} from '../util/is-function.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeAFunction(ctx) {
-  const actual = ctx.actual;
+export function toBeAFunction({actual}) {
   return {
     pass: isFunction(actual),
     message: `Expect ${pp(actual)} {{not}} to be a function`,

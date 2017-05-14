@@ -57,8 +57,6 @@ export function forEachWritableProperties(obj, iterator) {
       // Spy non enumerable properties.
       // Object.getOwnPropertyNames is supported since IE9.
       if (Object.getOwnPropertyNames) {
-        let getProtoResult = null;
-
         // Be careful, some browsers (like PhantomJS) may return restricted property
         // such as `arguments` or `caller` that cannot be read.
         const props = filter(Object.getOwnPropertyNames(current), (name) => {
@@ -71,7 +69,7 @@ export function forEachWritableProperties(obj, iterator) {
         });
 
         if (!current.prototype && Object.getPrototypeOf) {
-          getProtoResult = Object.getPrototypeOf(current);
+          const getProtoResult = Object.getPrototypeOf(current);
           if (getProtoResult !== Object.getPrototypeOf({})) {
             forEach(Object.getOwnPropertyNames(getProtoResult), (p) => {
               if (p !== 'constructor' && indexOf(props, p) === -1) {

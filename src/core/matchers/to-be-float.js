@@ -45,8 +45,7 @@ import {isFloat} from '../util/is-float.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeFloat(ctx) {
-  const actual = ctx.actual;
+export function toBeFloat({actual}) {
   return {
     pass: isFloat(actual),
     message: `Expect ${pp(actual)} {{not}} to be a float`,

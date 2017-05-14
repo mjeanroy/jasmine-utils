@@ -40,8 +40,7 @@ import {pp} from '../jasmine/pp.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveSameLengthAs(ctx, expected) {
-  const actual = ctx.actual;
+export function toHaveSameLengthAs({actual}, expected) {
   const actualLength = actual.length;
   const expectedLength = expected.length;
   return {

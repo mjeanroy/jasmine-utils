@@ -38,8 +38,7 @@ import {isString} from '../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeAnEmptyString(ctx) {
-  const actual = ctx.actual;
+export function toBeAnEmptyString({actual}) {
   return {
     pass: isString(actual) && actual === '',
     message: `Expect ${pp(actual)} {{not}} to be an empty string`,

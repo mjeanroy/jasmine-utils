@@ -40,8 +40,7 @@ import {isString} from '../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toStartWith(ctx, prefix) {
-  const actual = ctx.actual;
+export function toStartWith({actual}, prefix) {
   return {
     pass: isString(prefix) && isString(actual) && actual.indexOf(prefix) === 0,
     message: `Expect ${pp(actual)} {{not}} to start with ${pp(prefix)}`,

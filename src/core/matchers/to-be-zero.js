@@ -37,8 +37,7 @@ import {pp} from '../jasmine/pp.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
- export function toBeZero(ctx) {
-   const actual = ctx.actual;
+ export function toBeZero({actual}) {
    return {
      pass: actual === 0,
      message: `Expect ${pp(actual)} {{not}} to be zero`,

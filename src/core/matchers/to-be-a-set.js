@@ -38,8 +38,7 @@ import {isSet} from '../util/is-set.js';
  * @return {Object} The test result.
  * @since 0.3.0
  */
-export function toBeASet(ctx) {
-  const actual = ctx.actual;
+export function toBeASet({actual}) {
   return {
     pass: isSet(actual),
     message: `Expect ${pp(actual)} {{not}} to be a Set`,

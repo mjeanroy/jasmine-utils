@@ -53,9 +53,7 @@ import {every} from '../util/every.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBePartiallyEqualTo(ctx, other) {
-  const {actual, equals} = ctx;
-
+export function toBePartiallyEqualTo({actual, equals}, other) {
   let pass = false;
 
   if (isArray(other) && isArray(actual)) {

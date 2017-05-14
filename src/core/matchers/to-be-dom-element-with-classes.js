@@ -50,8 +50,7 @@ import {trim} from '../util/trim.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElementWithClasses(ctx, classes) {
-  const actual = ctx.actual;
+export function toBeDOMElementWithClasses({actual}, classes) {
   const isElement = isDOMElement(actual);
 
   let ok = isElement;
