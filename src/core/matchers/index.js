@@ -78,3 +78,5 @@ export {toBeDOMElement} from './to-be-dom-element.js';
 export {toBeDOMElementWithId} from './to-be-dom-element-with-id.js';
 export {toBeDOMElementWithAttributes} from './to-be-dom-element-with-attributes.js';
 export {toBeDOMElementWithClasses} from './to-be-dom-element-with-classes.js';
+export {toBeOneOf} from './to-be-one-of.js';
+export {toEqualOneOf} from './to-equal-one-of.js';
