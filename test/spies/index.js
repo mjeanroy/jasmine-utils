@@ -22,13 +22,11 @@
  * THE SOFTWARE.
  */
 
-import './for-each-writable-properties.spec.js';
+import './internal/index.js';
 import './reset-all-except.spec.js';
 import './reset-all.spec.js';
 import './reset-each.spec.js';
-import './reset.spec.js';
 import './spy-all-except.spec.js';
 import './spy-all.spec.js';
 import './spy-each.spec.js';
-import './spy-if-and-call-through.spec.js';
 import './spy-if.spec.js';

@@ -25,23 +25,26 @@
 import {isArray} from '../util/is-array.js';
 import {index} from '../util/index.js';
 import {has} from '../util/has.js';
-import {forEachWritableProperties} from './for-each-writable-properties.js';
-import {reset} from './reset.js';
+import {forEachWritableProperties} from './internal/for-each-writable-properties.js';
+import {reset} from './internal/reset.js';
 
 /**
  * Reset all spy methods in object except given methods.
  *
  * @param {Object} obj The object to reset.
  * @param {Array<string>|string} methods The method or the array of methods to ignore.
- * @return {void}
+ * @return {Object} The spy object.
  */
 export function resetAllExcept(obj, methods = []) {
   const array = isArray(methods) ? methods : [methods];
   const map = index(array, (x) => x);
+
   forEachWritableProperties(obj, (target, i) => {
     const spy = target[i];
     if (jasmine.isSpy(spy) && !has(map, i)) {
       reset(spy);
     }
   });
+
+  return obj;
 };

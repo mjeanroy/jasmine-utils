@@ -22,15 +22,49 @@
  * THE SOFTWARE.
  */
 
-import {reset} from 'src/core/spies/reset.js';
+import {spyIfAndCallThrough} from 'src/core/spies/internal/spy-if-and-call-through.js';
 
-describe('reset', () => {
-  it('should reset spy', () => {
-    const spy = jasmine.createSpy('spy');
-    spy();
+describe('spyIfAndCallThrough', () => {
+  it('should spy method with callThrough strategy', () => {
+    const o = {
+      id: 1,
+      foo() {
+        this.id++;
+      },
+    };
 
-    reset(spy);
+    const spy = spyIfAndCallThrough(o, 'foo');
 
-    expect(spy.calls.count()).toBe(0);
+    expect(spy).toBeDefined();
+    expect(spy).toBe(o.foo);
+    expect(jasmine.isSpy(o.foo)).toBe(true);
+    expect(o.id).toBe(1);
+
+    o.foo();
+
+    expect(o.id).toBe(2);
+  });
+
+  it('should not re-spy method', () => {
+    const spy = jasmine.createSpy('foo');
+    const o = {
+      foo: spy,
+    };
+
+    const result = spyIfAndCallThrough(o, 'foo');
+
+    expect(result).toBeDefined();
+    expect(result).toBe(spy);
+  });
+
+  it('should not try to spy non function', () => {
+    const o = {
+      foo: 1,
+    };
+
+    const result = spyIfAndCallThrough(o, 'foo');
+
+    expect(result).toBeDefined();
+    expect(result).toBe(1);
   });
 });

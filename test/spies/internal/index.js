@@ -22,30 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {version} from '../jasmine/version.js';
-import {isFunction} from '../util/is-function.js';
-
-/**
- * Spy a method on an object if and only if it is not already a spy.
- * The spy (or the new created spy) is returned.
- *
- * @param {Object} obj Object.
- * @param {string} i The name of the method to spy.
- * @return {*} The spy, or the original value if it is alreay a spy or it cannot be spied.
- */
- export function spyIfAndCallThrough(obj, i) {
-   const current = obj[i];
-
-   if (isFunction(current) && !jasmine.isSpy(current)) {
-     const spy = spyOn(obj, i);
-     if (version === 1) {
-       spy.andCallThrough();
-     } else {
-       spy.and.callThrough();
-     }
-
-     return spy;
-   }
-
-   return current;
- }
+import './for-each-writable-properties.spec.js';
+import './reset.spec.js';
+import './spy-if-and-call-through.spec.js';

@@ -28,8 +28,8 @@ import {spyAllExcept} from './spy-all-except.js';
  * Spy methods in object.
  *
  * @param {Object} obj The object to spy.
- * @return {void}
+ * @return {Object} The spy object.
  */
 export function spyAll(obj) {
-  spyAllExcept(obj, []);
+  return spyAllExcept(obj, []);
 }

@@ -22,29 +22,15 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from '../util/is-array.js';
-import {index} from '../util/index.js';
-import {has} from '../util/has.js';
-import {forEachWritableProperties} from './internal/for-each-writable-properties.js';
-import {reset} from './internal/reset.js';
+import {reset} from 'src/core/spies/internal/reset.js';
 
-/**
- * Reset the specified spy methods in the object.
- *
- * @param {Object} obj The object to reset.
- * @param {Array<string>|string} methods The method or the array of methods to reset.
- * @return {Object} The spy object.
- */
-export function resetEach(obj, methods = []) {
-  const array = isArray(methods) ? methods : [methods];
-  const map = index(array, (x) => x);
+describe('reset', () => {
+  it('should reset spy', () => {
+    const spy = jasmine.createSpy('spy');
+    spy();
 
-  forEachWritableProperties(obj, (target, i) => {
-    const spy = target[i];
-    if (jasmine.isSpy(spy) && has(map, i)) {
-      reset(spy);
-    }
+    reset(spy);
+
+    expect(spy.calls.count()).toBe(0);
   });
-
-  return obj;
-}
+});

@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {indexOf} from '../util/index-of.js';
-import {isNil} from '../util/is-nil.js';
-import {filter} from '../util/filter.js';
-import {forEach} from '../util/for-each.js';
+import {indexOf} from '../../util/index-of.js';
+import {isNil} from '../../util/is-nil.js';
+import {filter} from '../../util/filter.js';
+import {forEach} from '../../util/for-each.js';
 
 /**
  * Iterate over all entries in object and execute iterator function on it.

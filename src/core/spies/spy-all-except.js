@@ -25,22 +25,25 @@
 import {isArray} from '../util/is-array.js';
 import {index} from '../util/index.js';
 import {has} from '../util/has.js';
-import {forEachWritableProperties} from './for-each-writable-properties.js';
-import {spyIfAndCallThrough} from './spy-if-and-call-through.js';
+import {forEachWritableProperties} from './internal/for-each-writable-properties.js';
+import {spyIfAndCallThrough} from './internal/spy-if-and-call-through.js';
 
 /**
  * Spy all methods in object except specified methods.
  *
  * @param {Object} obj Object to spy.
  * @param {Array<string>|string} excepts The method or the array of methods to ignore.
- * @return {void}
+ * @return {Object} The spy object.
  */
 export function spyAllExcept(obj, excepts = []) {
   const array = isArray(excepts) ? excepts : [excepts];
   const map = index(array, (x) => x);
+
   forEachWritableProperties(obj, (target, i) => {
     if (!has(map, i)) {
       spyIfAndCallThrough(target, i);
     }
   });
+
+  return obj;
 }

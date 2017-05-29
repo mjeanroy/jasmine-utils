@@ -25,23 +25,26 @@
 import {isArray} from '../util/is-array.js';
 import {index} from '../util/index.js';
 import {has} from '../util/has.js';
-import {forEachWritableProperties} from './for-each-writable-properties.js';
-import {spyIfAndCallThrough} from './spy-if-and-call-through.js';
+import {forEachWritableProperties} from './internal/for-each-writable-properties.js';
+import {spyIfAndCallThrough} from './internal/spy-if-and-call-through.js';
 
 /**
  * Spy all specified methods in object.
  *
  * @param {Object} obj Object to spy.
  * @param {Array<string>|string} methods The method or the array of methods to spy.
- * @return {void}
+ * @return {Object} The spy object.
  */
 export function spyEach(obj, methods = []) {
   const array = isArray(methods) ? methods : [methods];
   const isEmpty = array.length === 0;
   const map = index(array, (x) => x);
+
   forEachWritableProperties(obj, (target, i) => {
     if (isEmpty || has(map, i)) {
       spyIfAndCallThrough(target, i);
     }
   });
+
+  return obj;
 }

@@ -22,18 +22,30 @@
  * THE SOFTWARE.
  */
 
-import {version} from '../jasmine/version.js';
+import {version} from '../../jasmine/version.js';
+import {isFunction} from '../../util/is-function.js';
 
 /**
- * Reset a spy.
+ * Spy a method on an object if and only if it is not already a spy.
+ * The spy (or the new created spy) is returned.
  *
- * @param {function} spy The spy to reset.
- * @return {void}
+ * @param {Object} obj Object.
+ * @param {string} i The name of the method to spy.
+ * @return {*} The spy, or the original value if it is alreay a spy or it cannot be spied.
  */
-export function reset(spy) {
-  if (version === 1) {
-    spy.reset();
-  } else {
-    spy.calls.reset();
-  }
-}
+ export function spyIfAndCallThrough(obj, i) {
+   const current = obj[i];
+
+   if (isFunction(current) && !jasmine.isSpy(current)) {
+     const spy = spyOn(obj, i);
+     if (version === 1) {
+       spy.andCallThrough();
+     } else {
+       spy.and.callThrough();
+     }
+
+     return spy;
+   }
+
+   return current;
+ }
