@@ -27,18 +27,35 @@
 const path = require('path');
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
+const tslint = require('gulp-tslint');
 const options = require('../conf.js');
 
-gulp.task('lint', ['clean'], () => {
-  const sources = [
-    path.join(options.root, '*.js'),
-    path.join(options.src, '**', '*.js'),
-    path.join(options.test, '**', '*.js'),
-    path.join(options.tasks, '**', '*.js'),
-  ];
-
-  return gulp.src(sources)
+gulp.task('eslint', ['clean'], () => {
+  return gulp.src(getSources('js'))
     .pipe(eslint())
     .pipe(eslint.format())
     .pipe(eslint.failAfterError());
 });
+
+gulp.task('tslint', () => {
+  return gulp.src(getSources('ts'))
+    .pipe(tslint({formatter: 'verbose'}))
+    .pipe(tslint.report());
+});
+
+gulp.task('lint', ['eslint', 'tslint']);
+
+/**
+ * Get all potential sources to run against lint validator.
+ *
+ * @param {string} ext The file exstension to look for.
+ * @return {void}
+ */
+function getSources(ext) {
+  return [
+    path.join(options.root, `*.${ext}`),
+    path.join(options.src, '**', `*.${ext}`),
+    path.join(options.test, '**', `*.${ext}`),
+    path.join(options.tasks, '**', `*.${ext}`),
+  ];
+}
