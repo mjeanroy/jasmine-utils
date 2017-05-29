@@ -35,8 +35,9 @@ describe('spyAll and spyAllExcept', () => {
       bar() {},
     };
 
-    jasmine.spyAll(obj);
+    const spy = jasmine.spyAll(obj);
 
+    expect(spy).toBe(obj);
     expect(jasmine.isSpy(obj.foo)).toBeTruthy();
     expect(jasmine.isSpy(obj.bar)).toBeTruthy();
   });
@@ -47,8 +48,9 @@ describe('spyAll and spyAllExcept', () => {
       bar() {},
     };
 
-    jasmine.spyAllExcept(obj, 'bar');
+    const spy = jasmine.spyAllExcept(obj, 'bar');
 
+    expect(spy).toBe(obj);
     expect(jasmine.isSpy(obj.foo)).toBeTruthy();
     expect(jasmine.isSpy(obj.bar)).toBeFalsy();
   });
@@ -56,8 +58,9 @@ describe('spyAll and spyAllExcept', () => {
   it('should spy all methods except foo and bar', () => {
     const obj = new Klass();
 
-    jasmine.spyAllExcept(obj, ['foo', 'bar']);
+    const spy = jasmine.spyAllExcept(obj, ['foo', 'bar']);
 
+    expect(spy).toBe(obj);
     expect(jasmine.isSpy(obj.foo)).toBeFalsy();
     expect(jasmine.isSpy(obj.bar)).toBeFalsy();
   });
@@ -68,8 +71,9 @@ describe('spyAll and spyAllExcept', () => {
       bar() {},
     };
 
-    jasmine.spyEach(obj, 'bar');
+    const spy = jasmine.spyEach(obj, 'bar');
 
+    expect(spy).toBe(obj);
     expect(jasmine.isSpy(obj.foo)).toBeFalsy();
     expect(jasmine.isSpy(obj.bar)).toBeTruthy();
   });
@@ -81,8 +85,9 @@ describe('spyAll and spyAllExcept', () => {
       baz() {},
     };
 
-    jasmine.spyEach(obj, ['bar', 'foo']);
+    const spy = jasmine.spyEach(obj, ['bar', 'foo']);
 
+    expect(spy).toBe(obj);
     expect(jasmine.isSpy(obj.foo)).toBeTruthy();
     expect(jasmine.isSpy(obj.bar)).toBeTruthy();
   });
@@ -95,15 +100,17 @@ describe('spyAll and spyAllExcept', () => {
 
     spyOn(obj, 'foo').and.returnValue(true);
 
-    jasmine.spyAll(obj);
+    const spy = jasmine.spyAll(obj);
 
+    expect(spy).toBe(obj);
     expect(jasmine.isSpy(obj.foo)).toBeTruthy();
     expect(jasmine.isSpy(obj.bar)).toBeTruthy();
   });
 
   it('should spy class methods', () => {
-    jasmine.spyAll(Klass);
+    const spy = jasmine.spyAll(Klass);
 
+    expect(spy).toBe(Klass);
     expect(jasmine.isSpy(Klass.prototype.foo)).toBeTruthy();
     expect(jasmine.isSpy(Klass.prototype.bar)).toBeTruthy();
   });
@@ -123,8 +130,9 @@ describe('spyAll and spyAllExcept', () => {
     expect(obj.nonEnumerableProperty).toBeDefined();
     expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
 
-    jasmine.spyAll(obj);
+    const spy = jasmine.spyAll(obj);
 
+    expect(spy).toBe(obj);
     expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeTruthy();
   });
 
@@ -143,8 +151,9 @@ describe('spyAll and spyAllExcept', () => {
     expect(obj.nonEnumerableProperty).toBeDefined();
     expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
 
-    jasmine.spyAll(obj);
+    const spy = jasmine.spyAll(obj);
 
+    expect(spy).toBe(obj);
     expect(jasmine.isSpy(obj.nonEnumerableProperty)).toBeFalsy();
   });
 
@@ -154,8 +163,9 @@ describe('spyAll and spyAllExcept', () => {
     const NonLooseClass = nonLooseClassFactory();
     const instance = new NonLooseClass();
 
-    jasmine.spyAll(instance);
+    const spy = jasmine.spyAll(instance);
 
+    expect(spy).toBe(instance);
     expect(jasmine.isSpy(instance.methodOne)).toBeTruthy();
     expect(jasmine.isSpy(instance.methodTwo)).toBeTruthy();
   });

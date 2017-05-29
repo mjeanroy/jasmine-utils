@@ -37,8 +37,9 @@ describe('resetAll, resetEach and resetAllExcept', () => {
     expect(obj.foo).toHaveBeenCalled();
     expect(obj.bar).toHaveBeenCalled();
 
-    jasmine.resetAll(obj);
+    const spy = jasmine.resetAll(obj);
 
+    expect(spy).toBe(obj);
     expect(obj.foo).not.toHaveBeenCalled();
     expect(obj.bar).not.toHaveBeenCalled();
   });
@@ -54,8 +55,9 @@ describe('resetAll, resetEach and resetAllExcept', () => {
     expect(obj.foo).toHaveBeenCalled();
     expect(obj.bar).toHaveBeenCalled();
 
-    jasmine.resetEach(obj, ['foo']);
+    const spy = jasmine.resetEach(obj, ['foo']);
 
+    expect(spy).toBe(obj);
     expect(obj.foo).not.toHaveBeenCalled();
     expect(obj.bar).toHaveBeenCalled();
   });
@@ -71,8 +73,9 @@ describe('resetAll, resetEach and resetAllExcept', () => {
     expect(obj.foo).toHaveBeenCalled();
     expect(obj.bar).toHaveBeenCalled();
 
-    jasmine.resetAllExcept(obj, ['foo']);
+    const spy = jasmine.resetAllExcept(obj, ['foo']);
 
+    expect(spy).toBe(obj);
     expect(obj.foo).toHaveBeenCalled();
     expect(obj.bar).not.toHaveBeenCalled();
   });

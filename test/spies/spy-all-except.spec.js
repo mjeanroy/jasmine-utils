@@ -26,36 +26,37 @@ import {spyAllExcept} from 'src/core/spies/spy-all-except.js';
 
 describe('resetAll', () => {
   it('should spy methods of object except one', () => {
-    const o = {
+    const obj = {
       id: 1,
       foo() {},
       bar() {},
       baz() {},
     };
 
-    spyAllExcept(o, 'foo');
+    const spy = spyAllExcept(obj, 'foo');
 
-    expect(jasmine.isSpy(o.foo)).toBe(false);
-    expect(jasmine.isSpy(o.bar)).toBe(true);
-    expect(jasmine.isSpy(o.baz)).toBe(true);
+    expect(spy).toBe(obj);
+    expect(jasmine.isSpy(obj.foo)).toBe(false);
+    expect(jasmine.isSpy(obj.bar)).toBe(true);
+    expect(jasmine.isSpy(obj.baz)).toBe(true);
 
-    expect(o.id).toBe(1);
+    expect(obj.id).toBe(1);
   });
 
   it('should spy methods of object except ones', () => {
-    const o = {
+    const obj = {
       id: 1,
       foo() {},
       bar() {},
       baz() {},
     };
 
-    spyAllExcept(o, ['foo', 'bar']);
+    const spy = spyAllExcept(obj, ['foo', 'bar']);
 
-    expect(jasmine.isSpy(o.foo)).toBe(false);
-    expect(jasmine.isSpy(o.bar)).toBe(false);
-    expect(jasmine.isSpy(o.baz)).toBe(true);
-
-    expect(o.id).toBe(1);
+    expect(spy).toBe(obj);
+    expect(jasmine.isSpy(obj.foo)).toBe(false);
+    expect(jasmine.isSpy(obj.bar)).toBe(false);
+    expect(jasmine.isSpy(obj.baz)).toBe(true);
+    expect(obj.id).toBe(1);
   });
 });

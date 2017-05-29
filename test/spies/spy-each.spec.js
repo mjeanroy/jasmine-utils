@@ -26,20 +26,20 @@ import {spyEach} from 'src/core/spies/spy-each.js';
 
 describe('resetAll', () => {
   it('should spy method of object', () => {
-    const o = {
+    const obj = {
       id: 1,
       foo() {},
       bar() {},
       baz() {},
     };
 
-    spyEach(o, 'foo');
+    const spy = spyEach(obj, 'foo');
 
-    expect(jasmine.isSpy(o.foo)).toBe(true);
-    expect(jasmine.isSpy(o.bar)).toBe(false);
-    expect(jasmine.isSpy(o.baz)).toBe(false);
-
-    expect(o.id).toBe(1);
+    expect(spy).toBe(obj);
+    expect(jasmine.isSpy(obj.foo)).toBe(true);
+    expect(jasmine.isSpy(obj.bar)).toBe(false);
+    expect(jasmine.isSpy(obj.baz)).toBe(false);
+    expect(obj.id).toBe(1);
   });
 
   it('should spy methods of object', () => {

@@ -26,34 +26,36 @@ import {resetEach} from 'src/core/spies/reset-each.js';
 
 describe('resetEach', () => {
   it('should reset specified spy of object', () => {
-    const o = {
+    const obj = {
       foo: jasmine.createSpy('foo'),
       bar: () => {},
       baz: jasmine.createSpy('baz'),
     };
 
-    spyOn(o.foo.calls, 'reset').and.callThrough();
-    spyOn(o.baz.calls, 'reset').and.callThrough();
+    spyOn(obj.foo.calls, 'reset').and.callThrough();
+    spyOn(obj.baz.calls, 'reset').and.callThrough();
 
-    resetEach(o, 'foo');
+    const spy = resetEach(obj, 'foo');
 
-    expect(o.foo.calls.reset).toHaveBeenCalled();
-    expect(o.baz.calls.reset).not.toHaveBeenCalled();
+    expect(spy).toBe(obj);
+    expect(obj.foo.calls.reset).toHaveBeenCalled();
+    expect(obj.baz.calls.reset).not.toHaveBeenCalled();
   });
 
   it('should reset specified spies of object', () => {
-    const o = {
+    const obj = {
       foo: jasmine.createSpy('foo'),
       bar: () => {},
       baz: jasmine.createSpy('baz'),
     };
 
-    spyOn(o.foo.calls, 'reset').and.callThrough();
-    spyOn(o.baz.calls, 'reset').and.callThrough();
+    spyOn(obj.foo.calls, 'reset').and.callThrough();
+    spyOn(obj.baz.calls, 'reset').and.callThrough();
 
-    resetEach(o, ['foo']);
+    const spy = resetEach(obj, ['foo']);
 
-    expect(o.foo.calls.reset).toHaveBeenCalled();
-    expect(o.baz.calls.reset).not.toHaveBeenCalled();
+    expect(spy).toBe(obj);
+    expect(obj.foo.calls.reset).toHaveBeenCalled();
+    expect(obj.baz.calls.reset).not.toHaveBeenCalled();
   });
 });

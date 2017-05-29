@@ -26,19 +26,19 @@ import {spyAll} from 'src/core/spies/spy-all.js';
 
 describe('spyAll', () => {
   it('should spy on all methods of object', () => {
-    const o = {
+    const obj = {
       id: 1,
       foo() {},
       bar() {},
       baz() {},
     };
 
-    spyAll(o);
+    const spy = spyAll(obj);
 
-    expect(jasmine.isSpy(o.foo)).toBe(true);
-    expect(jasmine.isSpy(o.bar)).toBe(true);
-    expect(jasmine.isSpy(o.baz)).toBe(true);
-
-    expect(o.id).toBe(1);
+    expect(spy).toBe(obj);
+    expect(jasmine.isSpy(obj.foo)).toBe(true);
+    expect(jasmine.isSpy(obj.bar)).toBe(true);
+    expect(jasmine.isSpy(obj.baz)).toBe(true);
+    expect(obj.id).toBe(1);
   });
 });

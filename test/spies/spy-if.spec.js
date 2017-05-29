@@ -26,11 +26,11 @@ import {spyIf} from 'src/core/spies/spy-if.js';
 
 describe('spyIf', () => {
   it('should spy method', () => {
-    const o = {
+    const obj = {
       foo() {},
     };
 
-    const result = spyIf(o, 'foo');
+    const result = spyIf(obj, 'foo');
 
     expect(result).toBeDefined();
     expect(jasmine.isSpy(result)).toBe(true);
@@ -38,11 +38,9 @@ describe('spyIf', () => {
 
   it('should not re-spy method', () => {
     const spy = jasmine.createSpy('foo');
-    const o = {
-      foo: spy,
-    };
+    const obj = {foo: spy};
 
-    const result = spyIf(o, 'foo');
+    const result = spyIf(obj, 'foo');
 
     expect(result).toBeDefined();
     expect(result).toBe(spy);
