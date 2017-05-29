@@ -22,13 +22,27 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isNumber} from '../../util/is-number.js';
+
+/**
+ * Check that the tested object is a `number`.
+ *
+ * @message Expect [actual] (not) to be a number
+ * @example
+ *  expect(0).toBeANumber();
+ *  expect(1).toBeANumber();
+ *  expect(1.5).toBeANumber();
+ *  expect('0').not.toBeANumber();
+ *  expect('1').not.toBeANumber();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.1.0
+ */
+export function toBeANumber({actual}) {
+  return {
+    pass: isNumber(actual),
+    message: `Expect ${pp(actual)} {{not}} to be a number`,
+  };
+}

@@ -22,13 +22,28 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isNumber} from '../../util/is-number.js';
+
+/**
+ * Check that the tested object is a `number` (strictly) greater than a lower bound
+ * and (strictly) less than a lower bound.
+ *
+ * @message Expect [actual] (not) to be between [lower] and [upper]
+ * @example
+ *   expect(2).toBeInRange(1, 3);
+ *   expect(1).not.toBeInRange(1, 3);
+ *   expect(3).not.toBeInRange(1, 3);
+ *
+ * @param {Object} ctx Test context.
+ * @param {number} lower The lower bound.
+ * @param {number} upper The upper bound.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBeInRange({actual}, lower, upper) {
+  return {
+    pass: isNumber(actual) && actual > lower && actual < upper,
+    message: `Expect ${pp(actual)} {{not}} to be between ${pp(lower)} and ${pp(upper)}`,
+  };
+}

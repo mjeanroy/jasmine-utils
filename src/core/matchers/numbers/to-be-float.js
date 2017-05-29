@@ -22,13 +22,32 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isFloat} from '../../util/is-float.js';
+
+/**
+ * Check that the tested object is a `float` value.
+ *
+ * Note that for this matcher, a `float` is a numeric value (see `toBeNumeric` matcher) that
+ * is not an integer (a numeric value may be a `number` *or* a `string` containing a number).
+ *
+ * *JavaScript makes no distinction between integers and floats
+ * so 1.0 is considered integer.*
+ *
+ * @message Expect [actual] (not) to be a float
+ * @example
+ *   expect(1.5).toBeFloat();
+ *   expect('1.5').toBeFloat();
+ *   expect(1).not.toBeFloat();
+ *   expect(1.0).not.toBeFloat();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.1.0
+ */
+export function toBeFloat({actual}) {
+  return {
+    pass: isFloat(actual),
+    message: `Expect ${pp(actual)} {{not}} to be a float`,
+  };
+}

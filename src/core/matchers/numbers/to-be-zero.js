@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+
+/**
+ * Check that the tested object is a number strictly equal to zero.
+ *
+ * @message Expect [actual] (not) to be zero
+ * @example
+ *   expect(0).toBeZero();
+ *   expect(1).not.toBeZero();
+ *   expect('0').not.toBeZero();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.1.0
+ */
+ export function toBeZero({actual}) {
+   return {
+     pass: actual === 0,
+     message: `Expect ${pp(actual)} {{not}} to be zero`,
+   };
+ }

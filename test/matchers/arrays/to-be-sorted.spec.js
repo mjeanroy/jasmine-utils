@@ -22,13 +22,40 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeSorted} from 'src/core/matchers/arrays/to-be-sorted.js';
+
+describe('toBeSorted', () => {
+  it('should pass with a sorted array', () => {
+    const actual = [0, 1, 2, 3];
+    const result = toBeSorted({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect [ 0, 1, 2, 3 ] {{not}} to be sorted`,
+    });
+  });
+
+  it('should pass with a sorted array and a comparator function', () => {
+    const actual = [0, -1, 2, -3];
+    const comparator = jasmine.createSpy('comparator').and.callFake((a, b) => {
+      return Math.abs(a) - Math.abs(b);
+    });
+
+    const result = toBeSorted({actual}, comparator);
+
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`,
+    });
+
+    expect(comparator).toHaveBeenCalled();
+  });
+
+  it('should fail with a non-sorted array', () => {
+    const actual = [0, -1, 2, -3];
+    const result = toBeSorted({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`,
+    });
+  });
+});

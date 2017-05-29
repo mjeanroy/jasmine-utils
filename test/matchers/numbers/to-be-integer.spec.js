@@ -22,13 +22,42 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeInteger} from 'src/core/matchers/numbers/to-be-integer.js';
+
+describe('toBeInteger', () => {
+  it('should check that object is an integer value', () => {
+    const actual = '1';
+    const result = toBeInteger({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect '1' {{not}} to be an integer`,
+    });
+  });
+
+  it('should not pass with NaN', () => {
+    const actual = NaN;
+    const result = toBeInteger({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect NaN {{not}} to be an integer`,
+    });
+  });
+
+  it('should not pass with a Infinity', () => {
+    const actual = Infinity;
+    const result = toBeInteger({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect Infinity {{not}} to be an integer`,
+    });
+  });
+
+  it('should not pass with a float', () => {
+    const actual = 1.5;
+    const result = toBeInteger({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 1.5 {{not}} to be an integer`,
+    });
+  });
+});

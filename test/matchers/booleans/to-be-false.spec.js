@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeFalse} from 'src/core/matchers/booleans/to-be-false.js';
+
+describe('toBeFalse', () => {
+  it('should check that object is false', () => {
+    const actual = false;
+    const result = toBeFalse({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect false {{not}} to be false`,
+    });
+  });
+
+  it('should not pass without false', () => {
+    const actual = true;
+    const result = toBeFalse({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect true {{not}} to be false`,
+    });
+  });
+});

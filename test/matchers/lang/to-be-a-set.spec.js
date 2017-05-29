@@ -22,13 +22,28 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {assumeSet} from '../../detect/assume-set.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeASet} from 'src/core/matchers/lang/to-be-a-set.js';
+
+describe('toBeASet', () => {
+  it('should check that object is a set', () => {
+    assumeSet();
+
+    const actual = new Set();
+    const result = toBeASet({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${pp(actual)} {{not}} to be a Set`,
+    });
+  });
+
+  it('should not pass without a set', () => {
+    const actual = [];
+    const result = toBeASet({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect [  ] {{not}} to be a Set`,
+    });
+  });
+});

@@ -22,13 +22,11 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import './to-be-even-number.spec.js';
+import './to-be-float.spec.js';
+import './to-be-in-range.spec.js';
+import './to-be-integer.spec.js';
+import './to-be-negative.spec.js';
+import './to-be-numeric.spec.js';
+import './to-be-odd-number.spec.js';
+import './to-be-positive.spec.js';

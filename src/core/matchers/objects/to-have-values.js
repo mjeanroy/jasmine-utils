@@ -22,13 +22,39 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {contains} from '../../util/contains.js';
+import {values} from '../../util/values.js';
+
+/**
+ * Check that the tested object contains expected values (the key is not checked,
+ * only the value).
+ *
+ * @message Expect [actual] (not) to have values [values]
+ * @example
+ *   const obj = { id: 1, name: 'foo', array: [1, 2, 3] };
+ *   expect(obj).toHaveValues(1, 'foo', [1, 2, 3]);
+ *   expect(obj).not.toHaveValues(2, 'bar');
+ *   expect(obj).not.toHaveValues([ 1, 2, 3, 4 ]);
+ *
+ * @param {Object} ctx The test context.
+ * @param {...*} expectedValues The values to look for.
+ * @return {Object} The test result.
+ * @since 0.1.0
+ */
+export function toHaveValues({actual, equals}, ...expectedValues) {
+  const actualValues = values(actual);
+
+  let ok = true;
+  for (let i = 0, size = expectedValues.length; i < size; ++i) {
+    if (!contains(actualValues, expectedValues[i], equals)) {
+      ok = false;
+      break;
+    }
+  }
+
+  return {
+    pass: ok,
+    message: `Expect ${pp(actual)} {{not}} to have values ${pp(expectedValues)}`,
+  };
+}

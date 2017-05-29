@@ -22,13 +22,14 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import './to-be-a-boolean.spec.js';
+import './to-be-a-date.spec.js';
+import './to-be-a-function.spec.js';
+import './to-be-a-map.spec.js';
+import './to-be-a-number.spec.js';
+import './to-be-a-set.spec.js';
+import './to-be-a-string.spec.js';
+import './to-be-an-array.spec.js';
+import './to-be-iterable.spec.js';
+import './to-be-nil.spec.js';
+import './to-be-null.spec.js';

@@ -22,13 +22,39 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {now} from '../../util/now.js';
+import {parseDate} from '../../util/parse-date.js';
+import {isSameDay} from '../../util/is-same-day.js';
+
+/**
+ * Check that the tested object is the same day as now (i.e `Date.now()`).
+ *
+ * The tested date may be:
+ * - A date instance.
+ * - A timestamp.
+ * - A string that can be parsed with the `Date` constructor (i.e `new Date('2016-01-01')`).
+ *
+ * **Note:** Using date strings should be avoided due to browser differences and inconsistencies.
+ *
+ * @message Expect [actual] (not) to be today
+ * @example
+ *   const date1 = new Date();
+ *   const date2 = new Date();
+ *   date2.setDate(date1.getDate() - 1);
+ *
+ *   expect(date1).toBeToday();
+ *   expect(date2).not.toBeToday();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBeToday({actual}) {
+  const d1 = parseDate(actual);
+  const d2 = now();
+  return {
+    pass: isSameDay(d1, d2),
+    message: `Expect date ${pp(d1)} {{not}} to be today`,
+  };
+}

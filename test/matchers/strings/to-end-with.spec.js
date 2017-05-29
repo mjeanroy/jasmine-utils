@@ -22,13 +22,26 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toEndWith} from 'src/core/matchers/strings/to-end-with.js';
+
+describe('toEndWith', () => {
+  it('should check that object is a string ending with given suffix', () => {
+    const actual = 'foo';
+    const other = 'oo';
+    const result = toEndWith({actual}, other);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect 'foo' {{not}} to end with 'oo'`,
+    });
+  });
+
+  it('should not pass without a string starting with an other prefix', () => {
+    const actual = 'test';
+    const other = 'testtest';
+    const result = toEndWith({actual}, other);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 'test' {{not}} to end with 'testtest'`,
+    });
+  });
+});

@@ -22,13 +22,25 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {Klass} from '../../fixtures/klass.js';
+import {toBeInstanceOf} from 'src/core/matchers/any/to-be-instance-of.js';
+
+describe('toBeInstanceOf', () => {
+  it('should pass if value is an instance of given class', () => {
+    const actual = new Klass();
+    const result = toBeInstanceOf({actual}, Klass);
+    expect(result).toEqual({
+      pass: true,
+      message: 'Expect Klass({ id: 0 }) {{not}} to be an instance of Function',
+    });
+  });
+
+  it('should not pass if value is not an instance of given class', () => {
+    const actual = '';
+    const result = toBeInstanceOf({actual}, Klass);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect '' {{not}} to be an instance of Function`,
+    });
+  });
+});

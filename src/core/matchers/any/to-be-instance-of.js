@@ -22,13 +22,27 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+
+/**
+ * Check that the tested object is an instance of a given `constructor`.
+ *
+ * @message Expect [actual] (not) to be an instance of [constructor]
+ * @example
+ *   expect(new Date()).toBeInstanceOf(Date);
+ *   expect('foo').toBeInstanceOf(String);
+ *
+ *   class Foo { }
+ *   expect(new Foo()).toBeInstanceOf(Foo);
+ *
+ * @param {Object} ctx Test context.
+ * @param {*} ctor Expected constructor.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBeInstanceOf({actual}, ctor) {
+  return {
+    pass: (actual instanceof ctor),
+    message: `Expect ${pp(actual)} {{not}} to be an instance of ${pp(ctor)}`,
+  };
+}

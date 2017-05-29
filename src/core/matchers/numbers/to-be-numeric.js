@@ -22,13 +22,29 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isNumeric} from '../../util/is-numeric.js';
+
+/**
+ * Check that the tested object is a numeric value.
+ * A numeric is something that contains a numeric value, regardless of its type (it
+ * can be a `string` containing a numeric value or a `number`).
+ *
+ * @message Expect [actual] (not) to be a numeric value
+ * @example
+ *   expect(2).toBeNumeric();
+ *   expect(1.5).toBeNumeric();
+ *   expect('2').toBeNumeric();
+ *   expect('1.5').toBeNumeric();
+ *   expect('foo').not.toBeNumeric();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.1.0
+ */
+export function toBeNumeric({actual}) {
+  return {
+    pass: isNumeric(actual),
+    message: `Expect ${pp(actual)} {{not}} to be a numeric value`,
+  };
+}

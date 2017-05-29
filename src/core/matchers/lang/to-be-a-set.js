@@ -22,13 +22,25 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isSet} from '../../util/is-set.js';
+
+/**
+ * Check that the tested object is a `Set`.
+ *
+ * @message Expect [actual] (not) to be a Set
+ * @example
+ *   expect(new Set()).toBeASet();
+ *   expect({}).not.toBeASet();
+ *   expect([]).not.toBeASet();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.3.0
+ */
+export function toBeASet({actual}) {
+  return {
+    pass: isSet(actual),
+    message: `Expect ${pp(actual)} {{not}} to be a Set`,
+  };
+}

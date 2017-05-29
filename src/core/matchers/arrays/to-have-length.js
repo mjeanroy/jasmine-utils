@@ -22,13 +22,29 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+
+/**
+ * Check that tested object has a `length` property with expected value.
+ *
+ * @message Expect length of [actual] (not) to be [expectedLength]
+ * @example
+ *   expect([]).toHaveLength(0);
+ *   expect([0, 1, 2]).toHaveLength(3);
+ *   expect('').toHaveLength(0);
+ *   expect('foo').toHaveLength(3);
+ *
+ * @param {Object} ctx Test context.
+ * @param {number} expectedLength The expected length value.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toHaveLength({actual}, expectedLength) {
+  const actualLength = actual.length;
+  return {
+    pass: actualLength === expectedLength,
+    message:
+      `Expect length of ${pp(actual)} {{not}} to be ${pp(expectedLength)} ` +
+      `but was ${pp(actualLength)}`,
+  };
+}

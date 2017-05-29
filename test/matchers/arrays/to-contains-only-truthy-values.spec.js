@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toContainsOnlyTruthyValues} from 'src/core/matchers/arrays/to-contains-only-truthy-values.js';
+
+describe('toContainsOnlyTruthyValues', () => {
+  it('should check that array contains only truthy values', () => {
+    const actual = [1, 'foo', true];
+    const result = toContainsOnlyTruthyValues({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect [ 1, 'foo', true ] {{not}} to contains only truthy values`,
+    });
+  });
+
+  it('should not pass with an array containing falsy values', () => {
+    const actual = [1, 'foo', true, 0];
+    const result = toContainsOnlyTruthyValues({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect [ 1, 'foo', true, 0 ] {{not}} to contains only truthy values`,
+    });
+  });
+});

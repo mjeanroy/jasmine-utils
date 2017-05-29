@@ -22,13 +22,33 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isArray} from '../../util/is-array.js';
+import {isTruthy} from '../../util/is-truthy.js';
+import {every} from '../../util/every.js';
+
+/**
+ * Check that the tested object contains only truthy values.
+ * The tested object may be an array or any iterable object (i.e that can be
+ * traversed with the `for..of` loop).
+ *
+ * Note that this matcher works fine with custom equality matchers.
+ *
+ * @message Expect [actual] (not) to contains only truthy values.
+ * @example
+ *   expect([1, 2, true, 'foo', {}, []]).toContainsOnlyTruthyValues();
+ *
+ *   expect([1, 2, false, 'foo', {}, []]).not.toContainsOnlyTruthyValues();
+ *   expect([1, 2, true, '', {}, []]).not.toContainsOnlyTruthyValues();
+ *   expect([0, 2, true, 'foo', {}, []]).not.toContainsOnlyTruthyValues();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toContainsOnlyTruthyValues({actual}) {
+  return {
+    pass: isArray(actual) && every(actual, isTruthy),
+    message: `Expect ${pp(actual)} {{not}} to contains only truthy values`,
+  };
+}

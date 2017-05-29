@@ -22,13 +22,25 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isNumber} from '../../util/is-number.js';
+
+/**
+ * Check that the tested object is an even number.
+ *
+ * @message Expect [actual] to be an even number
+ * @example
+ *   expect(2).toBeEvenNumber();
+ *   expect(0).not.toBeEvenNumber();
+ *   expect(1).not.toBeEvenNumber();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBeEvenNumber({actual}) {
+  return {
+    pass: isNumber(actual) && actual % 2 === 0,
+    message: `Expect ${pp(actual)} {{not}} to be an even number`,
+  };
+}

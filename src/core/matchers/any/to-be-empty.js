@@ -22,13 +22,31 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {sizeOf} from '../../util/size-of.js';
+
+/**
+ * Check that tested object is empty:
+ * - If it is an `array` or an array-like, check that the length is equal to zero.
+ * - If it is an object, check that it does not have any property.
+ * - If it is a `map` or a `set`, check that the size is equal to zero.
+ *
+ * @message Expect [actual] (not) to be empty.
+ * @example
+ *   expect('').toBeEmpty();
+ *   expect([]).toBeEmpty();
+ *   expect({}).toBeEmpty();
+ *   expect(new Map()).toBeEmpty();
+ *   expect(new Set()).toBeEmpty();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBeEmpty({actual}) {
+  const size = sizeOf(actual);
+  return {
+    pass: size === 0,
+    message: `Expect ${pp(actual)} {{not}} to be empty`,
+  };
+}

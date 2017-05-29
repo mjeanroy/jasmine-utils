@@ -22,13 +22,27 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {contains} from '../../util/contains.js';
+
+/**
+ * Check that the tested object is strictly equal to one of the values
+ * in an array. Note that this matcher use the strict equality (`===`), please
+ * use `toEqualOneOf` for other equality check.
+ *
+ * @message Expect [actual] (not) to be one of [values]
+ * @example
+ *   expect(1).toBeOneOf([1, 2, 3]);
+ *   expect(10).not.toBeOneOf([1, 2, 3]);
+ *
+ * @param {Object} ctx The test context.
+ * @param {Array} array The array that should contains the actual value.
+ * @return {Object} The test result.
+ * @since 0.5.0
+ */
+export function toBeOneOf({actual}, array) {
+  return {
+    pass: contains(array, actual),
+    message: `Expect ${pp(actual)} {{not}} to be one of ${pp(array)}`,
+  };
+}

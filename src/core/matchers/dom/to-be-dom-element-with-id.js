@@ -22,13 +22,38 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isDOMElement} from '../../util/is-dom-element.js';
+
+/**
+ * Check that the tested object is a DOM element with an expected id (note that
+ * the `id` is retrieved using `getAttribute('id')`).
+ *
+ * @message Expect [actual] (not) to be a DOM element with id [id] but was [actualId]
+ * @example
+ *   const span = document.createElement('span');
+ *   span.setAttribute('id', 'mySpan');
+ *   expect(span).toBeDOMElementWithId('mySpan');
+ *
+ * @param {Object} ctx Test context.
+ * @param {string} id Expected id.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBeDOMElementWithId({actual}, id) {
+  const isElement = isDOMElement(actual);
+
+  let ok = isElement;
+  let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
+
+  if (isElement) {
+    const actualId = actual.getAttribute('id');
+    msg += ` with id ${pp(id)} but was ${pp(actualId)}`;
+    ok = ok && actualId === id;
+  }
+
+  return {
+    pass: ok,
+    message: msg,
+  };
+}

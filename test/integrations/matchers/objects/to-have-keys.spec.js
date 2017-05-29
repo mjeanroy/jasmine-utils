@@ -22,13 +22,23 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {assumeMap} from '../../../detect/assume-map.js';
+import 'src/index.js';
+
+describe('toHaveKeys', () => {
+  it('should pass', () => {
+    expect({id: 1, name: 'foo'}).toHaveKeys('id', 'name');
+    expect({id: 1, name: 'foo'}).not.toHaveKeys('foo', 'bar');
+  });
+
+  it('should pass with map', () => {
+    assumeMap();
+
+    const map = new Map();
+    map.set('id', 1);
+    map.set('name', 'foo');
+
+    expect(map).toHaveKeys('id', 'name');
+    expect(map).not.toHaveKeys('foo', 'bar');
+  });
+});

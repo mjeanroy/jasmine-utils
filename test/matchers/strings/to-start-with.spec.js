@@ -22,13 +22,26 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toStartWith} from 'src/core/matchers/strings/to-start-with.js';
+
+describe('toStartWith', () => {
+  it('should check that object is a string starting with given preifx', () => {
+    const actual = 'foo';
+    const other = 'fo';
+    const result = toStartWith({actual}, other);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect 'foo' {{not}} to start with 'fo'`,
+    });
+  });
+
+  it('should not pass without a string starting with an other prefix', () => {
+    const actual = 'test';
+    const other = 'testtest';
+    const result = toStartWith({actual}, other);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 'test' {{not}} to start with 'testtest'`,
+    });
+  });
+});

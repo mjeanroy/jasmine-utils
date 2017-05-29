@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeABoolean} from 'src/core/matchers/lang/to-be-a-boolean.js';
+
+describe('toBeABoolean', () => {
+  it('should check that object is a boolean', () => {
+    const actual = true;
+    const result = toBeABoolean({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect true {{not}} to be a boolean`,
+    });
+  });
+
+  it('should not pass without a boolean', () => {
+    const actual = null;
+    const result = toBeABoolean({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect null {{not}} to be a boolean`,
+    });
+  });
+});

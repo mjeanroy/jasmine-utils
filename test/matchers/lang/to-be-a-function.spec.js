@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeAFunction} from 'src/core/matchers/lang/to-be-a-function.js';
+
+describe('toBeAFunction', () => {
+  it('should check that object is a function', () => {
+    const actual = () => {};
+    const result = toBeAFunction({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect Function {{not}} to be a function`,
+    });
+  });
+
+  it('should not pass without a function', () => {
+    const actual = null;
+    const result = toBeAFunction({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect null {{not}} to be a function`,
+    });
+  });
+});

@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toContainsOnlyFalsyValues} from 'src/core/matchers/arrays/to-contains-only-falsy-values.js';
+
+describe('toContainsOnlyFalstValues', () => {
+  it('should check that array contains only falsy values', () => {
+    const actual = [0, false, '', null, NaN, undefined];
+    const result = toContainsOnlyFalsyValues({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect [ 0, false, '', null, NaN, undefined ] {{not}} to contains only falsy values`,
+    });
+  });
+
+  it('should not pass with an array containing falsy values', () => {
+    const actual = [0, false, '', null, NaN, undefined, true];
+    const result = toContainsOnlyFalsyValues({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect [ 0, false, '', null, NaN, undefined, true ] {{not}} to contains only falsy values`,
+    });
+  });
+});

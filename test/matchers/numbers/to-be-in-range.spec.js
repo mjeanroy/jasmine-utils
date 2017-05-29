@@ -22,13 +22,39 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeInRange} from 'src/core/matchers/numbers/to-be-in-range.js';
+
+describe('toBeInRange', () => {
+  it('should check that object is an greater than lower bound and less than upper bound', () => {
+    const actual = 1;
+    const lower = 0;
+    const upper = 2;
+    const result = toBeInRange({actual}, lower, upper);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect 1 {{not}} to be between 0 and 2`,
+    });
+  });
+
+  it('should not pass with a value equal to lower bound', () => {
+    const actual = 1;
+    const lower = 1;
+    const upper = 2;
+    const result = toBeInRange({actual}, lower, upper);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 1 {{not}} to be between 1 and 2`,
+    });
+  });
+
+  it('should not pass with value equal to upper bound', () => {
+    const actual = 1;
+    const lower = 0;
+    const upper = 1;
+    const result = toBeInRange({actual}, lower, upper);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 1 {{not}} to be between 0 and 1`,
+    });
+  });
+});

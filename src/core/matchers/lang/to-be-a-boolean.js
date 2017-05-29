@@ -22,13 +22,27 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isBoolean} from '../../util/is-boolean.js';
+
+/**
+ * Check that the tested object is a `boolean` (a `boolean` is exactly `true`
+ * or `false`).
+ *
+ * @message Expect [actual] (not) to be a boolean
+ * @example
+ *   expect(true).toBeABoolean();
+ *   expect(false).toBeABoolean();
+ *   expect(null).not.toBeABoolean();
+ *   expect(undefined).not.toBeABoolean();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBeABoolean({actual}) {
+  return {
+    pass: isBoolean(actual),
+    message: `Expect ${pp(actual)} {{not}} to be a boolean`,
+  };
+}

@@ -22,13 +22,28 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isNil} from '../../util/is-nil.js';
+
+/**
+ * Check that the tested object is nil (i.e `null` or `undefined`).
+ *
+ * @message Expect [actual] (not) to be nil (null or undefined)
+ * @example
+ *   expect(null).toBeNil();
+ *   expect(undefined).toBeNil();
+ *   expect(void 0).toBeNil();
+ *   expect(false).not.toBeNil();
+ *   expect(0).not.toBeNil();
+ *   expect(NaN).not.toBeNil();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.3.0
+ */
+export function toBeNil({actual}) {
+  return {
+    pass: isNil(actual),
+    message: `Expect ${pp(actual)} {{not}} to be nil (null or undefined)`,
+  };
+}

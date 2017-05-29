@@ -22,13 +22,27 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isString} from '../../util/is-string.js';
+
+/**
+ * Check that the tested object is a `string` equal to an other `string`: comparison is
+ * case-insensitive.
+ *
+ * @message Expect [actual] (not) to be equal to [other] (case insensitive)
+ * @example
+ *   expect('foo').toEqualIgnoringCase('foo');
+ *   expect('foo').toEqualIgnoringCase('FOO');
+ *   expect('foo').not.toEqualIgnoringCase('bar');
+ *
+ * @param {Object} ctx Test context.
+ * @param {string} other Other string to compare.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toEqualIgnoringCase({actual}, other) {
+  return {
+    pass: isString(other) && isString(actual) && actual.toLowerCase() === other.toLowerCase(),
+    message: `Expect ${pp(actual)} {{not}} to be equal to ${pp(other)} (case insensitive)`,
+  };
+}

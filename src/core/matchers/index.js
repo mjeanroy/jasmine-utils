@@ -22,61 +22,80 @@
  * THE SOFTWARE.
  */
 
-export {toBeASet} from './to-be-a-set.js';
-export {toBeAMap} from './to-be-a-map.js';
-export {toBeIterable} from './to-be-iterable.js';
-export {toHaveKeys} from './to-have-keys.js';
-export {toHaveFunctions} from './to-have-functions.js';
-export {toHaveSize} from './to-have-size.js';
-export {toBeEmpty} from './to-be-empty.js';
-export {toHaveValues} from './to-have-values.js';
-export {toHaveLength} from './to-have-length.js';
-export {toHaveSameLengthAs} from './to-have-same-length-as.js';
-export {toHaveSameSizeAs} from './to-have-same-size-as.js';
-export {toBeAnArray} from './to-be-an-array.js';
-export {toBeADate} from './to-be-a-date.js';
-export {toBeDateCloseTo} from './to-be-date-close-to.js';
-export {toBeDateCloseToNow} from './to-be-date-close-to-now.js';
-export {toBeDateAfter} from './to-be-date-after.js';
-export {toBeDateAfterNow} from './to-be-date-after-now.js';
-export {toBeDateBefore} from './to-be-date-before.js';
-export {toBeDateBeforeNow} from './to-be-date-before-now.js';
-export {toBeSameDay} from './to-be-same-day.js';
-export {toBeToday} from './to-be-today.js';
-export {toBeNull} from './to-be-null.js';
-export {toBeNil} from './to-be-nil.js';
-export {toBeANumber} from './to-be-a-number.js';
-export {toBeABoolean} from './to-be-a-boolean.js';
-export {toBeTrue} from './to-be-true.js';
-export {toBeFalse} from './to-be-false.js';
-export {toBeAString} from './to-be-a-string.js';
-export {toBeAnEmptyString} from './to-be-an-empty-string';
-export {toEqualIgnoringCase} from './to-equal-ignoring-case.js';
-export {toStartWith} from './to-start-with.js';
-export {toEndWith} from './to-end-with.js';
-export {toBeAFunction} from './to-be-a-function.js';
-export {toBeZero} from './to-be-zero.js';
-export {toBePositive} from './to-be-positive.js';
-export {toBeNegative} from './to-be-negative.js';
-export {toBeOddNumber} from './to-be-odd-number.js';
-export {toBeEvenNumber} from './to-be-even-number.js';
-export {toBeNumeric} from './to-be-numeric.js';
-export {toBeInteger} from './to-be-integer.js';
-export {toBeFloat} from './to-be-float.js';
-export {toBeInRange} from './to-be-in-range.js';
-export {toBeSorted} from './to-be-sorted.js';
-export {toContainsOnlyTruthyValues} from './to-contains-only-truthy-values.js';
-export {toContainsOnlyFalsyValues} from './to-contains-only-falsy-values.js';
-export {toContainsDistinctValues} from './to-contains-distinct-values.js';
-export {toVerify} from './to-verify.js';
-export {toHaveSome} from './to-have-some.js';
-export {toBePartiallyEqualTo} from './to-be-partially-equal-to.js';
-export {toHaveBeenCalledOnce} from './to-have-been-called-once.js';
-export {toHaveBeenCalledOnceWith} from './to-have-been-called-once-with.js';
-export {toBeInstanceOf} from './to-be-instance-of.js';
-export {toBeDOMElement} from './to-be-dom-element.js';
-export {toBeDOMElementWithId} from './to-be-dom-element-with-id.js';
-export {toBeDOMElementWithAttributes} from './to-be-dom-element-with-attributes.js';
-export {toBeDOMElementWithClasses} from './to-be-dom-element-with-classes.js';
-export {toBeOneOf} from './to-be-one-of.js';
-export {toEqualOneOf} from './to-equal-one-of.js';
+// any
+export {toBeEmpty} from './any/to-be-empty.js';
+export {toBeInstanceOf} from './any/to-be-instance-of.js';
+export {toBeOneOf} from './any/to-be-one-of.js';
+export {toEqualOneOf} from './any/to-equal-one-of.js';
+
+// arrays
+export {toBeSorted} from './arrays/to-be-sorted.js';
+export {toContainsDistinctValues} from './arrays/to-contains-distinct-values.js';
+export {toContainsOnlyFalsyValues} from './arrays/to-contains-only-falsy-values.js';
+export {toContainsOnlyTruthyValues} from './arrays/to-contains-only-truthy-values.js';
+export {toHaveLength} from './arrays/to-have-length.js';
+export {toHaveSameLengthAs} from './arrays/to-have-same-length-as.js';
+export {toHaveSome} from './arrays/to-have-some.js';
+export {toVerify} from './arrays/to-verify.js';
+
+// booleans
+export {toBeFalse} from './booleans/to-be-false.js';
+export {toBeTrue} from './booleans/to-be-true.js';
+
+// dates
+export {toBeDateAfterNow} from './dates/to-be-date-after-now.js';
+export {toBeDateAfter} from './dates/to-be-date-after.js';
+export {toBeDateBeforeNow} from './dates/to-be-date-before-now.js';
+export {toBeDateBefore} from './dates/to-be-date-before.js';
+export {toBeDateCloseToNow} from './dates/to-be-date-close-to-now.js';
+export {toBeDateCloseTo} from './dates/to-be-date-close-to.js';
+export {toBeSameDay} from './dates/to-be-same-day.js';
+export {toBeToday} from './dates/to-be-today.js';
+
+// dom
+export {toBeDOMElement} from './dom/to-be-dom-element.js';
+export {toBeDOMElementWithId} from './dom/to-be-dom-element-with-id.js';
+export {toBeDOMElementWithAttributes} from './dom/to-be-dom-element-with-attributes.js';
+export {toBeDOMElementWithClasses} from './dom/to-be-dom-element-with-classes.js';
+
+// lang
+export {toBeABoolean} from './lang/to-be-a-boolean.js';
+export {toBeADate} from './lang/to-be-a-date.js';
+export {toBeAFunction} from './lang/to-be-a-function.js';
+export {toBeAMap} from './lang/to-be-a-map.js';
+export {toBeANumber} from './lang/to-be-a-number.js';
+export {toBeASet} from './lang/to-be-a-set.js';
+export {toBeAString} from './lang/to-be-a-string.js';
+export {toBeAnArray} from './lang/to-be-an-array.js';
+export {toBeIterable} from './lang/to-be-iterable.js';
+export {toBeNil} from './lang/to-be-nil.js';
+export {toBeNull} from './lang/to-be-null.js';
+
+// numbers
+export {toBeEvenNumber} from './numbers/to-be-even-number.js';
+export {toBeFloat} from './numbers/to-be-float.js';
+export {toBeInRange} from './numbers/to-be-in-range.js';
+export {toBeInteger} from './numbers/to-be-integer.js';
+export {toBeNegative} from './numbers/to-be-negative.js';
+export {toBeNumeric} from './numbers/to-be-numeric.js';
+export {toBeOddNumber} from './numbers/to-be-odd-number.js';
+export {toBePositive} from './numbers/to-be-positive.js';
+export {toBeZero} from './numbers/to-be-zero.js';
+
+// objects
+export {toBePartiallyEqualTo} from './objects/to-be-partially-equal-to.js';
+export {toHaveFunctions} from './objects/to-have-functions.js';
+export {toHaveKeys} from './objects/to-have-keys.js';
+export {toHaveSameSizeAs} from './objects/to-have-same-size-as.js';
+export {toHaveSize} from './objects/to-have-size.js';
+export {toHaveValues} from './objects/to-have-values.js';
+
+// spies
+export {toHaveBeenCalledOnceWith} from './spies/to-have-been-called-once-with.js';
+export {toHaveBeenCalledOnce} from './spies/to-have-been-called-once.js';
+
+// strings
+export {toBeAnEmptyString} from './strings/to-be-an-empty-string';
+export {toEndWith} from './strings/to-end-with.js';
+export {toEqualIgnoringCase} from './strings/to-equal-ignoring-case.js';
+export {toStartWith} from './strings/to-start-with.js';

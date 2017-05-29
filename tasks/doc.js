@@ -33,6 +33,7 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 const dox = require('dox');
 const Handlebars = require('handlebars');
+const glob = require('glob');
 const options = require('../conf.js');
 const matchers = path.join(options.src, 'core', 'matchers');
 
@@ -40,16 +41,13 @@ gulp.task('docs', (done) => {
   listFiles(matchers)
     // Read JSDoc
     .then((files) => {
-      return Q.all(_(files)
-        .reject((file) => file === 'index.js')
-        .map((file) => path.join(matchers, file))
-        .map((file) => readFile(file).then((content) => {
+      return Q.all(_.map(files, (file) => (
+        readFile(file).then((content) => {
           const jsdoc = dox.parseComments(content, {raw: true});
           const api = keepFunctions(jsdoc);
           return parseComments(api);
-        }))
-        .value()
-      );
+        })
+      )));
     })
 
     // Generate Markdown
@@ -88,11 +86,14 @@ gulp.task('docs', (done) => {
 function listFiles(dir) {
   const deferred = Q.defer();
 
-  fs.readdir(dir, (err, files) => {
+  glob(path.join(dir, '**', '*.js'), (err, files) => {
     if (err) {
       deferred.reject(err);
     } else {
-      deferred.resolve(files);
+      deferred.resolve(_.chain(files)
+        .reject((f) => path.basename(f) === 'index.js')
+        .sortBy((f) => path.basename(f))
+        .value());
     }
   });
 

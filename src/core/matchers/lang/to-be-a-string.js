@@ -22,13 +22,27 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isString} from '../../util/is-string.js';
+
+/**
+ * Check that the tested object is a string.
+ *
+ * @message Expect [actual] (not) to be a string
+ * @example
+ *   expect('').toBeAString();
+ *   expect('foo').toBeAString();
+ *   expect(String('foo')).toBeAString();
+ *   expect(false).not.toBeAString();
+ *   expect(0).not.toBeAString();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.1.0
+ */
+export function toBeAString({actual}) {
+  return {
+    pass: isString(actual),
+    message: `Expect ${pp(actual)} {{not}} to be a string`,
+  };
+}

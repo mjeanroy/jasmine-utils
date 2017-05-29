@@ -22,13 +22,36 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toHaveSameSizeAs} from 'src/core/matchers/objects/to-have-same-size-as.js';
+
+describe('toHaveSameSizeAs', () => {
+  it('should check length of array', () => {
+    const actual = [1, 2, 3];
+    const expected = [4, 5, 6];
+    const result = toHaveSameSizeAs({actual}, expected);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect [ 1, 2, 3 ] {{not}} to have same size as [ 4, 5, 6 ]`,
+    });
+  });
+
+  it('should check size of object', () => {
+    const actual = {foo: 'bar'};
+    const expected = {bar: 'foo'};
+    const result = toHaveSameSizeAs({actual}, expected);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({ bar: 'foo' })`,
+    });
+  });
+
+  it('should fail with non expected length', () => {
+    const actual = {foo: 'bar'};
+    const expected = {};
+    const result = toHaveSameSizeAs({actual}, expected);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({  })`,
+    });
+  });
+});

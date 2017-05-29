@@ -22,13 +22,31 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isFunction} from '../../util/is-function.js';
+import {every} from '../../util/every.js';
+
+/**
+ * Check that actual object contains all given expected functions.
+ *
+ * @message Expect [actual] (not) to contain functions [methods]
+ * @example
+ *   const foo = jasmine.createSpy('foo');
+ *   const bar = jasmine.createSpy('bar');
+ *   const obj = { id: 1, name: 'foo', foo, bar };
+ *
+ *   expect(obj).toHaveFunctions('foo', 'bar');
+ *   expect(obj).not.toHaveFunctions('id', 'name');
+ *
+ * @param {Object} ctx Test context containing tested object.
+ * @param {...string} methods List of methods to look for.
+ * @return {Object} Matcher result.
+ * @since 0.1.0
+ */
+export function toHaveFunctions({actual}, ...methods) {
+  const ok = every(methods, (method) => isFunction(actual[method]));
+  return {
+    pass: ok,
+    message: `Expect object ${pp(actual)} {{not}} to contain functions ${pp(methods)}`,
+  };
+}

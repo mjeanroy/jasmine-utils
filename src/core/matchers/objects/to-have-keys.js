@@ -22,13 +22,38 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {keys} from '../../util/keys.js';
+import {contains} from '../../util/contains.js';
+
+/**
+ * Check that actual object contains all given expected keys.
+ *
+ * @message Expect [actual] (not) to have keys [expectedKeys]
+ * @example
+ *   const obj = { id: 1, name: 'foo' };
+ *   expect(obj).toHaveKeys('id', 'name');
+ *   expect(obj).not.toHaveKeys('foo', 'bar');
+ *
+ * @param {Object} ctx Test context containing tested object.
+ * @param {...string} expectedKeys Keys to look for in tested object.
+ * @return {Object} Matcher result.
+ * @since 0.1.0
+ */
+export function toHaveKeys({actual}, ...expectedKeys) {
+  const actualKeys = keys(actual);
+  const size = expectedKeys.length;
+
+  let ok = true;
+  for (let i = 0; i < size; ++i) {
+    if (!contains(actualKeys, expectedKeys[i])) {
+      ok = false;
+      break;
+    }
+  }
+
+  return {
+    pass: ok,
+    message: `Expect ${pp(actual)} {{not}} to have keys ${pp(expectedKeys)}`,
+  };
+}

@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeAnEmptyString} from 'src/core/matchers/strings/to-be-an-empty-string.js';
+
+describe('toBeAnEmptyString', () => {
+  it('should check that object is an empty string', () => {
+    const actual = '';
+    const result = toBeAnEmptyString({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect '' {{not}} to be an empty string`,
+    });
+  });
+
+  it('should not pass without an empty string', () => {
+    const actual = 'test';
+    const result = toBeAnEmptyString({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 'test' {{not}} to be an empty string`,
+    });
+  });
+});

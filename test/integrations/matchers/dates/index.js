@@ -22,13 +22,9 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import './to-be-date-after.spec.js';
+import './to-be-date-before.spec.js';
+import './to-be-date-close-to-now.spec.js';
+import './to-be-date-close-to.spec.js';
+import './to-be-same-day.spec.js';
+import './to-be-today.spec.js';

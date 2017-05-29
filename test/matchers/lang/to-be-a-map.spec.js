@@ -22,13 +22,28 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {assumeMap} from '../../detect/assume-map.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeAMap} from 'src/core/matchers/lang/to-be-a-map.js';
+
+describe('toBeAMap', () => {
+  it('should check that object is a map', () => {
+    assumeMap();
+
+    const actual = new Map();
+    const result = toBeAMap({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${pp(actual)} {{not}} to be a Map`,
+    });
+  });
+
+  it('should not pass without a map', () => {
+    const actual = [];
+    const result = toBeAMap({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect [  ] {{not}} to be a Map`,
+    });
+  });
+});

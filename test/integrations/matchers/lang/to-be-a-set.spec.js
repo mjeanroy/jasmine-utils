@@ -22,13 +22,26 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {assumeSet} from '../../../detect/assume-set.js';
+import {assumeMap} from '../../../detect/assume-map.js';
+import 'src/index.js';
+
+describe('toBeASet', () => {
+  it('should pass', () => {
+    assumeSet();
+    expect(new Set()).toBeASet();
+  });
+
+  it('should not pass with a Map', () => {
+    assumeMap();
+    expect(new Map()).not.toBeASet();
+  });
+
+  it('should not pass', () => {
+    expect([]).not.toBeASet();
+    expect({}).not.toBeASet();
+    expect(null).not.toBeASet();
+    expect(undefined).not.toBeASet();
+    expect(false).not.toBeASet();
+  });
+});

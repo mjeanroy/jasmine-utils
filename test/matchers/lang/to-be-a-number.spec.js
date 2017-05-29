@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeANumber} from 'src/core/matchers/lang/to-be-a-number.js';
+
+describe('toBeANumber', () => {
+  it('should check that object is a number', () => {
+    const actual = 0;
+    const result = toBeANumber({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect 0 {{not}} to be a number`,
+    });
+  });
+
+  it('should not pass without a number', () => {
+    const actual = null;
+    const result = toBeANumber({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect null {{not}} to be a number`,
+    });
+  });
+});

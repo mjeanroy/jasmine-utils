@@ -22,13 +22,27 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeDateAfterNow} from 'src/core/matchers/dates/to-be-date-after-now.js';
+
+describe('toBeDateAfterNow', () => {
+  it('should check that object is a date after now', () => {
+    const now = new Date().getTime();
+    const actual = new Date(now + 100);
+    const result = toBeDateAfterNow({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect date ${pp(actual)} {{not}} to be after now`,
+    });
+  });
+
+  it('should not pass with a date before now', () => {
+    const now = new Date().getTime();
+    const actual = new Date(now - 100);
+    const result = toBeDateAfterNow({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect date ${pp(actual)} {{not}} to be after now`,
+    });
+  });
+});

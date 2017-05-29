@@ -22,13 +22,33 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toHaveLength} from 'src/core/matchers/arrays/to-have-length.js';
+
+describe('toHaveLength', () => {
+  it('should check length of array', () => {
+    const actual = [1, 2, 3];
+    const result = toHaveLength({actual}, 3);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect length of [ 1, 2, 3 ] {{not}} to be 3 but was 3`,
+    });
+  });
+
+  it('should check length of array-like object', () => {
+    const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
+    const result = toHaveLength({actual}, 3);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect length of Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be 3 but was 3`,
+    });
+  });
+
+  it('should fail with non expected length', () => {
+    const actual = [];
+    const result = toHaveLength({actual}, 2);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect length of [  ] {{not}} to be 2 but was 0`,
+    });
+  });
+});

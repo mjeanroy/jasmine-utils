@@ -22,13 +22,11 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import './to-be-sorted.spec.js';
+import './to-contains-distinct-values.spec.js';
+import './to-contains-only-falsy-values.spec.js';
+import './to-contains-only-truthy-values.spec.js';
+import './to-have-length.spec.js';
+import './to-have-same-length-as.spec.js';
+import './to-have-some.spec.js';
+import './to-verify.spec.js';

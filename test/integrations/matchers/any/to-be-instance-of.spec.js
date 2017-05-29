@@ -22,13 +22,18 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import 'src/index.js';
+import {Klass} from '../../../fixtures/klass.js';
+
+describe('toBeInstanceOf', () => {
+  it('should pass', () => {
+    const value = new Klass();
+
+    expect(value).toBeInstanceOf(Klass);
+    expect(null).not.toBeInstanceOf(Klass);
+    expect(undefined).not.toBeInstanceOf(Klass);
+
+    expect(1).not.toBeInstanceOf(Klass);
+    expect('foo').not.toBeInstanceOf(Klass);
+  });
+});

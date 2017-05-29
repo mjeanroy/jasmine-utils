@@ -22,13 +22,33 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeNil} from 'src/core/matchers/lang/to-be-nil.js';
+
+describe('toBeNil', () => {
+  it('should check that object is null', () => {
+    const actual = null;
+    const result = toBeNil({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect null {{not}} to be nil (null or undefined)`,
+    });
+  });
+
+  it('should check that object is undefined', () => {
+    const actual = undefined;
+    const result = toBeNil({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect undefined {{not}} to be nil (null or undefined)`,
+    });
+  });
+
+  it('should not pass without null and undefined', () => {
+    const actual = '';
+    const result = toBeNil({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect '' {{not}} to be nil (null or undefined)`,
+    });
+  });
+});

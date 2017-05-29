@@ -22,13 +22,25 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeADate} from 'src/core/matchers/lang/to-be-a-date.js';
+
+describe('toBeADate', () => {
+  it('should check that object is a date', () => {
+    const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
+    const result = toBeADate({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${pp(actual)} {{not}} to be a date`,
+    });
+  });
+
+  it('should not pass without a date', () => {
+    const actual = null;
+    const result = toBeADate({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect null {{not}} to be a date`,
+    });
+  });
+});

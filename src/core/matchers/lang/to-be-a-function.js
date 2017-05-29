@@ -22,13 +22,26 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isFunction} from '../../util/is-function.js';
+
+/**
+ * Check that the tested object is a `function`.
+ *
+ * @message Expect [actual] (not) to be a function
+ * @example
+ *   expect(() => {}).toBeAFunction();
+ *   expect(function() {}).toBeAFunction();
+ *   expect(undefined).not.toBeAFunction();
+ *   expect(null).not.toBeAFunction();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBeAFunction({actual}) {
+  return {
+    pass: isFunction(actual),
+    message: `Expect ${pp(actual)} {{not}} to be a function`,
+  };
+}

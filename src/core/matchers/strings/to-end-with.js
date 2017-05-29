@@ -22,13 +22,31 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isString} from '../../util/is-string.js';
+
+/**
+ * Check that the tested object is a `string` and end with an expected suffix.
+ *
+ * @message Expect [actual] (not) to end with [suffix]
+ * @example
+ *   expect('foo').toEndWith('o');
+ *   expect('foo').toEndWith('oo');
+ *   expect('foo').toEndWith('foo');
+ *   expect('foo').not.toEndWith('bar');
+ *
+ * @param {Object} ctx Test context.
+ * @param {string} suffix The suffix to look for.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toEndWith({actual}, suffix) {
+  const ok = isString(suffix) && isString(actual) &&
+    actual.length >= suffix.length &&
+    actual.indexOf(suffix, actual.length - suffix.length) !== -1;
+
+  return {
+    pass: ok,
+    message: `Expect ${pp(actual)} {{not}} to end with ${pp(suffix)}`,
+  };
+}

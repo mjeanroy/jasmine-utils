@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isMap} from '../../util/is-map.js';
+
+/**
+ * Check that the tested object is a `Map`.
+ *
+ * @message Expect [actual] (not) to be a Map
+ * @example
+ *   expect(new Map()).toBeAMap();
+ *   expect({}).not.toBeAMap();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.3.0
+ */
+export function toBeAMap({actual}) {
+  return {
+    pass: isMap(actual),
+    message: `Expect ${pp(actual)} {{not}} to be a Map`,
+  };
+}

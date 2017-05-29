@@ -22,13 +22,26 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toEqualIgnoringCase} from 'src/core/matchers/strings/to-equal-ignoring-case.js';
+
+describe('toEqualIgnoringCase', () => {
+  it('should check that object is a string equal to an other (case insensitively)', () => {
+    const actual = 'test';
+    const other = 'TEST';
+    const result = toEqualIgnoringCase({actual}, other);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect 'test' {{not}} to be equal to 'TEST' (case insensitive)`,
+    });
+  });
+
+  it('should not pass without a string', () => {
+    const actual = 'test';
+    const other = 'foo';
+    const result = toEqualIgnoringCase({actual}, other);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 'test' {{not}} to be equal to 'foo' (case insensitive)`,
+    });
+  });
+});

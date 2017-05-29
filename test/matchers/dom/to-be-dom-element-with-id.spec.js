@@ -22,13 +22,40 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeDOMElementWithId} from 'src/core/matchers/dom/to-be-dom-element-with-id.js';
+
+describe('toBeDOMElementWithId', () => {
+  let div;
+
+  beforeEach(() => {
+    div = document.createElement('div');
+    div.setAttribute('id', 'foo');
+  });
+
+  it('should pass with a dom element with expected id', () => {
+    const actual = div;
+    const result = toBeDOMElementWithId({actual}, 'foo');
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect HTMLNode {{not}} to be a DOM element with id 'foo' but was 'foo'`,
+    });
+  });
+
+  it('should not pass without a DOM element', () => {
+    const actual = '<div></div>';
+    const result = toBeDOMElementWithId({actual}, 'div');
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect '<div></div>' {{not}} to be a DOM element`,
+    });
+  });
+
+  it('should not pass with a DOM element but not the expected id', () => {
+    const actual = div;
+    const result = toBeDOMElementWithId({actual}, 'bar');
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect HTMLNode {{not}} to be a DOM element with id 'bar' but was 'foo'`,
+    });
+  });
+});

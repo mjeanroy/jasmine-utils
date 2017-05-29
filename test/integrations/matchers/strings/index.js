@@ -22,13 +22,7 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import './to-be-an-empty-string.spec.js';
+import './to-end-with.spec.js';
+import './to-equal-ignoring-case.spec.js';
+import './to-start-with.spec.js';

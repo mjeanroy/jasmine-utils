@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeEvenNumber} from 'src/core/matchers/numbers/to-be-even-number.js';
+
+describe('toBeEvenNumber', () => {
+  it('should check that object is an even number', () => {
+    const actual = 2;
+    const result = toBeEvenNumber({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect 2 {{not}} to be an even number`,
+    });
+  });
+
+  it('should not pass with an odd number', () => {
+    const actual = 1;
+    const result = toBeEvenNumber({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 1 {{not}} to be an even number`,
+    });
+  });
+});

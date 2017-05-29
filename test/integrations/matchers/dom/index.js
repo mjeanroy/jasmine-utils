@@ -22,13 +22,7 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import './to-be-dom-element-with-attributes.spec.js';
+import './to-be-dom-element-with-classes.spec.js';
+import './to-be-dom-element-with-id.spec.js';
+import './to-be-dom-element.spec.js';

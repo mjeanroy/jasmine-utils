@@ -22,13 +22,25 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeToday} from 'src/core/matchers/dates/to-be-today.js';
+
+describe('toBeToday', () => {
+  it('should check that a date is today', () => {
+    const actual = new Date();
+    const result = toBeToday({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect date ${pp(actual)} {{not}} to be today`,
+    });
+  });
+
+  it('should not pass with a date that is not today', () => {
+    const actual = new Date(2010, 10, 13, 17, 55, 38, 0);
+    const result = toBeToday({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect date ${pp(actual)} {{not}} to be today`,
+    });
+  });
+});

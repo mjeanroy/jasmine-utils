@@ -22,13 +22,25 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isNull} from '../../util/is-null.js';
+
+/**
+ * Check that tested object is `null`.
+ *
+ * @message Expect [actual] (not) to be null
+ * @example
+ *   expect(null).toBeNull();
+ *   expect(undefined).not.toBeNull();
+ *   expect(false).not.toBeNull();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toBeNull({actual}) {
+  return {
+    pass: isNull(actual),
+    message: `Expect ${pp(actual)} {{not}} to be null`,
+  };
+}

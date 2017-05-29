@@ -22,13 +22,33 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeNegative} from 'src/core/matchers/numbers/to-be-negative.js';
+
+describe('toBeNegative', () => {
+  it('should check that object is strictly less than zero', () => {
+    const actual = -1;
+    const result = toBeNegative({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect -1 {{not}} to be a negative number`,
+    });
+  });
+
+  it('should not pass with zero', () => {
+    const actual = 0;
+    const result = toBeNegative({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 0 {{not}} to be a negative number`,
+    });
+  });
+
+  it('should not pass with a positive number', () => {
+    const actual = 1;
+    const result = toBeNegative({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect 1 {{not}} to be a negative number`,
+    });
+  });
+});

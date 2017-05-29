@@ -22,13 +22,29 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isArray} from '../../util/is-array.js';
+import {containsDistinct} from '../../util/contains-distinct.js';
+
+/**
+ * Check that the tested object is an array containing only distinct values.
+ * The tested object may be an array or any iterable object (i.e that can be
+ * traversed with the `for..of` loop).
+ *
+ * Note that this matcher works fine with custom equality matchers.
+ *
+ * @message Expect [actual] (not) to contains only distinct values
+ * @example
+ *   expect([0, 1, 2, 3]).toContainsDistinctValues();
+ *   expect([0, 1, 2, 3, 0]).not.toContainsDistinctValues();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.1.0
+ */
+export function toContainsDistinctValues({actual, equals}) {
+  return {
+    pass: isArray(actual) && containsDistinct(actual, equals),
+    message: `Expect ${pp(actual)} {{not}} to contains only distinct values`,
+  };
+}

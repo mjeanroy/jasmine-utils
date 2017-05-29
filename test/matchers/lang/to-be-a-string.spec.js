@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeAString} from 'src/core/matchers/lang/to-be-a-string.js';
+
+describe('toBeAString', () => {
+  it('should check that object is a string', () => {
+    const actual = 'test';
+    const result = toBeAString({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect 'test' {{not}} to be a string`,
+    });
+  });
+
+  it('should not pass without a string', () => {
+    const actual = null;
+    const result = toBeAString({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect null {{not}} to be a string`,
+    });
+  });
+});

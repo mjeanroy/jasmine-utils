@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeNull} from 'src/core/matchers/lang/to-be-null.js';
+
+describe('toBeNull', () => {
+  it('should check that object is null', () => {
+    const actual = null;
+    const result = toBeNull({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect null {{not}} to be null`,
+    });
+  });
+
+  it('should not pass without null', () => {
+    const actual = void 0;
+    const result = toBeNull({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect undefined {{not}} to be null`,
+    });
+  });
+});

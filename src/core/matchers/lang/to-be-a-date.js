@@ -22,13 +22,25 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from '../../jasmine/pp.js';
+import {isDate} from '../../util/is-date.js';
+
+/**
+ * Check that the tested object is an instance of `Date`.
+ *
+ * @message Expect [actual] (not) to be a date
+ * @example
+ *   expect(new Date()).toBeADate();
+ *   expect(null).not.toBeADate();
+ *   expect(123).not.toBeADate();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.1.0
+ */
+export function toBeADate({actual}) {
+  return {
+    pass: isDate(actual),
+    message: `Expect ${pp(actual)} {{not}} to be a date`,
+  };
+}

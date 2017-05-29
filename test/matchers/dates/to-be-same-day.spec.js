@@ -22,13 +22,27 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeSameDay} from 'src/core/matchers/dates/to-be-same-day.js';
+
+describe('toBeSameDay', () => {
+  it('should check that both dates are the same day', () => {
+    const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
+    const other = new Date(2016, 10, 12, 17, 55, 38, 100);
+    const result = toBeSameDay({actual}, other);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`,
+    });
+  });
+
+  it('should not pass with a date that is not the same day', () => {
+    const actual = new Date(2016, 10, 12, 17, 55, 38, 11);
+    const other = new Date(2016, 10, 13, 17, 55, 38, 0);
+    const result = toBeSameDay({actual}, other);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`,
+    });
+  });
+});

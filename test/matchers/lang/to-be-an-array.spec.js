@@ -22,13 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import {toBeAnArray} from 'src/core/matchers/lang/to-be-an-array.js';
+
+describe('toBeAnArray', () => {
+  it('should check that object is an array', () => {
+    const actual = [1, 2, 3];
+    const result = toBeAnArray({actual}, 3);
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect [ 1, 2, 3 ] {{not}} to be an array`,
+    });
+  });
+
+  it('should not pass with an array-like object', () => {
+    const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
+    const result = toBeAnArray({actual}, 3);
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be an array`,
+    });
+  });
+});
