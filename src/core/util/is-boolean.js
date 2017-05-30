@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {tagName} from './tag-name.js';
+import {is} from './is.js';
 
 /**
  * Check that a given value is a boolean.
@@ -31,7 +31,5 @@ import {tagName} from './tag-name.js';
  * @return {boolean} `true` if `obj` is a boolean, `false` otherwise.
  */
 export function isBoolean(obj) {
-  return obj === true ||
-    obj === false ||
-    tagName(obj) === '[object Boolean]';
+  return obj === true || obj === false || is(obj, 'Boolean');
 }

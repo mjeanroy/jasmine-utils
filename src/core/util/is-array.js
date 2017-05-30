@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {tagName} from './tag-name.js';
+import {is} from './is.js';
 
 const _isArray = Array.isArray || function _isArray(obj) {
-  return tagName(obj) === '[object Array]';
+  return is(obj, 'Array');
 };
 
 /**

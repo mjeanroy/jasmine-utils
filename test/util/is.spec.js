@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-import {is} from './is.js';
+import {is} from 'src/core/util/is.js';
 
-/**
- * Check that a given value is a function.
- *
- * @param {*} value Value to check.
- * @return {boolean} `true` if `value` is a function, `false` otherwise.
- */
-export function isFunction(value) {
-  return is(value, 'Function');
-}
+describe('is', () => {
+  it('should return true for expected tag name', () => {
+    expect(is('', 'String')).toBe(true);
+    expect(is(0, 'Number')).toBe(true);
+    expect(is(true, 'Boolean')).toBe(true);
+    expect(is([], 'Array')).toBe(true);
+    expect(is(new Date(), 'Date')).toBe(true);
+  });
+});

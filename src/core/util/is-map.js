@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {tagName} from './tag-name.js';
+import {is} from './is.js';
 
 /**
  * Check that a given value is a map.
@@ -31,5 +31,5 @@ import {tagName} from './tag-name.js';
  * @return {boolean} `true` if `obj` is a map, `false` otherwise.
  */
 export function isMap(obj) {
-  return tagName(obj) === '[object Map]';
+  return is(obj, 'Map');
 }

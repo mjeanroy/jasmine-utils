@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {tagName} from './tag-name.js';
+import {is} from './is.js';
 
 /**
  * Check that a given value is a string.
@@ -31,5 +31,5 @@ import {tagName} from './tag-name.js';
  * @return {boolean} `true` if `obj` is a string, `false` otherwise.
  */
 export function isString(obj) {
-  return tagName(obj) === '[object String]';
+  return is(obj, 'String');
 }

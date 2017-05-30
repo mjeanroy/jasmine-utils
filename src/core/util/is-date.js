@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {tagName} from './tag-name.js';
+import {is} from './is.js';
 
 /**
  * Check that given object is a date instance.
@@ -31,5 +31,5 @@ import {tagName} from './tag-name.js';
  * @return {boolean} `true` if `obj` is a date, `false` otherwise.
  */
 export function isDate(obj) {
-  return tagName(obj) === '[object Date]';
+  return is(obj, 'Date');
 }

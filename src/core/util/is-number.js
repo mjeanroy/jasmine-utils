@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {tagName} from './tag-name.js';
+import {is} from './is.js';
 
 /**
  * Check that a given value is a number.
@@ -31,5 +31,5 @@ import {tagName} from './tag-name.js';
  * @return {boolean} `true` if `obj` is a number, `false` otherwise.
  */
 export function isNumber(obj) {
-  return tagName(obj) === '[object Number]';
+  return is(obj, 'Number');
 }

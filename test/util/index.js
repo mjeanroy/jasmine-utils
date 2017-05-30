@@ -53,6 +53,7 @@ import './is-sorted.spec.js';
 import './is-string.spec.js';
 import './is-truthy.spec.js';
 import './is-undefined.spec.js';
+import './is.spec.js';
 import './keys.spec.js';
 import './map.spec.js';
 import './now.spec.js';
