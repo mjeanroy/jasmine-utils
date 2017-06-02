@@ -14,7 +14,7 @@
     "jasmine-core": ">=1.3.0"
   },
   "devDependencies": {
-    "@types/jasmine": "2.5.47",
+    "@types/jasmine": "2.5.49",
     "babel-plugin-external-helpers": "6.22.0",
     "babel-plugin-transform-undefined-to-void": "6.8.1",
     "babel-preset-es2015": "6.24.1",
