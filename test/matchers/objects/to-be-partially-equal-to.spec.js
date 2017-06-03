@@ -78,6 +78,29 @@ describe('toBePartiallyEqualTo', () => {
     });
   });
 
+  it('should not try to compare array elements with array of different length', () => {
+    const equals = jasmine.createSpy('equals').and.returnValue(true);
+
+    const actual = [
+      {id: 1, name: 'John Doe', age: 20},
+    ];
+
+    const other = [
+      {id: 1, name: 'John Doe'},
+      {id: 2, name: 'Jane Doe'},
+    ];
+
+    const result = toBePartiallyEqualTo({actual, equals}, other);
+
+    expect(equals).not.toHaveBeenCalled();
+    expect(result).toEqual({
+      pass: false,
+      message:
+        `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }) ] ` +
+        `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`,
+    });
+  });
+
   it('should compare two objects', () => {
     const equals = jasmine.createSpy('equals').and.callFake((a, b) => {
       return true;
