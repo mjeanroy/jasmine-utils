@@ -63,7 +63,7 @@ export function forEachWritableProperties(obj, iterator) {
           try {
             current[name];
             return false;
-          } catch(e) {
+          } catch (e) {
             return true;
           }
         });

@@ -31,7 +31,7 @@
 export function pp(value) {
   try {
     return jasmine.pp(value);
-  } catch(e) {
+  } catch (e) {
     // Fallback using object `toString` implementation.
     // Don't worry about `null` or `undefined` since it should be handled
     // by `jasmine.pp`

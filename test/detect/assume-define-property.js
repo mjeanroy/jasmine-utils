@@ -33,7 +33,7 @@ const SUPPORT_DEFINE_PROPERTY = (() => {
   try {
     Object.defineProperty({}, 'foobar', {value: 'foobar'});
     return true;
-  } catch(e) {
+  } catch (e) {
     return false;
   }
 })();
