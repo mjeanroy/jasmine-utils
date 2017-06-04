@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeDOMElementWithClasses} from 'src/core/matchers/dom/to-be-dom-element-with-classes.js';
+import {toBeDOMElementWithClasses} from '../../../src/core/matchers/dom/to-be-dom-element-with-classes.js';
 
 describe('toBeDOMElementWithClasses', () => {
   let div;

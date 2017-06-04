@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {spyIf} from 'src/core/spies/spy-if.js';
+import {spyIf} from '../../src/core/spies/spy-if.js';
 
 describe('spyIf', () => {
   it('should spy method', () => {

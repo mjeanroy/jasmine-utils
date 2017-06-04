@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeAFunction} from 'src/core/matchers/lang/to-be-a-function.js';
+import {toBeAFunction} from '../../../src/core/matchers/lang/to-be-a-function.js';
 
 describe('toBeAFunction', () => {
   it('should check that object is a function', () => {

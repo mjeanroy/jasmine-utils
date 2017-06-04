@@ -23,6 +23,7 @@
  */
 
 import {assumeFreeze} from '../../../detect/assume-freeze.js';
+import '../../../../src/index.js';
 
 describe('toBeFrozen', () => {
   it('should pass with primitive values', () => {

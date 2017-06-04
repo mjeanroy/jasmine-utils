@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {jasmine2MatcherFactory} from 'src/core/jasmine/j2-matcher-factory.js';
+import {jasmine2MatcherFactory} from '../../src/core/jasmine/j2-matcher-factory.js';
 
 describe('jasmine2MatcherFactory', () => {
   it('should create matcher', () => {

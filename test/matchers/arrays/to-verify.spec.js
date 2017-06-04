@@ -25,8 +25,8 @@
 import {assumeSet} from '../../detect/assume-set.js';
 import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {pp} from 'src/core/jasmine/pp.js';
-import {toVerify} from 'src/core/matchers/arrays/to-verify.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toVerify} from '../../../src/core/matchers/arrays/to-verify.js';
 
 describe('toVerify', () => {
   it('should pass if array satisfies predicate function', () => {

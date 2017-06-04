@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toContainsOnlyFalsyValues} from 'src/core/matchers/arrays/to-contains-only-falsy-values.js';
+import {toContainsOnlyFalsyValues} from '../../../src/core/matchers/arrays/to-contains-only-falsy-values.js';
 
 describe('toContainsOnlyFalstValues', () => {
   it('should check that array contains only falsy values', () => {

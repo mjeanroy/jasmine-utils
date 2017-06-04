@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isSorted} from 'src/core/util/is-sorted.js';
+import {isSorted} from '../../src/core/util/is-sorted.js';
 
 describe('isSorted', () => {
   it('should return true for an empty array', () => {

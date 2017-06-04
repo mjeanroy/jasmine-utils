@@ -25,8 +25,8 @@
 import {assumeSet} from '../../detect/assume-set.js';
 import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {pp} from 'src/core/jasmine/pp.js';
-import {toHaveSize} from 'src/core/matchers/objects/to-have-size.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toHaveSize} from '../../../src/core/matchers/objects/to-have-size.js';
 
 describe('toHaveSize', () => {
   it('should check length of array', () => {

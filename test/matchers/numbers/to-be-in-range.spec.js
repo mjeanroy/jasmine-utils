@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeInRange} from 'src/core/matchers/numbers/to-be-in-range.js';
+import {toBeInRange} from '../../../src/core/matchers/numbers/to-be-in-range.js';
 
 describe('toBeInRange', () => {
   it('should check that object is an greater than lower bound and less than upper bound', () => {

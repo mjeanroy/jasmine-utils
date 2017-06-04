@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toContainsDistinctValues} from 'src/core/matchers/arrays/to-contains-distinct-values.js';
+import {toContainsDistinctValues} from '../../../src/core/matchers/arrays/to-contains-distinct-values.js';
 
 describe('toContainsDistinctValues', () => {
   it('should check that array only contains distinct values', () => {

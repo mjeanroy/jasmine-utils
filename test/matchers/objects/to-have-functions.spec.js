@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toHaveFunctions} from 'src/core/matchers/objects/to-have-functions.js';
+import {toHaveFunctions} from '../../../src/core/matchers/objects/to-have-functions.js';
 
 describe('toHaveFunctions', () => {
   it('should check if object has expected functions', () => {

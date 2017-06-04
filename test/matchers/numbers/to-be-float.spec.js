@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeFloat} from 'src/core/matchers/numbers/to-be-float.js';
+import {toBeFloat} from '../../../src/core/matchers/numbers/to-be-float.js';
 
 describe('toBeFloat', () => {
   it('should check that object is a float value', () => {

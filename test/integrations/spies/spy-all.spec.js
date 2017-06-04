@@ -26,7 +26,7 @@ import {assumeDefineProperty} from '../../detect/assume-define-property.js';
 import {assumeGetOwnPropertyNames} from '../../detect/assume-get-own-property-names.js';
 import {Klass} from '../../fixtures/klass.js';
 import {nonLooseClassFactory} from '../../fixtures/non-loose-class-generator';
-import 'src/index.js';
+import '../../../src/index.js';
 
 describe('spyAll and spyAllExcept', () => {
   it('should spy all methods', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNodeList} from 'src/core/util/is-node-list.js';
+import {isNodeList} from '../../src/core/util/is-node-list.js';
 
 describe('isNodeList', () => {
   let fixtures;

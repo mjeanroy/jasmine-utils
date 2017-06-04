@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeDateAfter} from 'src/core/matchers/dates/to-be-date-after.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeDateAfter} from '../../../src/core/matchers/dates/to-be-date-after.js';
 
 describe('toBeDateAfter', () => {
   it('should check that object is a date after an other date', () => {

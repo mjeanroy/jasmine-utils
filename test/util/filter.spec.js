@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {filter} from 'src/core/util/filter.js';
+import {filter} from '../../src/core/util/filter.js';
 
 describe('filter', () => {
   it('should return filtered array', () => {

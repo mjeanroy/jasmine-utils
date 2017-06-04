@@ -24,7 +24,7 @@
 
 import {assumeMap} from '../detect/assume-map.js';
 import {assumeSet} from '../detect/assume-set.js';
-import {pp} from 'src/core/jasmine/pp.js';
+import {pp} from '../../src/core/jasmine/pp.js';
 
 describe('pp', () => {
   it('should pretty-print null', () => {

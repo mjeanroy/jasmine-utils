@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {now} from 'src/core/util/now.js';
+import {now} from '../../src/core/util/now.js';
 
 describe('now', () => {
   let baseDate;

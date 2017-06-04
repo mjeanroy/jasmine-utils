@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeToday} from 'src/core/matchers/dates/to-be-today.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeToday} from '../../../src/core/matchers/dates/to-be-today.js';
 
 describe('toBeToday', () => {
   it('should check that a date is today', () => {

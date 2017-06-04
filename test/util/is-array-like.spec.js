@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isArrayLike} from 'src/core/util/is-array-like.js';
+import {isArrayLike} from '../../src/core/util/is-array-like.js';
 
 describe('isArrayLike', () => {
   let fixtures;

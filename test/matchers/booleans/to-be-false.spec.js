@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeFalse} from 'src/core/matchers/booleans/to-be-false.js';
+import {toBeFalse} from '../../../src/core/matchers/booleans/to-be-false.js';
 
 describe('toBeFalse', () => {
   it('should check that object is false', () => {

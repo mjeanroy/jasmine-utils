@@ -23,8 +23,8 @@
  */
 
 import {assumeMap} from '../../detect/assume-map.js';
-import {pp} from 'src/core/jasmine/pp.js';
-import {toHaveKeys} from 'src/core/matchers/objects/to-have-keys.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toHaveKeys} from '../../../src/core/matchers/objects/to-have-keys.js';
 
 describe('toHaveKeys', () => {
   it('should check if object has key', () => {

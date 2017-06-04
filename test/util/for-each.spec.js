@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {forEach} from 'src/core/util/for-each.js';
+import {forEach} from '../../src/core/util/for-each.js';
 
 describe('forEach', () => {
   it('should iterate over array', () => {

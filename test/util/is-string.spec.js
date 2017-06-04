@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isString} from 'src/core/util/is-string.js';
+import {isString} from '../../src/core/util/is-string.js';
 
 describe('isString', () => {
   it('should return true with a string', () => {

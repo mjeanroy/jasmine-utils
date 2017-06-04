@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {spyAll} from 'src/core/spies/spy-all.js';
+import {spyAll} from '../../src/core/spies/spy-all.js';
 
 describe('spyAll', () => {
   it('should spy on all methods of object', () => {

@@ -23,7 +23,7 @@
  */
 
 import {Klass} from '../../fixtures/klass.js';
-import {toBeInstanceOf} from 'src/core/matchers/any/to-be-instance-of.js';
+import {toBeInstanceOf} from '../../../src/core/matchers/any/to-be-instance-of.js';
 
 describe('toBeInstanceOf', () => {
   it('should pass if value is an instance of given class', () => {

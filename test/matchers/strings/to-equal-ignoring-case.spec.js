@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toEqualIgnoringCase} from 'src/core/matchers/strings/to-equal-ignoring-case.js';
+import {toEqualIgnoringCase} from '../../../src/core/matchers/strings/to-equal-ignoring-case.js';
 
 describe('toEqualIgnoringCase', () => {
   it('should check that object is a string equal to an other (case insensitively)', () => {

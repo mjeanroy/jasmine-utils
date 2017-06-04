@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeNumeric} from 'src/core/matchers/numbers/to-be-numeric.js';
+import {toBeNumeric} from '../../../src/core/matchers/numbers/to-be-numeric.js';
 
 describe('toBeNumeric', () => {
   it('should check that object is a numeric value', () => {

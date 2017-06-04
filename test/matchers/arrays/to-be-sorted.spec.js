@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeSorted} from 'src/core/matchers/arrays/to-be-sorted.js';
+import {toBeSorted} from '../../../src/core/matchers/arrays/to-be-sorted.js';
 
 describe('toBeSorted', () => {
   it('should pass with a sorted array', () => {

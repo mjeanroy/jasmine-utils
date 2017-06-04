@@ -25,7 +25,7 @@
 import {assumeFreeze} from '../detect/assume-freeze.js';
 import {assumePreventExtensions} from '../detect/assume-prevent-extensions.js';
 import {assumeSeal} from '../detect/assume-seal.js';
-import {isExtensible} from 'src/core/util/is-extensible.js';
+import {isExtensible} from '../../src/core/util/is-extensible.js';
 
 describe('isExtensible', () => {
   it('should return false with a primitive value', () => {

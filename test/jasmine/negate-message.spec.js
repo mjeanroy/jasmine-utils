@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {negateMessage} from 'src/core/jasmine/negate-message.js';
+import {negateMessage} from '../../src/core/jasmine/negate-message.js';
 
 describe('negateMessage', () => {
   it('should not negate message if isNot is false', () => {

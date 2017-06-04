@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeOneOf} from 'src/core/matchers/any/to-be-one-of.js';
+import {toBeOneOf} from '../../../src/core/matchers/any/to-be-one-of.js';
 
 describe('toBeOneOf', () => {
   it('should pass with integer values', () => {

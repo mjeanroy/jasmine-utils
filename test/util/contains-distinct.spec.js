@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {containsDistinct} from 'src/core/util/contains-distinct.js';
+import {containsDistinct} from '../../src/core/util/contains-distinct.js';
 
 describe('containsDistinct', () => {
   it('should return true if array contains only distinct values', () => {

@@ -25,7 +25,7 @@
 import {assumeSet} from '../detect/assume-set.js';
 import {assumeMap} from '../detect/assume-map.js';
 import {assumeSymbol} from '../detect/assume-symbol.js';
-import {isIterable} from 'src/core/util/is-iterable.js';
+import {isIterable} from '../../src/core/util/is-iterable.js';
 
 describe('isIterable', () => {
   it('should return false with null', () => {

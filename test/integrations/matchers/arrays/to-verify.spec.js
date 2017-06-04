@@ -25,7 +25,7 @@
 import {assumeSet} from '../../../detect/assume-set.js';
 import {assumeMap} from '../../../detect/assume-map.js';
 import {assumeSymbol} from '../../../detect/assume-symbol.js';
-import 'src/index.js';
+import '../../../../src/index.js';
 
 describe('toVerify', () => {
   it('should pass with array', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {contains} from 'src/core/util/contains.js';
+import {contains} from '../../src/core/util/contains.js';
 
 describe('contains', () => {
   it('should returns true if elements is in the array with default equality function', () => {

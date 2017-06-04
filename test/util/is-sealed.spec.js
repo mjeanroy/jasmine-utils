@@ -23,7 +23,7 @@
  */
 
 import {assumeSeal} from '../detect/assume-seal.js';
-import {isSealed} from 'src/core/util/is-sealed.js';
+import {isSealed} from '../../src/core/util/is-sealed.js';
 
 describe('isSealed', () => {
   it('should return true with a primitive value', () => {

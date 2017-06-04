@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeDOMElementWithAttributes} from 'src/core/matchers/dom/to-be-dom-element-with-attributes.js';
+import {toBeDOMElementWithAttributes} from '../../../src/core/matchers/dom/to-be-dom-element-with-attributes.js';
 
 describe('toBeDOMElementWithAttributes', () => {
   let div;

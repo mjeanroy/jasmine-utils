@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeDateCloseToNow} from 'src/core/matchers/dates/to-be-date-close-to-now.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeDateCloseToNow} from '../../../src/core/matchers/dates/to-be-date-close-to-now.js';
 
 describe('toBeDateCloseToNow', () => {
   it('should check that object is a date close to "now"', () => {

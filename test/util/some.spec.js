@@ -25,7 +25,7 @@
 import {assumeMap} from '../detect/assume-map.js';
 import {assumeSet} from '../detect/assume-set.js';
 import {assumeSymbol} from '../detect/assume-symbol.js';
-import {some} from 'src/core/util/some.js';
+import {some} from '../../src/core/util/some.js';
 
 describe('some', () => {
   it('should return true if predicate always returns a truthy value for at least one element', () => {

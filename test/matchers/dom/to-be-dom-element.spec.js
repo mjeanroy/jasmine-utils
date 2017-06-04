@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeDOMElement} from 'src/core/matchers/dom/to-be-dom-element.js';
+import {toBeDOMElement} from '../../../src/core/matchers/dom/to-be-dom-element.js';
 
 describe('toBeDOMElement', () => {
   it('should pass with a dom element', () => {

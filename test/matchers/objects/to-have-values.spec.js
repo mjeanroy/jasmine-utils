@@ -23,8 +23,8 @@
  */
 
 import {assumeMap} from '../../detect/assume-map.js';
-import {pp} from 'src/core/jasmine/pp.js';
-import {toHaveValues} from 'src/core/matchers/objects/to-have-values.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toHaveValues} from '../../../src/core/matchers/objects/to-have-values.js';
 
 describe('toHaveValues', () => {
   it('should check for object values', () => {

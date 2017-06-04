@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {strictEquals} from 'src/core/util/strict-equals.js';
+import {strictEquals} from '../../src/core/util/strict-equals.js';
 
 describe('strictEquals', () => {
   it('should return true if a === b', () => {

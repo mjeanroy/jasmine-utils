@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {spyEach} from 'src/core/spies/spy-each.js';
+import {spyEach} from '../../src/core/spies/spy-each.js';
 
 describe('resetAll', () => {
   it('should spy method of object', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeNil} from 'src/core/matchers/lang/to-be-nil.js';
+import {toBeNil} from '../../../src/core/matchers/lang/to-be-nil.js';
 
 describe('toBeNil', () => {
   it('should check that object is null', () => {

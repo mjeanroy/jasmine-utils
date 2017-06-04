@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeADate} from 'src/core/matchers/lang/to-be-a-date.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeADate} from '../../../src/core/matchers/lang/to-be-a-date.js';
 
 describe('toBeADate', () => {
   it('should check that object is a date', () => {

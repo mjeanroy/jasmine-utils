@@ -23,7 +23,7 @@
  */
 
 import {assumeMap} from '../../../detect/assume-map.js';
-import 'src/index.js';
+import '../../../../src/index.js';
 
 describe('toHaveKeys', () => {
   it('should pass', () => {

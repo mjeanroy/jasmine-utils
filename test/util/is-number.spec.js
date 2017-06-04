@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNumber} from 'src/core/util/is-number.js';
+import {isNumber} from '../../src/core/util/is-number.js';
 
 describe('isNumber', () => {
   it('should return true with a number', () => {

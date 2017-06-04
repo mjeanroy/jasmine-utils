@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isDate} from 'src/core/util/is-date.js';
+import {isDate} from '../../src/core/util/is-date.js';
 
 describe('isDate', () => {
   it('should returns true if object is a date', () => {

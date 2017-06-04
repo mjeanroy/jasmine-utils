@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {indexOf} from 'src/core/util/index-of.js';
+import {indexOf} from '../../src/core/util/index-of.js';
 
 describe('indexOf', () => {
   it('should find index in array with default equality function', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import 'src/index.js';
+import '../../../../src/index.js';
 
 describe('toBeSameDay', () => {
   it('should pass with dates', () => {

@@ -23,8 +23,8 @@
  */
 
 import {assumeMap} from '../../detect/assume-map.js';
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeAMap} from 'src/core/matchers/lang/to-be-a-map.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeAMap} from '../../../src/core/matchers/lang/to-be-a-map.js';
 
 describe('toBeAMap', () => {
   it('should check that object is a map', () => {

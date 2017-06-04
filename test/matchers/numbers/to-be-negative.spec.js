@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeNegative} from 'src/core/matchers/numbers/to-be-negative.js';
+import {toBeNegative} from '../../../src/core/matchers/numbers/to-be-negative.js';
 
 describe('toBeNegative', () => {
   it('should check that object is strictly less than zero', () => {

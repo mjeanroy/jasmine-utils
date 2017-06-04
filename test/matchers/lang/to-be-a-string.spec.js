@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeAString} from 'src/core/matchers/lang/to-be-a-string.js';
+import {toBeAString} from '../../../src/core/matchers/lang/to-be-a-string.js';
 
 describe('toBeAString', () => {
   it('should check that object is a string', () => {

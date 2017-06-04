@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNil} from 'src/core/util/is-nil.js';
+import {isNil} from '../../src/core/util/is-nil.js';
 
 describe('isNil', () => {
   it('should return true with undefined or null', () => {

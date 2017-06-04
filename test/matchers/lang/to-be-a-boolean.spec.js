@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeABoolean} from 'src/core/matchers/lang/to-be-a-boolean.js';
+import {toBeABoolean} from '../../../src/core/matchers/lang/to-be-a-boolean.js';
 
 describe('toBeABoolean', () => {
   it('should check that object is a boolean', () => {

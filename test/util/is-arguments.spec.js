@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isArguments} from 'src/core/util/is-arguments.js';
+import {isArguments} from '../../src/core/util/is-arguments.js';
 
 describe('isDate', () => {
   it('should returns true if object is the arguments', () => {

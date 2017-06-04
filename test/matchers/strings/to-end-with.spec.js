@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toEndWith} from 'src/core/matchers/strings/to-end-with.js';
+import {toEndWith} from '../../../src/core/matchers/strings/to-end-with.js';
 
 describe('toEndWith', () => {
   it('should check that object is a string ending with given suffix', () => {

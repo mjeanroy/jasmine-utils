@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isFloat} from 'src/core/util/is-float.js';
+import {isFloat} from '../../src/core/util/is-float.js';
 
 describe('isFloat', () => {
   it('should return true with a float value', () => {

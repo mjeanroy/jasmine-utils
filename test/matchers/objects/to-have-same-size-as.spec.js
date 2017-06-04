@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toHaveSameSizeAs} from 'src/core/matchers/objects/to-have-same-size-as.js';
+import {toHaveSameSizeAs} from '../../../src/core/matchers/objects/to-have-same-size-as.js';
 
 describe('toHaveSameSizeAs', () => {
   it('should check length of array', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBePartiallyEqualTo} from 'src/core/matchers/objects/to-be-partially-equal-to.js';
+import {toBePartiallyEqualTo} from '../../../src/core/matchers/objects/to-be-partially-equal-to.js';
 
 describe('toBePartiallyEqualTo', () => {
   it('should compare two arrays', () => {

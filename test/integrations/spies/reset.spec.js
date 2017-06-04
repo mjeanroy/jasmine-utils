@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import 'src/index.js';
 import {Klass} from '../../fixtures/klass.js';
+import '../../../src/index.js';
 
 describe('resetAll, resetEach and resetAllExcept', () => {
   it('should reset all methods', () => {

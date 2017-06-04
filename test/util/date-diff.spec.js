@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {dateDiff} from 'src/core/util/date-diff.js';
+import {dateDiff} from '../../src/core/util/date-diff.js';
 
 describe('dateDiff', () => {
   it('should compute the difference between two dates', () => {

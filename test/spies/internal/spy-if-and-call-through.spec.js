@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {spyIfAndCallThrough} from 'src/core/spies/internal/spy-if-and-call-through.js';
+import {spyIfAndCallThrough} from '../../../src/core/spies/internal/spy-if-and-call-through.js';
 
 describe('spyIfAndCallThrough', () => {
   it('should spy method with callThrough strategy', () => {

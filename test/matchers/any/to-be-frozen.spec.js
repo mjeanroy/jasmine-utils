@@ -23,7 +23,7 @@
  */
 
 import {assumeFreeze} from '../../detect/assume-freeze.js';
-import {toBeFrozen} from 'src/core/matchers/any/to-be-frozen.js';
+import {toBeFrozen} from '../../../src/core/matchers/any/to-be-frozen.js';
 
 describe('toBeFrozen', () => {
   it('should check for null', () => {

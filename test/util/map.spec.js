@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {map} from 'src/core/util/map.js';
+import {map} from '../../src/core/util/map.js';
 
 describe('map', () => {
   it('should iterate over array and returns new array', () => {

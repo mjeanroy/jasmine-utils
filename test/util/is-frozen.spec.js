@@ -23,7 +23,7 @@
  */
 
 import {assumeFreeze} from '../detect/assume-freeze.js';
-import {isFrozen} from 'src/core/util/is-frozen.js';
+import {isFrozen} from '../../src/core/util/is-frozen.js';
 
 describe('isFrozen', () => {
   it('should return true with a primitive value', () => {

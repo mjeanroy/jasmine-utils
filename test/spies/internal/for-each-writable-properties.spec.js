@@ -25,7 +25,7 @@
 import {assumeDefineProperty} from '../../detect/assume-define-property.js';
 import {Klass} from '../../fixtures/klass.js';
 import {nonLooseClassFactory} from '../../fixtures/non-loose-class-generator.js';
-import {forEachWritableProperties} from 'src/core/spies/internal/for-each-writable-properties.js';
+import {forEachWritableProperties} from '../../../src/core/spies/internal/for-each-writable-properties.js';
 
 describe('forEachWritableProperties', () => {
   it('should execute callback for all object properties', () => {

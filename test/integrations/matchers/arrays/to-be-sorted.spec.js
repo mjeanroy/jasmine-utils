@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import 'src/index.js';
+import '../../../../src/index.js';
 
 describe('toBeSorted', () => {
   it('should pass with an array of numbers', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeANumber} from 'src/core/matchers/lang/to-be-a-number.js';
+import {toBeANumber} from '../../../src/core/matchers/lang/to-be-a-number.js';
 
 describe('toBeANumber', () => {
   it('should check that object is a number', () => {

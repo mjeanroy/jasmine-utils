@@ -23,8 +23,8 @@
  */
 
 import {assumeSet} from '../../detect/assume-set.js';
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeASet} from 'src/core/matchers/lang/to-be-a-set.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeASet} from '../../../src/core/matchers/lang/to-be-a-set.js';
 
 describe('toBeASet', () => {
   it('should check that object is a set', () => {

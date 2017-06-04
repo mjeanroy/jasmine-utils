@@ -23,6 +23,7 @@
  */
 
 import {assumeSeal} from '../../../detect/assume-seal.js';
+import '../../../../src/index.js';
 
 describe('toBeSealed', () => {
   it('should pass with primitive values', () => {

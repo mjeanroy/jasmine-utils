@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toEqualOneOf} from 'src/core/matchers/any/to-equal-one-of.js';
+import {toEqualOneOf} from '../../../src/core/matchers/any/to-equal-one-of.js';
 
 describe('toEqualOneOf', () => {
   it('should pass with integer values', () => {

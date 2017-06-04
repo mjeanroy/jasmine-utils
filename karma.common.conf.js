@@ -27,7 +27,6 @@
  */
 
 const path = require('path');
-const includePaths = require('rollup-plugin-includepaths');
 const babel = require('rollup-plugin-babel');
 const conf = require('./conf.js');
 
@@ -107,7 +106,6 @@ module.exports = (config) => ({
     format: 'iife',
     moduleName: 'JasmineUtils', // required for 'iife' format
     plugins: [
-      includePaths({path: [conf.root]}),
       babel(),
     ],
   },

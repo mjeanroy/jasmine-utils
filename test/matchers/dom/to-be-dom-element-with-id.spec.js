@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeDOMElementWithId} from 'src/core/matchers/dom/to-be-dom-element-with-id.js';
+import {toBeDOMElementWithId} from '../../../src/core/matchers/dom/to-be-dom-element-with-id.js';
 
 describe('toBeDOMElementWithId', () => {
   let div;

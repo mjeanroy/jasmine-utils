@@ -23,7 +23,7 @@
  */
 
 import {assumeMap} from '../detect/assume-map.js';
-import {values} from 'src/core/util/values.js';
+import {values} from '../../src/core/util/values.js';
 
 describe('values', () => {
   it('should extract all object values', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isFalsy} from 'src/core/util/is-falsy.js';
+import {isFalsy} from '../../src/core/util/is-falsy.js';
 
 describe('isFalsy', () => {
   it('should return true with a truthy value', () => {

@@ -24,7 +24,7 @@
 
 import {assumeSet} from '../../../detect/assume-set.js';
 import {assumeMap} from '../../../detect/assume-map.js';
-import 'src/index.js';
+import '../../../../src/index.js';
 
 describe('toBeASet', () => {
   it('should pass', () => {

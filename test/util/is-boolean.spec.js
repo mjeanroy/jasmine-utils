@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isBoolean} from 'src/core/util/is-boolean.js';
+import {isBoolean} from '../../src/core/util/is-boolean.js';
 
 describe('isBoolean', () => {
   it('should return true with a true or false', () => {

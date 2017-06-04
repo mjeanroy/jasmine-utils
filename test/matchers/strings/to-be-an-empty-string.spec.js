@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeAnEmptyString} from 'src/core/matchers/strings/to-be-an-empty-string.js';
+import {toBeAnEmptyString} from '../../../src/core/matchers/strings/to-be-an-empty-string.js';
 
 describe('toBeAnEmptyString', () => {
   it('should check that object is an empty string', () => {

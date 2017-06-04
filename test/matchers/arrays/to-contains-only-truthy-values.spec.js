@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toContainsOnlyTruthyValues} from 'src/core/matchers/arrays/to-contains-only-truthy-values.js';
+import {toContainsOnlyTruthyValues} from '../../../src/core/matchers/arrays/to-contains-only-truthy-values.js';
 
 describe('toContainsOnlyTruthyValues', () => {
   it('should check that array contains only truthy values', () => {

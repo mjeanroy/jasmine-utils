@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeDateCloseTo} from 'src/core/matchers/dates/to-be-date-close-to.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeDateCloseTo} from '../../../src/core/matchers/dates/to-be-date-close-to.js';
 
 describe('toBeADateCloseTo', () => {
   it('should check that object is a date close to an other date', () => {

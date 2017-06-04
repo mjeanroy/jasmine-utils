@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeInteger} from 'src/core/matchers/numbers/to-be-integer.js';
+import {toBeInteger} from '../../../src/core/matchers/numbers/to-be-integer.js';
 
 describe('toBeInteger', () => {
   it('should check that object is an integer value', () => {

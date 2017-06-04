@@ -23,7 +23,7 @@
  */
 
 import {assumeMap} from '../detect/assume-map.js';
-import {keys} from 'src/core/util/keys.js';
+import {keys} from '../../src/core/util/keys.js';
 
 describe('keys', () => {
   it('should return all own keys of object', () => {

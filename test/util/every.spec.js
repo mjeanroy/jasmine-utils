@@ -25,7 +25,7 @@
 import {assumeSet} from '../detect/assume-set.js';
 import {assumeMap} from '../detect/assume-map.js';
 import {assumeSymbol} from '../detect/assume-symbol.js';
-import {every} from 'src/core/util/every.js';
+import {every} from '../../src/core/util/every.js';
 
 describe('every', () => {
   it('should return true if predicate always returns a truthy value', () => {

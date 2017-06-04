@@ -23,7 +23,7 @@
  */
 
 import {assumeMap} from '../detect/assume-map.js';
-import {isMap} from 'src/core/util/is-map.js';
+import {isMap} from '../../src/core/util/is-map.js';
 
 describe('isMap', () => {
   it('should return true with a map', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeEvenNumber} from 'src/core/matchers/numbers/to-be-even-number.js';
+import {toBeEvenNumber} from '../../../src/core/matchers/numbers/to-be-even-number.js';
 
 describe('toBeEvenNumber', () => {
   it('should check that object is an even number', () => {

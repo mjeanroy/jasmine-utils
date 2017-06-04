@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isUndefined} from 'src/core/util/is-undefined.js';
+import {isUndefined} from '../../src/core/util/is-undefined.js';
 
 describe('isUndefined', () => {
   it('should return true with undefined', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {is} from 'src/core/util/is.js';
+import {is} from '../../src/core/util/is.js';
 
 describe('is', () => {
   it('should return true for expected tag name', () => {

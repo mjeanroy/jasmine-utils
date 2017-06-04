@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeAnArray} from 'src/core/matchers/lang/to-be-an-array.js';
+import {toBeAnArray} from '../../../src/core/matchers/lang/to-be-an-array.js';
 
 describe('toBeAnArray', () => {
   it('should check that object is an array', () => {

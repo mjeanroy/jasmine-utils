@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeOddNumber} from 'src/core/matchers/numbers/to-be-odd-number.js';
+import {toBeOddNumber} from '../../../src/core/matchers/numbers/to-be-odd-number.js';
 
 describe('toBeOddNumber', () => {
   it('should check that object is an odd number', () => {

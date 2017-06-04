@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeDateBeforeNow} from 'src/core/matchers/dates/to-be-date-before-now.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeDateBeforeNow} from '../../../src/core/matchers/dates/to-be-date-before-now.js';
 
 describe('toBeDateBeforeNow', () => {
   it('should check that object is a date before now', () => {

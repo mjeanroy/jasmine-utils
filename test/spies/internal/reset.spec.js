@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {reset} from 'src/core/spies/internal/reset.js';
+import {reset} from '../../../src/core/spies/internal/reset.js';
 
 describe('reset', () => {
   it('should reset spy', () => {

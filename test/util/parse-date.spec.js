@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {parseDate} from 'src/core/util/parse-date.js';
+import {parseDate} from '../../src/core/util/parse-date.js';
 
 describe('parseDate', () => {
   it('should return a Date', () => {

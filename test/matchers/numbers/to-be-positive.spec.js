@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBePositive} from 'src/core/matchers/numbers/to-be-positive.js';
+import {toBePositive} from '../../../src/core/matchers/numbers/to-be-positive.js';
 
 describe('toBePositive', () => {
   it('should check that object is strictly greater than zero', () => {

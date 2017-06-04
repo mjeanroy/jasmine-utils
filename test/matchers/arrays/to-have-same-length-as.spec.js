@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toHaveSameLengthAs} from 'src/core/matchers/arrays/to-have-same-length-as.js';
+import {toHaveSameLengthAs} from '../../../src/core/matchers/arrays/to-have-same-length-as.js';
 
 describe('toHaveSameLengthAs', () => {
   it('should check length of array', () => {

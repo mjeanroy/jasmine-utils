@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toStartWith} from 'src/core/matchers/strings/to-start-with.js';
+import {toStartWith} from '../../../src/core/matchers/strings/to-start-with.js';
 
 describe('toStartWith', () => {
   it('should check that object is a string starting with given preifx', () => {

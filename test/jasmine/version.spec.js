@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {version} from 'src/core/jasmine/version.js';
+import {version} from '../../src/core/jasmine/version.js';
 
 describe('version', () => {
   it('should export jasmine major version', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {countIn} from 'src/core/util/count-in.js';
+import {countIn} from '../../src/core/util/count-in.js';
 
 describe('countIn', () => {
   it('should return zero with an empty array', () => {

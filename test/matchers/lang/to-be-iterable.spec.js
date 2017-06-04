@@ -25,8 +25,8 @@
 import {assumeSet} from '../../detect/assume-set.js';
 import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeIterable} from 'src/core/matchers/lang/to-be-iterable.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeIterable} from '../../../src/core/matchers/lang/to-be-iterable.js';
 
 describe('toBeIterable', () => {
   it('should check that null is not iterable', () => {

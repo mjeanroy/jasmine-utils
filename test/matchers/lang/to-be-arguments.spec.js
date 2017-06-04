@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeArguments} from 'src/core/matchers/lang/to-be-arguments.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeArguments} from '../../../src/core/matchers/lang/to-be-arguments.js';
 
 describe('toBeArguments', () => {
   it('should check that object is argumebnts', () => {

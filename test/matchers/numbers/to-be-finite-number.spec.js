@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toBeFiniteNumber} from 'src/core/matchers/numbers/to-be-finite-number.js';
+import {toBeFiniteNumber} from '../../../src/core/matchers/numbers/to-be-finite-number.js';
 
 describe('toBeFiniteNumber', () => {
   it('should check that object is a finite number', () => {

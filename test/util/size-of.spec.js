@@ -25,7 +25,7 @@
 import {assumeMap} from '../detect/assume-map.js';
 import {assumeSet} from '../detect/assume-set.js';
 import {assumeSymbol} from '../detect/assume-symbol.js';
-import {sizeOf} from 'src/core/util/size-of.js';
+import {sizeOf} from '../../src/core/util/size-of.js';
 
 describe('sizeOf', () => {
   it('should return 0 with nil value', () => {

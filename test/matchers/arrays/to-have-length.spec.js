@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {toHaveLength} from 'src/core/matchers/arrays/to-have-length.js';
+import {toHaveLength} from '../../../src/core/matchers/arrays/to-have-length.js';
 
 describe('toHaveLength', () => {
   it('should check length of array', () => {

@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toBeSameDay} from 'src/core/matchers/dates/to-be-same-day.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toBeSameDay} from '../../../src/core/matchers/dates/to-be-same-day.js';
 
 describe('toBeSameDay', () => {
   it('should check that both dates are the same day', () => {

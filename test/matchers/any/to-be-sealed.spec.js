@@ -23,7 +23,7 @@
  */
 
 import {assumeSeal} from '../../detect/assume-seal.js';
-import {toBeSealed} from 'src/core/matchers/any/to-be-sealed.js';
+import {toBeSealed} from '../../../src/core/matchers/any/to-be-sealed.js';
 
 describe('toBeSealed', () => {
   it('should check for null', () => {

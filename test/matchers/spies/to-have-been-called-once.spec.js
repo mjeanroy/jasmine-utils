@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {pp} from 'src/core/jasmine/pp.js';
-import {toHaveBeenCalledOnce} from 'src/core/matchers/spies/to-have-been-called-once.js';
+import {pp} from '../../../src/core/jasmine/pp.js';
+import {toHaveBeenCalledOnce} from '../../../src/core/matchers/spies/to-have-been-called-once.js';
 
 describe('toHaveBeenCalledOnce', () => {
   it('should pass if spy has been called once', () => {
