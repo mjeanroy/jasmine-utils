@@ -93,6 +93,7 @@ declare namespace jasmine {
 
     // Numbers
     toBeEvenNumber(): MatcherResult;
+    toBeFiniteNumber(): MatcherResult;
     toBeFloat(): MatcherResult;
     toBeInRange(lower: number, upper: number): MatcherResult;
     toBeInteger(): MatcherResult;

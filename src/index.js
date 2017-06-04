@@ -83,6 +83,7 @@ import {
 
   // numbers
   toBeEvenNumber,
+  toBeFiniteNumber,
   toBeFloat,
   toBeInRange,
   toBeInteger,
@@ -187,6 +188,7 @@ const jasmineMatchers = {
 
   // numbers
   toBeEvenNumber: createMatcher(toBeEvenNumber),
+  toBeFiniteNumber: createMatcher(toBeFiniteNumber),
   toBeFloat: createMatcher(toBeFloat),
   toBeInRange: createMatcher(toBeInRange),
   toBeInteger: createMatcher(toBeInteger),

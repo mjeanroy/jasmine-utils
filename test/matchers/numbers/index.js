@@ -23,6 +23,7 @@
  */
 
 import './to-be-even-number.spec.js';
+import './to-be-finite-number.spec.js';
 import './to-be-float.spec.js';
 import './to-be-in-range.spec.js';
 import './to-be-integer.spec.js';

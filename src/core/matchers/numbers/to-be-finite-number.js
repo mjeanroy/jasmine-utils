@@ -22,13 +22,34 @@
  * THE SOFTWARE.
  */
 
-import './to-be-even-number.spec.js';
-import './to-be-finite-number.spec.js';
-import './to-be-float.spec.js';
-import './to-be-in-range.spec.js';
-import './to-be-integer.spec.js';
-import './to-be-negative.spec.js';
-import './to-be-numeric.spec.js';
-import './to-be-odd-number.spec.js';
-import './to-be-positive.spec.js';
-import './to-be-zero.spec.js';
+import {pp} from '../../jasmine/pp.js';
+import {isFiniteNumber} from '../../util/is-finite-number.js';
+
+/**
+ * Check that the tested object is a finite number.
+ *
+ * **Important:** This matcher does not convert the tested object to a number, but
+ * returns the equivalent of `Number.isFinite` function.
+ *
+ * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite
+ *
+ * @message Expect [actual] (not) to be finite number
+ * @example
+ *   expect(1).toBeFiniteNumber();
+ *   expect(1.0).toBeFiniteNumber();
+ *   expect('1').not.toBeFiniteNumber();
+ *   expect(NaN).not.toBeFiniteNumber();
+ *   expect(Infinity).not.toBeFiniteNumber();
+ *   expect(-Infinity).not.toBeFiniteNumber();
+ *   expect(null).not.toBeFiniteNumber();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.5.0
+ */
+export function toBeFiniteNumber({actual}) {
+  return {
+    pass: isFiniteNumber(actual),
+    message: `Expect ${pp(actual)} {{not}} to be finite number`,
+  };
+}

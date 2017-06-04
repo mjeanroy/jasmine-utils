@@ -22,13 +22,16 @@
  * THE SOFTWARE.
  */
 
-import './to-be-even-number.spec.js';
-import './to-be-finite-number.spec.js';
-import './to-be-float.spec.js';
-import './to-be-in-range.spec.js';
-import './to-be-integer.spec.js';
-import './to-be-negative.spec.js';
-import './to-be-numeric.spec.js';
-import './to-be-odd-number.spec.js';
-import './to-be-positive.spec.js';
-import './to-be-zero.spec.js';
+import 'src/index.js';
+
+describe('toBeFiniteNumber', () => {
+  it('should pass', () => {
+    expect(1).toBeFiniteNumber();
+    expect(1.0).toBeFiniteNumber();
+    expect('1').not.toBeFiniteNumber();
+    expect(NaN).not.toBeFiniteNumber();
+    expect(Infinity).not.toBeFiniteNumber();
+    expect(-Infinity).not.toBeFiniteNumber();
+    expect(null).not.toBeFiniteNumber();
+  });
+});

@@ -39,6 +39,7 @@ import './is-date.spec.js';
 import './is-dom-element.spec.js';
 import './is-extensible.spec.js';
 import './is-falsy.spec.js';
+import './is-finite-number.spec.js';
 import './is-frozen.spec.js';
 import './is-float.spec.js';
 import './is-function.spec.js';

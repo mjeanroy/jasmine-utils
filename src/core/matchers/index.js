@@ -77,6 +77,7 @@ export {toBeNull} from './lang/to-be-null.js';
 
 // numbers
 export {toBeEvenNumber} from './numbers/to-be-even-number.js';
+export {toBeFiniteNumber} from './numbers/to-be-finite-number.js';
 export {toBeFloat} from './numbers/to-be-float.js';
 export {toBeInRange} from './numbers/to-be-in-range.js';
 export {toBeInteger} from './numbers/to-be-integer.js';

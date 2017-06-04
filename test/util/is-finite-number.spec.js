@@ -22,13 +22,19 @@
  * THE SOFTWARE.
  */
 
-import './to-be-even-number.spec.js';
-import './to-be-finite-number.spec.js';
-import './to-be-float.spec.js';
-import './to-be-in-range.spec.js';
-import './to-be-integer.spec.js';
-import './to-be-negative.spec.js';
-import './to-be-numeric.spec.js';
-import './to-be-odd-number.spec.js';
-import './to-be-positive.spec.js';
-import './to-be-zero.spec.js';
+import {isFiniteNumber} from 'src/core/util/is-finite-number.js';
+
+describe('isFiniteNumber', () => {
+  it('should return true with a valid finite number', () => {
+    expect(isFiniteNumber(0)).toBe(true);
+    expect(isFiniteNumber(2e4)).toBe(true);
+  });
+
+  it('should return false with NaN, Infinity or a non number', () => {
+    expect(isFiniteNumber('0')).toBe(false);
+    expect(isFiniteNumber(NaN)).toBe(false);
+    expect(isFiniteNumber(Infinity)).toBe(false);
+    expect(isFiniteNumber(-Infinity)).toBe(false);
+    expect(isFiniteNumber(null)).toBe(false);
+  });
+});

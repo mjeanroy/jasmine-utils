@@ -22,13 +22,14 @@
  * THE SOFTWARE.
  */
 
-import './to-be-even-number.spec.js';
-import './to-be-finite-number.spec.js';
-import './to-be-float.spec.js';
-import './to-be-in-range.spec.js';
-import './to-be-integer.spec.js';
-import './to-be-negative.spec.js';
-import './to-be-numeric.spec.js';
-import './to-be-odd-number.spec.js';
-import './to-be-positive.spec.js';
-import './to-be-zero.spec.js';
+import {isNumber} from './is-number.js';
+
+/**
+ * Check that a given value is a falsy value.
+ *
+ * @param {*} a Value to check.
+ * @return {boolean} `true` if parameter is a falsy value.
+ */
+export function isFiniteNumber(a) {
+  return isNumber(a) && isFinite(a);
+}
