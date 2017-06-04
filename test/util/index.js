@@ -48,6 +48,7 @@ import './is-node-list.spec.js';
 import './is-null.spec.js';
 import './is-number.spec.js';
 import './is-numeric.spec.js';
+import './is-primitive.spec.js';
 import './is-same-day.spec.js';
 import './is-sealed.spec.js';
 import './is-set.spec.js';

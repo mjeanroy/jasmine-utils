@@ -22,36 +22,20 @@
  * THE SOFTWARE.
  */
 
-import {isFunction} from './is-function.js';
-import {isPrimitive} from './is-primitive.js';
+import {isPrimitive} from 'src/core/util/is-primitive.js';
 
-/**
- * Check that a given value is sealed: an object is sealed if it is not
- * extensible and if all its properties are non-configurable and therefore not
- * removable (but not necessarily non-writable).
- *
- * This function use internally `Object.isSealed` (supported in Chrome, Firefox,
- * Safari and IE >= 9). If `Object.isSealed` is not supported, this function
- * returns `false`.
- *
- * **Important**: This function (as ES6 specification) treat primitive
- * (`null`, `undefined`, numbers, strings and booleans) as sealed object.
- *
- * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed
- *
- * @param {*} obj Value to check.
- * @return {boolean} `true` if `obj` is sealed, `false` otherwise.
- */
-export function isSealed(obj) {
-  // Primitive values are frozen in ES6 (not in ES5).
-  if (isPrimitive(obj)) {
-    return true;
-  }
+describe('isPrimitive', () => {
+  it('should return true with null, undefined, a number, a string or a boolean', () => {
+    expect(isPrimitive(null)).toBe(true);
+    expect(isPrimitive(undefined)).toBe(true);
+    expect(isPrimitive('')).toBe(true);
+    expect(isPrimitive(0)).toBe(true);
+    expect(isPrimitive(true)).toBe(true);
+  });
 
-  // If Object.sealed is not supported, return `false` by default.
-  if (!isFunction(Object.isSealed)) {
-    return false;
-  }
-
-  return Object.isSealed(obj);
-}
+  it('should return false without null, undefined, a number, a string or a boolean', () => {
+    expect(isPrimitive({})).toBe(false);
+    expect(isPrimitive([])).toBe(false);
+    expect(isPrimitive(new Date())).toBe(false);
+  });
+});

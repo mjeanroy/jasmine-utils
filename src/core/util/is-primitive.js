@@ -22,37 +22,22 @@
  * THE SOFTWARE.
  */
 
-import {isFunction} from './is-function.js';
-import {isPrimitive} from './is-primitive.js';
+import {isBoolean} from './is-boolean.js';
+import {isNil} from './is-nil.js';
+import {isNumber} from './is-number.js';
+import {isString} from './is-string.js';
 
 /**
- * Check that a given value is frozen: an object is frozen if and only if it
- * is not extensible, all its properties are non-configurable, and all its
- * data properties (that is, properties which are not accessor properties with
- * getter or setter components) are non-writable.
- *
- * This function use internally `Object.isFrozen` (supported in Chrome, Firefox,
- * Safari and IE >= 9). If `Object.isFrozen` is not supported, this function
- * returns `false`.
- *
- * **Important**: This function (as ES6 specification) treat primitive
- * (`null`, `undefined`, numbers, strings and booleans) as frozen object.
- *
- * See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen
+ * Check that a given value is a primitive object:
+ * - Equal to `null`,
+ * - Equal to `undefined`,
+ * - A `number`,
+ * - A `string`
+ * - A `boolean`
  *
  * @param {*} obj Value to check.
- * @return {boolean} `true` if `obj` is frozen, `false` otherwise.
+ * @return {boolean} `true` if `obj` is a primitive, `false` otherwise.
  */
-export function isFrozen(obj) {
-  // Primitive values are frozen in ES6 (not in ES5).
-  if (isPrimitive(obj)) {
-    return true;
-  }
-
-  // If Object.isFrozen is not supported, returns `false` by default.
-  if (!isFunction(Object.isFrozen)) {
-    return false;
-  }
-
-  return Object.isFrozen(obj);
+export function isPrimitive(obj) {
+  return isNil(obj) || isNumber(obj) || isString(obj) || isBoolean(obj);
 }
