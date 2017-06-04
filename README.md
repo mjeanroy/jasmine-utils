@@ -407,6 +407,29 @@ expect('  ').not.toBeAnEmptyString();
 expect('foo').not.toBeAnEmptyString();
 ```
 
+### toBeArguments
+
+Check that the tested object is an `arguments` object.
+
+#### Since
+
+0.5.0
+
+#### Parameters
+
+*No parameters*
+
+#### Message
+
+`Expect [actual] (not) to be arguments`
+
+#### Example:
+
+```javascript
+expect((function() { return arguments; })()).toBeArguments();
+expect([]).not.toBeArguments();
+```
+
 ### toBeDateAfterNow
 
 Check that the tested date object is a date "after" `now`.
@@ -778,6 +801,55 @@ expect(0).not.toBeEvenNumber();
 expect(1).not.toBeEvenNumber();
 ```
 
+### toBeExtensible
+
+Check that the tested object is extensible.
+
+Objects are extensible by default: they can have new properties added to them,
+and can be modified. An object can be marked as non-extensible using:
+- `Object.preventExtensions()`,
+- `Object.seal()`,
+- `Object.freeze()`
+
+This matcher use internally `Object.isExtensible` (supported in Chrome, Firefox,
+Safari and IE >= 9). If `Object.isExtensible` is not supported, this matcher
+treat the tested object as an extensible object.
+
+**Important**: This matcher (as ES6 specification) treat primitive
+(`null`, `undefined`, numbers, strings and booleans) as non extensible object.
+
+See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible
+
+#### Since
+
+0.5.0
+
+#### Parameters
+
+*No parameters*
+
+#### Message
+
+`Expect [actual] (not) to be extensible`
+
+#### Example:
+
+```javascript
+expect({}).toBeExtensible();
+expect([]).toBeExtensible();
+expect(null).not.toBeExtensible();
+expect(undefined).not.toBeExtensible();
+expect('').not.toBeExtensible();
+expect(0).not.toBeExtensible();
+expect(true).not.toBeExtensible();
+expect(Object.freeze({})).not.toBeExtensible();
+expect(Object.freeze([])).not.toBeExtensible();
+expect(Object.seal({})).not.toBeExtensible();
+expect(Object.seal([])).not.toBeExtensible();
+expect(Object.preventExtensions({})).not.toBeExtensible();
+expect(Object.preventExtensions([])).not.toBeExtensible();
+```
+
 ### toBeFalse
 
 Check that the tested object is strictly equal `false`.
@@ -800,6 +872,39 @@ Check that the tested object is strictly equal `false`.
 expect(false).toBeFalse();
 expect(true).not.toBeFalse();
 expect(0).not.toBeFalse();
+```
+
+### toBeFiniteNumber
+
+Check that the tested object is a finite number.
+
+**Important:** This matcher does not convert the tested object to a number, but
+returns the equivalent of `Number.isFinite` function.
+
+See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isFinite
+
+#### Since
+
+0.5.0
+
+#### Parameters
+
+*No parameters*
+
+#### Message
+
+`Expect [actual] (not) to be finite number`
+
+#### Example:
+
+```javascript
+expect(1).toBeFiniteNumber();
+expect(1.0).toBeFiniteNumber();
+expect('1').not.toBeFiniteNumber();
+expect(NaN).not.toBeFiniteNumber();
+expect(Infinity).not.toBeFiniteNumber();
+expect(-Infinity).not.toBeFiniteNumber();
+expect(null).not.toBeFiniteNumber();
 ```
 
 ### toBeFloat
@@ -831,6 +936,48 @@ expect(1.5).toBeFloat();
 expect('1.5').toBeFloat();
 expect(1).not.toBeFloat();
 expect(1.0).not.toBeFloat();
+```
+
+### toBeFrozen
+
+Check that the tested object is frozen: an object is frozen if and only if it
+is not extensible, all its properties are non-configurable, and all its
+data properties (that is, properties which are not accessor properties with
+getter or setter components) are non-writable.
+
+This function use internally `Object.isFrozen` (supported in Chrome, Firefox,
+Safari and IE >= 9). If `Object.isFrozen` is not supported, this function
+returns `false`.
+
+**Important**: This function (as ES6 specification) treat primitive
+(`null`, `undefined`, numbers, strings and booleans) as frozen object.
+
+See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isFrozen
+
+#### Since
+
+0.5.0
+
+#### Parameters
+
+*No parameters*
+
+#### Message
+
+`Expect [actual] (not) to frozen`
+
+#### Example:
+
+```javascript
+expect(null).toBeFrozen();
+expect(undefined).toBeFrozen();
+expect('').toBeFrozen();
+expect(0).toBeFrozen();
+expect(true).toBeFrozen();
+expect(Object.freeze({})).toBeFrozen();
+expect(Object.freeze([])).toBeFrozen();
+expect({}).not.toBeFrozen();
+expect([]).not.toBeFrozen();
 ```
 
 ### toBeInRange
@@ -1083,6 +1230,33 @@ expect(2).not.toBeOddNumber();
 expect(0).not.toBeOddNumber();
 ```
 
+### toBeOneOf
+
+Check that the tested object is strictly equal to one of the values
+in an array. Note that this matcher use the strict equality (`===`), please
+use `toEqualOneOf` for other equality check.
+
+#### Since
+
+0.5.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `array` | `Array` | The array that should contains the actual value. |
+
+#### Message
+
+`Expect [actual] (not) to be one of [values]`
+
+#### Example:
+
+```javascript
+expect(1).toBeOneOf([1, 2, 3]);
+expect(10).not.toBeOneOf([1, 2, 3]);
+```
+
 ### toBePartiallyEqualTo
 
 Check that the tested object is partially equals to a second one.
@@ -1179,6 +1353,47 @@ const date3 = new Date(2014, 5, 6, 10, 0, 0, 0);
 
 expect(date1).toBeSameDay(date2);
 expect(date1).not.toBeSameDay(date3);
+```
+
+### toBeSealed
+
+Check that a given value is sealed: an object is sealed if it is not
+extensible and if all its properties are non-configurable and therefore not
+removable (but not necessarily non-writable).
+
+This matcher use internally `Object.isSealed` (supported in Chrome, Firefox,
+Safari and IE >= 9). If `Object.isSealed` is not supported, the matcher will
+always treat objects and arrays as non sealed.
+
+**Important**: This matcher (as ES6 specification) treat primitive
+(`null`, `undefined`, numbers, strings and booleans) as sealed object.
+
+See: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/isSealed
+
+#### Since
+
+0.5.0
+
+#### Parameters
+
+*No parameters*
+
+#### Message
+
+`Expect [actual] (not) to sealed`
+
+#### Example:
+
+```javascript
+expect(null).toBeSealed();
+expect(undefined).toBeSealed();
+expect('').toBeSealed();
+expect(0).toBeSealed();
+expect(true).toBeSealed();
+expect(Object.seal({})).toBeSealed();
+expect(Object.seal([])).toBeSealed();
+expect({}).not.toBeSealed();
+expect([]).not.toBeSealed();
 ```
 
 ### toBeSorted
@@ -1440,6 +1655,34 @@ case-insensitive.
 expect('foo').toEqualIgnoringCase('foo');
 expect('foo').toEqualIgnoringCase('FOO');
 expect('foo').not.toEqualIgnoringCase('bar');
+```
+
+### toEqualOneOf
+
+Check that the tested object is equal to one of the values in an array.
+Note that this matcher use the deep equality check and also works with
+custom equality tester. For strict comparison (`===`) please use `toBeOneOf`.
+
+#### Since
+
+0.5.0
+
+#### Parameters
+
+| Name | Type | Description |
+|------|------|-------------|
+| `array` | `Array` | The array that should contains the actual value. |
+
+#### Message
+
+`Expect [actual] (not) to equal one of [values]`
+
+#### Example:
+
+```javascript
+expect(1).toEqualOneOf([1, 2, 3]);
+expect({id: 1}).toEqualOneOf([{id: 1}]);
+expect(10).not.toEqualOneOf([1, 2, 3]);
 ```
 
 ### toHaveBeenCalledOnceWith
