@@ -22,10 +22,15 @@
  * THE SOFTWARE.
  */
 
-import './to-be-empty.spec.js';
-import './to-be-extensible.spec.js';
-import './to-be-frozen.spec.js';
-import './to-be-instance-of.spec.js';
-import './to-be-one-of.spec.js';
-import './to-be-sealed.spec.js';
-import './to-equal-one-of.spec.js';
+import {skip} from './skip.js';
+
+/**
+ * Mark test as pending if `Object.preventExtensions` is not supported in the
+ * environment.
+ * @return {void}
+ */
+export function assumePreventExtensions() {
+  if (typeof Object.preventExtensions !== 'function') {
+    skip('Object.preventExtensions is not supported in this environment');
+  }
+}

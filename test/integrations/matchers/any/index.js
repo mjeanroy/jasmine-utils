@@ -23,6 +23,7 @@
  */
 
 import './to-be-empty.spec.js';
+import './to-be-extensible.spec.js';
 import './to-be-frozen.spec.js';
 import './to-be-instance-of.spec.js';
 import './to-be-one-of.spec.js';

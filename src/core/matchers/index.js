@@ -24,6 +24,7 @@
 
 // any
 export {toBeEmpty} from './any/to-be-empty.js';
+export {toBeExtensible} from './any/to-be-extensible.js';
 export {toBeFrozen} from './any/to-be-frozen.js';
 export {toBeInstanceOf} from './any/to-be-instance-of.js';
 export {toBeOneOf} from './any/to-be-one-of.js';
