@@ -22,15 +22,29 @@
  * THE SOFTWARE.
  */
 
-import './to-be-a-boolean.spec.js';
-import './to-be-a-date.spec.js';
-import './to-be-a-function.spec.js';
-import './to-be-a-map.spec.js';
-import './to-be-a-number.spec.js';
-import './to-be-a-set.spec.js';
-import './to-be-a-string.spec.js';
-import './to-be-an-array.spec.js';
-import './to-be-arguments.spec.js';
-import './to-be-iterable.spec.js';
-import './to-be-nil.spec.js';
-import './to-be-null.spec.js';
+import {pp} from 'src/core/jasmine/pp.js';
+import {toBeArguments} from 'src/core/matchers/lang/to-be-arguments.js';
+
+describe('toBeArguments', () => {
+  it('should check that object is argumebnts', () => {
+    const actual = (function() {
+      // eslint-disable-next-line prefer-rest-params
+      return arguments;
+    })();
+
+    const result = toBeArguments({actual});
+    expect(result).toEqual({
+      pass: true,
+      message: `Expect ${pp(actual)} {{not}} to be arguments`,
+    });
+  });
+
+  it('should not pass without a function', () => {
+    const actual = [];
+    const result = toBeArguments({actual});
+    expect(result).toEqual({
+      pass: false,
+      message: `Expect [  ] {{not}} to be arguments`,
+    });
+  });
+});

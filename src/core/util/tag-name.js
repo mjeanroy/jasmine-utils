@@ -22,6 +22,7 @@
  * THE SOFTWARE.
  */
 
+import {has} from './has.js';
 import {isNull} from './is-null.js';
 import {isUndefined} from './is-undefined.js';
 
@@ -68,6 +69,11 @@ export function tagName(obj) {
     // Handle HTMLCollection (IE8 only).
     if (obj instanceof HTMLCollection) {
       return '[object HTMLCollection]';
+    }
+
+    // Handle HTMLCollection (IE8 only).
+    if (has(obj, 'callee')) {
+      return '[object Arguments]';
     }
   }
 

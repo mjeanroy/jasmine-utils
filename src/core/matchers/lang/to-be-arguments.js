@@ -22,15 +22,24 @@
  * THE SOFTWARE.
  */
 
-import './to-be-a-boolean.spec.js';
-import './to-be-a-date.spec.js';
-import './to-be-a-function.spec.js';
-import './to-be-a-map.spec.js';
-import './to-be-a-number.spec.js';
-import './to-be-a-set.spec.js';
-import './to-be-a-string.spec.js';
-import './to-be-an-array.spec.js';
-import './to-be-arguments.spec.js';
-import './to-be-iterable.spec.js';
-import './to-be-nil.spec.js';
-import './to-be-null.spec.js';
+import {pp} from '../../jasmine/pp.js';
+import {isArguments} from '../../util/is-arguments.js';
+
+/**
+ * Check that the tested object is an `arguments` object.
+ *
+ * @message Expect [actual] (not) to be arguments
+ * @example
+ *  expect((function() { return arguments; })()).toBeArguments();
+ *  expect([]).not.toBeArguments();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} The test result.
+ * @since 0.5.0
+ */
+export function toBeArguments({actual}) {
+  return {
+    pass: isArguments(actual),
+    message: `Expect ${pp(actual)} {{not}} to be arguments`,
+  };
+}

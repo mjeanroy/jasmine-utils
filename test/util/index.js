@@ -31,6 +31,7 @@ import './filter.spec.js';
 import './for-each.spec.js';
 import './has.spec.js';
 import './index-of.spec.js';
+import './is-arguments.spec.js';
 import './is-array-like.spec.js';
 import './is-array.spec.js';
 import './is-boolean.spec.js';

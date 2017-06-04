@@ -22,15 +22,16 @@
  * THE SOFTWARE.
  */
 
-import './to-be-a-boolean.spec.js';
-import './to-be-a-date.spec.js';
-import './to-be-a-function.spec.js';
-import './to-be-a-map.spec.js';
-import './to-be-a-number.spec.js';
-import './to-be-a-set.spec.js';
-import './to-be-a-string.spec.js';
-import './to-be-an-array.spec.js';
-import './to-be-arguments.spec.js';
-import './to-be-iterable.spec.js';
-import './to-be-nil.spec.js';
-import './to-be-null.spec.js';
+import 'src/index.js';
+
+describe('toBeArguments', () => {
+  it('should pass', () => {
+    const actual = (function() {
+      // eslint-disable-next-line prefer-rest-params
+      return arguments;
+    })();
+
+    expect(actual).toBeArguments();
+    expect([]).not.toBeArguments();
+  });
+});

@@ -22,15 +22,25 @@
  * THE SOFTWARE.
  */
 
-import './to-be-a-boolean.spec.js';
-import './to-be-a-date.spec.js';
-import './to-be-a-function.spec.js';
-import './to-be-a-map.spec.js';
-import './to-be-a-number.spec.js';
-import './to-be-a-set.spec.js';
-import './to-be-a-string.spec.js';
-import './to-be-an-array.spec.js';
-import './to-be-arguments.spec.js';
-import './to-be-iterable.spec.js';
-import './to-be-nil.spec.js';
-import './to-be-null.spec.js';
+import {isArguments} from 'src/core/util/is-arguments.js';
+
+describe('isDate', () => {
+  it('should returns true if object is the arguments', () => {
+    // eslint-disable-next-line require-jsdoc
+    function tst() {
+      // eslint-disable-next-line prefer-rest-params
+      return isArguments(arguments);
+    };
+
+    expect(tst()).toBe(true);
+  });
+
+  it('should return false if object is not an arguments object', () => {
+    expect(isArguments(true)).toBe(false);
+    expect(isArguments(0)).toBe(false);
+    expect(isArguments({})).toBe(false);
+    expect(isArguments(() => {})).toBe(false);
+    expect(isArguments(null)).toBe(false);
+    expect(isArguments(undefined)).toBe(false);
+  });
+});

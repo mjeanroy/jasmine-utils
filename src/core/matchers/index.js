@@ -70,6 +70,7 @@ export {toBeANumber} from './lang/to-be-a-number.js';
 export {toBeASet} from './lang/to-be-a-set.js';
 export {toBeAString} from './lang/to-be-a-string.js';
 export {toBeAnArray} from './lang/to-be-an-array.js';
+export {toBeArguments} from './lang/to-be-arguments.js';
 export {toBeIterable} from './lang/to-be-iterable.js';
 export {toBeNil} from './lang/to-be-nil.js';
 export {toBeNull} from './lang/to-be-null.js';

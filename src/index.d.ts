@@ -86,6 +86,7 @@ declare namespace jasmine {
     toBeASet(): MatcherResult;
     toBeAString(): MatcherResult;
     toBeAnArray(): MatcherResult;
+    toBeArguments(): MatcherResult;
     toBeIterable(): MatcherResult;
     toBeNil(): MatcherResult;
     toBeNull(): MatcherResult;
