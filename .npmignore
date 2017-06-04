@@ -10,6 +10,7 @@ node_modules/
 /.travis.yml
 /test
 /tasks
+/coverage
 /gulpfile.js
 /karma.common.conf.js
 /karma.saucelab.conf.js

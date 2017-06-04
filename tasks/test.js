@@ -38,6 +38,10 @@ gulp.task('tdd', ['clean'], (done) => {
   startKarma('tdd', done);
 });
 
+gulp.task('coverage', ['clean'], (done) => {
+  startKarma('coverage', done);
+});
+
 gulp.task('saucelab', ['clean'], (done) => {
   startKarma('saucelab', done);
 });

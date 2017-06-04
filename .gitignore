@@ -4,4 +4,5 @@ npm-debug.log
 
 # Compiled file
 dist/
+coverage/
 src/jasmine-utils.js

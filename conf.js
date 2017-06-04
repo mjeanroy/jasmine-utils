@@ -35,4 +35,5 @@ module.exports = {
   dest: path.join(src, 'jasmine-utils.js'),
   tasks: path.join(src, 'tasks'),
   doc: path.join(root, 'docs'),
+  coverage: path.join(root, 'coverage'),
 };

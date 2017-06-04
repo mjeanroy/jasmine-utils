@@ -26,17 +26,27 @@
  * Karma Configuration.
  */
 
+const path = require('path');
 const _ = require('lodash');
+const istanbul = require('rollup-plugin-istanbul');
 const commonConf = require('./karma.common.conf.js');
 const conf = require('./conf.js');
 
 module.exports = (config) => {
-  config.set(_.extend(commonConf(config), {
+  const c = commonConf(config);
+
+  // Add rollup-plugin-istanbul.
+  c.rollupPreprocessor.plugins.unshift(istanbul({
+    exclude: [
+      path.join(conf.test, '**', '*.js'),
+    ],
+  }));
+
+  config.set(_.extend(c, {
     autoWatch: false,
     singleRun: true,
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
     reporters: ['coverage', 'progress'],
-
     coverageReporter: {
       type: 'html',
       dir: conf.coverage,

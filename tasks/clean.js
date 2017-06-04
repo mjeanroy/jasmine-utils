@@ -26,10 +26,11 @@
 
 const gulp = require('gulp');
 const del = require('del');
-const options = require('../conf.js');
+const conf = require('../conf.js');
 
 gulp.task('clean', () => {
   return del([
-    options.dest,
+    conf.dest,
+    conf.coverage,
   ]);
 });
