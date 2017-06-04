@@ -22,16 +22,15 @@
  * THE SOFTWARE.
  */
 
-import 'src/index.js';
+import {skip} from './skip.js';
 
-describe('toBeDateCloseToNow', () => {
-  it('should pass', () => {
-    const now = new Date().getTime();
-    const offset = 100;
-    const date = new Date(now + offset);
-
-    expect(date).toBeDateCloseToNow();
-    expect(date).toBeDateCloseToNow(offset * 10);
-    expect(date).not.toBeDateCloseToNow(offset / 2);
-  });
-});
+/**
+ * Mark test as pending if `Object.freeze` is not supported in the
+ * environment.
+ * @return {void}
+ */
+export function assumeFreeze() {
+  if (typeof Object.freeze !== 'function') {
+    skip('Object.freeze is not supported in this environment');
+  }
+}

@@ -28,7 +28,8 @@ import {toBeDateCloseToNow} from 'src/core/matchers/dates/to-be-date-close-to-no
 describe('toBeDateCloseToNow', () => {
   it('should check that object is a date close to "now"', () => {
     const now = new Date().getTime();
-    const actual = new Date(now + 100);
+    const offset = 10;
+    const actual = new Date(now + offset);
     const result = toBeDateCloseToNow({actual});
     expect(result).toEqual({
       pass: true,
@@ -38,8 +39,9 @@ describe('toBeDateCloseToNow', () => {
 
   it('should check that object is a date close to now with a custom diff', () => {
     const now = new Date().getTime();
-    const actual = new Date(now + 9000);
-    const result = toBeDateCloseToNow({actual}, 10000);
+    const offset = 2000;
+    const actual = new Date(now + offset);
+    const result = toBeDateCloseToNow({actual}, offset * 10);
     expect(result).toEqual({
       pass: true,
       message: `Expect date ${pp(actual)} {{not}} to be close to now`,
@@ -48,7 +50,8 @@ describe('toBeDateCloseToNow', () => {
 
   it('should not pass with a date not close to now', () => {
     const now = new Date().getTime();
-    const actual = new Date(now + 10000);
+    const offset = 10000;
+    const actual = new Date(now + offset);
     const result = toBeDateCloseToNow({actual});
     expect(result).toEqual({
       pass: false,

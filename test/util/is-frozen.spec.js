@@ -22,16 +22,27 @@
  * THE SOFTWARE.
  */
 
-import 'src/index.js';
+import {assumeFreeze} from '../detect/assume-freeze.js';
+import {isFrozen} from 'src/core/util/is-frozen.js';
 
-describe('toBeDateCloseToNow', () => {
-  it('should pass', () => {
-    const now = new Date().getTime();
-    const offset = 100;
-    const date = new Date(now + offset);
+describe('isFrozen', () => {
+  it('should return true with a primitive value', () => {
+    expect(isFrozen(null)).toBe(true);
+    expect(isFrozen(undefined)).toBe(true);
+    expect(isFrozen('')).toBe(true);
+    expect(isFrozen(0)).toBe(true);
+    expect(isFrozen(true)).toBe(true);
+  });
 
-    expect(date).toBeDateCloseToNow();
-    expect(date).toBeDateCloseToNow(offset * 10);
-    expect(date).not.toBeDateCloseToNow(offset / 2);
+  it('should return false with an object or an array', () => {
+    expect(isFrozen({})).toBe(false);
+    expect(isFrozen([])).toBe(false);
+  });
+
+  it('should return true with a frozen array or a frozen object', () => {
+    assumeFreeze();
+
+    expect(isFrozen(Object.freeze({}))).toBe(true);
+    expect(isFrozen(Object.freeze([]))).toBe(true);
   });
 });

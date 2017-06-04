@@ -22,16 +22,26 @@
  * THE SOFTWARE.
  */
 
-import 'src/index.js';
+import {assumeFreeze} from '../../../detect/assume-freeze.js';
 
-describe('toBeDateCloseToNow', () => {
-  it('should pass', () => {
-    const now = new Date().getTime();
-    const offset = 100;
-    const date = new Date(now + offset);
+describe('toBeFrozen', () => {
+  it('should pass with primitive values', () => {
+    expect(null).toBeFrozen();
+    expect(undefined).toBeFrozen();
+    expect('').toBeFrozen();
+    expect(1).toBeFrozen();
+    expect(true).toBeFrozen();
+  });
 
-    expect(date).toBeDateCloseToNow();
-    expect(date).toBeDateCloseToNow(offset * 10);
-    expect(date).not.toBeDateCloseToNow(offset / 2);
+  it('should pass with frozen objects and array', () => {
+    assumeFreeze();
+
+    expect(Object.freeze({})).toBeFrozen();
+    expect(Object.freeze([])).toBeFrozen();
+  });
+
+  it('should not pass with non frozen objects and array', () => {
+    expect({}).not.toBeFrozen();
+    expect([]).not.toBeFrozen();
   });
 });

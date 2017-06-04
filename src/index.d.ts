@@ -50,6 +50,7 @@ declare namespace jasmine {
   interface Matchers<T> {
     // Any
     toBeEmpty(): MatcherResult;
+    toBeFrozen(): MatcherResult;
     toBeInstanceOf(expected: any): MatcherResult;
     toBeOneOf(expected: T[]): MatcherResult;
     toEqualOneOf(expected: T[]): MatcherResult;
