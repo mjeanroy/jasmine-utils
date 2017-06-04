@@ -8,6 +8,7 @@ node_modules/
 /.gitignore
 /.readme
 /.travis.yml
+/tslint.json
 /test
 /tasks
 /coverage
