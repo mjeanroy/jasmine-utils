@@ -13,6 +13,7 @@ node_modules/
 /coverage
 /gulpfile.js
 /karma.common.conf.js
+/karma.coverage.conf.js
 /karma.saucelab.conf.js
 /karma.tdd.conf.js
 /karma.test.conf.js
