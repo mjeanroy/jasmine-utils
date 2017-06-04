@@ -18,13 +18,17 @@
     "test",
     "tests",
     "tasks",
+    "src/core",
+    "src/index.js",
     "karma.common.conf.js",
+    "karma.coverage.conf.js",
     "karma.saucelab.conf.js",
     "karma.tdd.conf.js",
     "karma.test.conf.js",
     "gulpfile.js",
     "conf.js",
-    "rollup.conf.js"
+    "rollup.conf.js",
+    "tslint.json"
   ],
   "dependencies": {
     "jasmine-core": ">=1.3.0"
