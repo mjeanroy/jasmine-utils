@@ -33,6 +33,7 @@ import {
   toBeFrozen,
   toBeInstanceOf,
   toBeOneOf,
+  toBeSealed,
   toEqualOneOf,
 
   // arrays
@@ -134,6 +135,7 @@ const jasmineMatchers = {
   toBeFrozen: createMatcher(toBeFrozen),
   toBeInstanceOf: createMatcher(toBeInstanceOf),
   toBeOneOf: createMatcher(toBeOneOf),
+  toBeSealed: createMatcher(toBeSealed),
   toEqualOneOf: createMatcher(toEqualOneOf),
 
   // arrays

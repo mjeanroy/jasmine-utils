@@ -26,4 +26,5 @@ import './to-be-empty.spec.js';
 import './to-be-frozen.spec.js';
 import './to-be-instance-of.spec.js';
 import './to-be-one-of.spec.js';
+import './to-be-sealed.spec.js';
 import './to-equal-one-of.spec.js';

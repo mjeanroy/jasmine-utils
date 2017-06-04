@@ -49,6 +49,7 @@ import './is-null.spec.js';
 import './is-number.spec.js';
 import './is-numeric.spec.js';
 import './is-same-day.spec.js';
+import './is-sealed.spec.js';
 import './is-set.spec.js';
 import './is-sorted.spec.js';
 import './is-string.spec.js';

@@ -22,9 +22,27 @@
  * THE SOFTWARE.
  */
 
-import './to-be-empty.spec.js';
-import './to-be-frozen.spec.js';
-import './to-be-instance-of.spec.js';
-import './to-be-one-of.spec.js';
-import './to-be-sealed.spec.js';
-import './to-equal-one-of.spec.js';
+import {assumeSeal} from '../detect/assume-seal.js';
+import {isSealed} from 'src/core/util/is-sealed.js';
+
+describe('isSealed', () => {
+  it('should return true with a primitive value', () => {
+    expect(isSealed(null)).toBe(true);
+    expect(isSealed(undefined)).toBe(true);
+    expect(isSealed('')).toBe(true);
+    expect(isSealed(0)).toBe(true);
+    expect(isSealed(true)).toBe(true);
+  });
+
+  it('should return false with an object or an array', () => {
+    expect(isSealed({})).toBe(false);
+    expect(isSealed([])).toBe(false);
+  });
+
+  it('should return true with a sealed array or a frozen object', () => {
+    assumeSeal();
+
+    expect(isSealed(Object.seal({}))).toBe(true);
+    expect(isSealed(Object.seal([]))).toBe(true);
+  });
+});

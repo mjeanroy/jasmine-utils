@@ -53,6 +53,7 @@ declare namespace jasmine {
     toBeFrozen(): MatcherResult;
     toBeInstanceOf(expected: any): MatcherResult;
     toBeOneOf(expected: T[]): MatcherResult;
+    toBeSealed(): MatcherResult;
     toEqualOneOf(expected: T[]): MatcherResult;
 
     // Booleans
