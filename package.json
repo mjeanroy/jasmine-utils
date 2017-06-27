@@ -56,7 +56,7 @@
     "rollup-plugin-istanbul": "1.1.0",
     "rollup-plugin-license": "0.4.0",
     "rollup-plugin-strip-banner": "0.2.0",
-    "touch": "1.0.0",
+    "touch": "2.0.2",
     "tslint": "5.4.3",
     "typescript": "2.4.1"
   },
