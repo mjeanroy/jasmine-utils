@@ -32,6 +32,6 @@ gulp.task('build', ['clean', 'lint'], () => {
   return rollup
     .rollup(rollupConf)
     .then((bundle) => {
-      return bundle.write(rollupConf);
+      return bundle.write(rollupConf.output);
     });
 });

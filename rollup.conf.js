@@ -30,10 +30,14 @@ const esformatter = require('rollup-plugin-esformatter');
 const conf = require('./conf.js');
 
 module.exports = {
-  entry: conf.entry,
-  dest: conf.dest,
-  format: 'iife',
-  sourceMap: false,
+  input: conf.entry,
+  output: {
+    file: conf.dest,
+    format: 'iife',
+  },
+
+  sourcemap: false,
+
   plugins: [
     // Remove banner from single modules.
     stripBanner(),
