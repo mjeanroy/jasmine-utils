@@ -105,6 +105,8 @@ module.exports = (config) => ({
   rollupPreprocessor: {
     format: 'iife',
     name: 'JasmineUtils', // required for 'iife' format
+    legacy: true,
+    sourcemap: false,
     plugins: [
       babel(),
     ],

@@ -36,6 +36,7 @@ module.exports = {
     format: 'iife',
   },
 
+  legacy: true,
   sourcemap: false,
 
   plugins: [
