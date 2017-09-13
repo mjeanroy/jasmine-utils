@@ -19,7 +19,7 @@
     "babel-plugin-external-helpers": "6.22.0",
     "babel-plugin-transform-undefined-to-void": "6.8.3",
     "babel-preset-es2015": "6.24.1",
-    "bower": "1.8.0",
+    "bower": "1.8.2",
     "del": "3.0.0",
     "dox": "0.9.0",
     "eslint": "4.6.1",
