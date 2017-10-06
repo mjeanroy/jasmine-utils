@@ -80,11 +80,6 @@ const browsers = {
     browserName: 'firefox',
   },
 
-  SL_opera: {
-    base: 'SauceLabs',
-    browserName: 'opera',
-  },
-
   SL_safari_8: {
     base: 'SauceLabs',
     browserName: 'safari',
