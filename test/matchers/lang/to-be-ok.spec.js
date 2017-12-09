@@ -22,16 +22,48 @@
  * THE SOFTWARE.
  */
 
-import './to-be-a-boolean.spec.js';
-import './to-be-a-date.spec.js';
-import './to-be-a-function.spec.js';
-import './to-be-a-map.spec.js';
-import './to-be-a-number.spec.js';
-import './to-be-a-set.spec.js';
-import './to-be-a-string.spec.js';
-import './to-be-an-array.spec.js';
-import './to-be-arguments.spec.js';
-import './to-be-iterable.spec.js';
-import './to-be-nil.spec.js';
-import './to-be-null.spec.js';
-import './to-be-ok.spec.js';
+import {toBeOk} from '../../../src/core/matchers/lang/to-be-ok.js';
+
+describe('toBeOk', () => {
+  it('should check that object is not null and not undefined', () => {
+    const actual = '';
+    const result = toBeOk({actual});
+
+    expect(result).toEqual({
+      pass: true,
+      message: jasmine.any(Function),
+    });
+
+    expect(result.message()).toBe(
+      `Expect '' {{not}} to be ok (not null and not undefined)`
+    );
+  });
+
+  it('should not pass with undefined', () => {
+    const actual = undefined;
+    const result = toBeOk({actual});
+
+    expect(result).toEqual({
+      pass: false,
+      message: jasmine.any(Function),
+    });
+
+    expect(result.message()).toBe(
+      `Expect undefined {{not}} to be ok (not null and not undefined)`
+    );
+  });
+
+  it('should not pass with null', () => {
+    const actual = null;
+    const result = toBeOk({actual});
+
+    expect(result).toEqual({
+      pass: false,
+      message: jasmine.any(Function),
+    });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be ok (not null and not undefined)`
+    );
+  });
+});

@@ -34,3 +34,4 @@ import './to-be-arguments.spec.js';
 import './to-be-iterable.spec.js';
 import './to-be-nil.spec.js';
 import './to-be-null.spec.js';
+import './to-be-ok.spec.js';

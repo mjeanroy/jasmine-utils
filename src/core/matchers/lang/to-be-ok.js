@@ -22,16 +22,30 @@
  * THE SOFTWARE.
  */
 
-import './to-be-a-boolean.spec.js';
-import './to-be-a-date.spec.js';
-import './to-be-a-function.spec.js';
-import './to-be-a-map.spec.js';
-import './to-be-a-number.spec.js';
-import './to-be-a-set.spec.js';
-import './to-be-a-string.spec.js';
-import './to-be-an-array.spec.js';
-import './to-be-arguments.spec.js';
-import './to-be-iterable.spec.js';
-import './to-be-nil.spec.js';
-import './to-be-null.spec.js';
-import './to-be-ok.spec.js';
+import {pp} from '../../jasmine/pp.js';
+import {isNil} from '../../util/is-nil.js';
+
+/**
+ * Check that the tested object is not nil (i.e not `null` and not `undefined`).
+ *
+ * @message Expect [actual] (not) to be ok (not null and not undefined)
+ * @example
+ *   expect(false).toBeOk();
+ *   expect(0).toBeOk();
+ *   expect(NaN).toBeOk();
+ *   expect(null).not.toBeOk();
+ *   expect(undefined).not.toBeOk();
+ *   expect(void 0).not.toBeOk();
+ *
+ * @param {Object} ctx Test context.
+ * @return {Object} Test result.
+ * @since 0.6.0
+ */
+export function toBeOk({actual}) {
+  return {
+    pass: !isNil(actual),
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be ok (not null and not undefined)`;
+    },
+  };
+}

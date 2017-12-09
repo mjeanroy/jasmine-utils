@@ -74,6 +74,7 @@ export {toBeArguments} from './lang/to-be-arguments.js';
 export {toBeIterable} from './lang/to-be-iterable.js';
 export {toBeNil} from './lang/to-be-nil.js';
 export {toBeNull} from './lang/to-be-null.js';
+export {toBeOk} from './lang/to-be-ok.js';
 
 // numbers
 export {toBeEvenNumber} from './numbers/to-be-even-number.js';

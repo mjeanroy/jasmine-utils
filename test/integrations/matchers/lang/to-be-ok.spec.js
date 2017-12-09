@@ -22,16 +22,17 @@
  * THE SOFTWARE.
  */
 
-import './to-be-a-boolean.spec.js';
-import './to-be-a-date.spec.js';
-import './to-be-a-function.spec.js';
-import './to-be-a-map.spec.js';
-import './to-be-a-number.spec.js';
-import './to-be-a-set.spec.js';
-import './to-be-a-string.spec.js';
-import './to-be-an-array.spec.js';
-import './to-be-arguments.spec.js';
-import './to-be-iterable.spec.js';
-import './to-be-nil.spec.js';
-import './to-be-null.spec.js';
-import './to-be-ok.spec.js';
+import '../../../../src/index.js';
+
+describe('toBeOk', () => {
+  it('should pass', () => {
+    expect(0).toBeOk();
+    expect(false).toBeOk();
+    expect('').toBeOk();
+    expect(NaN).toBeOk();
+
+    expect(null).not.toBeOk();
+    expect(undefined).not.toBeOk();
+    expect(void 0).not.toBeOk();
+  });
+});
