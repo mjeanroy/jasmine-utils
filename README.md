@@ -1230,6 +1230,33 @@ expect(2).not.toBeOddNumber();
 expect(0).not.toBeOddNumber();
 ```
 
+### toBeOk
+
+Check that the tested object is not nil (i.e not `null` and not `undefined`).
+
+#### Since
+
+0.6.0
+
+#### Parameters
+
+*No parameters*
+
+#### Message
+
+`Expect [actual] (not) to be ok (not null and not undefined)`
+
+#### Example:
+
+```javascript
+expect(false).toBeOk();
+expect(0).toBeOk();
+expect(NaN).toBeOk();
+expect(null).not.toBeOk();
+expect(undefined).not.toBeOk();
+expect(void 0).not.toBeOk();
+```
+
 ### toBeOneOf
 
 Check that the tested object is strictly equal to one of the values
@@ -1953,7 +1980,7 @@ be displayed if the matcher does not pass.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `message` | `string` | Custom error message (optional). |
+| `msg` | `string` | Custom error message (optional). |
 | `iterator` | `function` | Predicate function. |
 
 #### Message
@@ -2054,7 +2081,7 @@ be displayed if the matcher does not pass.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `message` | `string` | Error message thrown when the test fail (optional). |
+| `msg` | `string` | Error message thrown when the test fail (optional). |
 | `iterator` | `function` | Predicate function. |
 
 #### Message
