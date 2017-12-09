@@ -46,8 +46,8 @@ export function toHaveBeenCalledOnce({callCount, actual}) {
   const count = callCount(actual) || 0;
   return {
     pass: count === 1,
-    message:
-      `Expect ${pp(actual)} {{not}} to have been called once but ` +
-      `was called ${pp(count)} time(s)`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to have been called once but was called ${pp(count)} time(s)`;
+    },
   };
 }

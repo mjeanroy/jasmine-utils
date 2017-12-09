@@ -59,25 +59,27 @@ import {isFunction} from '../../util/is-function.js';
  *   expect([1, 3, 5, 7]).not.toHaveSome(x => x % 2 === 0);
  *
  * @param {Object} ctx Test context.
- * @param {string} message Custom error message (optional).
+ * @param {string} msg Custom error message (optional).
  * @param {function} iterator Predicate function.
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveSome({actual}, message, iterator) {
+export function toHaveSome({actual}, msg, iterator) {
   let _message;
   let _iterator;
 
-  if (isFunction(message)) {
+  if (isFunction(msg)) {
     _message = 'condition';
-    _iterator = message;
+    _iterator = msg;
   } else {
-    _message = `"${message}"`;
+    _message = `"${msg}"`;
     _iterator = iterator;
   }
 
   return {
     pass: some(actual, _iterator),
-    message: `Expect ${pp(actual)} {{not}} to have at least one element that verify ${_message}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to have at least one element that verify ${_message}`;
+    },
   };
 }

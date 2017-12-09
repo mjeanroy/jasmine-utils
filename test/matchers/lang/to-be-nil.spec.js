@@ -28,27 +28,42 @@ describe('toBeNil', () => {
   it('should check that object is null', () => {
     const actual = null;
     const result = toBeNil({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect null {{not}} to be nil (null or undefined)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be nil (null or undefined)`
+    );
   });
 
   it('should check that object is undefined', () => {
     const actual = undefined;
     const result = toBeNil({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect undefined {{not}} to be nil (null or undefined)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect undefined {{not}} to be nil (null or undefined)`
+    );
   });
 
   it('should not pass without null and undefined', () => {
     const actual = '';
     const result = toBeNil({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect '' {{not}} to be nil (null or undefined)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '' {{not}} to be nil (null or undefined)`
+    );
   });
 });

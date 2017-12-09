@@ -46,6 +46,8 @@ import {isArray} from '../../util/is-array.js';
 export function toBeAnArray({actual}) {
   return {
     pass: isArray(actual),
-    message: `Expect ${pp(actual)} {{not}} to be an array`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be an array`;
+    },
   };
 }

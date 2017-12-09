@@ -50,6 +50,8 @@ import {isFiniteNumber} from '../../util/is-finite-number.js';
 export function toBeFiniteNumber({actual}) {
   return {
     pass: isFiniteNumber(actual),
-    message: `Expect ${pp(actual)} {{not}} to be finite number`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be finite number`;
+    },
   };
 }

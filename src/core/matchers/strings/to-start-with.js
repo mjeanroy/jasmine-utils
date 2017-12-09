@@ -43,6 +43,8 @@ import {isString} from '../../util/is-string.js';
 export function toStartWith({actual}, prefix) {
   return {
     pass: isString(prefix) && isString(actual) && actual.indexOf(prefix) === 0,
-    message: `Expect ${pp(actual)} {{not}} to start with ${pp(prefix)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to start with ${pp(prefix)}`;
+    },
   };
 }

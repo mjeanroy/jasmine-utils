@@ -41,6 +41,8 @@ import {isDate} from '../../util/is-date.js';
 export function toBeADate({actual}) {
   return {
     pass: isDate(actual),
-    message: `Expect ${pp(actual)} {{not}} to be a date`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a date`;
+    },
   };
 }

@@ -42,18 +42,18 @@ import {isDOMElement} from '../../util/is-dom-element.js';
  */
 export function toBeDOMElementWithId({actual}, id) {
   const isElement = isDOMElement(actual);
-
-  let ok = isElement;
-  let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
-
-  if (isElement) {
-    const actualId = actual.getAttribute('id');
-    msg += ` with id ${pp(id)} but was ${pp(actualId)}`;
-    ok = ok && actualId === id;
-  }
+  const actualId = isElement ? actual.getAttribute('id') : null;
+  const ok = isElement && actualId === id;
 
   return {
     pass: ok,
-    message: msg,
+    message() {
+      let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
+      if (isElement) {
+        msg += ` with id ${pp(id)} but was ${pp(actualId)}`;
+      }
+
+      return msg;
+    },
   };
 }

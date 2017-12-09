@@ -55,6 +55,8 @@ export function toBeSameDay({actual}, day) {
   const d2 = parseDate(day);
   return {
     pass: isSameDay(d1, d2),
-    message: `Expect date ${pp(d1)} {{not}} to be same day as ${pp(d2)}`,
+    message() {
+      return `Expect date ${pp(d1)} {{not}} to be same day as ${pp(d2)}`;
+    },
   };
 }

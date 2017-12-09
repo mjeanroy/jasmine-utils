@@ -40,6 +40,8 @@ import {isMap} from '../../util/is-map.js';
 export function toBeAMap({actual}) {
   return {
     pass: isMap(actual),
-    message: `Expect ${pp(actual)} {{not}} to be a Map`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a Map`;
+    },
   };
 }

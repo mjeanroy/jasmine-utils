@@ -43,6 +43,8 @@ import {isBoolean} from '../../util/is-boolean.js';
 export function toBeABoolean({actual}) {
   return {
     pass: isBoolean(actual),
-    message: `Expect ${pp(actual)} {{not}} to be a boolean`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a boolean`;
+    },
   };
 }

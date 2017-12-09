@@ -54,6 +54,8 @@ export function toHaveKeys({actual}, ...expectedKeys) {
 
   return {
     pass: ok,
-    message: `Expect ${pp(actual)} {{not}} to have keys ${pp(expectedKeys)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to have keys ${pp(expectedKeys)}`;
+    },
   };
 }

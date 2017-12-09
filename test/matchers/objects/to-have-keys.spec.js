@@ -30,10 +30,15 @@ describe('toHaveKeys', () => {
   it('should check if object has key', () => {
     const actual = {foo: 'bar', quix: 'quix'};
     const result = toHaveKeys({actual}, 'foo');
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo' ]`
+    );
   });
 
   it('should check if map has key', () => {
@@ -44,19 +49,29 @@ describe('toHaveKeys', () => {
     actual.set('quix', 'quix');
 
     const result = toHaveKeys({actual}, 'foo');
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to have keys [ 'foo' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have keys [ 'foo' ]`
+    );
   });
 
   it('should check if object has all keys', () => {
     const actual = {foo: 'bar', quix: 'quix'};
     const result = toHaveKeys({actual}, 'foo', 'quix');
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'quix' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'quix' ]`
+    );
   });
 
   it('should check if map has all keys', () => {
@@ -67,19 +82,29 @@ describe('toHaveKeys', () => {
     actual.set('quix', 'quix');
 
     const result = toHaveKeys({actual}, 'foo', 'quix');
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`
+    );
   });
 
   it('should fail if object does not have key', () => {
     const actual = {foo: 'bar', quix: 'quix'};
     const result = toHaveKeys({actual}, 'bar');
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'bar' ]`
+    );
   });
 
   it('should fail if map does not have key', () => {
@@ -90,19 +115,29 @@ describe('toHaveKeys', () => {
     actual.set('quix', 'quix');
 
     const result = toHaveKeys({actual}, 'bar');
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have keys [ 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have keys [ 'bar' ]`
+    );
   });
 
   it('should fail if object does not have all keys', () => {
     const actual = {foo: 'bar', quix: 'quix'};
     const result = toHaveKeys({actual}, 'foo', 'bar');
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'bar' ]`
+    );
   });
 
   it('should fail if map does not have all keys', () => {
@@ -113,9 +148,14 @@ describe('toHaveKeys', () => {
     actual.set('quix', 'quix');
 
     const result = toHaveKeys({actual}, 'foo', 'bar');
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`
+    );
   });
 });

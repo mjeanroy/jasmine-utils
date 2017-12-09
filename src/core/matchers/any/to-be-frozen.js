@@ -59,6 +59,8 @@ import {isFrozen} from '../../util/is-frozen.js';
 export function toBeFrozen({actual}) {
   return {
     pass: isFrozen(actual),
-    message: `Expect ${pp(actual)} {{not}} to be frozen`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be frozen`;
+    },
   };
 }

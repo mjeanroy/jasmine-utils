@@ -55,6 +55,8 @@ export function toBeToday({actual}) {
   const d2 = now();
   return {
     pass: isSameDay(d1, d2),
-    message: `Expect date ${pp(d1)} {{not}} to be today`,
+    message() {
+      return `Expect date ${pp(d1)} {{not}} to be today`;
+    },
   };
 }

@@ -28,36 +28,56 @@ describe('toBeDOMElement', () => {
   it('should pass with a dom element', () => {
     const actual = document.createElement('div');
     const result = toBeDOMElement({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: 'Expect HTMLNode {{not}} to be a DOM element',
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      'Expect HTMLNode {{not}} to be a DOM element'
+    );
   });
 
   it('should pass with a dom element with expected tag name', () => {
     const actual = document.createElement('div');
     const result = toBeDOMElement({actual}, 'div');
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect HTMLNode {{not}} to be 'DIV' element but was 'DIV'`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect HTMLNode {{not}} to be 'DIV' element but was 'DIV'`
+    );
   });
 
   it('should not pass without a dom element', () => {
     const actual = '<div></div>';
     const result = toBeDOMElement({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect '<div></div>' {{not}} to be a DOM element`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '<div></div>' {{not}} to be a DOM element`
+    );
   });
 
   it('should not pass with a DOM element but not the expected tag name', () => {
     const actual = document.createElement('div');
     const result = toBeDOMElement({actual}, 'SPAN');
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect HTMLNode {{not}} to be 'SPAN' element but was 'DIV'`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect HTMLNode {{not}} to be 'SPAN' element but was 'DIV'`
+    );
   });
 });

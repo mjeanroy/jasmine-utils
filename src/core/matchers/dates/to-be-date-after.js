@@ -49,6 +49,8 @@ export function toBeDateAfter({actual}, lower) {
   const diff = dateDiff(actual, lower);
   return {
     pass: diff >= 0,
-    message: `Expect date ${pp(actual)} {{not}} to be after ${pp(lower)}`,
+    message() {
+      return `Expect date ${pp(actual)} {{not}} to be after ${pp(lower)}`;
+    },
   };
 }

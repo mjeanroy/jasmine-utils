@@ -28,18 +28,28 @@ describe('toContainsOnlyFalstValues', () => {
   it('should check that array contains only falsy values', () => {
     const actual = [0, false, '', null, NaN, undefined];
     const result = toContainsOnlyFalsyValues({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ 0, false, '', null, NaN, undefined ] {{not}} to contains only falsy values`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, false, '', null, NaN, undefined ] {{not}} to contains only falsy values`
+    );
   });
 
   it('should not pass with an array containing falsy values', () => {
     const actual = [0, false, '', null, NaN, undefined, true];
     const result = toContainsOnlyFalsyValues({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [ 0, false, '', null, NaN, undefined, true ] {{not}} to contains only falsy values`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, false, '', null, NaN, undefined, true ] {{not}} to contains only falsy values`
+    );
   });
 });

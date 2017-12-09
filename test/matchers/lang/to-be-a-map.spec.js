@@ -32,18 +32,28 @@ describe('toBeAMap', () => {
 
     const actual = new Map();
     const result = toBeAMap({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be a Map`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be a Map`
+    );
   });
 
   it('should not pass without a map', () => {
     const actual = [];
     const result = toBeAMap({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be a Map`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be a Map`
+    );
   });
 });

@@ -29,19 +29,25 @@ describe('toEqualIgnoringCase', () => {
     const actual = 'test';
     const other = 'TEST';
     const result = toEqualIgnoringCase({actual}, other);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 'test' {{not}} to be equal to 'TEST' (case insensitive)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect 'test' {{not}} to be equal to 'TEST' (case insensitive)`);
   });
 
   it('should not pass without a string', () => {
     const actual = 'test';
     const other = 'foo';
     const result = toEqualIgnoringCase({actual}, other);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 'test' {{not}} to be equal to 'foo' (case insensitive)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect 'test' {{not}} to be equal to 'foo' (case insensitive)`);
   });
 });

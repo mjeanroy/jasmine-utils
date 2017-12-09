@@ -30,10 +30,15 @@ describe('toHaveValues', () => {
   it('should check for object values', () => {
     const actual = {foo: 'bar', quix: 'foo'};
     const result = toHaveValues({actual}, 'foo', 'bar');
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect Object({ foo: 'bar', quix: 'foo' }) {{not}} to have values [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ foo: 'bar', quix: 'foo' }) {{not}} to have values [ 'foo', 'bar' ]`
+    );
   });
 
   it('should check for map values', () => {
@@ -44,19 +49,29 @@ describe('toHaveValues', () => {
     actual.set('quix', 'foo');
 
     const result = toHaveValues({actual}, 'foo', 'bar');
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`
+    );
   });
 
   it('should fail with non expected values', () => {
     const actual = {foo: 'bar'};
     const result = toHaveValues({actual}, 'foo', 'bar');
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({ foo: 'bar' }) {{not}} to have values [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ foo: 'bar' }) {{not}} to have values [ 'foo', 'bar' ]`
+    );
   });
 
   it('should fail with map without non expected values', () => {
@@ -66,9 +81,14 @@ describe('toHaveValues', () => {
     actual.set('foo', 'bar');
 
     const result = toHaveValues({actual}, 'foo', 'bar');
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`
+    );
   });
 });

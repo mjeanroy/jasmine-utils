@@ -28,27 +28,42 @@ describe('toBePositive', () => {
   it('should check that object is strictly greater than zero', () => {
     const actual = 1;
     const result = toBePositive({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 1 {{not}} to be a positive number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be a positive number`
+    );
   });
 
   it('should not pass with zero', () => {
     const actual = 0;
     const result = toBePositive({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 0 {{not}} to be a positive number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 0 {{not}} to be a positive number`
+    );
   });
 
   it('should not pass with a negative number', () => {
     const actual = -1;
     const result = toBePositive({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect -1 {{not}} to be a positive number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect -1 {{not}} to be a positive number`
+    );
   });
 });

@@ -76,5 +76,94 @@ describe('jasmine1MatcherFactory', () => {
         equals: jasmine.any(Function),
       });
     });
+
+    it('should build error message', () => {
+      const pass = false;
+      const message = jasmine.createSpy('message').and.callThrough('A {{not}} message');
+
+      matcher.and.returnValue({
+        pass,
+        message,
+      });
+
+      const actual = {};
+      const arg0 = 0;
+      const arg1 = 1;
+      const jasmineContext = {
+        actual: actual,
+        isNot: false,
+        env: {
+          equals_: jasmine.createSpy('equals_').and.returnValue(true),
+        },
+      };
+
+      const result = j1Matcher.call(jasmineContext, arg0, arg1);
+
+      expect(matcher).toHaveBeenCalled();
+      expect(result).toBe(pass);
+      expect(message).not.toHaveBeenCalled();
+      expect(jasmineContext.message).toBeDefined();
+      expect(jasmineContext.message()).toEqual('A message');
+      expect(message).toHaveBeenCalled();
+    });
+
+    it('should build negated error message', () => {
+      const pass = true;
+      const message = jasmine.createSpy('message').and.callThrough('A {{not}} message');
+
+      matcher.and.returnValue({
+        pass,
+        message,
+      });
+
+      const actual = {};
+      const arg0 = 0;
+      const arg1 = 1;
+      const jasmineContext = {
+        actual: actual,
+        isNot: true,
+        env: {
+          equals_: jasmine.createSpy('equals_').and.returnValue(true),
+        },
+      };
+
+      const result = j1Matcher.call(jasmineContext, arg0, arg1);
+
+      expect(matcher).toHaveBeenCalled();
+      expect(result).toBe(!pass);
+      expect(message).not.toHaveBeenCalled();
+      expect(jasmineContext.message).toBeDefined();
+      expect(jasmineContext.message()).toEqual('A not message');
+      expect(message).toHaveBeenCalled();
+    });
+
+    it('should not build error message if matcher pass', () => {
+      const pass = true;
+      const message = jasmine.createSpy('message').and.callThrough('A {{not}} message');
+
+      matcher.and.returnValue({
+        pass,
+        message,
+      });
+
+      const actual = {};
+      const arg0 = 0;
+      const arg1 = 1;
+      const jasmineContext = {
+        actual: actual,
+        isNot: false,
+        env: {
+          equals_: jasmine.createSpy('equals_').and.returnValue(true),
+        },
+      };
+
+      const result = j1Matcher.call(jasmineContext, arg0, arg1);
+
+      expect(matcher).toHaveBeenCalled();
+      expect(result).toBe(pass);
+      expect(message).not.toHaveBeenCalled();
+      expect(jasmineContext.message).toBeDefined();
+      expect(jasmineContext).not.toBeDefined();
+    });
   });
 });

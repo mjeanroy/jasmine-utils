@@ -28,18 +28,28 @@ describe('toContainsOnlyTruthyValues', () => {
   it('should check that array contains only truthy values', () => {
     const actual = [1, 'foo', true];
     const result = toContainsOnlyTruthyValues({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ 1, 'foo', true ] {{not}} to contains only truthy values`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 1, 'foo', true ] {{not}} to contains only truthy values`
+    );
   });
 
   it('should not pass with an array containing falsy values', () => {
     const actual = [1, 'foo', true, 0];
     const result = toContainsOnlyTruthyValues({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [ 1, 'foo', true, 0 ] {{not}} to contains only truthy values`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 1, 'foo', true, 0 ] {{not}} to contains only truthy values`
+    );
   });
 });

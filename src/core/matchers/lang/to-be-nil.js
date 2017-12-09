@@ -44,6 +44,8 @@ import {isNil} from '../../util/is-nil.js';
 export function toBeNil({actual}) {
   return {
     pass: isNil(actual),
-    message: `Expect ${pp(actual)} {{not}} to be nil (null or undefined)`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be nil (null or undefined)`;
+    },
   };
 }

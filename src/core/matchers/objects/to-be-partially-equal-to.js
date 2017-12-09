@@ -64,7 +64,9 @@ export function toBePartiallyEqualTo({actual, equals}, other) {
 
   return {
     pass: pass,
-    message: `Expect ${pp(actual)} {{not}} to be partially equal to ${pp(other)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be partially equal to ${pp(other)}`;
+    },
   };
 }
 

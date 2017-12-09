@@ -50,8 +50,8 @@ export function toHaveSize({actual}, expectedSize) {
   const size = sizeOf(actual);
   return {
     pass: size === expectedSize,
-    message:
-      `Expect size of ${pp(actual)} {{not}} to be ${pp(expectedSize)} ` +
-      `but was ${pp(size)}`,
+    message() {
+      return `Expect size of ${pp(actual)} {{not}} to be ${pp(expectedSize)} but was ${pp(size)}`;
+    },
   };
 }

@@ -58,6 +58,8 @@ import {isSealed} from '../../util/is-sealed.js';
 export function toBeSealed({actual}) {
   return {
     pass: isSealed(actual),
-    message: `Expect ${pp(actual)} {{not}} to be sealed`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be sealed`;
+    },
   };
 }

@@ -29,18 +29,28 @@ describe('toBeInstanceOf', () => {
   it('should pass if value is an instance of given class', () => {
     const actual = new Klass();
     const result = toBeInstanceOf({actual}, Klass);
+
     expect(result).toEqual({
       pass: true,
-      message: 'Expect Klass({ id: 0 }) {{not}} to be an instance of Function',
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      'Expect Klass({ id: 0 }) {{not}} to be an instance of Function'
+    );
   });
 
   it('should not pass if value is not an instance of given class', () => {
     const actual = '';
     const result = toBeInstanceOf({actual}, Klass);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect '' {{not}} to be an instance of Function`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '' {{not}} to be an instance of Function`
+    );
   });
 });

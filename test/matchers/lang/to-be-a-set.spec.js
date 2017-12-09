@@ -32,18 +32,28 @@ describe('toBeASet', () => {
 
     const actual = new Set();
     const result = toBeASet({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be a Set`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be a Set`
+    );
   });
 
   it('should not pass without a set', () => {
     const actual = [];
     const result = toBeASet({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be a Set`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be a Set`
+    );
   });
 });

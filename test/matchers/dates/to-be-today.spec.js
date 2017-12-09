@@ -29,18 +29,28 @@ describe('toBeToday', () => {
   it('should check that a date is today', () => {
     const actual = new Date();
     const result = toBeToday({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect date ${pp(actual)} {{not}} to be today`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be today`
+    );
   });
 
   it('should not pass with a date that is not today', () => {
     const actual = new Date(2010, 10, 13, 17, 55, 38, 0);
     const result = toBeToday({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect date ${pp(actual)} {{not}} to be today`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be today`
+    );
   });
 });

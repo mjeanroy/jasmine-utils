@@ -47,6 +47,8 @@ export function toEndWith({actual}, suffix) {
 
   return {
     pass: ok,
-    message: `Expect ${pp(actual)} {{not}} to end with ${pp(suffix)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to end with ${pp(suffix)}`;
+    },
   };
 }

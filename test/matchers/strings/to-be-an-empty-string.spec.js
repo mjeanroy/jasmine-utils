@@ -28,18 +28,24 @@ describe('toBeAnEmptyString', () => {
   it('should check that object is an empty string', () => {
     const actual = '';
     const result = toBeAnEmptyString({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect '' {{not}} to be an empty string`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect '' {{not}} to be an empty string`);
   });
 
   it('should not pass without an empty string', () => {
     const actual = 'test';
     const result = toBeAnEmptyString({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 'test' {{not}} to be an empty string`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect 'test' {{not}} to be an empty string`);
   });
 });

@@ -41,6 +41,8 @@ import {isNull} from '../../util/is-null.js';
 export function toBeNull({actual}) {
   return {
     pass: isNull(actual),
-    message: `Expect ${pp(actual)} {{not}} to be null`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be null`;
+    },
   };
 }

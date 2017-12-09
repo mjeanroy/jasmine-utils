@@ -54,6 +54,8 @@ export function toBeDateCloseTo({actual}, date, max = 1000) {
   const diff = Math.abs(dateDiff(actual, date));
   return {
     pass: diff <= max,
-    message: `Expect date ${pp(actual)} {{not}} to be close to ${pp(date)}`,
+    message() {
+      return `Expect date ${pp(actual)} {{not}} to be close to ${pp(date)}`;
+    },
   };
 }

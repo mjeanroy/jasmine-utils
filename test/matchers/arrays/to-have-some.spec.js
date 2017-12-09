@@ -36,8 +36,12 @@ describe('toHaveSome', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
     expect(predicate).not.toHaveBeenCalledWith(1, 1, actual);
@@ -57,8 +61,12 @@ describe('toHaveSome', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+    );
 
     expect(predicate).toHaveBeenCalled();
   });
@@ -76,8 +84,12 @@ describe('toHaveSome', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+    );
 
     expect(predicate).toHaveBeenCalled();
   });
@@ -101,8 +113,12 @@ describe('toHaveSome', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);
     expect(predicate).not.toHaveBeenCalledWith(2, 1, actual);
@@ -116,8 +132,12 @@ describe('toHaveSome', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify "test message"`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify "test message"`
+    );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
     expect(predicate).not.toHaveBeenCalledWith(1, 1, actual);
@@ -131,8 +151,12 @@ describe('toHaveSome', () => {
 
     expect(result).toEqual({
       pass: false,
-      message: `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
     expect(predicate).toHaveBeenCalledWith(1, 1, actual);
@@ -152,8 +176,12 @@ describe('toHaveSome', () => {
 
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
     expect(predicate).toHaveBeenCalledWith(1, 1, actual);
@@ -173,8 +201,12 @@ describe('toHaveSome', () => {
 
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(0, 'zero', actual);
     expect(predicate).toHaveBeenCalledWith(1, 'one', actual);
@@ -200,8 +232,12 @@ describe('toHaveSome', () => {
 
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);
     expect(predicate).toHaveBeenCalledWith(2, 1, actual);

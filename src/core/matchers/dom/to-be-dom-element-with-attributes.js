@@ -47,13 +47,12 @@ import {keys} from '../../util/keys.js';
  */
 export function toBeDOMElementWithAttributes({actual, equals}, attributes) {
   const isElement = isDOMElement(actual);
+  const actualAttributes = {};
 
-  let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
   let ok = isElement;
 
   if (isElement) {
     const attrs = keys(attributes);
-    const actualAttributes = {};
 
     for (let i = 0, size = attrs.length; i < size; ++i) {
       const key = attrs[i];
@@ -61,11 +60,17 @@ export function toBeDOMElementWithAttributes({actual, equals}, attributes) {
     }
 
     ok = ok && equals(attributes, actualAttributes);
-    msg += ` with attributes ${attributes} but was ${actualAttributes}`;
   }
 
   return {
     pass: ok,
-    message: msg,
+    message() {
+      let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
+      if (isElement) {
+          msg += ` with attributes ${attributes} but was ${actualAttributes}`;
+      }
+
+      return msg;
+    },
   };
 }

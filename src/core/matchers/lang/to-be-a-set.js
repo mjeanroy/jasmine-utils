@@ -41,6 +41,8 @@ import {isSet} from '../../util/is-set.js';
 export function toBeASet({actual}) {
   return {
     pass: isSet(actual),
-    message: `Expect ${pp(actual)} {{not}} to be a Set`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a Set`;
+    },
   };
 }

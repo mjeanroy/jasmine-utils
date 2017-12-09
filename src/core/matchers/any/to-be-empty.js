@@ -47,6 +47,8 @@ export function toBeEmpty({actual}) {
   const size = sizeOf(actual);
   return {
     pass: size === 0,
-    message: `Expect ${pp(actual)} {{not}} to be empty`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be empty`;
+    },
   };
 }

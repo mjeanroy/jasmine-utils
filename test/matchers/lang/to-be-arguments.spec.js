@@ -33,18 +33,28 @@ describe('toBeArguments', () => {
     })();
 
     const result = toBeArguments({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be arguments`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be arguments`
+    );
   });
 
   it('should not pass without a function', () => {
     const actual = [];
     const result = toBeArguments({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be arguments`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be arguments`
+    );
   });
 });

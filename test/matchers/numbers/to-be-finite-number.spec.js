@@ -28,54 +28,84 @@ describe('toBeFiniteNumber', () => {
   it('should check that object is a finite number', () => {
     const actual = 1;
     const result = toBeFiniteNumber({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 1 {{not}} to be finite number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be finite number`
+    );
   });
 
   it('should not pass with a string', () => {
     const actual = '1';
     const result = toBeFiniteNumber({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect '1' {{not}} to be finite number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '1' {{not}} to be finite number`
+    );
   });
 
   it('should not pass with NaN', () => {
     const actual = NaN;
     const result = toBeFiniteNumber({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect NaN {{not}} to be finite number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect NaN {{not}} to be finite number`
+    );
   });
 
   it('should not pass with Infinity', () => {
     const actual = Infinity;
     const result = toBeFiniteNumber({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Infinity {{not}} to be finite number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Infinity {{not}} to be finite number`
+    );
   });
 
   it('should not pass with -Infinity', () => {
     const actual = -Infinity;
     const result = toBeFiniteNumber({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect -Infinity {{not}} to be finite number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect -Infinity {{not}} to be finite number`
+    );
   });
 
   it('should not pass with null', () => {
     const actual = null;
     const result = toBeFiniteNumber({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect null {{not}} to be finite number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be finite number`
+    );
   });
 });

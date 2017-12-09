@@ -41,6 +41,8 @@ import {isString} from '../../util/is-string.js';
 export function toBeAnEmptyString({actual}) {
   return {
     pass: isString(actual) && actual === '',
-    message: `Expect ${pp(actual)} {{not}} to be an empty string`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be an empty string`;
+    },
   };
 }

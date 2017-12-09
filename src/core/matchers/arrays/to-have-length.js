@@ -43,8 +43,8 @@ export function toHaveLength({actual}, expectedLength) {
   const actualLength = actual.length;
   return {
     pass: actualLength === expectedLength,
-    message:
-      `Expect length of ${pp(actual)} {{not}} to be ${pp(expectedLength)} ` +
-      `but was ${pp(actualLength)}`,
+    message() {
+      return `Expect length of ${pp(actual)} {{not}} to be ${pp(expectedLength)} but was ${pp(actualLength)}`;
+    },
   };
 }

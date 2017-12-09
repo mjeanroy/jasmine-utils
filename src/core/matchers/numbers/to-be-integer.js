@@ -49,6 +49,8 @@ import {isInteger} from '../../util/is-integer.js';
 export function toBeInteger({actual}) {
   return {
     pass: isInteger(actual),
-    message: `Expect ${pp(actual)} {{not}} to be an integer`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be an integer`;
+    },
   };
 }

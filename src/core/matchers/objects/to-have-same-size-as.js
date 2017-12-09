@@ -50,6 +50,8 @@ export function toHaveSameSizeAs({actual}, expected) {
   const expectedSize = sizeOf(expected);
   return {
     pass: actualSize === expectedSize,
-    message: `Expect ${pp(actual)} {{not}} to have same size as ${pp(expected)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to have same size as ${pp(expected)}`;
+    },
   };
 }

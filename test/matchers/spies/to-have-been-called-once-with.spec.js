@@ -39,10 +39,13 @@ describe('toHaveBeenCalledOnceWith', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(argsFor).toHaveBeenCalledWith(actual, 0);
     expect(equals).toHaveBeenCalledWith(args, expectedArgs);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s)`);
   });
 
   it('should not pass if spy has not been called', () => {
@@ -58,10 +61,13 @@ describe('toHaveBeenCalledOnceWith', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(argsFor).not.toHaveBeenCalled();
     expect(equals).not.toHaveBeenCalled();
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 0 time(s)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect ${pp(actual)} {{not}} to have been called once but was called 0 time(s)`);
   });
 
   it('should not pass if spy has been called more than once', () => {
@@ -77,10 +83,13 @@ describe('toHaveBeenCalledOnceWith', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(argsFor).not.toHaveBeenCalled();
     expect(equals).not.toHaveBeenCalled();
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 2 time(s)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect ${pp(actual)} {{not}} to have been called once but was called 2 time(s)`);
   });
 
   it('should not pass if spy has been called once with different arguments', () => {
@@ -96,11 +105,14 @@ describe('toHaveBeenCalledOnceWith', () => {
     expect(callCount).toHaveBeenCalledWith(actual);
     expect(argsFor).toHaveBeenCalledWith(actual, 0);
     expect(equals).toHaveBeenCalledWith(args, expectedArgs);
+
     expect(result).toEqual({
       pass: false,
-      message:
-        `Expect ${pp(actual)} {{not}} to have been called once but ` +
-        `was called 1 time(s) with different arguments`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s) with different arguments`
+    );
   });
 });

@@ -29,19 +29,25 @@ describe('toEndWith', () => {
     const actual = 'foo';
     const other = 'oo';
     const result = toEndWith({actual}, other);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 'foo' {{not}} to end with 'oo'`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect 'foo' {{not}} to end with 'oo'`);
   });
 
   it('should not pass without a string starting with an other prefix', () => {
     const actual = 'test';
     const other = 'testtest';
     const result = toEndWith({actual}, other);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 'test' {{not}} to end with 'testtest'`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect 'test' {{not}} to end with 'testtest'`);
   });
 });

@@ -57,25 +57,27 @@ import {isFunction} from '../../util/is-function.js';
  *   expect([2, 4, 6, 8, 9]).not.toVerify(x => x % 2 === 0);
  *
  * @param {Object} ctx Test context.
- * @param {string} message Error message thrown when the test fail (optional).
+ * @param {string} msg Error message thrown when the test fail (optional).
  * @param {function} iterator Predicate function.
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toVerify({actual}, message, iterator) {
+export function toVerify({actual}, msg, iterator) {
   let _message;
   let _iterator;
 
-  if (isFunction(message)) {
+  if (isFunction(msg)) {
     _message = 'condition';
-    _iterator = message;
+    _iterator = msg;
   } else {
-    _message = `"${message}"`;
+    _message = `"${msg}"`;
     _iterator = iterator;
   }
 
   return {
     pass: every(actual, _iterator),
-    message: `Expect ${pp(actual)} {{not}} to verify ${_message}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to verify ${_message}`;
+    },
   };
 }

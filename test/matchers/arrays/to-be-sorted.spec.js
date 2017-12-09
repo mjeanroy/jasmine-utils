@@ -28,10 +28,15 @@ describe('toBeSorted', () => {
   it('should pass with a sorted array', () => {
     const actual = [0, 1, 2, 3];
     const result = toBeSorted({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ 0, 1, 2, 3 ] {{not}} to be sorted`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, 1, 2, 3 ] {{not}} to be sorted`
+    );
   });
 
   it('should pass with a sorted array and a comparator function', () => {
@@ -44,8 +49,12 @@ describe('toBeSorted', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`
+    );
 
     expect(comparator).toHaveBeenCalled();
   });
@@ -53,9 +62,14 @@ describe('toBeSorted', () => {
   it('should fail with a non-sorted array', () => {
     const actual = [0, -1, 2, -3];
     const result = toBeSorted({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`
+    );
   });
 });

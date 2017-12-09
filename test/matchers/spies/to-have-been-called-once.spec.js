@@ -33,10 +33,13 @@ describe('toHaveBeenCalledOnce', () => {
     const result = toHaveBeenCalledOnce({actual, callCount});
 
     expect(callCount).toHaveBeenCalledWith(actual);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s)`);
   });
 
   it('should not pass if spy has not been called', () => {
@@ -46,10 +49,13 @@ describe('toHaveBeenCalledOnce', () => {
     const result = toHaveBeenCalledOnce({actual, callCount});
 
     expect(callCount).toHaveBeenCalledWith(actual);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 0 time(s)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect ${pp(actual)} {{not}} to have been called once but was called 0 time(s)`);
   });
 
   it('should not pass if spy has been called more than once', () => {
@@ -59,9 +65,12 @@ describe('toHaveBeenCalledOnce', () => {
     const result = toHaveBeenCalledOnce({actual, callCount});
 
     expect(callCount).toHaveBeenCalledWith(actual);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect ${pp(actual)} {{not}} to have been called once but was called 2 time(s)`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect ${pp(actual)} {{not}} to have been called once but was called 2 time(s)`);
   });
 });

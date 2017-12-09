@@ -32,10 +32,15 @@ describe('toBeEmpty', () => {
   it('should check for empty array', () => {
     const actual = [];
     const result = toBeEmpty({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [  ] {{not}} to be empty`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be empty`
+    );
   });
 
   it('should check for empty set', () => {
@@ -43,10 +48,15 @@ describe('toBeEmpty', () => {
 
     const actual = new Set();
     const result = toBeEmpty({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be empty`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be empty`
+    );
   });
 
   it('should check for empty map', () => {
@@ -54,10 +64,15 @@ describe('toBeEmpty', () => {
 
     const actual = new Map();
     const result = toBeEmpty({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be empty`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be empty`
+    );
   });
 
   it('should check for empty iterable object', () => {
@@ -77,34 +92,53 @@ describe('toBeEmpty', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be empty`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be empty`
+    );
   });
 
   it('should check for empty object', () => {
     const actual = {};
     const result = toBeEmpty({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect Object({  }) {{not}} to be empty`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({  }) {{not}} to be empty`
+    );
   });
 
   it('should fail with non empty array', () => {
     const actual = [1, 2, 3];
     const result = toBeEmpty({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [ 1, 2, 3 ] {{not}} to be empty`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 1, 2, 3 ] {{not}} to be empty`
+    );
   });
 
   it('should fail with non empty object', () => {
     const actual = {foo: 'bar'};
     const result = toBeEmpty({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({ foo: 'bar' }) {{not}} to be empty`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ foo: 'bar' }) {{not}} to be empty`
+    );
   });
 });

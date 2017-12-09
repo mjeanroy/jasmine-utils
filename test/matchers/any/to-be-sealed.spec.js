@@ -29,64 +29,99 @@ describe('toBeSealed', () => {
   it('should check for null', () => {
     const actual = null;
     const result = toBeSealed({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect null {{not}} to be sealed`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be sealed`
+    );
   });
 
   it('should check for undefined', () => {
     const actual = undefined;
     const result = toBeSealed({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect undefined {{not}} to be sealed`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect undefined {{not}} to be sealed`
+    );
   });
 
   it('should check for numbers', () => {
     const actual = 1;
     const result = toBeSealed({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 1 {{not}} to be sealed`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be sealed`
+    );
   });
 
   it('should check for strings', () => {
     const actual = '';
     const result = toBeSealed({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect '' {{not}} to be sealed`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '' {{not}} to be sealed`
+    );
   });
 
   it('should check for booleans', () => {
     const actual = true;
     const result = toBeSealed({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect true {{not}} to be sealed`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect true {{not}} to be sealed`
+    );
   });
 
   it('should check for non sealed object', () => {
     const actual = {};
     const result = toBeSealed({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({  }) {{not}} to be sealed`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({  }) {{not}} to be sealed`
+    );
   });
 
   it('should check for non sealed array', () => {
     const actual = [];
     const result = toBeSealed({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be sealed`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be sealed`
+    );
   });
 
   it('should check for sealed object', () => {
@@ -94,10 +129,15 @@ describe('toBeSealed', () => {
 
     const actual = Object.seal({});
     const result = toBeSealed({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect Object({  }) {{not}} to be sealed`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({  }) {{not}} to be sealed`
+    );
   });
 
   it('should check for sealed array', () => {
@@ -105,9 +145,14 @@ describe('toBeSealed', () => {
 
     const actual = Object.seal([]);
     const result = toBeSealed({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [  ] {{not}} to be sealed`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be sealed`
+    );
   });
 });

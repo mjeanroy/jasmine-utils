@@ -28,19 +28,29 @@ describe('toContainsDistinctValues', () => {
   it('should check that array only contains distinct values', () => {
     const actual = [-1, 0, 1];
     const result = toContainsDistinctValues({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`
+    );
   });
 
   it('should not pass if array contains duplicates', () => {
     const actual = [1, 0, 1];
     const result = toContainsDistinctValues({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [ 1, 0, 1 ] {{not}} to contains only distinct values`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 1, 0, 1 ] {{not}} to contains only distinct values`
+    );
   });
 
   it('should not pass if array contains duplicates with custom equality function', () => {
@@ -53,7 +63,13 @@ describe('toContainsDistinctValues', () => {
 
     expect(result).toEqual({
       pass: false,
-      message: `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`
+    );
+
+    expect(equals).toHaveBeenCalled();
   });
 });

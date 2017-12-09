@@ -44,6 +44,8 @@ import {contains} from '../../util/contains.js';
 export function toEqualOneOf({actual, equals}, array) {
   return {
     pass: contains(array, actual, equals),
-    message: `Expect ${pp(actual)} {{not}} to equal one of ${pp(array)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to equal one of ${pp(array)}`;
+    },
   };
 }

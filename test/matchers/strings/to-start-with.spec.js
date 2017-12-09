@@ -29,19 +29,25 @@ describe('toStartWith', () => {
     const actual = 'foo';
     const other = 'fo';
     const result = toStartWith({actual}, other);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 'foo' {{not}} to start with 'fo'`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect 'foo' {{not}} to start with 'fo'`);
   });
 
   it('should not pass without a string starting with an other prefix', () => {
     const actual = 'test';
     const other = 'testtest';
     const result = toStartWith({actual}, other);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 'test' {{not}} to start with 'testtest'`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(`Expect 'test' {{not}} to start with 'testtest'`);
   });
 });

@@ -29,64 +29,99 @@ describe('toBeFrozen', () => {
   it('should check for null', () => {
     const actual = null;
     const result = toBeFrozen({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect null {{not}} to be frozen`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be frozen`
+    );
   });
 
   it('should check for undefined', () => {
     const actual = undefined;
     const result = toBeFrozen({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect undefined {{not}} to be frozen`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect undefined {{not}} to be frozen`
+    );
   });
 
   it('should check for numbers', () => {
     const actual = 1;
     const result = toBeFrozen({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 1 {{not}} to be frozen`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be frozen`
+    );
   });
 
   it('should check for strings', () => {
     const actual = '';
     const result = toBeFrozen({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect '' {{not}} to be frozen`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '' {{not}} to be frozen`
+    );
   });
 
   it('should check for booleans', () => {
     const actual = true;
     const result = toBeFrozen({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect true {{not}} to be frozen`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect true {{not}} to be frozen`
+    );
   });
 
   it('should check for non frozen object', () => {
     const actual = {};
     const result = toBeFrozen({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({  }) {{not}} to be frozen`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({  }) {{not}} to be frozen`
+    );
   });
 
   it('should check for non frozen array', () => {
     const actual = [];
     const result = toBeFrozen({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be frozen`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be frozen`
+    );
   });
 
   it('should check for frozen object', () => {
@@ -96,8 +131,12 @@ describe('toBeFrozen', () => {
     const result = toBeFrozen({actual});
     expect(result).toEqual({
       pass: true,
-      message: `Expect Object({  }) {{not}} to be frozen`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({  }) {{not}} to be frozen`
+    );
   });
 
   it('should check for frozen array', () => {
@@ -105,9 +144,14 @@ describe('toBeFrozen', () => {
 
     const actual = Object.freeze([]);
     const result = toBeFrozen({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [  ] {{not}} to be frozen`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be frozen`
+    );
   });
 });

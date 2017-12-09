@@ -40,6 +40,8 @@ import {pp} from '../../jasmine/pp.js';
  export function toBeZero({actual}) {
    return {
      pass: actual === 0,
-     message: `Expect ${pp(actual)} {{not}} to be zero`,
+     message() {
+       return `Expect ${pp(actual)} {{not}} to be zero`;
+     },
    };
  }

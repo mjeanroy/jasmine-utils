@@ -29,60 +29,90 @@ describe('toEqualOneOf', () => {
     const actual = 1;
     const array = [1, 2, 3];
     const result = toEqualOneOf({actual}, array);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 1 {{not}} to equal one of [ 1, 2, 3 ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to equal one of [ 1, 2, 3 ]`
+    );
   });
 
   it('should not pass with missing integer values', () => {
     const actual = 10;
     const array = [1, 2, 3];
     const result = toEqualOneOf({actual}, array);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 10 {{not}} to equal one of [ 1, 2, 3 ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 10 {{not}} to equal one of [ 1, 2, 3 ]`
+    );
   });
 
   it('should pass with boolean values', () => {
     const actual = false;
     const array = [true, false];
     const result = toEqualOneOf({actual}, array);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect false {{not}} to equal one of [ true, false ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect false {{not}} to equal one of [ true, false ]`
+    );
   });
 
   it('should not pass with missing boolean values', () => {
     const actual = false;
     const array = [true, true];
     const result = toEqualOneOf({actual}, array);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect false {{not}} to equal one of [ true, true ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect false {{not}} to equal one of [ true, true ]`
+    );
   });
 
   it('should pass with string values', () => {
     const actual = 'bar';
     const array = ['foo', 'bar', 'baz'];
     const result = toEqualOneOf({actual}, array);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 'bar' {{not}} to equal one of [ 'foo', 'bar', 'baz' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 'bar' {{not}} to equal one of [ 'foo', 'bar', 'baz' ]`
+    );
   });
 
   it('should not pass with missing string values', () => {
     const actual = 'baz';
     const array = ['foo', 'bar'];
     const result = toEqualOneOf({actual}, array);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 'baz' {{not}} to equal one of [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 'baz' {{not}} to equal one of [ 'foo', 'bar' ]`
+    );
   });
 
   it('should pass with same object instances', () => {
@@ -93,9 +123,12 @@ describe('toEqualOneOf', () => {
 
     expect(result).toEqual({
       pass: true,
-      message:
-        `Expect Object({ id: 1 }) {{not}} to equal one of [ Object({ id: 1 }) ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ id: 1 }) {{not}} to equal one of [ Object({ id: 1 }) ]`
+    );
   });
 
   it('should pass with custom object equality', () => {
@@ -114,9 +147,11 @@ describe('toEqualOneOf', () => {
 
     expect(result).toEqual({
       pass: true,
-      message:
-        `Expect Object({ id: 2 }) {{not}} to equal one of ` +
-        `[ Object({ id: 1 }), Object({ id: 2 }), Object({ id: 3 }) ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ id: 2 }) {{not}} to equal one of [ Object({ id: 1 }), Object({ id: 2 }), Object({ id: 3 }) ]`
+    );
   });
 });

@@ -28,18 +28,28 @@ describe('toBeAString', () => {
   it('should check that object is a string', () => {
     const actual = 'test';
     const result = toBeAString({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 'test' {{not}} to be a string`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 'test' {{not}} to be a string`
+    );
   });
 
   it('should not pass without a string', () => {
     const actual = null;
     const result = toBeAString({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect null {{not}} to be a string`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be a string`
+    );
   });
 });

@@ -42,6 +42,8 @@ import {isFunction} from '../../util/is-function.js';
 export function toBeAFunction({actual}) {
   return {
     pass: isFunction(actual),
-    message: `Expect ${pp(actual)} {{not}} to be a function`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a function`;
+    },
   };
 }

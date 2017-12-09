@@ -43,6 +43,8 @@ import {isNumber} from '../../util/is-number.js';
 export function toBeANumber({actual}) {
   return {
     pass: isNumber(actual),
-    message: `Expect ${pp(actual)} {{not}} to be a number`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a number`;
+    },
   };
 }

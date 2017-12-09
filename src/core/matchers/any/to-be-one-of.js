@@ -43,6 +43,8 @@ import {contains} from '../../util/contains.js';
 export function toBeOneOf({actual}, array) {
   return {
     pass: contains(array, actual),
-    message: `Expect ${pp(actual)} {{not}} to be one of ${pp(array)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be one of ${pp(array)}`;
+    },
   };
 }

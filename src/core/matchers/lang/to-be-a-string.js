@@ -43,6 +43,8 @@ import {isString} from '../../util/is-string.js';
 export function toBeAString({actual}) {
   return {
     pass: isString(actual),
-    message: `Expect ${pp(actual)} {{not}} to be a string`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a string`;
+    },
   };
 }

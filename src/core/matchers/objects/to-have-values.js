@@ -55,6 +55,8 @@ export function toHaveValues({actual, equals}, ...expectedValues) {
 
   return {
     pass: ok,
-    message: `Expect ${pp(actual)} {{not}} to have values ${pp(expectedValues)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to have values ${pp(expectedValues)}`;
+    },
   };
 }

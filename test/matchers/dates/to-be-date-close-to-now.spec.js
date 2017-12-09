@@ -31,10 +31,15 @@ describe('toBeDateCloseToNow', () => {
     const offset = 10;
     const actual = new Date(now + offset);
     const result = toBeDateCloseToNow({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect date ${pp(actual)} {{not}} to be close to now`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be close to now`
+    );
   });
 
   it('should check that object is a date close to now with a custom diff', () => {
@@ -42,10 +47,15 @@ describe('toBeDateCloseToNow', () => {
     const offset = 2000;
     const actual = new Date(now + offset);
     const result = toBeDateCloseToNow({actual}, offset * 10);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect date ${pp(actual)} {{not}} to be close to now`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be close to now`
+    );
   });
 
   it('should not pass with a date not close to now', () => {
@@ -53,9 +63,14 @@ describe('toBeDateCloseToNow', () => {
     const offset = 10000;
     const actual = new Date(now + offset);
     const result = toBeDateCloseToNow({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect date ${pp(actual)} {{not}} to be close to now`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be close to now`
+    );
   });
 });

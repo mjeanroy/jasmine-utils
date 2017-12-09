@@ -28,45 +28,70 @@ describe('toBeFloat', () => {
   it('should check that object is a float value', () => {
     const actual = 1.5;
     const result = toBeFloat({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 1.5 {{not}} to be a float`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1.5 {{not}} to be a float`
+    );
   });
 
   it('should check that object is a float value with a numeric string value', () => {
     const actual = '1.5';
     const result = toBeFloat({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect '1.5' {{not}} to be a float`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '1.5' {{not}} to be a float`
+    );
   });
 
   it('should not pass with NaN', () => {
     const actual = NaN;
     const result = toBeFloat({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect NaN {{not}} to be a float`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect NaN {{not}} to be a float`
+    );
   });
 
   it('should not pass with a Infinity', () => {
     const actual = Infinity;
     const result = toBeFloat({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Infinity {{not}} to be a float`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Infinity {{not}} to be a float`
+    );
   });
 
   it('should not pass with an integer', () => {
     const actual = 1.0;
     const result = toBeFloat({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 1 {{not}} to be a float`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be a float`
+    );
   });
 });

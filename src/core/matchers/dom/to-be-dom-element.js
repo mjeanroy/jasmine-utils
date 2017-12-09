@@ -50,24 +50,27 @@ import {isNil} from '../../util/is-nil.js';
  */
 export function toBeDOMElement({actual}, tagName) {
   const isElement = isDOMElement(actual);
+  const expectTagName = isString(tagName);
 
-  let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
   let ok = isElement;
 
-  // Add more details to the message if it is appropriate.
-  if (isString(tagName)) {
-    msg = `Expect ${pp(actual)} {{not}} to be ${pp(tagName.toUpperCase())} element`;
+  if (expectTagName) {
     ok = ok && tagName.toUpperCase() === actual.tagName.toUpperCase();
-
-    if (isElement) {
-      msg += ` but was ${pp(actual.tagName.toUpperCase())}`;
-    }
   } else {
     ok = ok && isNil(tagName);
   }
 
   return {
     pass: ok,
-    message: msg,
+    message() {
+      const type = expectTagName ? pp(tagName.toUpperCase()) : 'a DOM';
+
+      let msg = `Expect ${pp(actual)} {{not}} to be ${type} element`;
+      if (expectTagName) {
+        msg += ` but was ${pp(actual.tagName.toUpperCase())}`;
+      }
+
+      return msg;
+    },
   };
 }

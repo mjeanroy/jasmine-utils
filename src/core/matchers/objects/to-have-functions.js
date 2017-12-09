@@ -47,6 +47,8 @@ export function toHaveFunctions({actual}, ...methods) {
   const ok = every(methods, (method) => isFunction(actual[method]));
   return {
     pass: ok,
-    message: `Expect object ${pp(actual)} {{not}} to contain functions ${pp(methods)}`,
+    message() {
+      return `Expect object ${pp(actual)} {{not}} to contain functions ${pp(methods)}`;
+    },
   };
 }

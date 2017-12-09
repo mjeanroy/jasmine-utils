@@ -41,6 +41,8 @@ import {isNumber} from '../../util/is-number.js';
 export function toBeEvenNumber({actual}) {
   return {
     pass: isNumber(actual) && actual % 2 === 0,
-    message: `Expect ${pp(actual)} {{not}} to be an even number`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be an even number`;
+    },
   };
 }

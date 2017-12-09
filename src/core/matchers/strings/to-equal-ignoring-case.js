@@ -43,6 +43,8 @@ import {isString} from '../../util/is-string.js';
 export function toEqualIgnoringCase({actual}, other) {
   return {
     pass: isString(other) && isString(actual) && actual.toLowerCase() === other.toLowerCase(),
-    message: `Expect ${pp(actual)} {{not}} to be equal to ${pp(other)} (case insensitive)`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be equal to ${pp(other)} (case insensitive)`;
+    },
   };
 }

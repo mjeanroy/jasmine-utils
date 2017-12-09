@@ -52,22 +52,22 @@ import {trim} from '../../util/trim.js';
  */
 export function toBeDOMElementWithClasses({actual}, classes) {
   const isElement = isDOMElement(actual);
-
-  let ok = isElement;
-  let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
-
-  if (isElement) {
-    const classArray = toClassArray(classes);
-    const actualClassArray = toClassArray(actual.className);
-    const containsAll = every(classArray, (className) => contains(actualClassArray, className));
-
-    msg += ` with classes ${pp(classArray)} but was ${pp(actualClassArray)}`;
-    ok = ok && containsAll;
-  }
+  const actualClassArray = isElement ? toClassArray(actual.className) : null;
+  const classArray = toClassArray(classes);
+  const ok = isElement && every(classArray, (className) => (
+    contains(actualClassArray, className)
+  ));
 
   return {
     pass: ok,
-    message: msg,
+    message() {
+      let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
+      if (isElement) {
+        msg += ` with classes ${pp(classArray)} but was ${pp(actualClassArray)}`;
+      }
+
+      return msg;
+    },
   };
 }
 

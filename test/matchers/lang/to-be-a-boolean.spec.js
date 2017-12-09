@@ -28,18 +28,28 @@ describe('toBeABoolean', () => {
   it('should check that object is a boolean', () => {
     const actual = true;
     const result = toBeABoolean({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect true {{not}} to be a boolean`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect true {{not}} to be a boolean`
+    );
   });
 
   it('should not pass without a boolean', () => {
     const actual = null;
     const result = toBeABoolean({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect null {{not}} to be a boolean`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be a boolean`
+    );
   });
 });

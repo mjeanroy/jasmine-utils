@@ -41,6 +41,8 @@ import {isNumber} from '../../util/is-number.js';
 export function toBeOddNumber({actual}) {
   return {
     pass: isNumber(actual) && actual % 2 !== 0,
-    message: `Expect ${pp(actual)} {{not}} to be an odd number`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be an odd number`;
+    },
   };
 }

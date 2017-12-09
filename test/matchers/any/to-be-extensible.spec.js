@@ -31,64 +31,99 @@ describe('toBeExtensible', () => {
   it('should check for null', () => {
     const actual = null;
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect null {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be extensible`
+    );
   });
 
   it('should check for undefined', () => {
     const actual = undefined;
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect undefined {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect undefined {{not}} to be extensible`
+    );
   });
 
   it('should check for numbers', () => {
     const actual = 1;
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 1 {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be extensible`
+    );
   });
 
   it('should check for strings', () => {
     const actual = '';
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect '' {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '' {{not}} to be extensible`
+    );
   });
 
   it('should check for booleans', () => {
     const actual = true;
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect true {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect true {{not}} to be extensible`
+    );
   });
 
   it('should check for simple object', () => {
     const actual = {};
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect Object({  }) {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({  }) {{not}} to be extensible`
+    );
   });
 
   it('should check for simple array', () => {
     const actual = [];
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [  ] {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be extensible`
+    );
   });
 
   it('should check for frozen object', () => {
@@ -96,10 +131,15 @@ describe('toBeExtensible', () => {
 
     const actual = Object.freeze({});
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({  }) {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({  }) {{not}} to be extensible`
+    );
   });
 
   it('should check for frozen array', () => {
@@ -107,10 +147,15 @@ describe('toBeExtensible', () => {
 
     const actual = Object.freeze([]);
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be extensible`
+    );
   });
 
   it('should check for sealed object', () => {
@@ -118,10 +163,15 @@ describe('toBeExtensible', () => {
 
     const actual = Object.seal({});
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({  }) {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({  }) {{not}} to be extensible`
+    );
   });
 
   it('should check for sealed array', () => {
@@ -129,10 +179,15 @@ describe('toBeExtensible', () => {
 
     const actual = Object.seal([]);
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be extensible`
+    );
   });
 
   it('should check for non extensible object', () => {
@@ -140,10 +195,15 @@ describe('toBeExtensible', () => {
 
     const actual = Object.preventExtensions({});
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({  }) {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({  }) {{not}} to be extensible`
+    );
   });
 
   it('should check for frozen array', () => {
@@ -151,9 +211,14 @@ describe('toBeExtensible', () => {
 
     const actual = Object.preventExtensions([]);
     const result = toBeExtensible({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect [  ] {{not}} to be extensible`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be extensible`
+    );
   });
 });

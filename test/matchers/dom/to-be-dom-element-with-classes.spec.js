@@ -36,40 +36,59 @@ describe('toBeDOMElementWithClasses', () => {
     const actual = div;
     const classes = ['foo', 'bar'];
     const result = toBeDOMElementWithClasses({actual}, classes);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect HTMLNode {{not}} to be a DOM element with classes [ 'foo', 'bar' ] but was [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect HTMLNode {{not}} to be a DOM element with classes [ 'foo', 'bar' ] but was [ 'foo', 'bar' ]`
+    );
   });
 
   it('should pass with a dom element with expected classes as a string', () => {
     const actual = div;
     const classes = ' foo  bar ';
     const result = toBeDOMElementWithClasses({actual}, classes);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect HTMLNode {{not}} to be a DOM element with classes [ 'foo', 'bar' ] but was [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect HTMLNode {{not}} to be a DOM element with classes [ 'foo', 'bar' ] but was [ 'foo', 'bar' ]`
+    );
   });
 
   it('should not pass without a DOM element', () => {
     const actual = '<div></div>';
     const result = toBeDOMElementWithClasses({actual}, 'foo');
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect '<div></div>' {{not}} to be a DOM element`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '<div></div>' {{not}} to be a DOM element`
+    );
   });
 
   it('should not pass with a DOM element but not all the expected classes', () => {
     const actual = div;
     const classes = 'foo bar baz';
     const result = toBeDOMElementWithClasses({actual}, classes);
+
     expect(result).toEqual({
       pass: false,
-      message:
-        `Expect HTMLNode {{not}} to be a DOM element with classes [ 'foo', 'bar', 'baz' ] ` +
-        `but was [ 'foo', 'bar' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect HTMLNode {{not}} to be a DOM element with classes [ 'foo', 'bar', 'baz' ] ` +
+      `but was [ 'foo', 'bar' ]`
+    );
   });
 });

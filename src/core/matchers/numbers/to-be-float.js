@@ -48,6 +48,8 @@ import {isFloat} from '../../util/is-float.js';
 export function toBeFloat({actual}) {
   return {
     pass: isFloat(actual),
-    message: `Expect ${pp(actual)} {{not}} to be a float`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a float`;
+    },
   };
 }

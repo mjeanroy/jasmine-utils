@@ -43,10 +43,15 @@ describe('toBeDOMElementWithAttributes', () => {
     const result = toBeDOMElementWithAttributes({actual, equals}, attrs);
 
     expect(equals).toHaveBeenCalled();
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect HTMLNode {{not}} to be a DOM element with attributes [object Object] but was [object Object]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect HTMLNode {{not}} to be a DOM element with attributes [object Object] but was [object Object]`
+    );
   });
 
   it('should pass with a dom element with anything matcher', () => {
@@ -59,10 +64,15 @@ describe('toBeDOMElementWithAttributes', () => {
     const result = toBeDOMElementWithAttributes({actual, equals}, attrs);
 
     expect(equals).toHaveBeenCalled();
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect HTMLNode {{not}} to be a DOM element with attributes [object Object] but was [object Object]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect HTMLNode {{not}} to be a DOM element with attributes [object Object] but was [object Object]`
+    );
   });
 
   it('should not pass without a DOM element', () => {
@@ -74,10 +84,15 @@ describe('toBeDOMElementWithAttributes', () => {
     const result = toBeDOMElementWithAttributes({actual, equals}, {foo: 'bar'});
 
     expect(equals).not.toHaveBeenCalled();
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect '<div></div>' {{not}} to be a DOM element`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '<div></div>' {{not}} to be a DOM element`
+    );
   });
 
   it('should not pass with a DOM element but not the expected attributes', () => {
@@ -91,7 +106,11 @@ describe('toBeDOMElementWithAttributes', () => {
     expect(equals).toHaveBeenCalled();
     expect(result).toEqual({
       pass: false,
-      message: `Expect HTMLNode {{not}} to be a DOM element with attributes [object Object] but was [object Object]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect HTMLNode {{not}} to be a DOM element with attributes [object Object] but was [object Object]`
+    );
   });
 });

@@ -28,27 +28,42 @@ describe('toBeNumeric', () => {
   it('should check that object is a numeric value', () => {
     const actual = '1.5';
     const result = toBeNumeric({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect '1.5' {{not}} to be a numeric value`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '1.5' {{not}} to be a numeric value`
+    );
   });
 
   it('should not pass with NaN', () => {
     const actual = NaN;
     const result = toBeNumeric({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect NaN {{not}} to be a numeric value`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect NaN {{not}} to be a numeric value`
+    );
   });
 
   it('should not pass with a Infinity', () => {
     const actual = Infinity;
     const result = toBeNumeric({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Infinity {{not}} to be a numeric value`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Infinity {{not}} to be a numeric value`
+    );
   });
 });

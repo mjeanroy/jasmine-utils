@@ -28,18 +28,28 @@ describe('toBeANumber', () => {
   it('should check that object is a number', () => {
     const actual = 0;
     const result = toBeANumber({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 0 {{not}} to be a number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 0 {{not}} to be a number`
+    );
   });
 
   it('should not pass without a number', () => {
     const actual = null;
     const result = toBeANumber({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect null {{not}} to be a number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be a number`
+    );
   });
 });

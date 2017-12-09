@@ -30,10 +30,15 @@ describe('toBeInRange', () => {
     const lower = 0;
     const upper = 2;
     const result = toBeInRange({actual}, lower, upper);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 1 {{not}} to be between 0 and 2`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be between 0 and 2`
+    );
   });
 
   it('should not pass with a value equal to lower bound', () => {
@@ -41,10 +46,15 @@ describe('toBeInRange', () => {
     const lower = 1;
     const upper = 2;
     const result = toBeInRange({actual}, lower, upper);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 1 {{not}} to be between 1 and 2`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be between 1 and 2`
+    );
   });
 
   it('should not pass with value equal to upper bound', () => {
@@ -52,9 +62,14 @@ describe('toBeInRange', () => {
     const lower = 0;
     const upper = 1;
     const result = toBeInRange({actual}, lower, upper);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 1 {{not}} to be between 0 and 1`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be between 0 and 1`
+    );
   });
 });

@@ -36,8 +36,12 @@ describe('toVerify', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ 0, 1, 2 ] {{not}} to verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, 1, 2 ] {{not}} to verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
     expect(predicate).toHaveBeenCalledWith(1, 1, actual);
@@ -57,8 +61,12 @@ describe('toVerify', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
     expect(predicate).toHaveBeenCalledWith(1, 1, actual);
@@ -78,8 +86,12 @@ describe('toVerify', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(1, 'one', actual);
     expect(predicate).toHaveBeenCalledWith(2, 'two', actual);
@@ -105,8 +117,12 @@ describe('toVerify', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);
     expect(predicate).toHaveBeenCalledWith(2, 1, actual);
@@ -120,8 +136,12 @@ describe('toVerify', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ 0, 1, 2 ] {{not}} to verify "test message"`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, 1, 2 ] {{not}} to verify "test message"`
+    );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
     expect(predicate).toHaveBeenCalledWith(1, 1, actual);
@@ -135,8 +155,12 @@ describe('toVerify', () => {
 
     expect(result).toEqual({
       pass: false,
-      message: `Expect [ 0, 1, 2 ] {{not}} to verify condition`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 0, 1, 2 ] {{not}} to verify condition`
+    );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
     expect(predicate).toHaveBeenCalledWith(1, 1, actual);

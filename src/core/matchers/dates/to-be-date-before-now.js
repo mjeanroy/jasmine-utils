@@ -50,6 +50,8 @@ export function toBeDateBeforeNow({actual}) {
   const diff = dateDiff(actual, now());
   return {
     pass: diff <= 0,
-    message: `Expect date ${pp(actual)} {{not}} to be before now`,
+    message() {
+      return `Expect date ${pp(actual)} {{not}} to be before now`;
+    },
   };
 }

@@ -28,18 +28,28 @@ describe('toBeOddNumber', () => {
   it('should check that object is an odd number', () => {
     const actual = 1;
     const result = toBeOddNumber({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect 1 {{not}} to be an odd number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 1 {{not}} to be an odd number`
+    );
   });
 
   it('should not pass with an even number', () => {
     const actual = 2;
     const result = toBeOddNumber({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect 2 {{not}} to be an odd number`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect 2 {{not}} to be an odd number`
+    );
   });
 });

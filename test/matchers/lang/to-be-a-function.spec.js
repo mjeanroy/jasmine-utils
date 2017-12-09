@@ -28,18 +28,28 @@ describe('toBeAFunction', () => {
   it('should check that object is a function', () => {
     const actual = () => {};
     const result = toBeAFunction({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect Function {{not}} to be a function`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Function {{not}} to be a function`
+    );
   });
 
   it('should not pass without a function', () => {
     const actual = null;
     const result = toBeAFunction({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect null {{not}} to be a function`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be a function`
+    );
   });
 });

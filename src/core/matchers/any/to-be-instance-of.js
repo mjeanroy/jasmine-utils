@@ -43,6 +43,8 @@ import {pp} from '../../jasmine/pp.js';
 export function toBeInstanceOf({actual}, ctor) {
   return {
     pass: (actual instanceof ctor),
-    message: `Expect ${pp(actual)} {{not}} to be an instance of ${pp(ctor)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be an instance of ${pp(ctor)}`;
+    },
   };
 }

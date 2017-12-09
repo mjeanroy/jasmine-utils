@@ -30,19 +30,29 @@ describe('toBeDateAfterNow', () => {
     const now = new Date().getTime();
     const actual = new Date(now + 100);
     const result = toBeDateAfterNow({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect date ${pp(actual)} {{not}} to be after now`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be after now`
+    );
   });
 
   it('should not pass with a date before now', () => {
     const now = new Date().getTime();
     const actual = new Date(now - 100);
     const result = toBeDateAfterNow({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect date ${pp(actual)} {{not}} to be after now`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be after now`
+    );
   });
 });

@@ -45,6 +45,8 @@ export function toHaveSameLengthAs({actual}, expected) {
   const expectedLength = expected.length;
   return {
     pass: actualLength === expectedLength,
-    message: `Expect ${pp(actual)} {{not}} to have same length as ${pp(expected)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to have same length as ${pp(expected)}`;
+    },
   };
 }

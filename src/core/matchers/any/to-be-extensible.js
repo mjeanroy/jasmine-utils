@@ -66,6 +66,8 @@ import {isExtensible} from '../../util/is-extensible.js';
 export function toBeExtensible({actual}) {
   return {
     pass: isExtensible(actual),
-    message: `Expect ${pp(actual)} {{not}} to be extensible`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be extensible`;
+    },
   };
 }

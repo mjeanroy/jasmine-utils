@@ -40,6 +40,8 @@ import {pp} from '../../jasmine/pp.js';
 export function toBeTrue({actual}) {
   return {
     pass: actual === true,
-    message: `Expect ${pp(actual)} {{not}} to be true`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be true`;
+    },
   };
 }

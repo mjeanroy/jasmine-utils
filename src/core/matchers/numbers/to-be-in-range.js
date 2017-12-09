@@ -44,6 +44,8 @@ import {isNumber} from '../../util/is-number.js';
 export function toBeInRange({actual}, lower, upper) {
   return {
     pass: isNumber(actual) && actual > lower && actual < upper,
-    message: `Expect ${pp(actual)} {{not}} to be between ${pp(lower)} and ${pp(upper)}`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be between ${pp(lower)} and ${pp(upper)}`;
+    },
   };
 }

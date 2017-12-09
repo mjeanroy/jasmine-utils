@@ -51,6 +51,8 @@ import {isIterable} from '../../util/is-iterable.js';
 export function toBeIterable({actual}, Klass) {
   return {
     pass: isIterable(actual),
-    message: `Expect ${pp(actual)} {{not}} to be iterable`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be iterable`;
+    },
   };
 }

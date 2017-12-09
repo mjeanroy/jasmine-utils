@@ -29,29 +29,44 @@ describe('toHaveSameSizeAs', () => {
     const actual = [1, 2, 3];
     const expected = [4, 5, 6];
     const result = toHaveSameSizeAs({actual}, expected);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [ 1, 2, 3 ] {{not}} to have same size as [ 4, 5, 6 ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ 1, 2, 3 ] {{not}} to have same size as [ 4, 5, 6 ]`
+    );
   });
 
   it('should check size of object', () => {
     const actual = {foo: 'bar'};
     const expected = {bar: 'foo'};
     const result = toHaveSameSizeAs({actual}, expected);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({ bar: 'foo' })`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({ bar: 'foo' })`
+    );
   });
 
   it('should fail with non expected length', () => {
     const actual = {foo: 'bar'};
     const expected = {};
     const result = toHaveSameSizeAs({actual}, expected);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({  })`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({  })`
+    );
   });
 });

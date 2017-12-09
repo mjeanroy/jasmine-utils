@@ -29,18 +29,28 @@ describe('toBeADate', () => {
   it('should check that object is a date', () => {
     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
     const result = toBeADate({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be a date`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be a date`
+    );
   });
 
   it('should not pass without a date', () => {
     const actual = null;
     const result = toBeADate({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect null {{not}} to be a date`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be a date`
+    );
   });
 });

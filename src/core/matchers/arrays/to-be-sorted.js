@@ -53,6 +53,8 @@ import {isSorted} from '../../util/is-sorted.js';
 export function toBeSorted({actual}, comparator) {
   return {
     pass: isArray(actual) && isSorted(actual, comparator),
-    message: `Expect ${pp(actual)} {{not}} to be sorted`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be sorted`;
+    },
   };
 }

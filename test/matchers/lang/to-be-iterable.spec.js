@@ -32,37 +32,57 @@ describe('toBeIterable', () => {
   it('should check that null is not iterable', () => {
     const actual = null;
     const result = toBeIterable({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect null {{not}} to be iterable`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect null {{not}} to be iterable`
+    );
   });
 
   it('should check that undefined is not iterable', () => {
     const actual = undefined;
     const result = toBeIterable({actual});
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect undefined {{not}} to be iterable`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect undefined {{not}} to be iterable`
+    );
   });
 
   it('should check that array instance is iterable', () => {
     const actual = [];
     const result = toBeIterable({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect [  ] {{not}} to be iterable`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [  ] {{not}} to be iterable`
+    );
   });
 
   it('should check that string is iterable', () => {
     const actual = '';
     const result = toBeIterable({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect '' {{not}} to be iterable`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect '' {{not}} to be iterable`
+    );
   });
 
   it('should check that set is iterable', () => {
@@ -70,10 +90,15 @@ describe('toBeIterable', () => {
 
     const actual = new Set();
     const result = toBeIterable({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be iterable`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be iterable`
+    );
   });
 
   it('should check that map is iterable', () => {
@@ -81,10 +106,15 @@ describe('toBeIterable', () => {
 
     const actual = new Map();
     const result = toBeIterable({actual});
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be iterable`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be iterable`
+    );
   });
 
   it('should check that object with iterator instance is iterable', () => {
@@ -104,7 +134,11 @@ describe('toBeIterable', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect ${pp(actual)} {{not}} to be iterable`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect ${pp(actual)} {{not}} to be iterable`
+    );
   });
 });

@@ -45,6 +45,8 @@ import {isNumeric} from '../../util/is-numeric.js';
 export function toBeNumeric({actual}) {
   return {
     pass: isNumeric(actual),
-    message: `Expect ${pp(actual)} {{not}} to be a numeric value`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a numeric value`;
+    },
   };
 }

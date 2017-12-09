@@ -44,10 +44,13 @@ describe('toBePartiallyEqualTo', () => {
 
     expect(result).toEqual({
       pass: true,
-      message:
-        `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }), Object({ id: 2, name: 'Jane Doe', age: 30 }) ] ` +
-        `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }), Object({ id: 2, name: 'Jane Doe', age: 30 }) ] ` +
+      `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`
+    );
 
     expect(equals).toHaveBeenCalledWith(actual[0], jasmine.objectContaining(other[0]));
     expect(equals).toHaveBeenCalledWith(actual[1], jasmine.objectContaining(other[1]));
@@ -72,10 +75,13 @@ describe('toBePartiallyEqualTo', () => {
 
     expect(result).toEqual({
       pass: false,
-      message:
-        `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }), Object({ id: 2, name: 'Jane Doe', age: 30 }) ] ` +
-        `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }), Object({ id: 2, name: 'Jane Doe', age: 30 }) ] ` +
+      `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`
+    );
   });
 
   it('should not try to compare array elements with array of different length', () => {
@@ -95,10 +101,13 @@ describe('toBePartiallyEqualTo', () => {
     expect(equals).not.toHaveBeenCalled();
     expect(result).toEqual({
       pass: false,
-      message:
-        `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }) ] ` +
-        `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }) ] ` +
+      `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`
+    );
   });
 
   it('should compare two objects', () => {
@@ -113,10 +122,13 @@ describe('toBePartiallyEqualTo', () => {
 
     expect(result).toEqual({
       pass: true,
-      message:
-        `Expect Object({ id: 1, name: 'John Doe', age: 20 }) {{not}} to be partially equal ` +
-        `to Object({ id: 1, name: 'John Doe' })`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ id: 1, name: 'John Doe', age: 20 }) {{not}} to be partially equal ` +
+      `to Object({ id: 1, name: 'John Doe' })`
+    );
 
     expect(equals).toHaveBeenCalledWith(actual, jasmine.objectContaining(other));
   });
@@ -133,9 +145,12 @@ describe('toBePartiallyEqualTo', () => {
 
     expect(result).toEqual({
       pass: false,
-      message:
-        `Expect Object({ id: 1, name: 'John Doe', age: 20 }) {{not}} to be partially equal ` +
-        `to Object({ id: 1, name: 'John Doe' })`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect Object({ id: 1, name: 'John Doe', age: 20 }) {{not}} to be partially equal ` +
+      `to Object({ id: 1, name: 'John Doe' })`
+    );
   });
 });

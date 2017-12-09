@@ -30,19 +30,29 @@ describe('toBeDateBefore', () => {
     const lower = new Date(2016, 10, 12, 17, 55, 38, 0);
     const actual = new Date(2016, 10, 12, 17, 55, 37, 0);
     const result = toBeDateBefore({actual}, lower);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`
+    );
   });
 
   it('should not pass with a date after', () => {
     const lower = new Date(2016, 10, 12, 17, 55, 37, 0);
     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
     const result = toBeDateBefore({actual}, lower);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`
+    );
   });
 });

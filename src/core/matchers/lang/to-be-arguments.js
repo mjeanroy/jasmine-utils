@@ -40,6 +40,8 @@ import {isArguments} from '../../util/is-arguments.js';
 export function toBeArguments({actual}) {
   return {
     pass: isArguments(actual),
-    message: `Expect ${pp(actual)} {{not}} to be arguments`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be arguments`;
+    },
   };
 }

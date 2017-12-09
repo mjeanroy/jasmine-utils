@@ -41,6 +41,8 @@ import {isNumber} from '../../util/is-number.js';
 export function toBePositive({actual}) {
   return {
     pass: isNumber(actual) && actual > 0,
-    message: `Expect ${pp(actual)} {{not}} to be a positive number`,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be a positive number`;
+    },
   };
 }

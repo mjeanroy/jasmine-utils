@@ -32,19 +32,29 @@ describe('toHaveSize', () => {
   it('should check length of array', () => {
     const actual = [1, 2, 3];
     const result = toHaveSize({actual}, 3);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of [ 1, 2, 3 ] {{not}} to be 3 but was 3`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect size of [ 1, 2, 3 ] {{not}} to be 3 but was 3`
+    );
   });
 
   it('should check size of object', () => {
     const actual = {foo: 'bar'};
     const result = toHaveSize({actual}, 1);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of Object({ foo: 'bar' }) {{not}} to be 1 but was 1`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect size of Object({ foo: 'bar' }) {{not}} to be 1 but was 1`
+    );
   });
 
   it('should check size of set', () => {
@@ -54,10 +64,15 @@ describe('toHaveSize', () => {
     actual.add(1);
 
     const result = toHaveSize({actual}, 1);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`
+    );
   });
 
   it('should check size of map', () => {
@@ -67,10 +82,15 @@ describe('toHaveSize', () => {
     actual.set('one', 1);
 
     const result = toHaveSize({actual}, 1);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`
+    );
   });
 
   it('should check size of iterable object', () => {
@@ -91,16 +111,25 @@ describe('toHaveSize', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect size of ${pp(actual)} {{not}} to be 2 but was 2`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect size of ${pp(actual)} {{not}} to be 2 but was 2`
+    );
   });
 
   it('should fail with non expected length', () => {
     const actual = {foo: 'bar'};
     const result = toHaveSize({actual}, 2);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect size of Object({ foo: 'bar' }) {{not}} to be 2 but was 1`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect size of Object({ foo: 'bar' }) {{not}} to be 2 but was 1`
+    );
   });
 });

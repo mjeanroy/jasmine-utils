@@ -50,12 +50,11 @@ export function toHaveBeenCalledOnceWith({actual, callCount, equals, argsFor}, .
   const wasCalledOnce = count === 1;
   const ok = wasCalledOnce && equals(argsFor(actual, 0), args);
   const msg = wasCalledOnce && !ok ? ' with different arguments' : '';
-  const error =
-    `Expect ${pp(actual)} {{not}} to have been called once but ` +
-    `was called ${pp(count)} time(s)${msg}`;
 
   return {
     pass: ok,
-    message: error,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to have been called once but was called ${pp(count)} time(s)${msg}`;
+    },
   };
 }

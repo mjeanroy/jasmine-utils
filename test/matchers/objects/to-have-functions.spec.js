@@ -36,8 +36,12 @@ describe('toHaveFunctions', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect object Object({ f1: spy on f1, f2: spy on f2 }) {{not}} to contain functions [ 'f1', 'f2' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect object Object({ f1: spy on f1, f2: spy on f2 }) {{not}} to contain functions [ 'f1', 'f2' ]`
+    );
   });
 
   it('should check if class instance has expected functions', () => {
@@ -60,8 +64,12 @@ describe('toHaveFunctions', () => {
 
     expect(result).toEqual({
       pass: true,
-      message: `Expect object TestClass({  }) {{not}} to contain functions [ 'f1', 'f2' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect object TestClass({  }) {{not}} to contain functions [ 'f1', 'f2' ]`
+    );
   });
 
   it('should fail if object does not have all expected functions', () => {
@@ -74,7 +82,11 @@ describe('toHaveFunctions', () => {
 
     expect(result).toEqual({
       pass: false,
-      message: `Expect object Object({ f1: spy on f1 }) {{not}} to contain functions [ 'f1', 'f2' ]`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect object Object({ f1: spy on f1 }) {{not}} to contain functions [ 'f1', 'f2' ]`
+    );
   });
 });

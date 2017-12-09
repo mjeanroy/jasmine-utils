@@ -30,19 +30,29 @@ describe('toBeSameDay', () => {
     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
     const other = new Date(2016, 10, 12, 17, 55, 38, 100);
     const result = toBeSameDay({actual}, other);
+
     expect(result).toEqual({
       pass: true,
-      message: `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`
+    );
   });
 
   it('should not pass with a date that is not the same day', () => {
     const actual = new Date(2016, 10, 12, 17, 55, 38, 11);
     const other = new Date(2016, 10, 13, 17, 55, 38, 0);
     const result = toBeSameDay({actual}, other);
+
     expect(result).toEqual({
       pass: false,
-      message: `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`,
+      message: jasmine.any(Function),
     });
+
+    expect(result.message()).toBe(
+      `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`
+    );
   });
 });
