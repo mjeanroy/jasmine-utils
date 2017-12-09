@@ -22,7 +22,7 @@
     "bower": "1.8.2",
     "del": "3.0.0",
     "dox": "0.9.0",
-    "eslint": "4.12.1",
+    "eslint": "4.13.0",
     "eslint-config-google": "0.9.1",
     "glob": "7.1.2",
     "gulp": "3.9.1",
