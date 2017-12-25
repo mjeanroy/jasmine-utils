@@ -29,8 +29,9 @@ const path = require('path');
 const _ = require('lodash');
 const Q = require('q');
 const touch = require('touch');
+const log = require('fancy-log');
+const colors = require('ansi-colors');
 const gulp = require('gulp');
-const gutil = require('gulp-util');
 const dox = require('dox');
 const Handlebars = require('handlebars');
 const glob = require('glob');
@@ -67,7 +68,7 @@ gulp.task('docs', (done) => {
     })
 
     .catch((err) => {
-      gutil.log(gutil.colors.red(`Error occured while generating documentation: ${err}`));
+      log(colors.red(`Error occured while generating documentation: ${err}`));
     })
 
     .finally(() => {
@@ -111,7 +112,7 @@ function listFiles(dir) {
 function readFile(file) {
   const deferred = Q.defer();
 
-  gutil.log(gutil.colors.grey(`Reading: ${file}`));
+  log(colors.grey(`Reading: ${file}`));
 
   fs.readFile(file, 'utf-8', (err, data) => {
     if (err) {
@@ -136,7 +137,7 @@ function readFile(file) {
 function writeFile(file, content) {
   const deferred = Q.defer();
 
-  gutil.log(gutil.colors.grey(`Writing: ${file}`));
+  log(colors.grey(`Writing: ${file}`));
 
   touch(file, (err) => {
     if (err) {

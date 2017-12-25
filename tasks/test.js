@@ -26,7 +26,8 @@
 
 const path = require('path');
 const gulp = require('gulp');
-const gutil = require('gulp-util');
+const log = require('fancy-log');
+const colors = require('ansi-colors');
 const KarmaServer = require('karma').Server;
 const options = require('../conf.js');
 
@@ -48,7 +49,7 @@ gulp.task('saucelab', ['clean'], (done) => {
 
 gulp.task('travis', ['clean'], (done) => {
   if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
-    gutil.log(gutil.colors.grey('SauceLab environment not set, running classic test suite'));
+    log(colors.grey('SauceLab environment not set, running classic test suite'));
     startKarma('test', done);
   } else {
     startKarma('saucelab', done);
@@ -67,10 +68,10 @@ function startKarma(mode, done) {
   const configFile = path.join(options.root, fileName);
 
   const karma = new KarmaServer({configFile}, () => {
-    gutil.log(gutil.colors.grey('Calling done callback of Karma'));
+    log(colors.grey('Calling done callback of Karma'));
     done();
   });
 
-  gutil.log(gutil.colors.grey(`Running karma with configuration: ${fileName}`));
+  log(colors.grey(`Running karma with configuration: ${fileName}`));
   karma.start();
 }
