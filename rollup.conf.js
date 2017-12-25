@@ -34,6 +34,7 @@ module.exports = {
   output: {
     file: conf.dest,
     format: 'iife',
+    sourcemap: false,
   },
 
   legacy: true,
