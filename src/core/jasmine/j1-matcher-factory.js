@@ -78,14 +78,15 @@ export function jasmine1MatcherFactory(fn) {
     };
 
     const result = fn.apply(ctx, [ctx].concat(args));
+    const pass = isNot ? !result.pass : result.pass;
 
-    if (!result.pass) {
+    if (!pass) {
       // eslint-disable-next-line no-invalid-this
       this.message = function() {
         return negateMessage(isNot, result.message());
       };
     }
 
-    return result.pass;
+    return pass;
   };
 }
