@@ -31,7 +31,7 @@ describe('jasmine1MatcherFactory', () => {
     expect(j1Matcher).toBeDefined();
   });
 
-  it('once created', () => {
+  describe('once created', () => {
     let matcher;
     let j1Matcher;
 
@@ -61,7 +61,7 @@ describe('jasmine1MatcherFactory', () => {
       expect(result).toBe(true);
       expect(matcher).toHaveBeenCalled();
 
-      const args = matcher.calls.mostRecent().calls;
+      const args = matcher.calls.mostRecent().args;
 
       expect(args.length).toBe(3);
       expect(args[1]).toBe(arg0);
@@ -79,7 +79,7 @@ describe('jasmine1MatcherFactory', () => {
 
     it('should build error message', () => {
       const pass = false;
-      const message = jasmine.createSpy('message').and.callThrough('A {{not}} message');
+      const message = jasmine.createSpy('message').and.returnValue('A {{not}} message');
 
       matcher.and.returnValue({
         pass,
@@ -109,7 +109,7 @@ describe('jasmine1MatcherFactory', () => {
 
     it('should build negated error message', () => {
       const pass = true;
-      const message = jasmine.createSpy('message').and.callThrough('A {{not}} message');
+      const message = jasmine.createSpy('message').and.returnValue('A {{not}} message');
 
       matcher.and.returnValue({
         pass,
@@ -162,8 +162,7 @@ describe('jasmine1MatcherFactory', () => {
       expect(matcher).toHaveBeenCalled();
       expect(result).toBe(pass);
       expect(message).not.toHaveBeenCalled();
-      expect(jasmineContext.message).toBeDefined();
-      expect(jasmineContext).not.toBeDefined();
+      expect(jasmineContext.message).not.toBeDefined();
     });
   });
 });

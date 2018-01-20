@@ -23,6 +23,13 @@
  */
 
 /**
+ * The `not` placeholder.
+ * @type {string}
+ * @const
+ */
+const PLACEHOLDER = '{{not}}';
+
+/**
  * Return message with the appropriate negation:
  * - If `isNot` is `true`, then the pattern `{{not}}` will be replaced by `not`.
  * - Otherwise, the pattern `{{not}}` is replaced by an empty string.
@@ -36,7 +43,7 @@ export function negateMessage(isNot, message) {
     return '';
   }
 
-  const notKey = isNot ? '{{not}}' : '{{not}} ';
+  const notKey = isNot ? `${PLACEHOLDER}` : `${PLACEHOLDER} `;
   const notValue = isNot ? 'not' : '';
   return message.replace(notKey, notValue);
 }
