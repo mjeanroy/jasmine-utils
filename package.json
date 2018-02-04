@@ -48,7 +48,7 @@
     "karma-rollup-preprocessor": "5.1.1",
     "karma-safari-launcher": "1.0.0",
     "karma-sauce-launcher": "1.2.0",
-    "lodash": "4.17.4",
+    "lodash": "4.17.5",
     "phantomjs-prebuilt": "2.1.16",
     "q": "1.5.1",
     "rollup": "0.55.3",
