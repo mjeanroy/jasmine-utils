@@ -35,9 +35,9 @@ describe('toBeDOMElementWithAttributes', () => {
 
   it('should pass with a dom element with expected attributes', () => {
     const actual = div;
-    const equals = jasmine.createSpy('equals').and.callFake((x, y) => {
-      return jasmine.matchersUtil.equals(x, y);
-    });
+    const equals = jasmine.createSpy('equals').and.callFake((x, y) => (
+      jasmine.matchersUtil.equals(x, y)
+    ));
 
     const attrs = {foo: 'bar', bar: 'baz'};
     const result = toBeDOMElementWithAttributes({actual, equals}, attrs);
@@ -50,15 +50,16 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect HTMLNode {{not}} to be a DOM element with attributes [object Object] but was [object Object]`
+      `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
+      `but was [object Object]`
     );
   });
 
   it('should pass with a dom element with anything matcher', () => {
     const actual = div;
-    const equals = jasmine.createSpy('equals').and.callFake((x, y) => {
-      return jasmine.matchersUtil.equals(x, y);
-    });
+    const equals = jasmine.createSpy('equals').and.callFake((x, y) => (
+      jasmine.matchersUtil.equals(x, y)
+    ));
 
     const attrs = {foo: jasmine.anything(), bar: jasmine.anything()};
     const result = toBeDOMElementWithAttributes({actual, equals}, attrs);
@@ -71,15 +72,16 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect HTMLNode {{not}} to be a DOM element with attributes [object Object] but was [object Object]`
+      `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
+      `but was [object Object]`
     );
   });
 
   it('should not pass without a DOM element', () => {
     const actual = '<div></div>';
-    const equals = jasmine.createSpy('equals').and.callFake((x, y) => {
-      return jasmine.matchersUtil.equals(x, y);
-    });
+    const equals = jasmine.createSpy('equals').and.callFake((x, y) => (
+      jasmine.matchersUtil.equals(x, y)
+    ));
 
     const result = toBeDOMElementWithAttributes({actual, equals}, {foo: 'bar'});
 
@@ -97,9 +99,9 @@ describe('toBeDOMElementWithAttributes', () => {
 
   it('should not pass with a DOM element but not the expected attributes', () => {
     const actual = div;
-    const equals = jasmine.createSpy('equals').and.callFake((x, y) => {
-      return jasmine.matchersUtil.equals(x, y);
-    });
+    const equals = jasmine.createSpy('equals').and.callFake((x, y) => (
+      jasmine.matchersUtil.equals(x, y)
+    ));
 
     const result = toBeDOMElementWithAttributes({actual, equals}, {foo: 'baz', bar: 'baz'});
 
@@ -110,7 +112,8 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect HTMLNode {{not}} to be a DOM element with attributes [object Object] but was [object Object]`
+      `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
+      `but was [object Object]`
     );
   });
 });

@@ -42,7 +42,7 @@ describe('toBeDOMElementWithId', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect HTMLNode {{not}} to be a DOM element with id 'foo' but was 'foo'`
+      `Expect <div id="foo"> {{not}} to be a DOM element with id 'foo' but was 'foo'`
     );
   });
 
@@ -70,7 +70,7 @@ describe('toBeDOMElementWithId', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect HTMLNode {{not}} to be a DOM element with id 'bar' but was 'foo'`
+      `Expect <div id="foo"> {{not}} to be a DOM element with id 'bar' but was 'foo'`
     );
   });
 });

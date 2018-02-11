@@ -27,6 +27,6 @@ import {version} from '../../src/core/jasmine/version.js';
 describe('version', () => {
   it('should export jasmine major version', () => {
     expect(version).toBeDefined();
-    expect(version).toBe(2);
+    expect(version).toBe(3);
   });
 });
