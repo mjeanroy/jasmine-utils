@@ -37,11 +37,11 @@ import {pp} from '../../jasmine/pp.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
- export function toBeZero({actual}) {
-   return {
-     pass: actual === 0,
-     message() {
-       return `Expect ${pp(actual)} {{not}} to be zero`;
-     },
-   };
- }
+export function toBeZero({actual}) {
+  return {
+    pass: actual === 0,
+    message() {
+      return `Expect ${pp(actual)} {{not}} to be zero`;
+    },
+  };
+}

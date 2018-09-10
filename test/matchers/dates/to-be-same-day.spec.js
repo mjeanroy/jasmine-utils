@@ -37,7 +37,7 @@ describe('toBeSameDay', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`
+        `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`
     );
   });
 
@@ -52,7 +52,7 @@ describe('toBeSameDay', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`
+        `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`
     );
   });
 });

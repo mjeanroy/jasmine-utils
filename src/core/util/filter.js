@@ -22,19 +22,19 @@
  * THE SOFTWARE.
  */
 
- /**
-  * Apply a predicate function on all the values of an array (also supports array-like
-  * objects) and returns an array without elements that satisfied the predicate.
-  *
-  * The iteratee function will be called with three arguments:
-  *  - `value` The value for the given iteration.
-  *  - `index` The index of the value being iterated.
-  *  - `array` The array being traversed.
-  *
-  * @param {Array<*>} array The array to iterate.
-  * @param {function} predicate The filter function.
-  * @return {Array<*>} Array without filtered elements.
-  */
+/**
+ * Apply a predicate function on all the values of an array (also supports array-like
+ * objects) and returns an array without elements that satisfied the predicate.
+ *
+ * The iteratee function will be called with three arguments:
+ *  - `value` The value for the given iteration.
+ *  - `index` The index of the value being iterated.
+ *  - `array` The array being traversed.
+ *
+ * @param {Array<*>} array The array to iterate.
+ * @param {function} predicate The filter function.
+ * @return {Array<*>} Array without filtered elements.
+ */
 export function filter(array, predicate) {
   const results = [];
 

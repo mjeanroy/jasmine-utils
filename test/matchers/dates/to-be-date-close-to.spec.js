@@ -37,7 +37,7 @@ describe('toBeADateCloseTo', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect date ${pp(actual)} {{not}} to be close to ${pp(other)}`
+        `Expect date ${pp(actual)} {{not}} to be close to ${pp(other)}`
     );
   });
 
@@ -52,7 +52,7 @@ describe('toBeADateCloseTo', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect date ${pp(actual)} {{not}} to be close to ${pp(other)}`
+        `Expect date ${pp(actual)} {{not}} to be close to ${pp(other)}`
     );
   });
 
@@ -67,7 +67,7 @@ describe('toBeADateCloseTo', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect date ${pp(actual)} {{not}} to be close to ${pp(other)}`
+        `Expect date ${pp(actual)} {{not}} to be close to ${pp(other)}`
     );
   });
 });

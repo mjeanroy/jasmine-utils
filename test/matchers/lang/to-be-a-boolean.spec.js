@@ -35,7 +35,7 @@ describe('toBeABoolean', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect true {{not}} to be a boolean`
+        `Expect true {{not}} to be a boolean`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeABoolean', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be a boolean`
+        `Expect null {{not}} to be a boolean`
     );
   });
 });

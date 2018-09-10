@@ -39,7 +39,7 @@ describe('toBeAMap', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to be a Map`
+        `Expect ${pp(actual)} {{not}} to be a Map`
     );
   });
 
@@ -53,7 +53,7 @@ describe('toBeAMap', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be a Map`
+        `Expect [  ] {{not}} to be a Map`
     );
   });
 });

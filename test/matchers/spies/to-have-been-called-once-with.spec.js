@@ -112,7 +112,7 @@ describe('toHaveBeenCalledOnceWith', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s) with different arguments`
+        `Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s) with different arguments`
     );
   });
 });

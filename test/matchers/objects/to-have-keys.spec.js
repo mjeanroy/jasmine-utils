@@ -37,7 +37,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo' ]`
+        `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo' ]`
     );
   });
 
@@ -56,7 +56,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have keys [ 'foo' ]`
+        `Expect ${pp(actual)} {{not}} to have keys [ 'foo' ]`
     );
   });
 
@@ -70,7 +70,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'quix' ]`
+        `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'quix' ]`
     );
   });
 
@@ -89,7 +89,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`
+        `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`
     );
   });
 
@@ -103,7 +103,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'bar' ]`
+        `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'bar' ]`
     );
   });
 
@@ -122,7 +122,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have keys [ 'bar' ]`
+        `Expect ${pp(actual)} {{not}} to have keys [ 'bar' ]`
     );
   });
 
@@ -136,7 +136,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'bar' ]`
+        `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'bar' ]`
     );
   });
 
@@ -155,7 +155,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`
+        `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`
     );
   });
 });

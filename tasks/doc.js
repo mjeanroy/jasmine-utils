@@ -40,40 +40,40 @@ const matchers = path.join(options.src, 'core', 'matchers');
 
 gulp.task('docs', (done) => {
   listFiles(matchers)
-    // Read JSDoc
-    .then((files) => {
-      return Q.all(_.map(files, (file) => (
-        readFile(file).then((content) => {
-          const jsdoc = dox.parseComments(content, {raw: true});
-          const api = keepFunctions(jsdoc);
-          return parseComments(api);
-        })
-      )));
-    })
+      // Read JSDoc
+      .then((files) => {
+        return Q.all(_.map(files, (file) => (
+          readFile(file).then((content) => {
+            const jsdoc = dox.parseComments(content, {raw: true});
+            const api = keepFunctions(jsdoc);
+            return parseComments(api);
+          })
+        )));
+      })
 
-    // Generate Markdown
-    .then((comments) => {
-      return readFile(path.join(options.root, '.readme'))
-        .then((template) => Handlebars.compile(template))
-        .then((templateFn) => {
-          return templateFn({
-            matchers: _.map(comments, (comment) => comment[0]),
-          });
-        });
-    })
+      // Generate Markdown
+      .then((comments) => {
+        return readFile(path.join(options.root, '.readme'))
+            .then((template) => Handlebars.compile(template))
+            .then((templateFn) => {
+              return templateFn({
+                matchers: _.map(comments, (comment) => comment[0]),
+              });
+            });
+      })
 
-    // Write Markdown
-    .then((result) => {
-      return writeFile(path.join(options.root, 'README.md'), result);
-    })
+      // Write Markdown
+      .then((result) => {
+        return writeFile(path.join(options.root, 'README.md'), result);
+      })
 
-    .catch((err) => {
-      log(colors.red(`Error occured while generating documentation: ${err}`));
-    })
+      .catch((err) => {
+        log(colors.red(`Error occured while generating documentation: ${err}`));
+      })
 
-    .finally(() => {
-      done();
-    });
+      .finally(() => {
+        done();
+      });
 });
 
 /**
@@ -92,9 +92,9 @@ function listFiles(dir) {
       deferred.reject(err);
     } else {
       deferred.resolve(_.chain(files)
-        .reject((f) => path.basename(f) === 'index.js')
-        .sortBy((f) => path.basename(f))
-        .value());
+          .reject((f) => path.basename(f) === 'index.js')
+          .sortBy((f) => path.basename(f))
+          .value());
     }
   });
 
@@ -194,24 +194,24 @@ function parseComments(comments) {
       code: comment.code,
 
       since: _(tags.since)
-        .map('string')
-        .map(trimAll)
-        .value()[0],
+          .map('string')
+          .map(trimAll)
+          .value()[0],
 
       messages: _(tags.message)
-        .map('string')
-        .map(trimAll)
-        .value(),
+          .map('string')
+          .map(trimAll)
+          .value(),
 
       examples: _(tags.example)
-        .map('string')
-        .map(trimAll)
-        .value(),
+          .map('string')
+          .map(trimAll)
+          .value(),
 
       params: _(tags.param)
-        .slice(1)
-        .map((param) => _.assign(param, {types: _.isEmpty(param.types) ? ['*'] : param.types}))
-        .value(),
+          .slice(1)
+          .map((param) => _.assign(param, {types: _.isEmpty(param.types) ? ['*'] : param.types}))
+          .value(),
     };
   });
 }

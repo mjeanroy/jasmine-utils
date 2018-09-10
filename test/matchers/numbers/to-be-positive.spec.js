@@ -35,7 +35,7 @@ describe('toBePositive', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be a positive number`
+        `Expect 1 {{not}} to be a positive number`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBePositive', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 0 {{not}} to be a positive number`
+        `Expect 0 {{not}} to be a positive number`
     );
   });
 
@@ -63,7 +63,7 @@ describe('toBePositive', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect -1 {{not}} to be a positive number`
+        `Expect -1 {{not}} to be a positive number`
     );
   });
 });

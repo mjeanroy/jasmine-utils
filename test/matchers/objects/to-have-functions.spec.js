@@ -40,7 +40,7 @@ describe('toHaveFunctions', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect object Object({ f1: spy on f1, f2: spy on f2 }) {{not}} to contain functions [ 'f1', 'f2' ]`
+        `Expect object Object({ f1: spy on f1, f2: spy on f2 }) {{not}} to contain functions [ 'f1', 'f2' ]`
     );
   });
 
@@ -68,7 +68,7 @@ describe('toHaveFunctions', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect object TestClass({  }) {{not}} to contain functions [ 'f1', 'f2' ]`
+        `Expect object TestClass({  }) {{not}} to contain functions [ 'f1', 'f2' ]`
     );
   });
 
@@ -86,7 +86,7 @@ describe('toHaveFunctions', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect object Object({ f1: spy on f1 }) {{not}} to contain functions [ 'f1', 'f2' ]`
+        `Expect object Object({ f1: spy on f1 }) {{not}} to contain functions [ 'f1', 'f2' ]`
     );
   });
 });

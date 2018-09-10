@@ -37,7 +37,7 @@ describe('toBeDateBeforeNow', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect date ${pp(actual)} {{not}} to be before now`
+        `Expect date ${pp(actual)} {{not}} to be before now`
     );
   });
 
@@ -52,7 +52,7 @@ describe('toBeDateBeforeNow', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect date ${pp(actual)} {{not}} to be before now`
+        `Expect date ${pp(actual)} {{not}} to be before now`
     );
   });
 });

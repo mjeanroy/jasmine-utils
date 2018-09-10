@@ -35,7 +35,7 @@ describe('toBeOk', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '' {{not}} to be ok (not null and not undefined)`
+        `Expect '' {{not}} to be ok (not null and not undefined)`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeOk', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect undefined {{not}} to be ok (not null and not undefined)`
+        `Expect undefined {{not}} to be ok (not null and not undefined)`
     );
   });
 
@@ -63,7 +63,7 @@ describe('toBeOk', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be ok (not null and not undefined)`
+        `Expect null {{not}} to be ok (not null and not undefined)`
     );
   });
 });

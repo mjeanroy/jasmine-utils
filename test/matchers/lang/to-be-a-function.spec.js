@@ -35,7 +35,7 @@ describe('toBeAFunction', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Function {{not}} to be a function`
+        `Expect Function {{not}} to be a function`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeAFunction', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be a function`
+        `Expect null {{not}} to be a function`
     );
   });
 });

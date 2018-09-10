@@ -35,7 +35,7 @@ describe('toBeFloat', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1.5 {{not}} to be a float`
+        `Expect 1.5 {{not}} to be a float`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeFloat', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '1.5' {{not}} to be a float`
+        `Expect '1.5' {{not}} to be a float`
     );
   });
 
@@ -63,7 +63,7 @@ describe('toBeFloat', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect NaN {{not}} to be a float`
+        `Expect NaN {{not}} to be a float`
     );
   });
 
@@ -77,7 +77,7 @@ describe('toBeFloat', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Infinity {{not}} to be a float`
+        `Expect Infinity {{not}} to be a float`
     );
   });
 
@@ -91,7 +91,7 @@ describe('toBeFloat', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be a float`
+        `Expect 1 {{not}} to be a float`
     );
   });
 });

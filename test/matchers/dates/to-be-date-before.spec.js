@@ -37,7 +37,7 @@ describe('toBeDateBefore', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`
+        `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`
     );
   });
 
@@ -52,7 +52,7 @@ describe('toBeDateBefore', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`
+        `Expect date ${pp(actual)} {{not}} to be before ${pp(lower)}`
     );
   });
 });

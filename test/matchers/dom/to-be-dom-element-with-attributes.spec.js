@@ -50,8 +50,8 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
-      `but was [object Object]`
+        `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
+        `but was [object Object]`
     );
   });
 
@@ -72,8 +72,8 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
-      `but was [object Object]`
+        `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
+        `but was [object Object]`
     );
   });
 
@@ -93,7 +93,7 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '<div></div>' {{not}} to be a DOM element`
+        `Expect '<div></div>' {{not}} to be a DOM element`
     );
   });
 
@@ -112,8 +112,8 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
-      `but was [object Object]`
+        `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
+        `but was [object Object]`
     );
   });
 });

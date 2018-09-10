@@ -36,7 +36,7 @@ describe('toHaveSameSizeAs', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 1, 2, 3 ] {{not}} to have same size as [ 4, 5, 6 ]`
+        `Expect [ 1, 2, 3 ] {{not}} to have same size as [ 4, 5, 6 ]`
     );
   });
 
@@ -51,7 +51,7 @@ describe('toHaveSameSizeAs', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({ bar: 'foo' })`
+        `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({ bar: 'foo' })`
     );
   });
 
@@ -66,7 +66,7 @@ describe('toHaveSameSizeAs', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({  })`
+        `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({  })`
     );
   });
 });

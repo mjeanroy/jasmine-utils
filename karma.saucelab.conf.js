@@ -93,7 +93,7 @@ module.exports = (config) => {
 
     reporters: ['dots', 'saucelabs'],
     browsers: _.keys(browsers).concat(
-      'PhantomJS'
+        'PhantomJS'
     ),
 
     concurrency: 1,

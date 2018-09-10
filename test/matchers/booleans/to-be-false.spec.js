@@ -35,7 +35,7 @@ describe('toBeFalse', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect false {{not}} to be false`
+        `Expect false {{not}} to be false`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeFalse', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect true {{not}} to be false`
+        `Expect true {{not}} to be false`
     );
   });
 });

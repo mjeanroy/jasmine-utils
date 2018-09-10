@@ -35,7 +35,7 @@ describe('toBeSorted', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, 1, 2, 3 ] {{not}} to be sorted`
+        `Expect [ 0, 1, 2, 3 ] {{not}} to be sorted`
     );
   });
 
@@ -53,7 +53,7 @@ describe('toBeSorted', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`
+        `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`
     );
 
     expect(comparator).toHaveBeenCalled();
@@ -69,7 +69,7 @@ describe('toBeSorted', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`
+        `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`
     );
   });
 });

@@ -38,7 +38,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be extensible`
+        `Expect null {{not}} to be extensible`
     );
   });
 
@@ -52,7 +52,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect undefined {{not}} to be extensible`
+        `Expect undefined {{not}} to be extensible`
     );
   });
 
@@ -66,7 +66,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be extensible`
+        `Expect 1 {{not}} to be extensible`
     );
   });
 
@@ -80,7 +80,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '' {{not}} to be extensible`
+        `Expect '' {{not}} to be extensible`
     );
   });
 
@@ -94,7 +94,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect true {{not}} to be extensible`
+        `Expect true {{not}} to be extensible`
     );
   });
 
@@ -108,7 +108,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({  }) {{not}} to be extensible`
+        `Expect Object({  }) {{not}} to be extensible`
     );
   });
 
@@ -122,7 +122,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be extensible`
+        `Expect [  ] {{not}} to be extensible`
     );
   });
 
@@ -138,7 +138,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({  }) {{not}} to be extensible`
+        `Expect Object({  }) {{not}} to be extensible`
     );
   });
 
@@ -154,7 +154,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be extensible`
+        `Expect [  ] {{not}} to be extensible`
     );
   });
 
@@ -170,7 +170,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({  }) {{not}} to be extensible`
+        `Expect Object({  }) {{not}} to be extensible`
     );
   });
 
@@ -186,7 +186,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be extensible`
+        `Expect [  ] {{not}} to be extensible`
     );
   });
 
@@ -202,7 +202,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({  }) {{not}} to be extensible`
+        `Expect Object({  }) {{not}} to be extensible`
     );
   });
 
@@ -218,7 +218,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be extensible`
+        `Expect [  ] {{not}} to be extensible`
     );
   });
 });

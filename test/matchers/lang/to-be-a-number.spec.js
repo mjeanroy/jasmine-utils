@@ -35,7 +35,7 @@ describe('toBeANumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 0 {{not}} to be a number`
+        `Expect 0 {{not}} to be a number`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeANumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be a number`
+        `Expect null {{not}} to be a number`
     );
   });
 });

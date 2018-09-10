@@ -35,7 +35,7 @@ describe('toContainsDistinctValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`
+        `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toContainsDistinctValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 1, 0, 1 ] {{not}} to contains only distinct values`
+        `Expect [ 1, 0, 1 ] {{not}} to contains only distinct values`
     );
   });
 
@@ -67,7 +67,7 @@ describe('toContainsDistinctValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`
+        `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`
     );
 
     expect(equals).toHaveBeenCalled();

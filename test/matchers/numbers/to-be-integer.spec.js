@@ -35,7 +35,7 @@ describe('toBeInteger', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '1' {{not}} to be an integer`
+        `Expect '1' {{not}} to be an integer`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeInteger', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect NaN {{not}} to be an integer`
+        `Expect NaN {{not}} to be an integer`
     );
   });
 
@@ -63,7 +63,7 @@ describe('toBeInteger', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Infinity {{not}} to be an integer`
+        `Expect Infinity {{not}} to be an integer`
     );
   });
 
@@ -77,7 +77,7 @@ describe('toBeInteger', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1.5 {{not}} to be an integer`
+        `Expect 1.5 {{not}} to be an integer`
     );
   });
 });

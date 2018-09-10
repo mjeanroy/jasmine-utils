@@ -35,7 +35,7 @@ describe('toBeNil', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be nil (null or undefined)`
+        `Expect null {{not}} to be nil (null or undefined)`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeNil', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect undefined {{not}} to be nil (null or undefined)`
+        `Expect undefined {{not}} to be nil (null or undefined)`
     );
   });
 
@@ -63,7 +63,7 @@ describe('toBeNil', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '' {{not}} to be nil (null or undefined)`
+        `Expect '' {{not}} to be nil (null or undefined)`
     );
   });
 });

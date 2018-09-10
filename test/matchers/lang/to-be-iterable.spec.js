@@ -39,7 +39,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be iterable`
+        `Expect null {{not}} to be iterable`
     );
   });
 
@@ -53,7 +53,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect undefined {{not}} to be iterable`
+        `Expect undefined {{not}} to be iterable`
     );
   });
 
@@ -67,7 +67,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be iterable`
+        `Expect [  ] {{not}} to be iterable`
     );
   });
 
@@ -81,7 +81,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '' {{not}} to be iterable`
+        `Expect '' {{not}} to be iterable`
     );
   });
 
@@ -97,7 +97,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to be iterable`
+        `Expect ${pp(actual)} {{not}} to be iterable`
     );
   });
 
@@ -113,7 +113,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to be iterable`
+        `Expect ${pp(actual)} {{not}} to be iterable`
     );
   });
 
@@ -138,7 +138,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to be iterable`
+        `Expect ${pp(actual)} {{not}} to be iterable`
     );
   });
 });

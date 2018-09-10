@@ -35,7 +35,7 @@ describe('toBeNull', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be null`
+        `Expect null {{not}} to be null`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeNull', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect undefined {{not}} to be null`
+        `Expect undefined {{not}} to be null`
     );
   });
 });

@@ -39,7 +39,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect size of [ 1, 2, 3 ] {{not}} to be 3 but was 3`
+        `Expect size of [ 1, 2, 3 ] {{not}} to be 3 but was 3`
     );
   });
 
@@ -53,7 +53,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect size of Object({ foo: 'bar' }) {{not}} to be 1 but was 1`
+        `Expect size of Object({ foo: 'bar' }) {{not}} to be 1 but was 1`
     );
   });
 
@@ -71,7 +71,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`
+        `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`
     );
   });
 
@@ -89,7 +89,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`
+        `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`
     );
   });
 
@@ -115,7 +115,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect size of ${pp(actual)} {{not}} to be 2 but was 2`
+        `Expect size of ${pp(actual)} {{not}} to be 2 but was 2`
     );
   });
 
@@ -129,7 +129,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect size of Object({ foo: 'bar' }) {{not}} to be 2 but was 1`
+        `Expect size of Object({ foo: 'bar' }) {{not}} to be 2 but was 1`
     );
   });
 });

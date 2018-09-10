@@ -30,8 +30,8 @@ const rollupConf = require('../rollup.conf.js');
 
 gulp.task('build', ['clean', 'lint'], () => {
   return rollup
-    .rollup(rollupConf)
-    .then((bundle) => {
-      return bundle.write(rollupConf.output);
-    });
+      .rollup(rollupConf)
+      .then((bundle) => {
+        return bundle.write(rollupConf.output);
+      });
 });

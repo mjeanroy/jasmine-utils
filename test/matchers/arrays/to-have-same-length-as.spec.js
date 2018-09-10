@@ -36,7 +36,7 @@ describe('toHaveSameLengthAs', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 1, 2, 3 ] {{not}} to have same length as [ 4, 5, 6 ]`
+        `Expect [ 1, 2, 3 ] {{not}} to have same length as [ 4, 5, 6 ]`
     );
   });
 
@@ -51,8 +51,8 @@ describe('toHaveSameLengthAs', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to have same ` +
-      `length as Object({ 0: 4, 1: 5, 2: 6, length: 3 })`
+        `Expect Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to have same ` +
+        `length as Object({ 0: 4, 1: 5, 2: 6, length: 3 })`
     );
   });
 
@@ -67,7 +67,7 @@ describe('toHaveSameLengthAs', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to have same length as [ 1, 2, 3 ]`
+        `Expect [  ] {{not}} to have same length as [ 1, 2, 3 ]`
     );
   });
 });

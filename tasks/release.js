@@ -48,25 +48,25 @@ const options = require('../conf.js');
 
     return gulp.src(src)
 
-      // Bump version.
-      .pipe(jsonFilter)
-      .pipe(bump({type: level}))
-      .pipe(gulp.dest(options.root))
-      .pipe(jsonFilter.restore)
+        // Bump version.
+        .pipe(jsonFilter)
+        .pipe(bump({type: level}))
+        .pipe(gulp.dest(options.root))
+        .pipe(jsonFilter.restore)
 
-      // Commit release.
-      .pipe(git.add({args: '-f'}))
-      .pipe(git.commit('release: release version'))
+        // Commit release.
+        .pipe(git.add({args: '-f'}))
+        .pipe(git.commit('release: release version'))
 
-      // Create tag.
-      .pipe(pkgJsonFilter)
-      .pipe(tagVersion())
-      .pipe(pkgJsonFilter.restore)
+        // Create tag.
+        .pipe(pkgJsonFilter)
+        .pipe(tagVersion())
+        .pipe(pkgJsonFilter.restore)
 
-      // Remove generated bundle and commit for the next release.
-      .pipe(bundleFilter)
-      .pipe(git.rm({args: '-r'}))
-      .pipe(git.commit('release: prepare next release'));
+        // Remove generated bundle and commit for the next release.
+        .pipe(bundleFilter)
+        .pipe(git.rm({args: '-r'}))
+        .pipe(git.commit('release: prepare next release'));
   });
 });
 

@@ -39,7 +39,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be empty`
+        `Expect [  ] {{not}} to be empty`
     );
   });
 
@@ -55,7 +55,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to be empty`
+        `Expect ${pp(actual)} {{not}} to be empty`
     );
   });
 
@@ -71,7 +71,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to be empty`
+        `Expect ${pp(actual)} {{not}} to be empty`
     );
   });
 
@@ -96,7 +96,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to be empty`
+        `Expect ${pp(actual)} {{not}} to be empty`
     );
   });
 
@@ -110,7 +110,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({  }) {{not}} to be empty`
+        `Expect Object({  }) {{not}} to be empty`
     );
   });
 
@@ -124,7 +124,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 1, 2, 3 ] {{not}} to be empty`
+        `Expect [ 1, 2, 3 ] {{not}} to be empty`
     );
   });
 
@@ -138,7 +138,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ foo: 'bar' }) {{not}} to be empty`
+        `Expect Object({ foo: 'bar' }) {{not}} to be empty`
     );
   });
 });

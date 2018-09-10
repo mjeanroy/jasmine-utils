@@ -67,7 +67,7 @@ export function toBeDOMElementWithAttributes({actual, equals}, attributes) {
     message() {
       let msg = `Expect ${pp(actual)} {{not}} to be a DOM element`;
       if (isElement) {
-          msg += ` with attributes ${attributes} but was ${actualAttributes}`;
+        msg += ` with attributes ${attributes} but was ${actualAttributes}`;
       }
 
       return msg;
