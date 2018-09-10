@@ -58,7 +58,7 @@
     "rollup-plugin-license": "0.7.0",
     "rollup-plugin-strip-banner": "0.2.0",
     "touch": "3.1.0",
-    "tslint": "5.9.1",
+    "tslint": "5.11.0",
     "typescript": "2.6.2"
   },
   "engines": {
