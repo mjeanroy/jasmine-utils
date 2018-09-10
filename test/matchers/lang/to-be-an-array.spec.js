@@ -35,7 +35,7 @@ describe('toBeAnArray', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 1, 2, 3 ] {{not}} to be an array`
+        `Expect [ 1, 2, 3 ] {{not}} to be an array`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeAnArray', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be an array`
+        `Expect Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be an array`
     );
   });
 });

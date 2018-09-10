@@ -37,7 +37,7 @@ describe('toBeInRange', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be between 0 and 2`
+        `Expect 1 {{not}} to be between 0 and 2`
     );
   });
 
@@ -53,7 +53,7 @@ describe('toBeInRange', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be between 1 and 2`
+        `Expect 1 {{not}} to be between 1 and 2`
     );
   });
 
@@ -69,7 +69,7 @@ describe('toBeInRange', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be between 0 and 1`
+        `Expect 1 {{not}} to be between 0 and 1`
     );
   });
 });

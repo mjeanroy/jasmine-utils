@@ -35,7 +35,7 @@ describe('toBeAString', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 'test' {{not}} to be a string`
+        `Expect 'test' {{not}} to be a string`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeAString', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be a string`
+        `Expect null {{not}} to be a string`
     );
   });
 });

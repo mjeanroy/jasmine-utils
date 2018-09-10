@@ -35,7 +35,7 @@ describe('toContainsOnlyFalstValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, false, '', null, NaN, undefined ] {{not}} to contains only falsy values`
+        `Expect [ 0, false, '', null, NaN, undefined ] {{not}} to contains only falsy values`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toContainsOnlyFalstValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, false, '', null, NaN, undefined, true ] {{not}} to contains only falsy values`
+        `Expect [ 0, false, '', null, NaN, undefined, true ] {{not}} to contains only falsy values`
     );
   });
 });

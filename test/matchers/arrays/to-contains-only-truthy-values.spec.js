@@ -35,7 +35,7 @@ describe('toContainsOnlyTruthyValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 1, 'foo', true ] {{not}} to contains only truthy values`
+        `Expect [ 1, 'foo', true ] {{not}} to contains only truthy values`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toContainsOnlyTruthyValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 1, 'foo', true, 0 ] {{not}} to contains only truthy values`
+        `Expect [ 1, 'foo', true, 0 ] {{not}} to contains only truthy values`
     );
   });
 });

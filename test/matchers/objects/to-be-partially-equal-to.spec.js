@@ -48,8 +48,8 @@ describe('toBePartiallyEqualTo', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }), Object({ id: 2, name: 'Jane Doe', age: 30 }) ] ` +
-      `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`
+        `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }), Object({ id: 2, name: 'Jane Doe', age: 30 }) ] ` +
+        `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`
     );
 
     expect(equals).toHaveBeenCalledWith(actual[0], jasmine.objectContaining(other[0]));
@@ -79,8 +79,8 @@ describe('toBePartiallyEqualTo', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }), Object({ id: 2, name: 'Jane Doe', age: 30 }) ] ` +
-      `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`
+        `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }), Object({ id: 2, name: 'Jane Doe', age: 30 }) ] ` +
+        `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`
     );
   });
 
@@ -105,8 +105,8 @@ describe('toBePartiallyEqualTo', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }) ] ` +
-      `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`
+        `Expect [ Object({ id: 1, name: 'John Doe', age: 20 }) ] ` +
+        `{{not}} to be partially equal to [ Object({ id: 1, name: 'John Doe' }), Object({ id: 2, name: 'Jane Doe' }) ]`
     );
   });
 
@@ -126,8 +126,8 @@ describe('toBePartiallyEqualTo', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ id: 1, name: 'John Doe', age: 20 }) {{not}} to be partially equal ` +
-      `to Object({ id: 1, name: 'John Doe' })`
+        `Expect Object({ id: 1, name: 'John Doe', age: 20 }) {{not}} to be partially equal ` +
+        `to Object({ id: 1, name: 'John Doe' })`
     );
 
     expect(equals).toHaveBeenCalledWith(actual, jasmine.objectContaining(other));
@@ -149,8 +149,8 @@ describe('toBePartiallyEqualTo', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ id: 1, name: 'John Doe', age: 20 }) {{not}} to be partially equal ` +
-      `to Object({ id: 1, name: 'John Doe' })`
+        `Expect Object({ id: 1, name: 'John Doe', age: 20 }) {{not}} to be partially equal ` +
+        `to Object({ id: 1, name: 'John Doe' })`
     );
   });
 });

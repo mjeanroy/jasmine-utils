@@ -43,7 +43,8 @@ describe('toBeDOMElementWithClasses', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect <div class="foo bar"> {{not}} to be a DOM element with classes [ 'foo', 'bar' ] but was [ 'foo', 'bar' ]`
+        `Expect <div class="foo bar"> {{not}} to be a DOM element with classes [ 'foo', 'bar' ] ` +
+        `but was [ 'foo', 'bar' ]`
     );
   });
 
@@ -58,7 +59,8 @@ describe('toBeDOMElementWithClasses', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect <div class="foo bar"> {{not}} to be a DOM element with classes [ 'foo', 'bar' ] but was [ 'foo', 'bar' ]`
+        `Expect <div class="foo bar"> {{not}} to be a DOM element with classes [ 'foo', 'bar' ] ` +
+        `but was [ 'foo', 'bar' ]`
     );
   });
 
@@ -72,7 +74,7 @@ describe('toBeDOMElementWithClasses', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '<div></div>' {{not}} to be a DOM element`
+        `Expect '<div></div>' {{not}} to be a DOM element`
     );
   });
 
@@ -87,8 +89,8 @@ describe('toBeDOMElementWithClasses', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect <div class="foo bar"> {{not}} to be a DOM element with classes [ 'foo', 'bar', 'baz' ] ` +
-      `but was [ 'foo', 'bar' ]`
+        `Expect <div class="foo bar"> {{not}} to be a DOM element with classes [ 'foo', 'bar', 'baz' ] ` +
+        `but was [ 'foo', 'bar' ]`
     );
   });
 });

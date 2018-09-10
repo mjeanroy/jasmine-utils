@@ -35,7 +35,7 @@ describe('toBeEvenNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 2 {{not}} to be an even number`
+        `Expect 2 {{not}} to be an even number`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeEvenNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be an even number`
+        `Expect 1 {{not}} to be an even number`
     );
   });
 });

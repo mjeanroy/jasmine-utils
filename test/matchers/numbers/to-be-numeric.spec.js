@@ -35,7 +35,7 @@ describe('toBeNumeric', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '1.5' {{not}} to be a numeric value`
+        `Expect '1.5' {{not}} to be a numeric value`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeNumeric', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect NaN {{not}} to be a numeric value`
+        `Expect NaN {{not}} to be a numeric value`
     );
   });
 
@@ -63,7 +63,7 @@ describe('toBeNumeric', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Infinity {{not}} to be a numeric value`
+        `Expect Infinity {{not}} to be a numeric value`
     );
   });
 });

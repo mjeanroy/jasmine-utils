@@ -36,7 +36,7 @@ describe('toBeInstanceOf', () => {
     });
 
     expect(result.message()).toBe(
-      'Expect Klass({ id: 0 }) {{not}} to be an instance of Function'
+        'Expect Klass({ id: 0 }) {{not}} to be an instance of Function'
     );
   });
 
@@ -50,7 +50,7 @@ describe('toBeInstanceOf', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '' {{not}} to be an instance of Function`
+        `Expect '' {{not}} to be an instance of Function`
     );
   });
 });

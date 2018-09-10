@@ -40,7 +40,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, 1, 2 ] {{not}} to verify condition`
+        `Expect [ 0, 1, 2 ] {{not}} to verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -65,7 +65,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to verify condition`
+        `Expect ${pp(actual)} {{not}} to verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -90,7 +90,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to verify condition`
+        `Expect ${pp(actual)} {{not}} to verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 'one', actual);
@@ -121,7 +121,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to verify condition`
+        `Expect ${pp(actual)} {{not}} to verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);
@@ -140,7 +140,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, 1, 2 ] {{not}} to verify "test message"`
+        `Expect [ 0, 1, 2 ] {{not}} to verify "test message"`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -159,7 +159,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, 1, 2 ] {{not}} to verify condition`
+        `Expect [ 0, 1, 2 ] {{not}} to verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);

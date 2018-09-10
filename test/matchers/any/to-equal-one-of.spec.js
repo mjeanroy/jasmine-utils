@@ -36,7 +36,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to equal one of [ 1, 2, 3 ]`
+        `Expect 1 {{not}} to equal one of [ 1, 2, 3 ]`
     );
   });
 
@@ -51,7 +51,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 10 {{not}} to equal one of [ 1, 2, 3 ]`
+        `Expect 10 {{not}} to equal one of [ 1, 2, 3 ]`
     );
   });
 
@@ -66,7 +66,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect false {{not}} to equal one of [ true, false ]`
+        `Expect false {{not}} to equal one of [ true, false ]`
     );
   });
 
@@ -81,7 +81,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect false {{not}} to equal one of [ true, true ]`
+        `Expect false {{not}} to equal one of [ true, true ]`
     );
   });
 
@@ -96,7 +96,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 'bar' {{not}} to equal one of [ 'foo', 'bar', 'baz' ]`
+        `Expect 'bar' {{not}} to equal one of [ 'foo', 'bar', 'baz' ]`
     );
   });
 
@@ -111,7 +111,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 'baz' {{not}} to equal one of [ 'foo', 'bar' ]`
+        `Expect 'baz' {{not}} to equal one of [ 'foo', 'bar' ]`
     );
   });
 
@@ -127,7 +127,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ id: 1 }) {{not}} to equal one of [ Object({ id: 1 }) ]`
+        `Expect Object({ id: 1 }) {{not}} to equal one of [ Object({ id: 1 }) ]`
     );
   });
 
@@ -151,7 +151,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ id: 2 }) {{not}} to equal one of [ Object({ id: 1 }), Object({ id: 2 }), Object({ id: 3 }) ]`
+        `Expect Object({ id: 2 }) {{not}} to equal one of [ Object({ id: 1 }), Object({ id: 2 }), Object({ id: 3 }) ]`
     );
   });
 });

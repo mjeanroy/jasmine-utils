@@ -36,7 +36,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be frozen`
+        `Expect null {{not}} to be frozen`
     );
   });
 
@@ -50,7 +50,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect undefined {{not}} to be frozen`
+        `Expect undefined {{not}} to be frozen`
     );
   });
 
@@ -64,7 +64,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be frozen`
+        `Expect 1 {{not}} to be frozen`
     );
   });
 
@@ -78,7 +78,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '' {{not}} to be frozen`
+        `Expect '' {{not}} to be frozen`
     );
   });
 
@@ -92,7 +92,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect true {{not}} to be frozen`
+        `Expect true {{not}} to be frozen`
     );
   });
 
@@ -106,7 +106,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({  }) {{not}} to be frozen`
+        `Expect Object({  }) {{not}} to be frozen`
     );
   });
 
@@ -120,7 +120,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be frozen`
+        `Expect [  ] {{not}} to be frozen`
     );
   });
 
@@ -135,7 +135,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({  }) {{not}} to be frozen`
+        `Expect Object({  }) {{not}} to be frozen`
     );
   });
 
@@ -151,7 +151,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be frozen`
+        `Expect [  ] {{not}} to be frozen`
     );
   });
 });

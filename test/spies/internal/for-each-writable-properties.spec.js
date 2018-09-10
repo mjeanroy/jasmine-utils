@@ -84,10 +84,10 @@ describe('forEachWritableProperties', () => {
     };
 
     Object.defineProperty(o, 'bar', {
-        value: 1,
-        configurable: true,
-        enumerable: false,
-        writable: true,
+      value: 1,
+      configurable: true,
+      enumerable: false,
+      writable: true,
     });
 
     const iteratee = jasmine.createSpy('iteratee');
@@ -108,10 +108,10 @@ describe('forEachWritableProperties', () => {
     };
 
     Object.defineProperty(o, 'bar', {
-        value: 1,
-        configurable: true,
-        enumerable: false,
-        writable: false,
+      value: 1,
+      configurable: true,
+      enumerable: false,
+      writable: false,
     });
 
     const iteratee = jasmine.createSpy('iteratee');

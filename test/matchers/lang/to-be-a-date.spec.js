@@ -36,7 +36,7 @@ describe('toBeADate', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to be a date`
+        `Expect ${pp(actual)} {{not}} to be a date`
     );
   });
 
@@ -50,7 +50,7 @@ describe('toBeADate', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be a date`
+        `Expect null {{not}} to be a date`
     );
   });
 });

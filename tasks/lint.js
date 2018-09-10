@@ -32,15 +32,15 @@ const options = require('../conf.js');
 
 gulp.task('eslint', ['clean'], () => {
   return gulp.src(getSources('js'))
-    .pipe(eslint())
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
 });
 
 gulp.task('tslint', () => {
   return gulp.src(getSources('ts'))
-    .pipe(tslint({formatter: 'verbose'}))
-    .pipe(tslint.report());
+      .pipe(tslint({formatter: 'verbose'}))
+      .pipe(tslint.report());
 });
 
 gulp.task('lint', ['eslint', 'tslint']);
@@ -54,6 +54,7 @@ gulp.task('lint', ['eslint', 'tslint']);
 function getSources(ext) {
   return [
     path.join(options.root, `*.${ext}`),
+    path.join(options.tasks,'**', `*.${ext}`),
     path.join(options.src, '**', `*.${ext}`),
     path.join(options.test, '**', `*.${ext}`),
     path.join(options.tasks, '**', `*.${ext}`),

@@ -40,7 +40,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`
+        `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -65,7 +65,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalled();
@@ -88,7 +88,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalled();
@@ -117,7 +117,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);
@@ -136,7 +136,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify "test message"`
+        `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify "test message"`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -155,7 +155,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`
+        `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -180,7 +180,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -205,7 +205,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 'zero', actual);
@@ -236,7 +236,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);

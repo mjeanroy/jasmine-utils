@@ -39,7 +39,7 @@ describe('toBeASet', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to be a Set`
+        `Expect ${pp(actual)} {{not}} to be a Set`
     );
   });
 
@@ -53,7 +53,7 @@ describe('toBeASet', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect [  ] {{not}} to be a Set`
+        `Expect [  ] {{not}} to be a Set`
     );
   });
 });

@@ -35,7 +35,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be finite number`
+        `Expect 1 {{not}} to be finite number`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect '1' {{not}} to be finite number`
+        `Expect '1' {{not}} to be finite number`
     );
   });
 
@@ -63,7 +63,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect NaN {{not}} to be finite number`
+        `Expect NaN {{not}} to be finite number`
     );
   });
 
@@ -77,7 +77,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Infinity {{not}} to be finite number`
+        `Expect Infinity {{not}} to be finite number`
     );
   });
 
@@ -91,7 +91,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect -Infinity {{not}} to be finite number`
+        `Expect -Infinity {{not}} to be finite number`
     );
   });
 
@@ -105,7 +105,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect null {{not}} to be finite number`
+        `Expect null {{not}} to be finite number`
     );
   });
 });

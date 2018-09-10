@@ -22,19 +22,19 @@
  * THE SOFTWARE.
  */
 
- /**
-  * Apply a predicate function on all the values of an array (also supports array-like
-  * objects) and returns an array of all intermediate results.
-  *
-  * The iteratee function will be called with three arguments:
-  *  - `value` The value for the given iteration.
-  *  - `index` The index of the value being iterated.
-  *  - `array` The array being traversed.
-  *
-  * @param {Array<*>} array The array to iterate.
-  * @param {function} iteratee The iteratee function.
-  * @return {Array<*>} Array containing all intermediate results.
-  */
+/**
+ * Apply a predicate function on all the values of an array (also supports array-like
+ * objects) and returns an array of all intermediate results.
+ *
+ * The iteratee function will be called with three arguments:
+ *  - `value` The value for the given iteration.
+ *  - `index` The index of the value being iterated.
+ *  - `array` The array being traversed.
+ *
+ * @param {Array<*>} array The array to iterate.
+ * @param {function} iteratee The iteratee function.
+ * @return {Array<*>} Array containing all intermediate results.
+ */
 export function map(array, iteratee) {
   const results = [];
 

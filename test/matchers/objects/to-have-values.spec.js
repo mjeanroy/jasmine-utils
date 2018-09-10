@@ -37,7 +37,7 @@ describe('toHaveValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ foo: 'bar', quix: 'foo' }) {{not}} to have values [ 'foo', 'bar' ]`
+        `Expect Object({ foo: 'bar', quix: 'foo' }) {{not}} to have values [ 'foo', 'bar' ]`
     );
   });
 
@@ -56,7 +56,7 @@ describe('toHaveValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`
+        `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`
     );
   });
 
@@ -70,7 +70,7 @@ describe('toHaveValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect Object({ foo: 'bar' }) {{not}} to have values [ 'foo', 'bar' ]`
+        `Expect Object({ foo: 'bar' }) {{not}} to have values [ 'foo', 'bar' ]`
     );
   });
 
@@ -88,7 +88,7 @@ describe('toHaveValues', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`
+        `Expect ${pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`
     );
   });
 });

@@ -52,13 +52,13 @@ describe('parseDate', () => {
 
     const expectedDate = new Date();
     expectedDate.setTime(Date.UTC(
-      Number(year),
-      Number(month) - 1,
-      Number(day),
-      Number(hours),
-      Number(minutes),
-      Number(seconds),
-      Number(millis)
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hours),
+        Number(minutes),
+        Number(seconds),
+        Number(millis)
     ));
 
     expect(result).toEqual(expectedDate);
@@ -82,13 +82,13 @@ describe('parseDate', () => {
 
     const expectedDate = new Date();
     expectedDate.setTime(Date.UTC(
-      Number(year),
-      Number(month) - 1,
-      Number(day),
-      Number(hours) - Number(hOffset),
-      Number(minutes) - Number(mOffset),
-      Number(seconds),
-      Number(millis)
+        Number(year),
+        Number(month) - 1,
+        Number(day),
+        Number(hours) - Number(hOffset),
+        Number(minutes) - Number(mOffset),
+        Number(seconds),
+        Number(millis)
     ));
 
     expect(result).toEqual(expectedDate);

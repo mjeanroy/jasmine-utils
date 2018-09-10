@@ -35,7 +35,7 @@ describe('toHaveLength', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect length of [ 1, 2, 3 ] {{not}} to be 3 but was 3`
+        `Expect length of [ 1, 2, 3 ] {{not}} to be 3 but was 3`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toHaveLength', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect length of Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be 3 but was 3`
+        `Expect length of Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be 3 but was 3`
     );
   });
 
@@ -63,7 +63,7 @@ describe('toHaveLength', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect length of [  ] {{not}} to be 2 but was 0`
+        `Expect length of [  ] {{not}} to be 2 but was 0`
     );
   });
 });

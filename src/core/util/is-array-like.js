@@ -50,11 +50,11 @@ export function isArrayLike(obj) {
   }
 
   if (isFunction(obj) && obj !== window) {
-      return false;
+    return false;
   }
 
   if (isDOMElement(obj) && obj.length) {
-      return true;
+    return true;
   }
 
   const length = obj.length;

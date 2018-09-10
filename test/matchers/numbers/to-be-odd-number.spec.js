@@ -35,7 +35,7 @@ describe('toBeOddNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 1 {{not}} to be an odd number`
+        `Expect 1 {{not}} to be an odd number`
     );
   });
 
@@ -49,7 +49,7 @@ describe('toBeOddNumber', () => {
     });
 
     expect(result.message()).toBe(
-      `Expect 2 {{not}} to be an odd number`
+        `Expect 2 {{not}} to be an odd number`
     );
   });
 });
