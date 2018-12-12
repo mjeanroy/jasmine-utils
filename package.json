@@ -52,7 +52,7 @@
     "phantomjs-prebuilt": "2.1.16",
     "q": "1.5.1",
     "rollup": "0.67.4",
-    "rollup-plugin-babel": "3.0.7",
+    "rollup-plugin-babel": "4.1.0",
     "rollup-plugin-esformatter": "0.5.0",
     "rollup-plugin-istanbul": "2.0.1",
     "rollup-plugin-license": "0.7.0",
