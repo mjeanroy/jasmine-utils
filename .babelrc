@@ -1,10 +1,5 @@
 {
   "presets": [
-    ["env", { "loose": true, "modules": false }]
-  ],
-
-  "plugins": [
-    "transform-undefined-to-void",
-    "external-helpers"
+    ["@babel/preset-env", { "loose": true, "modules": false }]
   ]
 }
