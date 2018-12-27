@@ -45,7 +45,7 @@ export function values(obj) {
 function objectValues(obj) {
   const vals = [];
 
-  for (let i in obj) {
+  for (const i in obj) {
     if (has(obj, i)) {
       vals.push(obj[i]);
     }
