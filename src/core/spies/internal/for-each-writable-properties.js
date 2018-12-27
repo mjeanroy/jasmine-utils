@@ -46,7 +46,7 @@ export function forEachWritableProperties(obj, iterator) {
     while (current) {
       // First, use the for .. in loop.
       // eslint-disable-next-line guard-for-in
-      for (let i in current) {
+      for (const i in current) {
         const prop = current[i];
         if (!foundProps.has(prop)) {
           foundProps.add(prop);

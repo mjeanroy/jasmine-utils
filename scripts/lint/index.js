@@ -26,52 +26,49 @@
 
 const path = require('path');
 const gulp = require('gulp');
-const log = require('fancy-log');
-const colors = require('ansi-colors');
-const KarmaServer = require('karma').Server;
-const options = require('../conf.js');
-
-gulp.task('test', ['clean', 'lint'], (done) => {
-  startKarma('test', done);
-});
-
-gulp.task('tdd', ['clean'], (done) => {
-  startKarma('tdd', done);
-});
-
-gulp.task('coverage', ['clean'], (done) => {
-  startKarma('coverage', done);
-});
-
-gulp.task('saucelab', ['clean'], (done) => {
-  startKarma('saucelab', done);
-});
-
-gulp.task('travis', ['clean'], (done) => {
-  if (!process.env.SAUCE_USERNAME || !process.env.SAUCE_ACCESS_KEY) {
-    log(colors.grey('SauceLab environment not set, running classic test suite'));
-    startKarma('test', done);
-  } else {
-    startKarma('saucelab', done);
-  }
-});
+const eslint = require('gulp-eslint');
+const tslint = require('gulp-tslint');
+const config = require('../config.js');
 
 /**
- * Start Karma Server and run unit tests.
+ * Get all potential sources to run against lint validator.
  *
- * @param {string} mode The test mode (test or tdd).
- * @param {function} done The done callback.
+ * @param {string} ext The file exstension to look for.
  * @return {void}
  */
-function startKarma(mode, done) {
-  const fileName = `karma.${mode}.conf.js`;
-  const configFile = path.join(options.root, fileName);
-
-  const karma = new KarmaServer({configFile}, () => {
-    log(colors.grey('Calling done callback of Karma'));
-    done();
-  });
-
-  log(colors.grey(`Running karma with configuration: ${fileName}`));
-  karma.start();
+function getSources(ext) {
+  return [
+    path.join(config.root, `*.${ext}`),
+    path.join(config.scripts, '**', `*.${ext}`),
+    path.join(config.src, '**', `*.${ext}`),
+    path.join(config.test, '**', `*.${ext}`),
+  ];
 }
+
+/**
+ * Run ESLint against JS source files.
+ *
+ * @return {WritableStream} The stream pipeline.
+ */
+function runESLint() {
+  return gulp.src(getSources('js'))
+      .pipe(eslint())
+      .pipe(eslint.format())
+      .pipe(eslint.failAfterError());
+}
+
+/**
+ * Run TSLint against TypeScript source files.
+ *
+ * @return {WritableStream} The stream pipeline.
+ */
+function runTSLint() {
+  return gulp.src(getSources('ts'))
+      .pipe(tslint({formatter: 'verbose'}))
+      .pipe(tslint.report());
+}
+
+module.exports = gulp.series(
+    runESLint,
+    runTSLint
+);

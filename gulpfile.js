@@ -22,11 +22,27 @@
  * THE SOFTWARE.
  */
 
-const fs = require('fs');
-const path = require('path');
-const conf = require('./conf.js');
-const tasks = path.join(conf.root, 'tasks');
+const gulp = require('gulp');
+const clean = require('./scripts/clean');
+const lint = require('./scripts/lint');
+const build = require('./scripts/build');
+const test = require('./scripts/test');
+const docs = require('./scripts/docs');
+const release = require('./scripts/release');
 
-fs.readdirSync(tasks).forEach((file) => {
-  require(path.join(tasks, file));
-});
+const prebuild = gulp.series(clean, lint);
+const prerelease = gulp.series(prebuild, build, test.travis, docs);
+
+module.exports = {
+  'clean': clean,
+  'lint': lint,
+  'build': gulp.series(prebuild, build),
+  'tdd': test.tdd,
+  'test': gulp.series(prebuild, test.test),
+  'travis': gulp.series(prebuild, test.travis),
+  'coverage': gulp.series(clean, test.coverage),
+  'docs': docs,
+  'release:patch': gulp.series(prerelease, release.patch),
+  'release:minor': gulp.series(prerelease, release.minor),
+  'release:major': gulp.series(prerelease, release.major),
+};

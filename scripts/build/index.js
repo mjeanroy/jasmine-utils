@@ -22,34 +22,15 @@
  * THE SOFTWARE.
  */
 
-/**
- * Karma Configuration.
- */
+'use strict';
 
-const path = require('path');
-const _ = require('lodash');
-const istanbul = require('rollup-plugin-istanbul');
-const commonConf = require('./karma.common.conf.js');
-const conf = require('./conf.js');
+const rollup = require('rollup');
+const rollupConf = require('./rollup.conf.js');
 
-module.exports = (config) => {
-  const c = commonConf(config);
-
-  // Add rollup-plugin-istanbul.
-  c.rollupPreprocessor.plugins.unshift(istanbul({
-    exclude: [
-      path.join(conf.test, '**', '*.js'),
-    ],
-  }));
-
-  config.set(_.extend(c, {
-    autoWatch: false,
-    singleRun: true,
-    browsers: ['Chrome'],
-    reporters: ['coverage', 'progress'],
-    coverageReporter: {
-      type: 'html',
-      dir: conf.coverage,
-    },
-  }));
+module.exports = function build() {
+  return rollup
+      .rollup(rollupConf)
+      .then((bundle) => (
+        bundle.write(rollupConf.output)
+      ));
 };

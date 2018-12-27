@@ -27,9 +27,27 @@
  */
 
 const _ = require('lodash');
-const conf = require('./karma.common.conf.js');
+const conf = require('./karma.common.conf');
 
 const browsers = {
+  SL_safari_8: {
+    base: 'SauceLabs',
+    browserName: 'safari',
+    version: '8.0',
+  },
+
+  SL_safari_9: {
+    base: 'SauceLabs',
+    browserName: 'safari',
+    version: '9.0',
+  },
+
+  SL_safari_10: {
+    base: 'SauceLabs',
+    browserName: 'safari',
+    version: '10.0',
+  },
+
   SL_Win10_edge: {
     base: 'SauceLabs',
     browserName: 'microsoftedge',
@@ -66,24 +84,6 @@ const browsers = {
     base: 'SauceLabs',
     browserName: 'firefox',
   },
-
-  SL_safari_8: {
-    base: 'SauceLabs',
-    browserName: 'safari',
-    version: '8.0',
-  },
-
-  SL_safari_9: {
-    base: 'SauceLabs',
-    browserName: 'safari',
-    version: '9.0',
-  },
-
-  SL_safari_10: {
-    base: 'SauceLabs',
-    browserName: 'safari',
-    version: '10.0',
-  },
 };
 
 module.exports = (config) => {
@@ -91,17 +91,31 @@ module.exports = (config) => {
     autoWatch: false,
     singleRun: true,
 
-    reporters: ['dots', 'saucelabs'],
-    browsers: _.keys(browsers).concat(
-        'PhantomJS'
-    ),
+    reporters: [
+      'dots',
+      'saucelabs',
+    ],
+
+    browsers: _.keys(browsers).concat([
+      'CustomHeadlessChrome',
+      'PhantomJS',
+    ]),
 
     concurrency: 1,
     captureTimeout: 120000,
     browserNoActivityTimeout: 60000,
     browserDisconnectTimeout: 20000,
     browserDisconnectTolerance: 1,
-    customLaunchers: browsers,
+
+    customLaunchers: _.extend(browsers, {
+      CustomHeadlessChrome: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--disable-translate',
+          '--disable-extensions',
+        ],
+      },
+    }),
 
     sauceLabs: {
       build: `TRAVIS #${process.env.TRAVIS_BUILD_NUMBER} (${process.env.TRAVIS_BUILD_ID})`,
