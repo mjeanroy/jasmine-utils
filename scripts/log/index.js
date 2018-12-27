@@ -22,24 +22,32 @@
  * THE SOFTWARE.
  */
 
+'use strict';
+
+const log = require('fancy-log');
+const colors = require('ansi-colors');
+
 /**
- * Karma Configuration.
+ * Log message to output using `DEBUG` level.
+ *
+ * @param {string} msg Message to log.
+ * @return {void}
  */
+function debug(msg) {
+  log(colors.grey(msg));
+}
 
-const _ = require('lodash');
-const commonConf = require('./karma.common.conf.js');
-const conf = require('./conf.js');
+/**
+ * Log message to output using `ERROR` level.
+ *
+ * @param {string} msg Message to log.
+ * @return {void}
+ */
+function error(msg) {
+  log(colors.red(msg));
+}
 
-module.exports = (config) => {
-  config.set(_.extend(commonConf(config), {
-    autoWatch: false,
-    singleRun: true,
-    browsers: ['PhantomJS'],
-    reporters: ['coverage', 'progress'],
-
-    coverageReporter: {
-      type: 'html',
-      dir: conf.coverage,
-    },
-  }));
+module.exports = {
+  debug,
+  error,
 };

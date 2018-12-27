@@ -22,41 +22,20 @@
  * THE SOFTWARE.
  */
 
-'use strict';
-
-const path = require('path');
-const gulp = require('gulp');
-const eslint = require('gulp-eslint');
-const tslint = require('gulp-tslint');
-const options = require('../conf.js');
-
-gulp.task('eslint', ['clean'], () => {
-  return gulp.src(getSources('js'))
-      .pipe(eslint())
-      .pipe(eslint.format())
-      .pipe(eslint.failAfterError());
-});
-
-gulp.task('tslint', () => {
-  return gulp.src(getSources('ts'))
-      .pipe(tslint({formatter: 'verbose'}))
-      .pipe(tslint.report());
-});
-
-gulp.task('lint', ['eslint', 'tslint']);
-
 /**
- * Get all potential sources to run against lint validator.
- *
- * @param {string} ext The file exstension to look for.
- * @return {void}
+ * Karma Configuration.
  */
-function getSources(ext) {
-  return [
-    path.join(options.root, `*.${ext}`),
-    path.join(options.tasks,'**', `*.${ext}`),
-    path.join(options.src, '**', `*.${ext}`),
-    path.join(options.test, '**', `*.${ext}`),
-    path.join(options.tasks, '**', `*.${ext}`),
-  ];
-}
+
+const _ = require('lodash');
+const conf = require('./karma.common.conf');
+
+module.exports = (config) => {
+  config.set(_.extend(conf(config), {
+    autoWatch: true,
+    browsers: ['Chrome'],
+    captureTimeout: 10000,
+    singleRun: false,
+    reportSlowerThan: 2000,
+    reporters: ['progress', 'kjhtml'],
+  }));
+};

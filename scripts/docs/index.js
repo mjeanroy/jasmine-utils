@@ -29,52 +29,68 @@ const path = require('path');
 const _ = require('lodash');
 const Q = require('q');
 const touch = require('touch');
-const log = require('fancy-log');
-const colors = require('ansi-colors');
-const gulp = require('gulp');
 const dox = require('dox');
 const Handlebars = require('handlebars');
 const glob = require('glob');
-const options = require('../conf.js');
-const matchers = path.join(options.src, 'core', 'matchers');
+const log = require('../log');
+const config = require('../config.js');
 
-gulp.task('docs', (done) => {
-  listFiles(matchers)
-      // Read JSDoc
-      .then((files) => {
-        return Q.all(_.map(files, (file) => (
-          readFile(file).then((content) => {
-            const jsdoc = dox.parseComments(content, {raw: true});
-            const api = keepFunctions(jsdoc);
-            return parseComments(api);
-          })
-        )));
-      })
-
-      // Generate Markdown
-      .then((comments) => {
-        return readFile(path.join(options.root, '.readme'))
-            .then((template) => Handlebars.compile(template))
-            .then((templateFn) => {
-              return templateFn({
-                matchers: _.map(comments, (comment) => comment[0]),
-              });
-            });
-      })
-
-      // Write Markdown
-      .then((result) => {
-        return writeFile(path.join(options.root, 'README.md'), result);
-      })
+module.exports = function docs(done) {
+  listFiles(path.join(config.src, 'core', 'matchers'))
+      .then((files) => readJsDoc(files))
+      .then((comments) => generateMarkdown(comments))
+      .then((result) => writeMarkdown(result))
 
       .catch((err) => {
-        log(colors.red(`Error occured while generating documentation: ${err}`));
+        log.error(`Error occured while generating documentation: ${err}`);
       })
 
       .finally(() => {
         done();
       });
-});
+};
+
+/**
+ * Read JS Doc from given input files.
+ *
+ * @param {Array<string>} files Given input files.
+ * @return {Promise<Array<Object>>} The promise, resolved with JS Doc comments.
+ */
+function readJsDoc(files) {
+  return Q.all(_.map(files, (file) => (
+    readFile(file).then((content) => {
+      const jsdoc = dox.parseComments(content, {raw: true});
+      const api = keepFunctions(jsdoc);
+      return parseComments(api);
+    })
+  )));
+}
+
+/**
+ * Generate documentation markdown.
+ *
+ * @param {Array<Object>} comments The comments, as structured object.
+ * @return {Promise<string>} The promise, resolved with generated documentation.
+ */
+function generateMarkdown(comments) {
+  return readFile(path.join(__dirname, 'readme-template.txt'))
+      .then((template) => Handlebars.compile(template))
+      .then((templateFn) => {
+        return templateFn({
+          matchers: _.map(comments, (comment) => comment[0]),
+        });
+      });
+}
+
+/**
+ * Write the markdown documentation to the `README` file.
+ *
+ * @param {string} result The markdown documentation.
+ * @return {Promise<Void>} The done promise.
+ */
+function writeMarkdown(result) {
+  return writeFile(config.readme, result);
+}
 
 /**
  * List all files in a directory asynchronously.
@@ -112,7 +128,7 @@ function listFiles(dir) {
 function readFile(file) {
   const deferred = Q.defer();
 
-  log(colors.grey(`Reading: ${file}`));
+  log.debug(`Reading: ${file}`);
 
   fs.readFile(file, 'utf-8', (err, data) => {
     if (err) {
@@ -137,13 +153,13 @@ function readFile(file) {
 function writeFile(file, content) {
   const deferred = Q.defer();
 
-  log(colors.grey(`Writing: ${file}`));
+  log.debug(`Writing: ${file}`);
 
   touch(file, (err) => {
     if (err) {
       deferred.reject(err);
     } else {
-      fs.writeFile(file, content, 'utf-8', (err, data) => {
+      fs.writeFile(file, content, 'utf-8', (err) => {
         if (err) {
           deferred.reject(err);
         } else {

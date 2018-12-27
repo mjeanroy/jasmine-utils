@@ -22,20 +22,14 @@
  * THE SOFTWARE.
  */
 
-/**
- * Karma Configuration.
- */
+'use strict';
 
-const _ = require('lodash');
-const conf = require('./karma.common.conf.js');
+const del = require('del');
+const config = require('../config.js');
 
-module.exports = (config) => {
-  config.set(_.extend(conf(config), {
-    autoWatch: true,
-    browsers: ['Chrome'],
-    captureTimeout: 10000,
-    singleRun: false,
-    reportSlowerThan: 2000,
-    reporters: ['progress', 'kjhtml'],
-  }));
+module.exports = function clean() {
+  return del([
+    config.dest,
+    config.coverage,
+  ]);
 };

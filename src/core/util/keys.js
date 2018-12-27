@@ -29,7 +29,7 @@ import {isMap} from './is-map.js';
 const objectKeys = Object.keys || function _keys(o) {
   const results = [];
 
-  for (let key in o) {
+  for (const key in o) {
     if (has(o, key)) {
       results.push(key);
     }

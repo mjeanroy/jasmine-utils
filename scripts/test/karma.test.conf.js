@@ -22,16 +22,36 @@
  * THE SOFTWARE.
  */
 
-'use strict';
+/**
+ * Karma Configuration.
+ */
 
-const gulp = require('gulp');
-const rollup = require('rollup');
-const rollupConf = require('../rollup.conf.js');
+const _ = require('lodash');
+const commonConf = require('./karma.common.conf');
 
-gulp.task('build', ['clean', 'lint'], () => {
-  return rollup
-      .rollup(rollupConf)
-      .then((bundle) => {
-        return bundle.write(rollupConf.output);
-      });
-});
+module.exports = (config) => {
+  config.set(_.extend(commonConf(config), {
+    autoWatch: false,
+    singleRun: true,
+    concurrency: 1,
+
+    browsers: [
+      'CustomHeadlessChrome',
+      'PhantomJS',
+    ],
+
+    reporters: [
+      'progress',
+    ],
+
+    customLaunchers: {
+      CustomHeadlessChrome: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--disable-translate',
+          '--disable-extensions',
+        ],
+      },
+    },
+  }));
+};

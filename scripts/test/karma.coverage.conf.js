@@ -22,15 +22,51 @@
  * THE SOFTWARE.
  */
 
-'use strict';
+/**
+ * Karma Configuration.
+ */
 
-const gulp = require('gulp');
-const del = require('del');
-const conf = require('../conf.js');
+const path = require('path');
+const _ = require('lodash');
+const istanbul = require('rollup-plugin-istanbul');
+const commonConf = require('./karma.common.conf.js');
+const conf = require('../config.js');
 
-gulp.task('clean', () => {
-  return del([
-    conf.dest,
-    conf.coverage,
-  ]);
-});
+module.exports = (config) => {
+  const c = commonConf(config);
+
+  // Add rollup-plugin-istanbul.
+  c.rollupPreprocessor.plugins.unshift(istanbul({
+    exclude: [
+      path.join(conf.test, '**', '*.js'),
+    ],
+  }));
+
+  config.set(_.extend(c, {
+    autoWatch: false,
+    singleRun: true,
+    browsers: [
+      'ChromeHeadless',
+    ],
+
+    reporters: [
+      'coverage',
+      'progress',
+    ],
+
+    customLaunchers: {
+      CustomHeadlessChrome: {
+        base: 'ChromeHeadless',
+        flags: [
+          '--disable-translate',
+          '--disable-extensions',
+        ],
+      },
+    },
+
+    coverageReporter: {
+      type: 'html',
+      dir: conf.coverage,
+    },
+  }));
+};
