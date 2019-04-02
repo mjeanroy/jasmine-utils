@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.4.3",
-    "@babel/preset-env": "7.4.1",
+    "@babel/preset-env": "7.4.3",
     "@types/jasmine": "3.3.12",
     "ansi-colors": "3.2.4",
     "del": "4.1.0",
