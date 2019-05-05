@@ -28,6 +28,7 @@ const gulp = require('gulp');
 const git = require('gulp-git');
 const bump = require('gulp-bump');
 const tagVersion = require('gulp-tag-version');
+const log = require('../log');
 const config = require('../config.js');
 
 /**
