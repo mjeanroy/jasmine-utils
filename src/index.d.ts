@@ -90,6 +90,7 @@ declare namespace jasmine {
     toBeIterable(): MatcherResult;
     toBeNil(): MatcherResult;
     toBeNull(): MatcherResult;
+    toBeOk(): MatcherResult;
 
     // Numbers
     toBeEvenNumber(): MatcherResult;
