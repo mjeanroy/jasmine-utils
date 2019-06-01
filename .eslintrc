@@ -1,14 +1,23 @@
 {
-  "extends": "google",
+  "extends": [
+    "eslint:recommended",
+    "google"
+  ],
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module"
   },
   "env": {
-    "node": true
+    "es6": true,
+    "browser": true,
+    "jasmine": true,
+    "node": false
   },
   "rules": {
     "max-len": [2, 120, 2],
+    "no-console": ["error", {
+      "allow": ["warn", "error"]
+    }],
     "valid-jsdoc": [2, {
       "requireReturn": true,
       "requireParamDescription": true,

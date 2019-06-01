@@ -106,7 +106,7 @@ function createReleaseTask(type) {
       tagRelease,
       prepareNextRelease
   );
-};
+}
 
 module.exports = {
   patch: createReleaseTask('patch'),

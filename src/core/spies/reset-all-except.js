@@ -47,4 +47,4 @@ export function resetAllExcept(obj, methods = []) {
   });
 
   return obj;
-};
+}

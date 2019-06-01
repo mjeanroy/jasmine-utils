@@ -30,7 +30,7 @@ describe('isDate', () => {
     function tst() {
       // eslint-disable-next-line prefer-rest-params
       return isArguments(arguments);
-    };
+    }
 
     expect(tst()).toBe(true);
   });

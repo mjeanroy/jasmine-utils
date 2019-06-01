@@ -28,6 +28,7 @@ const path = require('path');
 const gulp = require('gulp');
 const eslint = require('gulp-eslint');
 const tslint = require('gulp-tslint');
+const log = require('../log');
 const config = require('../config.js');
 
 /**
@@ -51,7 +52,15 @@ function getSources(ext) {
  * @return {WritableStream} The stream pipeline.
  */
 function runESLint() {
-  return gulp.src(getSources('js'))
+  const inputs = getSources('js');
+
+  log.debug('Linting files: ');
+
+  inputs.forEach((input) => (
+    log.debug(`  ${input}`)
+  ));
+
+  return gulp.src(inputs)
       .pipe(eslint())
       .pipe(eslint.format())
       .pipe(eslint.failAfterError());
@@ -63,7 +72,15 @@ function runESLint() {
  * @return {WritableStream} The stream pipeline.
  */
 function runTSLint() {
-  return gulp.src(getSources('ts'))
+  const inputs = getSources('ts');
+
+  log.debug('Linting files: ');
+
+  inputs.forEach((input) => (
+    log.debug(`  ${input}`)
+  ));
+
+  return gulp.src(inputs)
       .pipe(tslint({formatter: 'verbose'}))
       .pipe(tslint.report());
 }

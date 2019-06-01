@@ -33,7 +33,7 @@ module.exports = {
   test: path.join(root, 'test'),
   entry: path.join(src, 'index.js'),
   dest: path.join(src, 'jasmine-utils.js'),
-  scripts: path.join(src, 'scripts'),
+  scripts: path.join(root, 'scripts'),
   doc: path.join(root, 'docs'),
   coverage: path.join(root, 'coverage'),
 

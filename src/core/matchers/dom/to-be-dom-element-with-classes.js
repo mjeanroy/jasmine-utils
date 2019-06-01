@@ -83,4 +83,4 @@ function toClassArray(classes) {
   const array = isArray(classes) ? classes : classes.split(' ');
   const trimmedArray = map(array, (className) => trim(className));
   return filter(trimmedArray, isFalsy);
-};
+}

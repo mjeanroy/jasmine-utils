@@ -1,0 +1,9 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": false,
+    "jasmine": false
+  }
+}
+  
