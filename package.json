@@ -39,7 +39,7 @@
     "karma-firefox-launcher": "1.2.0",
     "karma-ie-launcher": "1.0.0",
     "karma-jasmine": "3.1.1",
-    "karma-jasmine-html-reporter": "1.5.2",
+    "karma-jasmine-html-reporter": "1.5.3",
     "karma-opera-launcher": "1.0.0",
     "karma-phantomjs-launcher": "1.0.4",
     "karma-rollup-preprocessor": "7.0.5",
