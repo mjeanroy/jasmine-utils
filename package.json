@@ -52,7 +52,7 @@
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-esformatter": "2.0.1",
     "rollup-plugin-istanbul": "2.0.1",
-    "rollup-plugin-license": "0.13.0",
+    "rollup-plugin-license": "0.14.0",
     "rollup-plugin-strip-banner": "2.0.0",
     "touch": "3.1.0",
     "tslint": "5.16.0",
