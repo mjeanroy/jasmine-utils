@@ -27,7 +27,7 @@
  */
 
 const path = require('path');
-const babel = require('rollup-plugin-babel');
+const babel = require('@rollup/plugin-babel').default;
 const conf = require('../config.js');
 const entryPoint = path.join(conf.test, 'index.js');
 

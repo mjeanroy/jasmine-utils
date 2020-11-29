@@ -23,7 +23,7 @@
  */
 
 const path = require('path');
-const babel = require('rollup-plugin-babel');
+const babel = require('@rollup/plugin-babel').default;
 const stripBanner = require('rollup-plugin-strip-banner');
 const license = require('rollup-plugin-license');
 const esformatter = require('rollup-plugin-esformatter');
