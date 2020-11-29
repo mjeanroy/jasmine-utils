@@ -22,22 +22,31 @@
 # THE SOFTWARE.
 ##
 
-# Node/NPM
-/node_modules
-
-# Only needed for development.
-/.babelrc
-/.bowerrc
-/.eslintrc
-/.gitignore
-/.github
-/.travis.yml
-/tslint.json
-/test
-/scripts
-/coverage
-/gulpfile.js
-
-# Ignore dev source files
-/src/core
-/src/index.js
+name: CI
+on: [push]
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest ]
+        node: [ 14 ]
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        name: Set up NodeJS
+        with:
+          node-version: ${{ matrix.node }}
+      - name: Install
+        run: npm install
+      - uses: saucelabs/sauce-connect-action@master
+        with:
+          username: ${{ secrets.SAUCE_USERNAME }}
+          accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
+          scVersion: 4.6.2
+          tunnelIdentifier: github-action-tunnel
+      - name: Test
+        env:
+          SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
+          SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
+        run: npm test

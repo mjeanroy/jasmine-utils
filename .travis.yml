@@ -25,7 +25,7 @@
 language: node_js
 node_js:
   - "12"
-script: npm run travis
+script: npm test
 addons:
   sauce_connect: true
 env:

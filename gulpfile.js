@@ -33,15 +33,14 @@ const docs = require('./scripts/docs');
 const release = require('./scripts/release');
 
 const prebuild = gulp.series(clean, lint);
-const prerelease = gulp.series(prebuild, build, test.travis, docs);
+const prerelease = gulp.series(prebuild, build, test.auto, docs);
 
 module.exports = {
   'clean': clean,
   'lint': lint,
   'build': gulp.series(prebuild, build),
   'tdd': test.tdd,
-  'test': gulp.series(prebuild, test.test),
-  'travis': gulp.series(prebuild, test.travis),
+  'test': gulp.series(prebuild, test.auto),
   'coverage': gulp.series(clean, test.coverage),
   'docs': docs,
   'release:patch': gulp.series(prerelease, release.patch),

@@ -67,8 +67,6 @@
     "build": "gulp build",
     "test": "gulp test",
     "tdd": "gulp tdd",
-    "saucelab": "gulp saucelab",
-    "travis": "gulp travis",
     "coverage": "gulp coverage",
     "release": "gulp release",
     "release:patch": "gulp release:patch",
