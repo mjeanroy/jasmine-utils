@@ -111,7 +111,9 @@ module.exports = (config) => ({
     },
 
     plugins: [
-      babel(),
+      babel({
+        babelHelpers: 'bundled',
+      }),
     ],
   },
 });

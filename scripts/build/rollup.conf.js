@@ -42,7 +42,9 @@ module.exports = {
     stripBanner(),
 
     // Transform code to old JavaScript.
-    babel(),
+    babel({
+      babelHelpers: 'bundled',
+    }),
 
     // Prepend banner.
     license({
