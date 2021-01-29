@@ -44,7 +44,7 @@ jobs:
           username: ${{ secrets.SAUCE_USERNAME }}
           accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
           scVersion: 4.6.2
-          tunnelIdentifier: github-action-tunnel
+          tunnelIdentifier: github-action-tunnel-jasmine-utils-${{ github.run_id }}
       - name: Test
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
