@@ -32,7 +32,6 @@
 /.gitignore
 /.github
 /.travis.yml
-/tslint.json
 /test
 /scripts
 /coverage
