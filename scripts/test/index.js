@@ -96,14 +96,18 @@ function auto(done) {
  */
 function startKarma(mode, done) {
   const fileName = `karma.${mode}.conf.js`;
-  const configFile = path.join(__dirname, fileName);
-  const srv = new karma.Server({configFile}, (err) => {
-    log.debug('Calling done callback of Karma');
-    done(err);
-  });
+  const configFilePath = path.join(__dirname, fileName);
 
-  log.debug(`Running karma with configuration: ${fileName}`);
-  srv.start();
+  log.debug(`Parsing karma configuration from: ${configFilePath}`);
+  karma.config.parseConfig(configFilePath, null, {promiseConfig: true, throwErrors: true}).then((config) => {
+    const srv = new karma.Server(config, (err) => {
+      log.debug('Calling done callback of Karma');
+      done(err);
+    });
+
+    log.debug(`Starting karma server`);
+    srv.start();
+  });
 }
 
 module.exports = {
