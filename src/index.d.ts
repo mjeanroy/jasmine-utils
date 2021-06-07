@@ -26,11 +26,11 @@ type CustomDate = Date | number | string;
 type MatcherResult = boolean;
 
 interface PredicateFunction<T> {
-  (current: T, index?: number, collection?: T[]);
+  (current: T, index?: number, collection?: T[]): boolean;
 }
 
 interface SortFunction<T> {
-  (o1: T, o2: T);
+  (o1: T, o2: T): number;
 }
 
 // Extend the `jasmine` namespace with:
@@ -106,15 +106,15 @@ declare namespace jasmine {
 
     // Objects
     toBePartiallyEqualTo(expected: {[key: string]: any}): MatcherResult;
-    toHaveFunctions(key: string, ...others: string[]);
-    toHaveKeys(key: string, ...others: string[]);
+    toHaveFunctions(key: string, ...others: string[]): MatcherResult;
+    toHaveKeys(key: string, ...others: string[]): MatcherResult;
     toHaveSameSizeAs(obj: any): MatcherResult;
     toHaveSize(size: number): MatcherResult;
-    toHaveValues(value: any, ...others: any[]);
+    toHaveValues(value: any, ...others: any[]): MatcherResult;
 
     // Spies
     toHaveBeenCalledOnce(): MatcherResult;
-    toHaveBeenCalledOnceWith(...params: any[]);
+    toHaveBeenCalledOnceWith(...params: any[]): MatcherResult;
 
     // Strings
     toBeAnEmptyString(): MatcherResult;
