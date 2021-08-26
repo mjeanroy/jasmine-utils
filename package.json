@@ -18,7 +18,7 @@
     "@babel/preset-env": "7.15.0",
     "@rollup/plugin-babel": "^5.2.1",
     "@types/jasmine": "3.8.2",
-    "@typescript-eslint/eslint-plugin": "4.29.2",
+    "@typescript-eslint/eslint-plugin": "4.29.3",
     "@typescript-eslint/parser": "4.29.2",
     "ansi-colors": "4.1.1",
     "del": "6.0.0",
