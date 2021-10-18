@@ -33,8 +33,8 @@ const config = require('../config.js');
 /**
  * Get all potential sources to run against lint validator.
  *
- * @param {string} ext The file exstension to look for.
- * @return {void}
+ * @param {string} ext The file extension to look for.
+ * @return {Array<string>} List of paths.
  */
 function getSources(ext) {
   return [
