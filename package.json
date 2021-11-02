@@ -4,7 +4,7 @@
   "main": "src/jasmine-utils.js",
   "typings": "src/index.d.ts",
   "types": "src/index.d.ts",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "license": "MIT",
   "repository": {
     "type": "git",
