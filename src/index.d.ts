@@ -23,7 +23,7 @@
  */
 
 type CustomDate = Date | number | string;
-type MatcherResult = boolean;
+type MatcherResult = boolean | void;
 
 interface PredicateFunction<T> {
   (current: T, index?: number, collection?: T[]): boolean;
