@@ -50,7 +50,7 @@
     "lodash": "4.17.21",
     "phantomjs-prebuilt": "2.1.16",
     "q": "1.5.1",
-    "rollup": "2.60.0",
+    "rollup": "2.60.1",
     "rollup-plugin-esformatter": "2.0.1",
     "rollup-plugin-istanbul": "3.0.0",
     "rollup-plugin-license": "2.6.0",
