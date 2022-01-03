@@ -37,35 +37,34 @@ import {pp} from './pp.js';
  */
 export function jasmine3MatcherFactory(fn) {
   /**
-   * Jasmine 2.X.X matcher.
+   * Jasmine 3.X.X matcher.
    *
-   * @param {Object} util Jasmine util object.
-   * @param {Object} customEqualityTesters List of equality functions registered in Jasmine.
-   * @return {Object} An object containing `compare` and `negativeCompare` function
-   *                  that will be executed by Jasmine..
+   * @param {Object} matchersUtil Jasmine util object.
+   * @param {Object} args Extra arguments, may contain customEqualityTesters for jasmine < 3.6.
+   * @return {Object} An object containing `compare` and `negativeCompare` function that will be executed by Jasmine.
+   * @see https://jasmine.github.io/tutorials/upgrading_to_Jasmine_4.0#matchers-cet
    */
-  return function jasmine3Matcher(util, customEqualityTesters) {
+  return function jasmine3Matcher(matchersUtil, ...args) {
+    const customEqualityTesters = args[0] && !args[0].deprecated ? args[0] : undefined;
     const ctx = {
       // Adapter for `callCount`.
-      // See: https://jasmine.github.io/2.5/introduction#section-Spies
       callCount(spy) {
         return spy.calls.count();
       },
 
       // Adapter for `argsFor`.
-      // See: https://jasmine.github.io/2.5/introduction#section-Spies
       argsFor(spy, call) {
         return spy.calls.argsFor(call);
       },
 
       // Adapter for custom equals functions.
-      // See: https://jasmine.github.io/2.5/custom_equality.html
       equals(a, b) {
-        return util.equals(a, b, customEqualityTesters);
+        return matchersUtil.equals(a, b, customEqualityTesters);
       },
 
+      // Adapter pretty print function.
       pp(value) {
-        return pp(value);
+        return pp(value, matchersUtil.pp);
       },
     };
 

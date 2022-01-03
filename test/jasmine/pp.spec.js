@@ -27,6 +27,10 @@ import {assumeSet} from '../detect/assume-set.js';
 import {pp} from '../../src/core/jasmine/pp.js';
 
 describe('pp', () => {
+  beforeEach(() => {
+    spyOn(console, 'error');
+  });
+
   it('should pretty-print null', () => {
     expect(pp(null)).toBe('null');
   });
