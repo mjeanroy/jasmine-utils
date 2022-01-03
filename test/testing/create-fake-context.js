@@ -37,12 +37,14 @@ export function createFakeContext(actual, options = {}) {
     argsFor: options.argsFor || jasmine.createSpy('argsFor').and.returnValue([]),
     callCount: options.callCount || jasmine.createSpy('callCount').and.returnValue(0),
 
-    equals: options.equals || jasmine.createSpy('equals').and.callFake((x, y) => (
-      new jasmine.MatchersUtil().equals(x, y)
-    )),
+    equals: options.equals || jasmine.createSpy('equals').and.callFake((x, y) => {
+      const matchersUtil = jasmine.MatchersUtil ? new jasmine.MatchersUtil() : jasmine.matchersUtil;
+      return matchersUtil.equals(x, y);
+    }),
 
-    pp: options.pp || jasmine.createSpy('pp').and.callFake((value) => (
-      jasmine.makePrettyPrinter()(value)
-    )),
+    pp: options.pp || jasmine.createSpy('pp').and.callFake((value) => {
+      const pp = jasmine.makePrettyPrinter ? jasmine.makePrettyPrinter() : jasmine.pp;
+      return pp(value);
+    }),
   };
 }
