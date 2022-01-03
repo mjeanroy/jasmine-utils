@@ -25,7 +25,6 @@
 import {assumeSet} from '../../detect/assume-set.js';
 import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toHaveSize} from '../../../src/core/matchers/objects/to-have-size.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -78,7 +77,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`
+        `Expect size of ${ctx.pp(actual)} {{not}} to be 1 but was 1`
     );
   });
 
@@ -98,7 +97,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect size of ${pp(actual)} {{not}} to be 1 but was 1`
+        `Expect size of ${ctx.pp(actual)} {{not}} to be 1 but was 1`
     );
   });
 
@@ -126,7 +125,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect size of ${pp(actual)} {{not}} to be 2 but was 2`
+        `Expect size of ${ctx.pp(actual)} {{not}} to be 2 but was 2`
     );
   });
 

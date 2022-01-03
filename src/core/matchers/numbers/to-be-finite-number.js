@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isFiniteNumber} from '../../util/is-finite-number.js';
 
 /**
@@ -47,7 +46,7 @@ import {isFiniteNumber} from '../../util/is-finite-number.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeFiniteNumber({actual}) {
+export function toBeFiniteNumber({actual, pp}) {
   return {
     pass: isFiniteNumber(actual),
     message() {

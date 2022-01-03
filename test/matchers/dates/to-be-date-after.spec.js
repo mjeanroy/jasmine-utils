@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeDateAfter} from '../../../src/core/matchers/dates/to-be-date-after.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -40,7 +39,7 @@ describe('toBeDateAfter', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${pp(actual)} {{not}} to be after ${pp(lower)}`
+        `Expect date ${ctx.pp(actual)} {{not}} to be after ${ctx.pp(lower)}`
     );
   });
 
@@ -57,7 +56,7 @@ describe('toBeDateAfter', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${pp(actual)} {{not}} to be after ${pp(lower)}`
+        `Expect date ${ctx.pp(actual)} {{not}} to be after ${ctx.pp(lower)}`
     );
   });
 });

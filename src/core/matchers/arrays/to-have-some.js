@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {some} from '../../util/some.js';
 import {isFunction} from '../../util/is-function.js';
 
@@ -64,7 +63,7 @@ import {isFunction} from '../../util/is-function.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveSome({actual}, msg, iterator) {
+export function toHaveSome({actual, pp}, msg, iterator) {
   let _message;
   let _iterator;
 

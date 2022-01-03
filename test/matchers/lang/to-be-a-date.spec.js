@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeADate} from '../../../src/core/matchers/lang/to-be-a-date.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -39,7 +38,7 @@ describe('toBeADate', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to be a date`
+        `Expect ${ctx.pp(actual)} {{not}} to be a date`
     );
   });
 

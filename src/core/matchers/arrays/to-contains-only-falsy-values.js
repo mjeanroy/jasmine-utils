@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isArray} from '../../util/is-array.js';
 import {isFalsy} from '../../util/is-falsy.js';
 import {every} from '../../util/every.js';
@@ -48,7 +47,7 @@ import {every} from '../../util/every.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toContainsOnlyFalsyValues({actual}) {
+export function toContainsOnlyFalsyValues({actual, pp}) {
   return {
     pass: isArray(actual) && every(actual, isFalsy),
     message() {

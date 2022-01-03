@@ -22,8 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
-
 /**
  * Check that tested object has the same length as an other value with `length`
  * property.
@@ -40,7 +38,7 @@ import {pp} from '../../jasmine/pp.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveSameLengthAs({actual}, expected) {
+export function toHaveSameLengthAs({actual, pp}, expected) {
   const actualLength = actual.length;
   const expectedLength = expected.length;
   return {

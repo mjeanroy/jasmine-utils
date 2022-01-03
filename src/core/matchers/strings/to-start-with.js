@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isString} from '../../util/is-string.js';
 
 /**
@@ -40,7 +39,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toStartWith({actual}, prefix) {
+export function toStartWith({actual, pp}, prefix) {
   return {
     pass: isString(prefix) && isString(actual) && actual.indexOf(prefix) === 0,
     message() {

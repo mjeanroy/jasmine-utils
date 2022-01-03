@@ -32,11 +32,17 @@
 export function createFakeContext(actual, options = {}) {
   return {
     actual,
+    isNot: options.isNot || false,
+
     argsFor: options.argsFor || jasmine.createSpy('argsFor').and.returnValue([]),
     callCount: options.callCount || jasmine.createSpy('callCount').and.returnValue(0),
-    isNot: options.isNot || false,
+
     equals: options.equals || jasmine.createSpy('equals').and.callFake((x, y) => (
       new jasmine.MatchersUtil().equals(x, y)
+    )),
+
+    pp: options.pp || jasmine.createSpy('pp').and.callFake((value) => (
+      jasmine.makePrettyPrinter()(value)
     )),
   };
 }

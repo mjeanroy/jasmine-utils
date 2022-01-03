@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isSet} from '../../util/is-set.js';
 
 /**
@@ -38,7 +37,7 @@ import {isSet} from '../../util/is-set.js';
  * @return {Object} The test result.
  * @since 0.3.0
  */
-export function toBeASet({actual}) {
+export function toBeASet({actual, pp}) {
   return {
     pass: isSet(actual),
     message() {

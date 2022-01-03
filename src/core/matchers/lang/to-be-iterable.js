@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isIterable} from '../../util/is-iterable.js';
 
 /**
@@ -48,7 +47,7 @@ import {isIterable} from '../../util/is-iterable.js';
  * @return {Object} Test result.
  * @since 0.3.0
  */
-export function toBeIterable({actual}, Klass) {
+export function toBeIterable({actual, pp}, Klass) {
   return {
     pass: isIterable(actual),
     message() {

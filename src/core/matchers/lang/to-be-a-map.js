@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isMap} from '../../util/is-map.js';
 
 /**
@@ -37,7 +36,7 @@ import {isMap} from '../../util/is-map.js';
  * @return {Object} The test result.
  * @since 0.3.0
  */
-export function toBeAMap({actual}) {
+export function toBeAMap({actual, pp}) {
   return {
     pass: isMap(actual),
     message() {

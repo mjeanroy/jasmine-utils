@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isNumber} from '../../util/is-number.js';
 
 /**
@@ -38,7 +37,7 @@ import {isNumber} from '../../util/is-number.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBePositive({actual}) {
+export function toBePositive({actual, pp}) {
   return {
     pass: isNumber(actual) && actual > 0,
     message() {

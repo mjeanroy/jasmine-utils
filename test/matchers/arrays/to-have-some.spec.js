@@ -25,7 +25,6 @@
 import {assumeSet} from '../../detect/assume-set.js';
 import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toHaveSome} from '../../../src/core/matchers/arrays/to-have-some.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -70,7 +69,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalled();
@@ -95,7 +94,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalled();
@@ -126,7 +125,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);
@@ -195,7 +194,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -222,7 +221,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 'zero', actual);
@@ -255,7 +254,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have at least one element that verify condition`
+        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);

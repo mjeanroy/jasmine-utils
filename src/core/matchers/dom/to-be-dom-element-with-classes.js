@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isDOMElement} from '../../util/is-dom-element.js';
 import {isArray} from '../../util/is-array.js';
 import {map} from '../../util/map.js';
@@ -50,7 +49,7 @@ import {trim} from '../../util/trim.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElementWithClasses({actual}, classes) {
+export function toBeDOMElementWithClasses({actual, pp}, classes) {
   const isElement = isDOMElement(actual);
   const actualClassArray = isElement ? toClassArray(actual.className) : null;
   const classArray = toClassArray(classes);

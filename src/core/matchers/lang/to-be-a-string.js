@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isString} from '../../util/is-string.js';
 
 /**
@@ -40,7 +39,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeAString({actual}) {
+export function toBeAString({actual, pp}) {
   return {
     pass: isString(actual),
     message() {

@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isFunction} from '../../util/is-function.js';
 
 /**
@@ -39,7 +38,7 @@ import {isFunction} from '../../util/is-function.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeAFunction({actual}) {
+export function toBeAFunction({actual, pp}) {
   return {
     pass: isFunction(actual),
     message() {

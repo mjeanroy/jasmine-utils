@@ -74,6 +74,7 @@ describe('jasmine1MatcherFactory', () => {
         callCount: jasmine.any(Function),
         argsFor: jasmine.any(Function),
         equals: jasmine.any(Function),
+        pp: jasmine.any(Function),
       });
     });
 

@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isString} from '../../util/is-string.js';
 
 /**
@@ -40,7 +39,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toEndWith({actual}, suffix) {
+export function toEndWith({actual, pp}, suffix) {
   const ok = isString(suffix) && isString(actual) &&
     actual.length >= suffix.length &&
     actual.indexOf(suffix, actual.length - suffix.length) !== -1;

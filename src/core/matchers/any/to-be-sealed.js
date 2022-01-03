@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isSealed} from '../../util/is-sealed.js';
 
 /**
@@ -55,7 +54,7 @@ import {isSealed} from '../../util/is-sealed.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeSealed({actual}) {
+export function toBeSealed({actual, pp}) {
   return {
     pass: isSealed(actual),
     message() {

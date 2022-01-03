@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeDateCloseToNow} from '../../../src/core/matchers/dates/to-be-date-close-to-now.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -41,7 +40,7 @@ describe('toBeDateCloseToNow', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${pp(actual)} {{not}} to be close to now`
+        `Expect date ${ctx.pp(actual)} {{not}} to be close to now`
     );
   });
 
@@ -59,7 +58,7 @@ describe('toBeDateCloseToNow', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${pp(actual)} {{not}} to be close to now`
+        `Expect date ${ctx.pp(actual)} {{not}} to be close to now`
     );
   });
 
@@ -77,7 +76,7 @@ describe('toBeDateCloseToNow', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${pp(actual)} {{not}} to be close to now`
+        `Expect date ${ctx.pp(actual)} {{not}} to be close to now`
     );
   });
 });

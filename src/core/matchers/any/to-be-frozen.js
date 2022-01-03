@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isFrozen} from '../../util/is-frozen.js';
 
 /**
@@ -56,7 +55,7 @@ import {isFrozen} from '../../util/is-frozen.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeFrozen({actual}) {
+export function toBeFrozen({actual, pp}) {
   return {
     pass: isFrozen(actual),
     message() {

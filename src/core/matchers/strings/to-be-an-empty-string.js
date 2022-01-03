@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isString} from '../../util/is-string.js';
 
 /**
@@ -38,7 +37,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeAnEmptyString({actual}) {
+export function toBeAnEmptyString({actual, pp}) {
   return {
     pass: isString(actual) && actual === '',
     message() {

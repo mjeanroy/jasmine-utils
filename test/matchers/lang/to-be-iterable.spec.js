@@ -25,7 +25,6 @@
 import {assumeSet} from '../../detect/assume-set.js';
 import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeIterable} from '../../../src/core/matchers/lang/to-be-iterable.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -108,7 +107,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to be iterable`
+        `Expect ${ctx.pp(actual)} {{not}} to be iterable`
     );
   });
 
@@ -126,7 +125,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to be iterable`
+        `Expect ${ctx.pp(actual)} {{not}} to be iterable`
     );
   });
 
@@ -153,7 +152,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to be iterable`
+        `Expect ${ctx.pp(actual)} {{not}} to be iterable`
     );
   });
 });

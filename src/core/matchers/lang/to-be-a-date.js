@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isDate} from '../../util/is-date.js';
 
 /**
@@ -38,7 +37,7 @@ import {isDate} from '../../util/is-date.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeADate({actual}) {
+export function toBeADate({actual, pp}) {
   return {
     pass: isDate(actual),
     message() {

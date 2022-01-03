@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {dateDiff} from '../../util/date-diff.js';
 
 /**
@@ -45,7 +44,7 @@ import {dateDiff} from '../../util/date-diff.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeDateBefore({actual}, upper) {
+export function toBeDateBefore({actual, pp}, upper) {
   const diff = dateDiff(actual, upper);
   return {
     pass: diff <= 0,

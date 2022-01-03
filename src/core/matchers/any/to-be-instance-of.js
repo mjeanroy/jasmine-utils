@@ -22,8 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
-
 /**
  * Check that the tested object is an instance of a given `constructor`.
  *
@@ -40,7 +38,7 @@ import {pp} from '../../jasmine/pp.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeInstanceOf({actual}, ctor) {
+export function toBeInstanceOf({actual, pp}, ctor) {
   return {
     pass: (actual instanceof ctor),
     message() {

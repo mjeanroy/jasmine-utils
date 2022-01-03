@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isExtensible} from '../../util/is-extensible.js';
 
 /**
@@ -63,7 +62,7 @@ import {isExtensible} from '../../util/is-extensible.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeExtensible({actual}) {
+export function toBeExtensible({actual, pp}) {
   return {
     pass: isExtensible(actual),
     message() {

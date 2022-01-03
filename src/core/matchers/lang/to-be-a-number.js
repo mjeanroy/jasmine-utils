@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isNumber} from '../../util/is-number.js';
 
 /**
@@ -40,7 +39,7 @@ import {isNumber} from '../../util/is-number.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeANumber({actual}) {
+export function toBeANumber({actual, pp}) {
   return {
     pass: isNumber(actual),
     message() {

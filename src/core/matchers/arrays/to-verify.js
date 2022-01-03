@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {every} from '../../util/every.js';
 import {isFunction} from '../../util/is-function.js';
 
@@ -62,7 +61,7 @@ import {isFunction} from '../../util/is-function.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toVerify({actual}, msg, iterator) {
+export function toVerify({actual, pp}, msg, iterator) {
   let _message;
   let _iterator;
 

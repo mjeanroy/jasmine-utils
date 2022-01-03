@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isArray} from '../../util/is-array.js';
 
 /**
@@ -43,7 +42,7 @@ import {isArray} from '../../util/is-array.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeAnArray({actual}) {
+export function toBeAnArray({actual, pp}) {
   return {
     pass: isArray(actual),
     message() {

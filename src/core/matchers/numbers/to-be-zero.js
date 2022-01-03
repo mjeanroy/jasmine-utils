@@ -22,8 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
-
 /**
  * Check that the tested object is a number strictly equal to zero.
  *
@@ -37,7 +35,7 @@ import {pp} from '../../jasmine/pp.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeZero({actual}) {
+export function toBeZero({actual, pp}) {
   return {
     pass: actual === 0,
     message() {

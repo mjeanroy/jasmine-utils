@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeToday} from '../../../src/core/matchers/dates/to-be-today.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -39,7 +38,7 @@ describe('toBeToday', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${pp(actual)} {{not}} to be today`
+        `Expect date ${ctx.pp(actual)} {{not}} to be today`
     );
   });
 
@@ -55,7 +54,7 @@ describe('toBeToday', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${pp(actual)} {{not}} to be today`
+        `Expect date ${ctx.pp(actual)} {{not}} to be today`
     );
   });
 });

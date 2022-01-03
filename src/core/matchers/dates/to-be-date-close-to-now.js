@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {now} from '../../util/now.js';
 import {dateDiff} from '../../util/date-diff.js';
 
@@ -50,7 +49,7 @@ import {dateDiff} from '../../util/date-diff.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeDateCloseToNow({actual}, max = 1000) {
+export function toBeDateCloseToNow({actual, pp}, max = 1000) {
   const diff = Math.abs(dateDiff(actual, now()));
   return {
     pass: diff <= max,

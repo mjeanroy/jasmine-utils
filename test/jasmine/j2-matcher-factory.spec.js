@@ -79,6 +79,7 @@ describe('jasmine2MatcherFactory', () => {
         callCount: jasmine.any(Function),
         argsFor: jasmine.any(Function),
         equals: jasmine.any(Function),
+        pp: jasmine.any(Function),
       });
 
       expect(args[1]).toBe(arg0);
@@ -119,6 +120,7 @@ describe('jasmine2MatcherFactory', () => {
         callCount: jasmine.any(Function),
         argsFor: jasmine.any(Function),
         equals: jasmine.any(Function),
+        pp: jasmine.any(Function),
       });
     });
 

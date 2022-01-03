@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeSameDay} from '../../../src/core/matchers/dates/to-be-same-day.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -40,7 +39,7 @@ describe('toBeSameDay', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`
+        `Expect date ${ctx.pp(actual)} {{not}} to be same day as ${ctx.pp(other)}`
     );
   });
 
@@ -57,7 +56,7 @@ describe('toBeSameDay', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${pp(actual)} {{not}} to be same day as ${pp(other)}`
+        `Expect date ${ctx.pp(actual)} {{not}} to be same day as ${ctx.pp(other)}`
     );
   });
 });

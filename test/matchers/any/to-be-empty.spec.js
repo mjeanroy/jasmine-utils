@@ -25,7 +25,6 @@
 import {assumeSet} from '../../detect/assume-set.js';
 import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeEmpty} from '../../../src/core/matchers/any/to-be-empty.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -60,7 +59,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to be empty`
+        `Expect ${ctx.pp(actual)} {{not}} to be empty`
     );
   });
 
@@ -78,7 +77,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to be empty`
+        `Expect ${ctx.pp(actual)} {{not}} to be empty`
     );
   });
 
@@ -105,7 +104,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to be empty`
+        `Expect ${ctx.pp(actual)} {{not}} to be empty`
     );
   });
 

@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {keys} from '../../util/keys.js';
 import {contains} from '../../util/contains.js';
 
@@ -40,7 +39,7 @@ import {contains} from '../../util/contains.js';
  * @return {Object} Matcher result.
  * @since 0.1.0
  */
-export function toHaveKeys({actual}, ...expectedKeys) {
+export function toHaveKeys({actual, pp}, ...expectedKeys) {
   const actualKeys = keys(actual);
   const size = expectedKeys.length;
 

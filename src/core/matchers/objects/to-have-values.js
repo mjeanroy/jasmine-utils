@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {contains} from '../../util/contains.js';
 import {values} from '../../util/values.js';
 
@@ -42,7 +41,7 @@ import {values} from '../../util/values.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toHaveValues({actual, equals}, ...expectedValues) {
+export function toHaveValues({actual, equals, pp}, ...expectedValues) {
   const actualValues = values(actual);
 
   let ok = true;

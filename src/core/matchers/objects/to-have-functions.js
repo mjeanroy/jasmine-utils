@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isFunction} from '../../util/is-function.js';
 import {every} from '../../util/every.js';
 
@@ -43,7 +42,7 @@ import {every} from '../../util/every.js';
  * @return {Object} Matcher result.
  * @since 0.1.0
  */
-export function toHaveFunctions({actual}, ...methods) {
+export function toHaveFunctions({actual, pp}, ...methods) {
   const ok = every(methods, (method) => isFunction(actual[method]));
   return {
     pass: ok,

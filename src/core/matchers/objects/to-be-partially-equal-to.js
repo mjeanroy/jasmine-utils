@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isArray} from '../../util/is-array.js';
 import {isObject} from '../../util/is-object.js';
 import {every} from '../../util/every.js';
@@ -53,7 +52,7 @@ import {every} from '../../util/every.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBePartiallyEqualTo({actual, equals}, other) {
+export function toBePartiallyEqualTo({actual, equals, pp}, other) {
   let pass = false;
 
   if (isArray(other) && isArray(actual)) {

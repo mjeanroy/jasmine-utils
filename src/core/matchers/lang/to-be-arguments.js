@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isArguments} from '../../util/is-arguments.js';
 
 /**
@@ -37,7 +36,7 @@ import {isArguments} from '../../util/is-arguments.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeArguments({actual}) {
+export function toBeArguments({actual, pp}) {
   return {
     pass: isArguments(actual),
     message() {

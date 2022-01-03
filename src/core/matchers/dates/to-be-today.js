@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {now} from '../../util/now.js';
 import {parseDate} from '../../util/parse-date.js';
 import {isSameDay} from '../../util/is-same-day.js';
@@ -50,7 +49,7 @@ import {isSameDay} from '../../util/is-same-day.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeToday({actual}) {
+export function toBeToday({actual, pp}) {
   const d1 = parseDate(actual);
   const d2 = now();
   return {

@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isFloat} from '../../util/is-float.js';
 
 /**
@@ -45,7 +44,7 @@ import {isFloat} from '../../util/is-float.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeFloat({actual}) {
+export function toBeFloat({actual, pp}) {
   return {
     pass: isFloat(actual),
     message() {

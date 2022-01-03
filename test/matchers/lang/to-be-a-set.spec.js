@@ -23,7 +23,6 @@
  */
 
 import {assumeSet} from '../../detect/assume-set.js';
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeASet} from '../../../src/core/matchers/lang/to-be-a-set.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -42,7 +41,7 @@ describe('toBeASet', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to be a Set`
+        `Expect ${ctx.pp(actual)} {{not}} to be a Set`
     );
   });
 

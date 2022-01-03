@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isNumeric} from '../../util/is-numeric.js';
 
 /**
@@ -42,7 +41,7 @@ import {isNumeric} from '../../util/is-numeric.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeNumeric({actual}) {
+export function toBeNumeric({actual, pp}) {
   return {
     pass: isNumeric(actual),
     message() {

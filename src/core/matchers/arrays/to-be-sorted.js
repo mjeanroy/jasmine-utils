@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isArray} from '../../util/is-array.js';
 import {isSorted} from '../../util/is-sorted.js';
 
@@ -50,7 +49,7 @@ import {isSorted} from '../../util/is-sorted.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeSorted({actual}, comparator) {
+export function toBeSorted({actual, pp}, comparator) {
   return {
     pass: isArray(actual) && isSorted(actual, comparator),
     message() {

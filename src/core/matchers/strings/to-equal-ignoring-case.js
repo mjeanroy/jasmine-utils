@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isString} from '../../util/is-string.js';
 
 /**
@@ -40,7 +39,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toEqualIgnoringCase({actual}, other) {
+export function toEqualIgnoringCase({actual, pp}, other) {
   return {
     pass: isString(other) && isString(actual) && actual.toLowerCase() === other.toLowerCase(),
     message() {

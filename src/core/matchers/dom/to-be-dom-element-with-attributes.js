@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isDOMElement} from '../../util/is-dom-element.js';
 import {keys} from '../../util/keys.js';
 
@@ -45,7 +44,7 @@ import {keys} from '../../util/keys.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElementWithAttributes({actual, equals}, attributes) {
+export function toBeDOMElementWithAttributes({actual, equals, pp}, attributes) {
   const isElement = isDOMElement(actual);
   const actualAttributes = {};
 

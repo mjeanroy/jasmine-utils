@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isDOMElement} from '../../util/is-dom-element.js';
 import {isString} from '../../util/is-string.js';
 import {isNil} from '../../util/is-nil.js';
@@ -48,7 +47,7 @@ import {isNil} from '../../util/is-nil.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElement({actual}, tagName) {
+export function toBeDOMElement({actual, pp}, tagName) {
   const isElement = isDOMElement(actual);
   const expectTagName = isString(tagName);
 

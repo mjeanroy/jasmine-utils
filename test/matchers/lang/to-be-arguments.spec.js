@@ -22,12 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeArguments} from '../../../src/core/matchers/lang/to-be-arguments.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeArguments', () => {
-  it('should check that object is argumebnts', () => {
+  it('should check that object is arguments', () => {
     const actual = (function() {
       // eslint-disable-next-line prefer-rest-params
       return arguments;
@@ -43,7 +42,7 @@ describe('toBeArguments', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to be arguments`
+        `Expect ${ctx.pp(actual)} {{not}} to be arguments`
     );
   });
 

@@ -22,8 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
-
 /**
  * Check that the tested object is strictly equal to `true`.
  *
@@ -37,7 +35,7 @@ import {pp} from '../../jasmine/pp.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeTrue({actual}) {
+export function toBeTrue({actual, pp}) {
   return {
     pass: actual === true,
     message() {

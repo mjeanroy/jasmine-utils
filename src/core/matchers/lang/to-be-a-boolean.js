@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isBoolean} from '../../util/is-boolean.js';
 
 /**
@@ -40,7 +39,7 @@ import {isBoolean} from '../../util/is-boolean.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeABoolean({actual}) {
+export function toBeABoolean({actual, pp}) {
   return {
     pass: isBoolean(actual),
     message() {

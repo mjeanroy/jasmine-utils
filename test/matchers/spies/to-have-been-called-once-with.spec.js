@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toHaveBeenCalledOnceWith} from '../../../src/core/matchers/spies/to-have-been-called-once-with.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -51,7 +50,7 @@ describe('toHaveBeenCalledOnceWith', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s)`);
+    expect(result.message()).toBe(`Expect ${ctx.pp(actual)} {{not}} to have been called once but was called 1 time(s)`);
   });
 
   it('should not pass if spy has not been called', () => {
@@ -78,7 +77,7 @@ describe('toHaveBeenCalledOnceWith', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect ${pp(actual)} {{not}} to have been called once but was called 0 time(s)`);
+    expect(result.message()).toBe(`Expect ${ctx.pp(actual)} {{not}} to have been called once but was called 0 time(s)`);
   });
 
   it('should not pass if spy has been called more than once', () => {
@@ -105,7 +104,7 @@ describe('toHaveBeenCalledOnceWith', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect ${pp(actual)} {{not}} to have been called once but was called 2 time(s)`);
+    expect(result.message()).toBe(`Expect ${ctx.pp(actual)} {{not}} to have been called once but was called 2 time(s)`);
   });
 
   it('should not pass if spy has been called once with different arguments', () => {
@@ -133,7 +132,7 @@ describe('toHaveBeenCalledOnceWith', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have been called once but was called 1 time(s) with different arguments`
+        `Expect ${ctx.pp(actual)} {{not}} to have been called once but was called 1 time(s) with different arguments`
     );
   });
 });

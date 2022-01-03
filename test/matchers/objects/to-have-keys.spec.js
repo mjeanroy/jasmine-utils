@@ -23,7 +23,6 @@
  */
 
 import {assumeMap} from '../../detect/assume-map.js';
-import {pp} from '../../../src/core/jasmine/pp.js';
 import {toHaveKeys} from '../../../src/core/matchers/objects/to-have-keys.js';
 import {createFakeContext} from '../../testing/create-fake-context.js';
 
@@ -61,7 +60,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have keys [ 'foo' ]`
+        `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'foo' ]`
     );
   });
 
@@ -98,7 +97,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`
+        `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`
     );
   });
 
@@ -135,7 +134,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have keys [ 'bar' ]`
+        `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'bar' ]`
     );
   });
 
@@ -172,7 +171,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`
+        `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`
     );
   });
 });

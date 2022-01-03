@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {sizeOf} from '../../util/size-of.js';
 
 /**
@@ -43,7 +42,7 @@ import {sizeOf} from '../../util/size-of.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeEmpty({actual}) {
+export function toBeEmpty({actual, pp}) {
   const size = sizeOf(actual);
   return {
     pass: size === 0,

@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isNil} from '../../util/is-nil.js';
 
 /**
@@ -41,7 +40,7 @@ import {isNil} from '../../util/is-nil.js';
  * @return {Object} Test result.
  * @since 0.3.0
  */
-export function toBeNil({actual}) {
+export function toBeNil({actual, pp}) {
   return {
     pass: isNil(actual),
     message() {

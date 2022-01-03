@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isNull} from '../../util/is-null.js';
 
 /**
@@ -38,7 +37,7 @@ import {isNull} from '../../util/is-null.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeNull({actual}) {
+export function toBeNull({actual, pp}) {
   return {
     pass: isNull(actual),
     message() {

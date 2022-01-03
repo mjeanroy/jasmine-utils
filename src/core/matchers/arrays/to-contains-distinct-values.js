@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-import {pp} from '../../jasmine/pp.js';
 import {isArray} from '../../util/is-array.js';
 import {containsDistinct} from '../../util/contains-distinct.js';
 
@@ -42,7 +41,7 @@ import {containsDistinct} from '../../util/contains-distinct.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toContainsDistinctValues({actual, equals}) {
+export function toContainsDistinctValues({actual, equals, pp}) {
   return {
     pass: isArray(actual) && containsDistinct(actual, equals),
     message() {
