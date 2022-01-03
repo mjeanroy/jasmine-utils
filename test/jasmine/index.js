@@ -25,6 +25,7 @@
 import './j1-matcher-factory.spec.js';
 import './j2-matcher-factory.spec.js';
 import './j3-matcher-factory.spec.js';
+import './j4-matcher-factory.spec.js';
 import './matcher-factory.spec.js';
 import './negate-message.spec.js';
 import './pp.spec.js';

@@ -26,12 +26,17 @@
  * Pretty-Print object (use `jasmine.pp` by default).
  *
  * @param {*} value Object to pretty-print.
- * @param {function} _pp The pretty print function.
+ * @param {function?} _pp The pretty print function.
  * @return {string} The string representation of object.
  */
 export function pp(value, _pp) {
+  const prettyPrinter = _pp || jasmine.pp;
+  if (!prettyPrinter) {
+    throw new Error('Cannot format value without pretty printer function');
+  }
+
   try {
-    return (_pp || jasmine.pp)(value);
+    return prettyPrinter(value);
   } catch (e) {
     // Fallback using object `toString` implementation.
     // Don't worry about `null` or `undefined` since it should be handled
@@ -39,3 +44,4 @@ export function pp(value, _pp) {
     return value.toString();
   }
 }
+

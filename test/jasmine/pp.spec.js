@@ -32,26 +32,43 @@ describe('pp', () => {
   });
 
   it('should pretty-print null', () => {
-    expect(pp(null)).toBe('null');
+    expect(pp(null, makePrettyPrinter())).toBe('null');
   });
 
   it('should pretty-print undefined', () => {
-    expect(pp(undefined)).toBe('undefined');
+    expect(pp(undefined, makePrettyPrinter())).toBe('undefined');
   });
 
   it('should pretty-print empty array', () => {
-    expect(pp([])).toBe('[  ]');
+    expect(pp([], makePrettyPrinter())).toBe('[  ]');
   });
 
   it('should pretty-print Set', () => {
     assumeSet();
-    expect(pp(new Set())).toBeDefined();
-    expect(pp(new Set())).not.toBe('');
+    expect(pp(new Set(), makePrettyPrinter())).toBeDefined();
+    expect(pp(new Set(), makePrettyPrinter())).not.toBe('');
   });
 
   it('should pretty-print Map', () => {
     assumeMap();
-    expect(pp(new Map())).toBeDefined();
-    expect(pp(new Map())).not.toBe('');
+    expect(pp(new Map(), makePrettyPrinter())).toBeDefined();
+    expect(pp(new Map(), makePrettyPrinter())).not.toBe('');
   });
+
+  /**
+   * Try to make custom pretty printer function from Jasmine API.
+   *
+   * @returns {*} Custom pretty printer function.
+   */
+  function makePrettyPrinter() {
+    if (jasmine.makePrettyPrinter) {
+      return jasmine.makePrettyPrinter();
+    }
+
+    if (jasmine.pp) {
+      return jasmine.pp;
+    }
+
+    return undefined;
+  }
 });
