@@ -23,6 +23,7 @@
  */
 
 import {toBeDOMElementWithId} from '../../../src/core/matchers/dom/to-be-dom-element-with-id.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeDOMElementWithId', () => {
   let div;
@@ -34,7 +35,9 @@ describe('toBeDOMElementWithId', () => {
 
   it('should pass with a dom element with expected id', () => {
     const actual = div;
-    const result = toBeDOMElementWithId({actual}, 'foo');
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElementWithId(ctx, 'foo');
 
     expect(result).toEqual({
       pass: true,
@@ -48,7 +51,9 @@ describe('toBeDOMElementWithId', () => {
 
   it('should not pass without a DOM element', () => {
     const actual = '<div></div>';
-    const result = toBeDOMElementWithId({actual}, 'div');
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElementWithId(ctx, 'div');
 
     expect(result).toEqual({
       pass: false,
@@ -62,7 +67,9 @@ describe('toBeDOMElementWithId', () => {
 
   it('should not pass with a DOM element but not the expected id', () => {
     const actual = div;
-    const result = toBeDOMElementWithId({actual}, 'bar');
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElementWithId(ctx, 'bar');
 
     expect(result).toEqual({
       pass: false,

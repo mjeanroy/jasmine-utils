@@ -23,6 +23,7 @@
  */
 
 import {toBeDOMElementWithClasses} from '../../../src/core/matchers/dom/to-be-dom-element-with-classes.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeDOMElementWithClasses', () => {
   let div;
@@ -35,7 +36,9 @@ describe('toBeDOMElementWithClasses', () => {
   it('should pass with a dom element with expected classes as an array', () => {
     const actual = div;
     const classes = ['foo', 'bar'];
-    const result = toBeDOMElementWithClasses({actual}, classes);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElementWithClasses(ctx, classes);
 
     expect(result).toEqual({
       pass: true,
@@ -51,7 +54,9 @@ describe('toBeDOMElementWithClasses', () => {
   it('should pass with a dom element with expected classes as a string', () => {
     const actual = div;
     const classes = ' foo  bar ';
-    const result = toBeDOMElementWithClasses({actual}, classes);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElementWithClasses(ctx, classes);
 
     expect(result).toEqual({
       pass: true,
@@ -66,7 +71,9 @@ describe('toBeDOMElementWithClasses', () => {
 
   it('should not pass without a DOM element', () => {
     const actual = '<div></div>';
-    const result = toBeDOMElementWithClasses({actual}, 'foo');
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElementWithClasses(ctx, 'foo');
 
     expect(result).toEqual({
       pass: false,
@@ -81,7 +88,9 @@ describe('toBeDOMElementWithClasses', () => {
   it('should not pass with a DOM element but not all the expected classes', () => {
     const actual = div;
     const classes = 'foo bar baz';
-    const result = toBeDOMElementWithClasses({actual}, classes);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElementWithClasses(ctx, classes);
 
     expect(result).toEqual({
       pass: false,

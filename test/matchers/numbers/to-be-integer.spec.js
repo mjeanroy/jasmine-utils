@@ -23,11 +23,14 @@
  */
 
 import {toBeInteger} from '../../../src/core/matchers/numbers/to-be-integer.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeInteger', () => {
   it('should check that object is an integer value', () => {
     const actual = '1';
-    const result = toBeInteger({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeInteger(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeInteger', () => {
 
   it('should not pass with NaN', () => {
     const actual = NaN;
-    const result = toBeInteger({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeInteger(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -55,7 +60,9 @@ describe('toBeInteger', () => {
 
   it('should not pass with a Infinity', () => {
     const actual = Infinity;
-    const result = toBeInteger({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeInteger(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -69,7 +76,9 @@ describe('toBeInteger', () => {
 
   it('should not pass with a float', () => {
     const actual = 1.5;
-    const result = toBeInteger({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeInteger(ctx);
 
     expect(result).toEqual({
       pass: false,

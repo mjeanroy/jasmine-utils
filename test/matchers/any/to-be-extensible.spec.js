@@ -26,11 +26,14 @@ import {assumeFreeze} from '../../detect/assume-freeze.js';
 import {assumePreventExtensions} from '../../detect/assume-prevent-extensions.js';
 import {assumeSeal} from '../../detect/assume-seal.js';
 import {toBeExtensible} from '../../../src/core/matchers/any/to-be-extensible.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeExtensible', () => {
   it('should check for null', () => {
     const actual = null;
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -44,7 +47,9 @@ describe('toBeExtensible', () => {
 
   it('should check for undefined', () => {
     const actual = undefined;
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -58,7 +63,9 @@ describe('toBeExtensible', () => {
 
   it('should check for numbers', () => {
     const actual = 1;
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -72,7 +79,9 @@ describe('toBeExtensible', () => {
 
   it('should check for strings', () => {
     const actual = '';
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -86,7 +95,9 @@ describe('toBeExtensible', () => {
 
   it('should check for booleans', () => {
     const actual = true;
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -100,7 +111,9 @@ describe('toBeExtensible', () => {
 
   it('should check for simple object', () => {
     const actual = {};
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -114,7 +127,9 @@ describe('toBeExtensible', () => {
 
   it('should check for simple array', () => {
     const actual = [];
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -130,7 +145,9 @@ describe('toBeExtensible', () => {
     assumeFreeze();
 
     const actual = Object.freeze({});
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -146,7 +163,9 @@ describe('toBeExtensible', () => {
     assumeFreeze();
 
     const actual = Object.freeze([]);
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -162,7 +181,9 @@ describe('toBeExtensible', () => {
     assumeSeal();
 
     const actual = Object.seal({});
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -178,7 +199,9 @@ describe('toBeExtensible', () => {
     assumeSeal();
 
     const actual = Object.seal([]);
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -194,7 +217,9 @@ describe('toBeExtensible', () => {
     assumePreventExtensions();
 
     const actual = Object.preventExtensions({});
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -210,7 +235,9 @@ describe('toBeExtensible', () => {
     assumePreventExtensions();
 
     const actual = Object.preventExtensions([]);
-    const result = toBeExtensible({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeExtensible(ctx);
 
     expect(result).toEqual({
       pass: false,

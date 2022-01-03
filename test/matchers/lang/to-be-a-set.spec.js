@@ -25,13 +25,16 @@
 import {assumeSet} from '../../detect/assume-set.js';
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeASet} from '../../../src/core/matchers/lang/to-be-a-set.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeASet', () => {
   it('should check that object is a set', () => {
     assumeSet();
 
     const actual = new Set();
-    const result = toBeASet({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeASet(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -45,7 +48,9 @@ describe('toBeASet', () => {
 
   it('should not pass without a set', () => {
     const actual = [];
-    const result = toBeASet({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeASet(ctx);
 
     expect(result).toEqual({
       pass: false,

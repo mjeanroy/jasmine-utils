@@ -23,11 +23,14 @@
  */
 
 import {toBeANumber} from '../../../src/core/matchers/lang/to-be-a-number.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeANumber', () => {
   it('should check that object is a number', () => {
     const actual = 0;
-    const result = toBeANumber({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeANumber(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeANumber', () => {
 
   it('should not pass without a number', () => {
     const actual = null;
-    const result = toBeANumber({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeANumber(ctx);
 
     expect(result).toEqual({
       pass: false,

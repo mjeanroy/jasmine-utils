@@ -27,11 +27,14 @@ import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeIterable} from '../../../src/core/matchers/lang/to-be-iterable.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeIterable', () => {
   it('should check that null is not iterable', () => {
     const actual = null;
-    const result = toBeIterable({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeIterable(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -45,7 +48,9 @@ describe('toBeIterable', () => {
 
   it('should check that undefined is not iterable', () => {
     const actual = undefined;
-    const result = toBeIterable({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeIterable(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -59,7 +64,9 @@ describe('toBeIterable', () => {
 
   it('should check that array instance is iterable', () => {
     const actual = [];
-    const result = toBeIterable({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeIterable(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -73,7 +80,9 @@ describe('toBeIterable', () => {
 
   it('should check that string is iterable', () => {
     const actual = '';
-    const result = toBeIterable({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeIterable(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -89,7 +98,9 @@ describe('toBeIterable', () => {
     assumeSet();
 
     const actual = new Set();
-    const result = toBeIterable({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeIterable(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -105,7 +116,9 @@ describe('toBeIterable', () => {
     assumeMap();
 
     const actual = new Map();
-    const result = toBeIterable({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeIterable(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -130,7 +143,9 @@ describe('toBeIterable', () => {
       },
     };
 
-    const result = toBeIterable({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeIterable(ctx);
 
     expect(result).toEqual({
       pass: true,

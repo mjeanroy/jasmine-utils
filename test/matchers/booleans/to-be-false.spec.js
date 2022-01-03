@@ -23,11 +23,14 @@
  */
 
 import {toBeFalse} from '../../../src/core/matchers/booleans/to-be-false.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeFalse', () => {
   it('should check that object is false', () => {
     const actual = false;
-    const result = toBeFalse({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFalse(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeFalse', () => {
 
   it('should not pass without false', () => {
     const actual = true;
-    const result = toBeFalse({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFalse(ctx);
 
     expect(result).toEqual({
       pass: false,

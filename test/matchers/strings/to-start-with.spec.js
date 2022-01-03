@@ -23,12 +23,15 @@
  */
 
 import {toStartWith} from '../../../src/core/matchers/strings/to-start-with.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toStartWith', () => {
   it('should check that object is a string starting with given preifx', () => {
     const actual = 'foo';
     const other = 'fo';
-    const result = toStartWith({actual}, other);
+    const ctx = createFakeContext(actual);
+
+    const result = toStartWith(ctx, other);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toStartWith', () => {
   it('should not pass without a string starting with an other prefix', () => {
     const actual = 'test';
     const other = 'testtest';
-    const result = toStartWith({actual}, other);
+    const ctx = createFakeContext(actual);
+
+    const result = toStartWith(ctx, other);
 
     expect(result).toEqual({
       pass: false,

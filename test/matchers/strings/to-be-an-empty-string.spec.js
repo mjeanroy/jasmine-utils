@@ -23,11 +23,14 @@
  */
 
 import {toBeAnEmptyString} from '../../../src/core/matchers/strings/to-be-an-empty-string.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeAnEmptyString', () => {
   it('should check that object is an empty string', () => {
     const actual = '';
-    const result = toBeAnEmptyString({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAnEmptyString(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -39,7 +42,9 @@ describe('toBeAnEmptyString', () => {
 
   it('should not pass without an empty string', () => {
     const actual = 'test';
-    const result = toBeAnEmptyString({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAnEmptyString(ctx);
 
     expect(result).toEqual({
       pass: false,

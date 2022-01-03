@@ -24,12 +24,15 @@
 
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeSameDay} from '../../../src/core/matchers/dates/to-be-same-day.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeSameDay', () => {
   it('should check that both dates are the same day', () => {
     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
     const other = new Date(2016, 10, 12, 17, 55, 38, 100);
-    const result = toBeSameDay({actual}, other);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSameDay(ctx, other);
 
     expect(result).toEqual({
       pass: true,
@@ -44,7 +47,9 @@ describe('toBeSameDay', () => {
   it('should not pass with a date that is not the same day', () => {
     const actual = new Date(2016, 10, 12, 17, 55, 38, 11);
     const other = new Date(2016, 10, 13, 17, 55, 38, 0);
-    const result = toBeSameDay({actual}, other);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSameDay(ctx, other);
 
     expect(result).toEqual({
       pass: false,

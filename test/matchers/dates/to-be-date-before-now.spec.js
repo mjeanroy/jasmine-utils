@@ -24,12 +24,15 @@
 
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeDateBeforeNow} from '../../../src/core/matchers/dates/to-be-date-before-now.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeDateBeforeNow', () => {
   it('should check that object is a date before now', () => {
     const now = new Date().getTime();
     const actual = new Date(now - 100);
-    const result = toBeDateBeforeNow({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDateBeforeNow(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -44,7 +47,9 @@ describe('toBeDateBeforeNow', () => {
   it('should not pass with a date after now', () => {
     const now = new Date().getTime();
     const actual = new Date(now + 1000);
-    const result = toBeDateBeforeNow({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDateBeforeNow(ctx);
 
     expect(result).toEqual({
       pass: false,

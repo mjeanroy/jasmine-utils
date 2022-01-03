@@ -25,11 +25,14 @@
 import {assumeMap} from '../../detect/assume-map.js';
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toHaveValues} from '../../../src/core/matchers/objects/to-have-values.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toHaveValues', () => {
   it('should check for object values', () => {
     const actual = {foo: 'bar', quix: 'foo'};
-    const result = toHaveValues({actual}, 'foo', 'bar');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveValues(ctx, 'foo', 'bar');
 
     expect(result).toEqual({
       pass: true,
@@ -48,7 +51,9 @@ describe('toHaveValues', () => {
     actual.set('foo', 'bar');
     actual.set('quix', 'foo');
 
-    const result = toHaveValues({actual}, 'foo', 'bar');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveValues(ctx, 'foo', 'bar');
 
     expect(result).toEqual({
       pass: true,
@@ -62,7 +67,9 @@ describe('toHaveValues', () => {
 
   it('should fail with non expected values', () => {
     const actual = {foo: 'bar'};
-    const result = toHaveValues({actual}, 'foo', 'bar');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveValues(ctx, 'foo', 'bar');
 
     expect(result).toEqual({
       pass: false,
@@ -80,7 +87,9 @@ describe('toHaveValues', () => {
     const actual = new Map();
     actual.set('foo', 'bar');
 
-    const result = toHaveValues({actual}, 'foo', 'bar');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveValues(ctx, 'foo', 'bar');
 
     expect(result).toEqual({
       pass: false,

@@ -23,12 +23,15 @@
  */
 
 import {toHaveSameLengthAs} from '../../../src/core/matchers/arrays/to-have-same-length-as.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toHaveSameLengthAs', () => {
   it('should check length of array', () => {
     const actual = [1, 2, 3];
+    const ctx = createFakeContext(actual);
     const expected = [4, 5, 6];
-    const result = toHaveSameLengthAs({actual}, expected);
+
+    const result = toHaveSameLengthAs(ctx, expected);
 
     expect(result).toEqual({
       pass: true,
@@ -42,8 +45,10 @@ describe('toHaveSameLengthAs', () => {
 
   it('should check length of array-like object', () => {
     const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
+    const ctx = createFakeContext(actual);
     const expected = {'0': 4, '1': 5, '2': 6, 'length': 3};
-    const result = toHaveSameLengthAs({actual}, expected);
+
+    const result = toHaveSameLengthAs(ctx, expected);
 
     expect(result).toEqual({
       pass: true,
@@ -58,8 +63,10 @@ describe('toHaveSameLengthAs', () => {
 
   it('should fail with non expected length', () => {
     const actual = [];
+    const ctx = createFakeContext(actual);
     const expected = [1, 2, 3];
-    const result = toHaveSameLengthAs({actual}, expected);
+
+    const result = toHaveSameLengthAs(ctx, expected);
 
     expect(result).toEqual({
       pass: false,

@@ -24,12 +24,15 @@
 
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeDateBefore} from '../../../src/core/matchers/dates/to-be-date-before.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeDateBefore', () => {
   it('should check that object is a date before an other date', () => {
     const lower = new Date(2016, 10, 12, 17, 55, 38, 0);
     const actual = new Date(2016, 10, 12, 17, 55, 37, 0);
-    const result = toBeDateBefore({actual}, lower);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDateBefore(ctx, lower);
 
     expect(result).toEqual({
       pass: true,
@@ -44,7 +47,9 @@ describe('toBeDateBefore', () => {
   it('should not pass with a date after', () => {
     const lower = new Date(2016, 10, 12, 17, 55, 37, 0);
     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
-    const result = toBeDateBefore({actual}, lower);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDateBefore(ctx, lower);
 
     expect(result).toEqual({
       pass: false,

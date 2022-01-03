@@ -23,12 +23,15 @@
  */
 
 import {toEqualOneOf} from '../../../src/core/matchers/any/to-equal-one-of.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toEqualOneOf', () => {
   it('should pass with integer values', () => {
     const actual = 1;
+    const ctx = createFakeContext(actual);
     const array = [1, 2, 3];
-    const result = toEqualOneOf({actual}, array);
+
+    const result = toEqualOneOf(ctx, array);
 
     expect(result).toEqual({
       pass: true,
@@ -42,8 +45,10 @@ describe('toEqualOneOf', () => {
 
   it('should not pass with missing integer values', () => {
     const actual = 10;
+    const ctx = createFakeContext(actual);
     const array = [1, 2, 3];
-    const result = toEqualOneOf({actual}, array);
+
+    const result = toEqualOneOf(ctx, array);
 
     expect(result).toEqual({
       pass: false,
@@ -57,8 +62,10 @@ describe('toEqualOneOf', () => {
 
   it('should pass with boolean values', () => {
     const actual = false;
+    const ctx = createFakeContext(actual);
     const array = [true, false];
-    const result = toEqualOneOf({actual}, array);
+
+    const result = toEqualOneOf(ctx, array);
 
     expect(result).toEqual({
       pass: true,
@@ -72,8 +79,10 @@ describe('toEqualOneOf', () => {
 
   it('should not pass with missing boolean values', () => {
     const actual = false;
+    const ctx = createFakeContext(actual);
     const array = [true, true];
-    const result = toEqualOneOf({actual}, array);
+
+    const result = toEqualOneOf(ctx, array);
 
     expect(result).toEqual({
       pass: false,
@@ -87,8 +96,10 @@ describe('toEqualOneOf', () => {
 
   it('should pass with string values', () => {
     const actual = 'bar';
+    const ctx = createFakeContext(actual);
     const array = ['foo', 'bar', 'baz'];
-    const result = toEqualOneOf({actual}, array);
+
+    const result = toEqualOneOf(ctx, array);
 
     expect(result).toEqual({
       pass: true,
@@ -102,8 +113,10 @@ describe('toEqualOneOf', () => {
 
   it('should not pass with missing string values', () => {
     const actual = 'baz';
+    const ctx = createFakeContext(actual);
     const array = ['foo', 'bar'];
-    const result = toEqualOneOf({actual}, array);
+
+    const result = toEqualOneOf(ctx, array);
 
     expect(result).toEqual({
       pass: false,
@@ -117,9 +130,10 @@ describe('toEqualOneOf', () => {
 
   it('should pass with same object instances', () => {
     const actual = {id: 1};
+    const ctx = createFakeContext(actual);
     const array = [actual];
 
-    const result = toEqualOneOf({actual}, array);
+    const result = toEqualOneOf(ctx, array);
 
     expect(result).toEqual({
       pass: true,
@@ -132,18 +146,20 @@ describe('toEqualOneOf', () => {
   });
 
   it('should pass with custom object equality', () => {
-    const equals = jasmine.createSpy('equals').and.callFake((o1, o2) => (
-      o1.id === o2.id
-    ));
-
     const actual = {id: 2};
+    const ctx = createFakeContext(actual, {
+      equals: jasmine.createSpy('equals').and.callFake((o1, o2) => (
+        o1.id === o2.id
+      )),
+    });
+
     const array = [
       {id: 1},
       {id: 2},
       {id: 3},
     ];
 
-    const result = toEqualOneOf({actual, equals}, array);
+    const result = toEqualOneOf(ctx, array);
 
     expect(result).toEqual({
       pass: true,

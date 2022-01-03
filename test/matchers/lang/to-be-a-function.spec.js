@@ -23,11 +23,14 @@
  */
 
 import {toBeAFunction} from '../../../src/core/matchers/lang/to-be-a-function.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeAFunction', () => {
   it('should check that object is a function', () => {
     const actual = () => {};
-    const result = toBeAFunction({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAFunction(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeAFunction', () => {
 
   it('should not pass without a function', () => {
     const actual = null;
-    const result = toBeAFunction({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAFunction(ctx);
 
     expect(result).toEqual({
       pass: false,

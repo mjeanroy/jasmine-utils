@@ -23,6 +23,7 @@
  */
 
 import {toBeDOMElementWithAttributes} from '../../../src/core/matchers/dom/to-be-dom-element-with-attributes.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeDOMElementWithAttributes', () => {
   let div;
@@ -35,14 +36,12 @@ describe('toBeDOMElementWithAttributes', () => {
 
   it('should pass with a dom element with expected attributes', () => {
     const actual = div;
-    const equals = jasmine.createSpy('equals').and.callFake((x, y) => (
-      jasmine.matchersUtil.equals(x, y)
-    ));
+    const ctx = createFakeContext(actual);
 
     const attrs = {foo: 'bar', bar: 'baz'};
-    const result = toBeDOMElementWithAttributes({actual, equals}, attrs);
+    const result = toBeDOMElementWithAttributes(ctx, attrs);
 
-    expect(equals).toHaveBeenCalled();
+    expect(ctx.equals).toHaveBeenCalled();
 
     expect(result).toEqual({
       pass: true,
@@ -57,14 +56,12 @@ describe('toBeDOMElementWithAttributes', () => {
 
   it('should pass with a dom element with anything matcher', () => {
     const actual = div;
-    const equals = jasmine.createSpy('equals').and.callFake((x, y) => (
-      jasmine.matchersUtil.equals(x, y)
-    ));
-
+    const ctx = createFakeContext(actual);
     const attrs = {foo: jasmine.anything(), bar: jasmine.anything()};
-    const result = toBeDOMElementWithAttributes({actual, equals}, attrs);
 
-    expect(equals).toHaveBeenCalled();
+    const result = toBeDOMElementWithAttributes(ctx, attrs);
+
+    expect(ctx.equals).toHaveBeenCalled();
 
     expect(result).toEqual({
       pass: true,
@@ -79,13 +76,11 @@ describe('toBeDOMElementWithAttributes', () => {
 
   it('should not pass without a DOM element', () => {
     const actual = '<div></div>';
-    const equals = jasmine.createSpy('equals').and.callFake((x, y) => (
-      jasmine.matchersUtil.equals(x, y)
-    ));
+    const ctx = createFakeContext(actual);
 
-    const result = toBeDOMElementWithAttributes({actual, equals}, {foo: 'bar'});
+    const result = toBeDOMElementWithAttributes(ctx, {foo: 'bar'});
 
-    expect(equals).not.toHaveBeenCalled();
+    expect(ctx.equals).not.toHaveBeenCalled();
 
     expect(result).toEqual({
       pass: false,
@@ -99,13 +94,11 @@ describe('toBeDOMElementWithAttributes', () => {
 
   it('should not pass with a DOM element but not the expected attributes', () => {
     const actual = div;
-    const equals = jasmine.createSpy('equals').and.callFake((x, y) => (
-      jasmine.matchersUtil.equals(x, y)
-    ));
+    const ctx = createFakeContext(actual);
 
-    const result = toBeDOMElementWithAttributes({actual, equals}, {foo: 'baz', bar: 'baz'});
+    const result = toBeDOMElementWithAttributes(ctx, {foo: 'baz', bar: 'baz'});
 
-    expect(equals).toHaveBeenCalled();
+    expect(ctx.equals).toHaveBeenCalled();
     expect(result).toEqual({
       pass: false,
       message: jasmine.any(Function),

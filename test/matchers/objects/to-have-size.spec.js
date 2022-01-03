@@ -27,11 +27,14 @@ import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toHaveSize} from '../../../src/core/matchers/objects/to-have-size.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toHaveSize', () => {
   it('should check length of array', () => {
     const actual = [1, 2, 3];
-    const result = toHaveSize({actual}, 3);
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveSize(ctx, 3);
 
     expect(result).toEqual({
       pass: true,
@@ -45,7 +48,9 @@ describe('toHaveSize', () => {
 
   it('should check size of object', () => {
     const actual = {foo: 'bar'};
-    const result = toHaveSize({actual}, 1);
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveSize(ctx, 1);
 
     expect(result).toEqual({
       pass: true,
@@ -63,7 +68,9 @@ describe('toHaveSize', () => {
     const actual = new Set();
     actual.add(1);
 
-    const result = toHaveSize({actual}, 1);
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveSize(ctx, 1);
 
     expect(result).toEqual({
       pass: true,
@@ -81,7 +88,9 @@ describe('toHaveSize', () => {
     const actual = new Map();
     actual.set('one', 1);
 
-    const result = toHaveSize({actual}, 1);
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveSize(ctx, 1);
 
     expect(result).toEqual({
       pass: true,
@@ -107,7 +116,9 @@ describe('toHaveSize', () => {
       },
     };
 
-    const result = toHaveSize({actual}, 2);
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveSize(ctx, 2);
 
     expect(result).toEqual({
       pass: true,
@@ -121,7 +132,9 @@ describe('toHaveSize', () => {
 
   it('should fail with non expected length', () => {
     const actual = {foo: 'bar'};
-    const result = toHaveSize({actual}, 2);
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveSize(ctx, 2);
 
     expect(result).toEqual({
       pass: false,

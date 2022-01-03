@@ -25,11 +25,14 @@
 import {assumeMap} from '../../detect/assume-map.js';
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toHaveKeys} from '../../../src/core/matchers/objects/to-have-keys.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toHaveKeys', () => {
   it('should check if object has key', () => {
     const actual = {foo: 'bar', quix: 'quix'};
-    const result = toHaveKeys({actual}, 'foo');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveKeys(ctx, 'foo');
 
     expect(result).toEqual({
       pass: true,
@@ -48,7 +51,9 @@ describe('toHaveKeys', () => {
     actual.set('foo', 'bar');
     actual.set('quix', 'quix');
 
-    const result = toHaveKeys({actual}, 'foo');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveKeys(ctx, 'foo');
 
     expect(result).toEqual({
       pass: true,
@@ -62,7 +67,9 @@ describe('toHaveKeys', () => {
 
   it('should check if object has all keys', () => {
     const actual = {foo: 'bar', quix: 'quix'};
-    const result = toHaveKeys({actual}, 'foo', 'quix');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveKeys(ctx, 'foo', 'quix');
 
     expect(result).toEqual({
       pass: true,
@@ -81,7 +88,9 @@ describe('toHaveKeys', () => {
     actual.set('foo', 'bar');
     actual.set('quix', 'quix');
 
-    const result = toHaveKeys({actual}, 'foo', 'quix');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveKeys(ctx, 'foo', 'quix');
 
     expect(result).toEqual({
       pass: true,
@@ -95,7 +104,9 @@ describe('toHaveKeys', () => {
 
   it('should fail if object does not have key', () => {
     const actual = {foo: 'bar', quix: 'quix'};
-    const result = toHaveKeys({actual}, 'bar');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveKeys(ctx, 'bar');
 
     expect(result).toEqual({
       pass: false,
@@ -114,7 +125,9 @@ describe('toHaveKeys', () => {
     actual.set('foo', 'bar');
     actual.set('quix', 'quix');
 
-    const result = toHaveKeys({actual}, 'bar');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveKeys(ctx, 'bar');
 
     expect(result).toEqual({
       pass: false,
@@ -128,7 +141,9 @@ describe('toHaveKeys', () => {
 
   it('should fail if object does not have all keys', () => {
     const actual = {foo: 'bar', quix: 'quix'};
-    const result = toHaveKeys({actual}, 'foo', 'bar');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveKeys(ctx, 'foo', 'bar');
 
     expect(result).toEqual({
       pass: false,
@@ -147,7 +162,9 @@ describe('toHaveKeys', () => {
     actual.set('foo', 'bar');
     actual.set('quix', 'quix');
 
-    const result = toHaveKeys({actual}, 'foo', 'bar');
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveKeys(ctx, 'foo', 'bar');
 
     expect(result).toEqual({
       pass: false,

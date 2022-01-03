@@ -27,12 +27,15 @@ import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toVerify} from '../../../src/core/matchers/arrays/to-verify.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toVerify', () => {
   it('should pass if array satisfies predicate function', () => {
     const actual = [0, 1, 2];
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toVerify({actual}, predicate);
+
+    const result = toVerify(ctx, predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -56,8 +59,10 @@ describe('toVerify', () => {
     actual.add(1);
     actual.add(2);
 
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toVerify({actual}, predicate);
+
+    const result = toVerify(ctx, predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -81,8 +86,10 @@ describe('toVerify', () => {
     actual.set('two', 2);
     actual.set('three', 3);
 
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toVerify({actual}, predicate);
+
+    const result = toVerify(ctx, predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -112,8 +119,10 @@ describe('toVerify', () => {
       },
     };
 
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toVerify({actual}, predicate);
+
+    const result = toVerify(ctx, predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -132,7 +141,9 @@ describe('toVerify', () => {
   it('should pass if array satisfies predicate function with custom message', () => {
     const actual = [0, 1, 2];
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toVerify({actual}, 'test message', predicate);
+    const ctx = createFakeContext(actual);
+
+    const result = toVerify(ctx, 'test message', predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -150,8 +161,10 @@ describe('toVerify', () => {
 
   it('should not pass if array does not satisfies predicate function for all elements', () => {
     const actual = [0, 1, 2];
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.callFake((x) => x < 1);
-    const result = toVerify({actual}, predicate);
+
+    const result = toVerify(ctx, predicate);
 
     expect(result).toEqual({
       pass: false,

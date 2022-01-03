@@ -25,13 +25,16 @@
 import {assumeMap} from '../../detect/assume-map.js';
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeAMap} from '../../../src/core/matchers/lang/to-be-a-map.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeAMap', () => {
   it('should check that object is a map', () => {
     assumeMap();
 
     const actual = new Map();
-    const result = toBeAMap({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAMap(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -45,7 +48,9 @@ describe('toBeAMap', () => {
 
   it('should not pass without a map', () => {
     const actual = [];
-    const result = toBeAMap({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAMap(ctx);
 
     expect(result).toEqual({
       pass: false,

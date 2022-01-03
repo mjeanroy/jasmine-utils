@@ -1,7 +1,7 @@
 /**
  * The MIT License (MIT)
  *
- * Copyright (c) 2014-2018 Mickael Jeanroy
+ * Copyright (c) 2014-2022 Mickael Jeanroy
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -22,39 +22,21 @@
  * THE SOFTWARE.
  */
 
-import {toBeOddNumber} from '../../../src/core/matchers/numbers/to-be-odd-number.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
-
-describe('toBeOddNumber', () => {
-  it('should check that object is an odd number', () => {
-    const actual = 1;
-    const ctx = createFakeContext(actual);
-
-    const result = toBeOddNumber(ctx);
-
-    expect(result).toEqual({
-      pass: true,
-      message: jasmine.any(Function),
-    });
-
-    expect(result.message()).toBe(
-        `Expect 1 {{not}} to be an odd number`
-    );
-  });
-
-  it('should not pass with an even number', () => {
-    const actual = 2;
-    const ctx = createFakeContext(actual);
-
-    const result = toBeOddNumber(ctx);
-
-    expect(result).toEqual({
-      pass: false,
-      message: jasmine.any(Function),
-    });
-
-    expect(result.message()).toBe(
-        `Expect 2 {{not}} to be an odd number`
-    );
-  });
-});
+/**
+ * Create fake matcher context to use in unit tests.
+ *
+ * @param {*} actual Actual Object.
+ * @param {Object} options Optional parameter.
+ * @returns {Object} Matcher context.
+ */
+export function createFakeContext(actual, options = {}) {
+  return {
+    actual,
+    argsFor: options.argsFor || jasmine.createSpy('argsFor').and.returnValue([]),
+    callCount: options.callCount || jasmine.createSpy('callCount').and.returnValue(0),
+    isNot: options.isNot || false,
+    equals: options.equals || jasmine.createSpy('equals').and.callFake((x, y) => (
+      new jasmine.MatchersUtil().equals(x, y)
+    )),
+  };
+}

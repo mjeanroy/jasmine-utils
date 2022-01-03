@@ -24,13 +24,16 @@
 
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeDateCloseToNow} from '../../../src/core/matchers/dates/to-be-date-close-to-now.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeDateCloseToNow', () => {
   it('should check that object is a date close to "now"', () => {
     const now = new Date().getTime();
     const offset = 10;
     const actual = new Date(now + offset);
-    const result = toBeDateCloseToNow({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDateCloseToNow(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -46,7 +49,9 @@ describe('toBeDateCloseToNow', () => {
     const now = new Date().getTime();
     const offset = 2000;
     const actual = new Date(now + offset);
-    const result = toBeDateCloseToNow({actual}, offset * 10);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDateCloseToNow(ctx, offset * 10);
 
     expect(result).toEqual({
       pass: true,
@@ -62,7 +67,9 @@ describe('toBeDateCloseToNow', () => {
     const now = new Date().getTime();
     const offset = 10000;
     const actual = new Date(now + offset);
-    const result = toBeDateCloseToNow({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDateCloseToNow(ctx);
 
     expect(result).toEqual({
       pass: false,

@@ -23,11 +23,14 @@
  */
 
 import {toBeNegative} from '../../../src/core/matchers/numbers/to-be-negative.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeNegative', () => {
   it('should check that object is strictly less than zero', () => {
     const actual = -1;
-    const result = toBeNegative({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNegative(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeNegative', () => {
 
   it('should not pass with zero', () => {
     const actual = 0;
-    const result = toBeNegative({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNegative(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -55,7 +60,9 @@ describe('toBeNegative', () => {
 
   it('should not pass with a positive number', () => {
     const actual = 1;
-    const result = toBeNegative({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNegative(ctx);
 
     expect(result).toEqual({
       pass: false,

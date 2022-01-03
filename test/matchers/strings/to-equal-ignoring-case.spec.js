@@ -23,12 +23,15 @@
  */
 
 import {toEqualIgnoringCase} from '../../../src/core/matchers/strings/to-equal-ignoring-case.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toEqualIgnoringCase', () => {
   it('should check that object is a string equal to an other (case insensitively)', () => {
     const actual = 'test';
     const other = 'TEST';
-    const result = toEqualIgnoringCase({actual}, other);
+    const ctx = createFakeContext(actual);
+
+    const result = toEqualIgnoringCase(ctx, other);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toEqualIgnoringCase', () => {
   it('should not pass without a string', () => {
     const actual = 'test';
     const other = 'foo';
-    const result = toEqualIgnoringCase({actual}, other);
+    const ctx = createFakeContext(actual);
+
+    const result = toEqualIgnoringCase(ctx, other);
 
     expect(result).toEqual({
       pass: false,

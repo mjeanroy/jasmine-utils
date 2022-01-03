@@ -24,11 +24,14 @@
 
 import {assumeSeal} from '../../detect/assume-seal.js';
 import {toBeSealed} from '../../../src/core/matchers/any/to-be-sealed.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeSealed', () => {
   it('should check for null', () => {
     const actual = null;
-    const result = toBeSealed({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSealed(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -42,7 +45,9 @@ describe('toBeSealed', () => {
 
   it('should check for undefined', () => {
     const actual = undefined;
-    const result = toBeSealed({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSealed(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -56,7 +61,9 @@ describe('toBeSealed', () => {
 
   it('should check for numbers', () => {
     const actual = 1;
-    const result = toBeSealed({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSealed(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -70,7 +77,9 @@ describe('toBeSealed', () => {
 
   it('should check for strings', () => {
     const actual = '';
-    const result = toBeSealed({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSealed(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -84,7 +93,9 @@ describe('toBeSealed', () => {
 
   it('should check for booleans', () => {
     const actual = true;
-    const result = toBeSealed({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSealed(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -98,7 +109,9 @@ describe('toBeSealed', () => {
 
   it('should check for non sealed object', () => {
     const actual = {};
-    const result = toBeSealed({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSealed(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -112,7 +125,9 @@ describe('toBeSealed', () => {
 
   it('should check for non sealed array', () => {
     const actual = [];
-    const result = toBeSealed({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSealed(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -128,7 +143,9 @@ describe('toBeSealed', () => {
     assumeSeal();
 
     const actual = Object.seal({});
-    const result = toBeSealed({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSealed(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -144,7 +161,9 @@ describe('toBeSealed', () => {
     assumeSeal();
 
     const actual = Object.seal([]);
-    const result = toBeSealed({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSealed(ctx);
 
     expect(result).toEqual({
       pass: true,

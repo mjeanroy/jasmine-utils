@@ -24,11 +24,14 @@
 
 import {Klass} from '../../fixtures/klass.js';
 import {toBeInstanceOf} from '../../../src/core/matchers/any/to-be-instance-of.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeInstanceOf', () => {
   it('should pass if value is an instance of given class', () => {
     const actual = new Klass();
-    const result = toBeInstanceOf({actual}, Klass);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeInstanceOf(ctx, Klass);
 
     expect(result).toEqual({
       pass: true,
@@ -42,7 +45,9 @@ describe('toBeInstanceOf', () => {
 
   it('should not pass if value is not an instance of given class', () => {
     const actual = '';
-    const result = toBeInstanceOf({actual}, Klass);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeInstanceOf(ctx, Klass);
 
     expect(result).toEqual({
       pass: false,

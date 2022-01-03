@@ -23,13 +23,16 @@
  */
 
 import {toBeInRange} from '../../../src/core/matchers/numbers/to-be-in-range.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeInRange', () => {
   it('should check that object is an greater than lower bound and less than upper bound', () => {
     const actual = 1;
     const lower = 0;
     const upper = 2;
-    const result = toBeInRange({actual}, lower, upper);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeInRange(ctx, lower, upper);
 
     expect(result).toEqual({
       pass: true,
@@ -45,7 +48,9 @@ describe('toBeInRange', () => {
     const actual = 1;
     const lower = 1;
     const upper = 2;
-    const result = toBeInRange({actual}, lower, upper);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeInRange(ctx, lower, upper);
 
     expect(result).toEqual({
       pass: false,
@@ -61,7 +66,9 @@ describe('toBeInRange', () => {
     const actual = 1;
     const lower = 0;
     const upper = 1;
-    const result = toBeInRange({actual}, lower, upper);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeInRange(ctx, lower, upper);
 
     expect(result).toEqual({
       pass: false,

@@ -27,12 +27,15 @@ import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toHaveSome} from '../../../src/core/matchers/arrays/to-have-some.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toHaveSome', () => {
   it('should pass if array satisfies predicate function for at least one element', () => {
     const actual = [0, 1, 2];
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toHaveSome({actual}, predicate);
+
+    const result = toHaveSome(ctx, predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -56,8 +59,10 @@ describe('toHaveSome', () => {
     actual.add(1);
     actual.add(2);
 
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toHaveSome({actual}, predicate);
+
+    const result = toHaveSome(ctx, predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -79,8 +84,10 @@ describe('toHaveSome', () => {
     actual.set('one', 1);
     actual.set('two', 2);
 
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toHaveSome({actual}, predicate);
+
+    const result = toHaveSome(ctx, predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -108,8 +115,10 @@ describe('toHaveSome', () => {
       },
     };
 
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toHaveSome({actual}, predicate);
+
+    const result = toHaveSome(ctx, predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -127,8 +136,10 @@ describe('toHaveSome', () => {
 
   it('should pass if array satisfies predicate function with custom message', () => {
     const actual = [0, 1, 2];
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(true);
-    const result = toHaveSome({actual}, 'test message', predicate);
+
+    const result = toHaveSome(ctx, 'test message', predicate);
 
     expect(result).toEqual({
       pass: true,
@@ -146,8 +157,10 @@ describe('toHaveSome', () => {
 
   it('should not pass if array does not satisfies predicate function for all elements', () => {
     const actual = [0, 1, 2];
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
-    const result = toHaveSome({actual}, predicate);
+
+    const result = toHaveSome(ctx, predicate);
 
     expect(result).toEqual({
       pass: false,
@@ -171,8 +184,10 @@ describe('toHaveSome', () => {
     actual.add(1);
     actual.add(2);
 
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
-    const result = toHaveSome({actual}, predicate);
+
+    const result = toHaveSome(ctx, predicate);
 
     expect(result).toEqual({
       pass: false,
@@ -196,8 +211,10 @@ describe('toHaveSome', () => {
     actual.set('one', 1);
     actual.set('two', 2);
 
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
-    const result = toHaveSome({actual}, predicate);
+
+    const result = toHaveSome(ctx, predicate);
 
     expect(result).toEqual({
       pass: false,
@@ -227,8 +244,10 @@ describe('toHaveSome', () => {
       },
     };
 
+    const ctx = createFakeContext(actual);
     const predicate = jasmine.createSpy('predicate').and.returnValue(false);
-    const result = toHaveSome({actual}, predicate);
+
+    const result = toHaveSome(ctx, predicate);
 
     expect(result).toEqual({
       pass: false,

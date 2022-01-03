@@ -23,10 +23,11 @@
  */
 
 import {toBePartiallyEqualTo} from '../../../src/core/matchers/objects/to-be-partially-equal-to.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBePartiallyEqualTo', () => {
   it('should compare two arrays', () => {
-    const equals = jasmine.createSpy('equals').and.callFake((a, b) => {
+    const equals = jasmine.createSpy('equals').and.callFake(() => {
       return true;
     });
 
@@ -40,7 +41,11 @@ describe('toBePartiallyEqualTo', () => {
       {id: 2, name: 'Jane Doe'},
     ];
 
-    const result = toBePartiallyEqualTo({actual, equals}, other);
+    const ctx = createFakeContext(actual, {
+      equals,
+    });
+
+    const result = toBePartiallyEqualTo(ctx, other);
 
     expect(result).toEqual({
       pass: true,
@@ -57,7 +62,7 @@ describe('toBePartiallyEqualTo', () => {
   });
 
   it('should not pass if equals function return false when comparing two arrays', () => {
-    const equals = jasmine.createSpy('equals').and.callFake((a, b) => {
+    const equals = jasmine.createSpy('equals').and.callFake(() => {
       return false;
     });
 
@@ -71,7 +76,11 @@ describe('toBePartiallyEqualTo', () => {
       {id: 2, name: 'Jane Doe'},
     ];
 
-    const result = toBePartiallyEqualTo({actual, equals}, other);
+    const ctx = createFakeContext(actual, {
+      equals,
+    });
+
+    const result = toBePartiallyEqualTo(ctx, other);
 
     expect(result).toEqual({
       pass: false,
@@ -96,7 +105,11 @@ describe('toBePartiallyEqualTo', () => {
       {id: 2, name: 'Jane Doe'},
     ];
 
-    const result = toBePartiallyEqualTo({actual, equals}, other);
+    const ctx = createFakeContext(actual, {
+      equals,
+    });
+
+    const result = toBePartiallyEqualTo(ctx, other);
 
     expect(equals).not.toHaveBeenCalled();
     expect(result).toEqual({
@@ -111,14 +124,18 @@ describe('toBePartiallyEqualTo', () => {
   });
 
   it('should compare two objects', () => {
-    const equals = jasmine.createSpy('equals').and.callFake((a, b) => {
+    const equals = jasmine.createSpy('equals').and.callFake(() => {
       return true;
     });
 
     const actual = {id: 1, name: 'John Doe', age: 20};
     const other = {id: 1, name: 'John Doe'};
 
-    const result = toBePartiallyEqualTo({actual, equals}, other);
+    const ctx = createFakeContext(actual, {
+      equals,
+    });
+
+    const result = toBePartiallyEqualTo(ctx, other);
 
     expect(result).toEqual({
       pass: true,
@@ -134,14 +151,18 @@ describe('toBePartiallyEqualTo', () => {
   });
 
   it('should not pass if equals function return false when comparing two objects', () => {
-    const equals = jasmine.createSpy('equals').and.callFake((a, b) => {
+    const equals = jasmine.createSpy('equals').and.callFake(() => {
       return false;
     });
 
     const actual = {id: 1, name: 'John Doe', age: 20};
     const other = {id: 1, name: 'John Doe'};
 
-    const result = toBePartiallyEqualTo({actual, equals}, other);
+    const ctx = createFakeContext(actual, {
+      equals,
+    });
+
+    const result = toBePartiallyEqualTo(ctx, other);
 
     expect(result).toEqual({
       pass: false,

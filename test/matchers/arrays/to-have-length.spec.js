@@ -23,11 +23,14 @@
  */
 
 import {toHaveLength} from '../../../src/core/matchers/arrays/to-have-length.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toHaveLength', () => {
   it('should check length of array', () => {
     const actual = [1, 2, 3];
-    const result = toHaveLength({actual}, 3);
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveLength(ctx, 3);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toHaveLength', () => {
 
   it('should check length of array-like object', () => {
     const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
-    const result = toHaveLength({actual}, 3);
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveLength(ctx, 3);
 
     expect(result).toEqual({
       pass: true,
@@ -55,7 +60,9 @@ describe('toHaveLength', () => {
 
   it('should fail with non expected length', () => {
     const actual = [];
-    const result = toHaveLength({actual}, 2);
+    const ctx = createFakeContext(actual);
+
+    const result = toHaveLength(ctx, 2);
 
     expect(result).toEqual({
       pass: false,

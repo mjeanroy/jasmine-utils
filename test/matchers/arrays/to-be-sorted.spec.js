@@ -23,11 +23,14 @@
  */
 
 import {toBeSorted} from '../../../src/core/matchers/arrays/to-be-sorted.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeSorted', () => {
   it('should pass with a sorted array', () => {
     const actual = [0, 1, 2, 3];
-    const result = toBeSorted({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSorted(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,11 +44,12 @@ describe('toBeSorted', () => {
 
   it('should pass with a sorted array and a comparator function', () => {
     const actual = [0, -1, 2, -3];
+    const ctx = createFakeContext(actual);
     const comparator = jasmine.createSpy('comparator').and.callFake((a, b) => {
       return Math.abs(a) - Math.abs(b);
     });
 
-    const result = toBeSorted({actual}, comparator);
+    const result = toBeSorted(ctx, comparator);
 
     expect(result).toEqual({
       pass: true,
@@ -61,7 +65,9 @@ describe('toBeSorted', () => {
 
   it('should fail with a non-sorted array', () => {
     const actual = [0, -1, 2, -3];
-    const result = toBeSorted({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeSorted(ctx);
 
     expect(result).toEqual({
       pass: false,

@@ -23,11 +23,14 @@
  */
 
 import {toBeDOMElement} from '../../../src/core/matchers/dom/to-be-dom-element.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeDOMElement', () => {
   it('should pass with a dom element', () => {
     const actual = document.createElement('div');
-    const result = toBeDOMElement({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElement(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeDOMElement', () => {
 
   it('should pass with a dom element with expected tag name', () => {
     const actual = document.createElement('div');
-    const result = toBeDOMElement({actual}, 'div');
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElement(ctx, 'div');
 
     expect(result).toEqual({
       pass: true,
@@ -55,7 +60,9 @@ describe('toBeDOMElement', () => {
 
   it('should not pass without a dom element', () => {
     const actual = '<div></div>';
-    const result = toBeDOMElement({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElement(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -69,7 +76,9 @@ describe('toBeDOMElement', () => {
 
   it('should not pass with a DOM element but not the expected tag name', () => {
     const actual = document.createElement('div');
-    const result = toBeDOMElement({actual}, 'SPAN');
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDOMElement(ctx, 'SPAN');
 
     expect(result).toEqual({
       pass: false,

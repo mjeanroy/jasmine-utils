@@ -23,11 +23,14 @@
  */
 
 import {toBeNull} from '../../../src/core/matchers/lang/to-be-null.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeNull', () => {
   it('should check that object is null', () => {
     const actual = null;
-    const result = toBeNull({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNull(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeNull', () => {
 
   it('should not pass without null', () => {
     const actual = void 0;
-    const result = toBeNull({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNull(ctx);
 
     expect(result).toEqual({
       pass: false,

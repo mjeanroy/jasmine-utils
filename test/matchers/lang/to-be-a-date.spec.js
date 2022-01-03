@@ -24,11 +24,14 @@
 
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeADate} from '../../../src/core/matchers/lang/to-be-a-date.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeADate', () => {
   it('should check that object is a date', () => {
     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
-    const result = toBeADate({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeADate(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -42,7 +45,9 @@ describe('toBeADate', () => {
 
   it('should not pass without a date', () => {
     const actual = null;
-    const result = toBeADate({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeADate(ctx);
 
     expect(result).toEqual({
       pass: false,

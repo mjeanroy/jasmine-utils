@@ -23,11 +23,14 @@
  */
 
 import {toBeFloat} from '../../../src/core/matchers/numbers/to-be-float.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeFloat', () => {
   it('should check that object is a float value', () => {
     const actual = 1.5;
-    const result = toBeFloat({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFloat(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeFloat', () => {
 
   it('should check that object is a float value with a numeric string value', () => {
     const actual = '1.5';
-    const result = toBeFloat({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFloat(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -55,7 +60,9 @@ describe('toBeFloat', () => {
 
   it('should not pass with NaN', () => {
     const actual = NaN;
-    const result = toBeFloat({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFloat(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -69,7 +76,9 @@ describe('toBeFloat', () => {
 
   it('should not pass with a Infinity', () => {
     const actual = Infinity;
-    const result = toBeFloat({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFloat(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -83,7 +92,9 @@ describe('toBeFloat', () => {
 
   it('should not pass with an integer', () => {
     const actual = 1.0;
-    const result = toBeFloat({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFloat(ctx);
 
     expect(result).toEqual({
       pass: false,

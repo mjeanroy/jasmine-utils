@@ -23,12 +23,15 @@
  */
 
 import {toEndWith} from '../../../src/core/matchers/strings/to-end-with.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toEndWith', () => {
   it('should check that object is a string ending with given suffix', () => {
     const actual = 'foo';
     const other = 'oo';
-    const result = toEndWith({actual}, other);
+    const ctx = createFakeContext(actual);
+
+    const result = toEndWith(ctx, other);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toEndWith', () => {
   it('should not pass without a string starting with an other prefix', () => {
     const actual = 'test';
     const other = 'testtest';
-    const result = toEndWith({actual}, other);
+    const ctx = createFakeContext(actual);
+
+    const result = toEndWith(ctx, other);
 
     expect(result).toEqual({
       pass: false,

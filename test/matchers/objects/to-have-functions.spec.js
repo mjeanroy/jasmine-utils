@@ -23,6 +23,7 @@
  */
 
 import {toHaveFunctions} from '../../../src/core/matchers/objects/to-have-functions.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toHaveFunctions', () => {
   it('should check if object has expected functions', () => {
@@ -30,7 +31,9 @@ describe('toHaveFunctions', () => {
     const f2 = jasmine.createSpy('f2');
     const actual = {f1, f2};
     const isNot = false;
-    const ctx = {actual, isNot};
+    const ctx = createFakeContext(actual, {
+      isNot,
+    });
 
     const result = toHaveFunctions(ctx, 'f1', 'f2');
 
@@ -58,7 +61,9 @@ describe('toHaveFunctions', () => {
 
     const actual = new TestClass();
     const isNot = false;
-    const ctx = {actual, isNot};
+    const ctx = createFakeContext(actual, {
+      isNot,
+    });
 
     const result = toHaveFunctions(ctx, 'f1', 'f2');
 
@@ -76,7 +81,9 @@ describe('toHaveFunctions', () => {
     const f1 = jasmine.createSpy('f1');
     const actual = {f1};
     const isNot = false;
-    const ctx = {actual, isNot};
+    const ctx = createFakeContext(actual, {
+      isNot,
+    });
 
     const result = toHaveFunctions(ctx, 'f1', 'f2');
 

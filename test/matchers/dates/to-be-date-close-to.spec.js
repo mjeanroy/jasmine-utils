@@ -24,12 +24,15 @@
 
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeDateCloseTo} from '../../../src/core/matchers/dates/to-be-date-close-to.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeADateCloseTo', () => {
   it('should check that object is a date close to an other date', () => {
     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
+    const ctx = createFakeContext(actual);
     const other = new Date(2016, 10, 12, 17, 55, 38, 100);
-    const result = toBeDateCloseTo({actual}, other);
+
+    const result = toBeDateCloseTo(ctx, other);
 
     expect(result).toEqual({
       pass: true,
@@ -44,7 +47,9 @@ describe('toBeADateCloseTo', () => {
   it('should check that object is a date close to an other date with a custom diff', () => {
     const actual = new Date(2016, 10, 12, 17, 55, 38, 0);
     const other = new Date(2016, 10, 12, 17, 55, 39, 0);
-    const result = toBeDateCloseTo({actual}, other, 10000);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDateCloseTo(ctx, other, 10000);
 
     expect(result).toEqual({
       pass: true,
@@ -59,7 +64,9 @@ describe('toBeADateCloseTo', () => {
   it('should not pass with a date not close', () => {
     const actual = new Date(2016, 10, 12, 17, 55, 38, 11);
     const other = new Date(2016, 10, 12, 17, 55, 38, 0);
-    const result = toBeDateCloseTo({actual}, other, 10);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeDateCloseTo(ctx, other, 10);
 
     expect(result).toEqual({
       pass: false,

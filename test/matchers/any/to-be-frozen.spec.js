@@ -24,11 +24,14 @@
 
 import {assumeFreeze} from '../../detect/assume-freeze.js';
 import {toBeFrozen} from '../../../src/core/matchers/any/to-be-frozen.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeFrozen', () => {
   it('should check for null', () => {
     const actual = null;
-    const result = toBeFrozen({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFrozen(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -42,7 +45,9 @@ describe('toBeFrozen', () => {
 
   it('should check for undefined', () => {
     const actual = undefined;
-    const result = toBeFrozen({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFrozen(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -56,7 +61,9 @@ describe('toBeFrozen', () => {
 
   it('should check for numbers', () => {
     const actual = 1;
-    const result = toBeFrozen({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFrozen(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -70,7 +77,9 @@ describe('toBeFrozen', () => {
 
   it('should check for strings', () => {
     const actual = '';
-    const result = toBeFrozen({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFrozen(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -84,7 +93,9 @@ describe('toBeFrozen', () => {
 
   it('should check for booleans', () => {
     const actual = true;
-    const result = toBeFrozen({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFrozen(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -98,7 +109,9 @@ describe('toBeFrozen', () => {
 
   it('should check for non frozen object', () => {
     const actual = {};
-    const result = toBeFrozen({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFrozen(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -112,7 +125,9 @@ describe('toBeFrozen', () => {
 
   it('should check for non frozen array', () => {
     const actual = [];
-    const result = toBeFrozen({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFrozen(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -128,7 +143,10 @@ describe('toBeFrozen', () => {
     assumeFreeze();
 
     const actual = Object.freeze({});
-    const result = toBeFrozen({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFrozen(ctx);
+
     expect(result).toEqual({
       pass: true,
       message: jasmine.any(Function),
@@ -143,7 +161,9 @@ describe('toBeFrozen', () => {
     assumeFreeze();
 
     const actual = Object.freeze([]);
-    const result = toBeFrozen({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeFrozen(ctx);
 
     expect(result).toEqual({
       pass: true,

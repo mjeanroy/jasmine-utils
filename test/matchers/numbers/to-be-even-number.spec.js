@@ -23,11 +23,14 @@
  */
 
 import {toBeEvenNumber} from '../../../src/core/matchers/numbers/to-be-even-number.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeEvenNumber', () => {
   it('should check that object is an even number', () => {
     const actual = 2;
-    const result = toBeEvenNumber({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeEvenNumber(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeEvenNumber', () => {
 
   it('should not pass with an odd number', () => {
     const actual = 1;
-    const result = toBeEvenNumber({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeEvenNumber(ctx);
 
     expect(result).toEqual({
       pass: false,

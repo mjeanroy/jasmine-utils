@@ -27,11 +27,14 @@ import {assumeMap} from '../../detect/assume-map.js';
 import {assumeSymbol} from '../../detect/assume-symbol.js';
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeEmpty} from '../../../src/core/matchers/any/to-be-empty.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeEmpty', () => {
   it('should check for empty array', () => {
     const actual = [];
-    const result = toBeEmpty({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeEmpty(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -47,7 +50,9 @@ describe('toBeEmpty', () => {
     assumeSet();
 
     const actual = new Set();
-    const result = toBeEmpty({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeEmpty(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -63,7 +68,9 @@ describe('toBeEmpty', () => {
     assumeMap();
 
     const actual = new Map();
-    const result = toBeEmpty({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeEmpty(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -88,7 +95,9 @@ describe('toBeEmpty', () => {
       },
     };
 
-    const result = toBeEmpty({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeEmpty(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -102,7 +111,9 @@ describe('toBeEmpty', () => {
 
   it('should check for empty object', () => {
     const actual = {};
-    const result = toBeEmpty({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeEmpty(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -116,7 +127,9 @@ describe('toBeEmpty', () => {
 
   it('should fail with non empty array', () => {
     const actual = [1, 2, 3];
-    const result = toBeEmpty({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeEmpty(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -130,7 +143,9 @@ describe('toBeEmpty', () => {
 
   it('should fail with non empty object', () => {
     const actual = {foo: 'bar'};
-    const result = toBeEmpty({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeEmpty(ctx);
 
     expect(result).toEqual({
       pass: false,

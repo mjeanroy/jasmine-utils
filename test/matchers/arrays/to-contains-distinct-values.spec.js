@@ -23,11 +23,14 @@
  */
 
 import {toContainsDistinctValues} from '../../../src/core/matchers/arrays/to-contains-distinct-values.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toContainsDistinctValues', () => {
   it('should check that array only contains distinct values', () => {
     const actual = [-1, 0, 1];
-    const result = toContainsDistinctValues({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toContainsDistinctValues(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toContainsDistinctValues', () => {
 
   it('should not pass if array contains duplicates', () => {
     const actual = [1, 0, 1];
-    const result = toContainsDistinctValues({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toContainsDistinctValues(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -55,11 +60,12 @@ describe('toContainsDistinctValues', () => {
 
   it('should not pass if array contains duplicates with custom equality function', () => {
     const actual = [-1, 0, 1];
-    const equals = jasmine.createSpy('equals').and.callFake((a, b) => {
-      return Math.abs(a) === Math.abs(b);
+    const equals = jasmine.createSpy('equals').and.callFake((a, b) => Math.abs(a) === Math.abs(b));
+    const ctx = createFakeContext(actual, {
+      equals,
     });
 
-    const result = toContainsDistinctValues({actual, equals});
+    const result = toContainsDistinctValues(ctx);
 
     expect(result).toEqual({
       pass: false,

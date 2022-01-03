@@ -23,11 +23,14 @@
  */
 
 import {toBeAnArray} from '../../../src/core/matchers/lang/to-be-an-array.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeAnArray', () => {
   it('should check that object is an array', () => {
     const actual = [1, 2, 3];
-    const result = toBeAnArray({actual}, 3);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAnArray(ctx, 3);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeAnArray', () => {
 
   it('should not pass with an array-like object', () => {
     const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
-    const result = toBeAnArray({actual}, 3);
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAnArray(ctx, 3);
 
     expect(result).toEqual({
       pass: false,

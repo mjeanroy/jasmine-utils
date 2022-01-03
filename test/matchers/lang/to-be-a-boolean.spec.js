@@ -23,11 +23,14 @@
  */
 
 import {toBeABoolean} from '../../../src/core/matchers/lang/to-be-a-boolean.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeABoolean', () => {
   it('should check that object is a boolean', () => {
     const actual = true;
-    const result = toBeABoolean({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeABoolean(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeABoolean', () => {
 
   it('should not pass without a boolean', () => {
     const actual = null;
-    const result = toBeABoolean({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeABoolean(ctx);
 
     expect(result).toEqual({
       pass: false,

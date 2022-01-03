@@ -24,13 +24,17 @@
 
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toHaveBeenCalledOnce} from '../../../src/core/matchers/spies/to-have-been-called-once.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toHaveBeenCalledOnce', () => {
   it('should pass if spy has been called once', () => {
     const callCount = jasmine.createSpy('callCount').and.returnValue(1);
     const actual = jasmine.createSpy('actual');
+    const ctx = createFakeContext(actual, {
+      callCount,
+    });
 
-    const result = toHaveBeenCalledOnce({actual, callCount});
+    const result = toHaveBeenCalledOnce(ctx);
 
     expect(callCount).toHaveBeenCalledWith(actual);
 
@@ -45,8 +49,11 @@ describe('toHaveBeenCalledOnce', () => {
   it('should not pass if spy has not been called', () => {
     const callCount = jasmine.createSpy('callCount').and.returnValue(0);
     const actual = jasmine.createSpy('actual');
+    const ctx = createFakeContext(actual, {
+      callCount,
+    });
 
-    const result = toHaveBeenCalledOnce({actual, callCount});
+    const result = toHaveBeenCalledOnce(ctx);
 
     expect(callCount).toHaveBeenCalledWith(actual);
 
@@ -61,8 +68,11 @@ describe('toHaveBeenCalledOnce', () => {
   it('should not pass if spy has been called more than once', () => {
     const callCount = jasmine.createSpy('callCount').and.returnValue(2);
     const actual = jasmine.createSpy('actual');
+    const ctx = createFakeContext(actual, {
+      callCount,
+    });
 
-    const result = toHaveBeenCalledOnce({actual, callCount});
+    const result = toHaveBeenCalledOnce(ctx);
 
     expect(callCount).toHaveBeenCalledWith(actual);
 

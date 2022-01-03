@@ -23,11 +23,14 @@
  */
 
 import {toBeNil} from '../../../src/core/matchers/lang/to-be-nil.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeNil', () => {
   it('should check that object is null', () => {
     const actual = null;
-    const result = toBeNil({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNil(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeNil', () => {
 
   it('should check that object is undefined', () => {
     const actual = undefined;
-    const result = toBeNil({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNil(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -55,7 +60,9 @@ describe('toBeNil', () => {
 
   it('should not pass without null and undefined', () => {
     const actual = '';
-    const result = toBeNil({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNil(ctx);
 
     expect(result).toEqual({
       pass: false,

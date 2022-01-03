@@ -23,11 +23,14 @@
  */
 
 import {toBeOk} from '../../../src/core/matchers/lang/to-be-ok.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeOk', () => {
   it('should check that object is not null and not undefined', () => {
     const actual = '';
-    const result = toBeOk({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeOk(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeOk', () => {
 
   it('should not pass with undefined', () => {
     const actual = undefined;
-    const result = toBeOk({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeOk(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -55,7 +60,9 @@ describe('toBeOk', () => {
 
   it('should not pass with null', () => {
     const actual = null;
-    const result = toBeOk({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeOk(ctx);
 
     expect(result).toEqual({
       pass: false,

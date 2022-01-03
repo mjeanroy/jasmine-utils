@@ -24,11 +24,14 @@
 
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeToday} from '../../../src/core/matchers/dates/to-be-today.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeToday', () => {
   it('should check that a date is today', () => {
     const actual = new Date();
-    const result = toBeToday({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeToday(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -42,7 +45,9 @@ describe('toBeToday', () => {
 
   it('should not pass with a date that is not today', () => {
     const actual = new Date(2010, 10, 13, 17, 55, 38, 0);
-    const result = toBeToday({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeToday(ctx);
 
     expect(result).toEqual({
       pass: false,

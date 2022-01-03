@@ -23,11 +23,14 @@
  */
 
 import {toBeAString} from '../../../src/core/matchers/lang/to-be-a-string.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeAString', () => {
   it('should check that object is a string', () => {
     const actual = 'test';
-    const result = toBeAString({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAString(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeAString', () => {
 
   it('should not pass without a string', () => {
     const actual = null;
-    const result = toBeAString({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeAString(ctx);
 
     expect(result).toEqual({
       pass: false,

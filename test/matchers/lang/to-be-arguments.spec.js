@@ -24,6 +24,7 @@
 
 import {pp} from '../../../src/core/jasmine/pp.js';
 import {toBeArguments} from '../../../src/core/matchers/lang/to-be-arguments.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeArguments', () => {
   it('should check that object is argumebnts', () => {
@@ -32,7 +33,9 @@ describe('toBeArguments', () => {
       return arguments;
     })();
 
-    const result = toBeArguments({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeArguments(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -46,7 +49,9 @@ describe('toBeArguments', () => {
 
   it('should not pass without a function', () => {
     const actual = [];
-    const result = toBeArguments({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeArguments(ctx);
 
     expect(result).toEqual({
       pass: false,

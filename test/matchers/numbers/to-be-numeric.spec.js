@@ -23,11 +23,14 @@
  */
 
 import {toBeNumeric} from '../../../src/core/matchers/numbers/to-be-numeric.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toBeNumeric', () => {
   it('should check that object is a numeric value', () => {
     const actual = '1.5';
-    const result = toBeNumeric({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNumeric(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toBeNumeric', () => {
 
   it('should not pass with NaN', () => {
     const actual = NaN;
-    const result = toBeNumeric({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNumeric(ctx);
 
     expect(result).toEqual({
       pass: false,
@@ -55,7 +60,9 @@ describe('toBeNumeric', () => {
 
   it('should not pass with a Infinity', () => {
     const actual = Infinity;
-    const result = toBeNumeric({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toBeNumeric(ctx);
 
     expect(result).toEqual({
       pass: false,

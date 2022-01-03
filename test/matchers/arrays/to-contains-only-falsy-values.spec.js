@@ -23,11 +23,14 @@
  */
 
 import {toContainsOnlyFalsyValues} from '../../../src/core/matchers/arrays/to-contains-only-falsy-values.js';
+import {createFakeContext} from '../../testing/create-fake-context.js';
 
 describe('toContainsOnlyFalstValues', () => {
   it('should check that array contains only falsy values', () => {
     const actual = [0, false, '', null, NaN, undefined];
-    const result = toContainsOnlyFalsyValues({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toContainsOnlyFalsyValues(ctx);
 
     expect(result).toEqual({
       pass: true,
@@ -41,7 +44,9 @@ describe('toContainsOnlyFalstValues', () => {
 
   it('should not pass with an array containing falsy values', () => {
     const actual = [0, false, '', null, NaN, undefined, true];
-    const result = toContainsOnlyFalsyValues({actual});
+    const ctx = createFakeContext(actual);
+
+    const result = toContainsOnlyFalsyValues(ctx);
 
     expect(result).toEqual({
       pass: false,
