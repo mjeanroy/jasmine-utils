@@ -33,6 +33,7 @@
 /.github
 /.idea
 /.npmrc
+/.nvmrc
 /.travis.yml
 /test
 /scripts
