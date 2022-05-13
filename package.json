@@ -40,7 +40,7 @@
     "karma-coverage": "2.2.0",
     "karma-firefox-launcher": "2.1.2",
     "karma-ie-launcher": "1.0.0",
-    "karma-jasmine": "4.0.2",
+    "karma-jasmine": "5.0.1",
     "karma-jasmine-html-reporter": "1.7.0",
     "karma-opera-launcher": "1.0.0",
     "karma-phantomjs-launcher": "1.0.4",
