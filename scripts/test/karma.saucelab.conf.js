@@ -89,7 +89,8 @@ const browsers = {
   SL_firefox: {
     base: 'SauceLabs',
     browserName: 'firefox',
-    version: 'latest',
+    // Specify version < 90, as there is an issue with `moz:debuggerAddress` capability.
+    version: '89',
     platform: 'Windows 10',
   },
 };
