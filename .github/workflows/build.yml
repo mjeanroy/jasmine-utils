@@ -39,7 +39,7 @@ jobs:
           node-version: ${{ matrix.node }}
       - name: Install
         run: npm install
-      - uses: saucelabs/sauce-connect-action@v2.3.0
+      - uses: saucelabs/sauce-connect-action@v2.3.3
         with:
           username: ${{ secrets.SAUCE_USERNAME }}
           accessKey: ${{ secrets.SAUCE_ACCESS_KEY }}
