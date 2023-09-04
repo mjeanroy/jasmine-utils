@@ -72,13 +72,6 @@ const browsers = {
     platform: 'Windows 8.1',
   },
 
-  SL_ie_10: {
-    base: 'SauceLabs',
-    browserName: 'internet explorer',
-    version: '10',
-    platform: 'Windows 8',
-  },
-
   SL_chrome: {
     base: 'SauceLabs',
     browserName: 'chrome',
