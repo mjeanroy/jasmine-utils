@@ -24,11 +24,11 @@
 
 'use strict';
 
-const del = require('del');
+const {rimraf} = require('rimraf');
 const config = require('../config.js');
 
 module.exports = function clean() {
-  return del([
+  return rimraf([
     config.dest,
     config.coverage,
   ]);
