@@ -65,13 +65,6 @@ const browsers = {
     platform: 'Windows 10',
   },
 
-  SL_Win81_ie_11: {
-    base: 'SauceLabs',
-    browserName: 'internet explorer',
-    version: '11.0',
-    platform: 'Windows 8.1',
-  },
-
   SL_chrome: {
     base: 'SauceLabs',
     browserName: 'chrome',
