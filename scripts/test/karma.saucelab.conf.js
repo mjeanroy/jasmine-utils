@@ -123,31 +123,11 @@ module.exports = (config) => {
  * @return {Object} Sauce Labs configuration.
  */
 function sauceLabsConfiguration() {
-  if (process.env.TRAVIS_JOB_NUMBER) {
-    return travisSauceLabsConfiguration;
-  }
-
   if (process.env.GITHUB_RUN_ID && process.env.GITHUB_RUN_NUMBER) {
     return githubSauceLabsConfiguration();
   }
 
   return localSauceLabsConfiguration();
-}
-
-/**
- * Create karma saucelabs configuration for travis-ci.com.
- *
- * Use travis environment variable (described here: https://docs.travis-ci.com/user/environment-variables/) to set
- * appropriate build ID and tunnel identifier.
- *
- * @return {Object} Sauce Labs configuration.
- */
-function travisSauceLabsConfiguration() {
-  return {
-    build: `TRAVIS #${process.env.TRAVIS_BUILD_NUMBER} (${process.env.TRAVIS_BUILD_ID})`,
-    startConnect: false,
-    tunnelIdentifier: process.env.TRAVIS_JOB_NUMBER,
-  };
 }
 
 /**
@@ -174,9 +154,14 @@ function githubSauceLabsConfiguration() {
  * @return {Object} Sauce Labs configuration.
  */
 function localSauceLabsConfiguration() {
+  const tunnelId = process.env.SAUCE_TUNNEL_ID || Date.now().toString();
   return {
-    build: `LOCAL #${Date.now()}`,
+    build: `LOCAL #${tunnelId}::${Date.now()}`,
     startConnect: false,
-    tunnelIdentifier: `${Date.now()}`,
+    connectOptions: {
+      username: process.env.SAUCE_USERNAME,
+      accessKey: process.env.SAUCE_ACCESS_KEY,
+      tunnelIdentifier: tunnelId,
+    },
   };
 }
