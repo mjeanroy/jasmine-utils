@@ -25,7 +25,7 @@
     "eslint": "8.38.0",
     "eslint-config-google": "0.14.0",
     "fancy-log": "2.0.0",
-    "glob": "10.3.3",
+    "glob": "10.3.4",
     "gulp": "4.0.2",
     "gulp-bump": "3.2.0",
     "gulp-eslint": "6.0.0",
