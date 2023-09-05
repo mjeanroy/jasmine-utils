@@ -25,8 +25,8 @@
 'use strict';
 
 const path = require('path');
-const gulp = require('gulp');
-const eslint = require('gulp-eslint');
+const fancyLog = require('fancy-log');
+const {ESLint} = require('eslint');
 const log = require('../log');
 const config = require('../config.js');
 
@@ -62,8 +62,17 @@ module.exports = function lint() {
     log.debug(`  ${input}`)
   ));
 
-  return gulp.src(inputs)
-      .pipe(eslint())
-      .pipe(eslint.format())
-      .pipe(eslint.failAfterError());
+  const eslint = new ESLint({
+    errorOnUnmatchedPattern: false,
+  });
+
+  const lintFiles = eslint.lintFiles(inputs);
+  const loadFormatter = eslint.loadFormatter('stylish');
+
+  return Promise.all([lintFiles, loadFormatter]).then(([results, formatter]) => {
+    if (results.errorCount > 0 || results.warningCount > 0) {
+      fancyLog(formatter.format(results));
+      throw new Error('ESLintError');
+    }
+  });
 };
