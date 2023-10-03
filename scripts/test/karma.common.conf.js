@@ -35,6 +35,12 @@ module.exports = (config) => ({
   // base path, that will be used to resolve files and exclude
   basePath: conf.root,
 
+  plugins: [
+    require('karma-jasmine'),
+    require('karma-rollup-preprocessor'),
+    require('karma-chrome-launcher'),
+  ],
+
   frameworks: [
     'jasmine',
   ],

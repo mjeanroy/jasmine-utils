@@ -35,6 +35,13 @@ module.exports = (config) => {
     singleRun: true,
     concurrency: 1,
 
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-rollup-preprocessor'),
+      require('karma-phantomjs-launcher'),
+      require('karma-chrome-launcher'),
+    ],
+
     browsers: [
       'CustomHeadlessChrome',
       'PhantomJS',

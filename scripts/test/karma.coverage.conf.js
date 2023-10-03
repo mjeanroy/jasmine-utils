@@ -33,16 +33,23 @@ const commonConf = require('./karma.common.conf.js');
 const conf = require('../config.js');
 
 module.exports = (config) => {
-  const c = commonConf(config);
+  const baseConfig = commonConf(config);
 
   // Add rollup-plugin-istanbul.
-  c.rollupPreprocessor.plugins.unshift(istanbul({
+  baseConfig.rollupPreprocessor.plugins.unshift(istanbul({
     exclude: [
       path.join(conf.test, '**', '*.js'),
     ],
   }));
 
-  config.set(_.extend(c, {
+  config.set(_.extend(baseConfig, {
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-rollup-preprocessor'),
+      require('karma-chrome-launcher'),
+      require('karma-coverage'),
+    ],
+
     autoWatch: false,
     singleRun: true,
     browsers: [

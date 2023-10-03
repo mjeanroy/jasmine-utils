@@ -83,6 +83,14 @@ const browsers = {
 
 module.exports = (config) => {
   config.set(_.extend(conf(config), {
+    plugins: [
+      require('karma-jasmine'),
+      require('karma-rollup-preprocessor'),
+      require('karma-sauce-launcher'),
+      require('karma-phantomjs-launcher'),
+      require('karma-chrome-launcher'),
+    ],
+
     autoWatch: false,
     singleRun: true,
 
