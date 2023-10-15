@@ -53,7 +53,7 @@
     "rollup-plugin-esformatter": "3.0.0",
     "rollup-plugin-istanbul": "4.0.0",
     "rollup-plugin-license": "3.1.0",
-    "rollup-plugin-strip-banner": "3.0.0",
+    "rollup-plugin-strip-banner": "3.1.0",
     "touch": "3.1.0",
     "typescript": "5.2.2"
   },
