@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNumber} from './is-number.js';
+import { isNumber } from './is-number';
 
 /**
  * Check that a given value is a falsy value.
@@ -31,5 +31,6 @@ import {isNumber} from './is-number.js';
  * @return {boolean} `true` if parameter is a falsy value.
  */
 export function isFiniteNumber(a) {
+  // eslint-disable-next-line no-restricted-globals
   return isNumber(a) && isFinite(a);
 }

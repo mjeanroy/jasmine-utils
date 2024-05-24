@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isBoolean} from '../../util/is-boolean.js';
+import { isBoolean } from '../../util/is-boolean';
 
 /**
  * Check that the tested object is a `boolean` (a `boolean` is exactly `true`
@@ -39,7 +39,7 @@ import {isBoolean} from '../../util/is-boolean.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeABoolean({actual, pp}) {
+export function toBeABoolean({ actual, pp }) {
   return {
     pass: isBoolean(actual),
     message() {

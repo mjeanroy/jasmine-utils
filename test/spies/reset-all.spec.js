@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {resetAll} from '../../src/core/spies/reset-all.js';
+import { resetAll } from '../../src/core/spies/reset-all';
 
 describe('resetAll', () => {
   it('should reset all spy of object', () => {

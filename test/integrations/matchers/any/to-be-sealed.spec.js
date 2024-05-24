@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {assumeSeal} from '../../../detect/assume-seal.js';
-import '../../../../src/index.js';
+import { assumeSeal } from '../../../detect/assume-seal';
+import '../../../../src/index';
 
 describe('toBeSealed', () => {
   it('should pass with primitive values', () => {

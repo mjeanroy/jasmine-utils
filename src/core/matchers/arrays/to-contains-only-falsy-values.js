@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from '../../util/is-array.js';
-import {isFalsy} from '../../util/is-falsy.js';
-import {every} from '../../util/every.js';
+import { isArray } from '../../util/is-array';
+import { isFalsy } from '../../util/is-falsy';
+import { every } from '../../util/every';
 
 /**
  * Check that the tested object contains only falsy values.
@@ -47,7 +47,7 @@ import {every} from '../../util/every.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toContainsOnlyFalsyValues({actual, pp}) {
+export function toContainsOnlyFalsyValues({ actual, pp }) {
   return {
     pass: isArray(actual) && every(actual, isFalsy),
     message() {

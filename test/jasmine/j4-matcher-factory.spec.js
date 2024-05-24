@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {jasmine4MatcherFactory} from '../../src/core/jasmine/j4-matcher-factory.js';
+import { jasmine4MatcherFactory } from '../../src/core/jasmine/j4-matcher-factory';
 
 describe('jasmine4MatcherFactory', () => {
   it('should create matcher', () => {
@@ -66,11 +66,11 @@ describe('jasmine4MatcherFactory', () => {
       expect(result.message()).toBe('A message');
       expect(message).toHaveBeenCalled();
 
-      const args = matcher.calls.mostRecent().args;
+      const { args } = matcher.calls.mostRecent();
 
       // Check for expected context.
       expect(args[0]).toEqual({
-        actual: actual,
+        actual,
         isNot: false,
         callCount: jasmine.any(Function),
         argsFor: jasmine.any(Function),
@@ -103,7 +103,7 @@ describe('jasmine4MatcherFactory', () => {
       expect(result.message()).toBe('A not message');
       expect(message).toHaveBeenCalled();
 
-      const args = matcher.calls.mostRecent().args;
+      const { args } = matcher.calls.mostRecent();
 
       expect(args.length).toBe(3);
       expect(args[1]).toBe(arg0);
@@ -111,7 +111,7 @@ describe('jasmine4MatcherFactory', () => {
 
       // Check for expected context.
       expect(args[0]).toEqual({
-        actual: actual,
+        actual,
         isNot: true,
         callCount: jasmine.any(Function),
         argsFor: jasmine.any(Function),
@@ -130,7 +130,7 @@ describe('jasmine4MatcherFactory', () => {
         });
 
         j4Matcher(matchersUtil).negativeCompare({});
-        ctx = matcher.calls.mostRecent().args[0];
+        [ctx] = matcher.calls.mostRecent().args;
       });
 
       it('should return callCount of a spy', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isIterable} from '../../util/is-iterable.js';
+import { isIterable } from '../../util/is-iterable';
 
 /**
  * Check that the tested object is an iterable value.
@@ -43,11 +43,10 @@ import {isIterable} from '../../util/is-iterable.js';
  *   expect(new Set()).toBeIterable();
  *
  * @param {Object} ctx Test context.
- * @param {*} Klass Expected class.
  * @return {Object} Test result.
  * @since 0.3.0
  */
-export function toBeIterable({actual, pp}, Klass) {
+export function toBeIterable({ actual, pp }) {
   return {
     pass: isIterable(actual),
     message() {

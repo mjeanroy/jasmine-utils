@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeNumeric} from '../../../src/core/matchers/numbers/to-be-numeric.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeNumeric } from '../../../src/core/matchers/numbers/to-be-numeric';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeNumeric', () => {
   it('should check that object is a numeric value', () => {
@@ -38,7 +38,7 @@ describe('toBeNumeric', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '1.5' {{not}} to be a numeric value`
+      "Expect '1.5' {{not}} to be a numeric value",
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeNumeric', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect NaN {{not}} to be a numeric value`
+      'Expect NaN {{not}} to be a numeric value',
     );
   });
 
@@ -70,7 +70,7 @@ describe('toBeNumeric', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Infinity {{not}} to be a numeric value`
+      'Expect Infinity {{not}} to be a numeric value',
     );
   });
 });

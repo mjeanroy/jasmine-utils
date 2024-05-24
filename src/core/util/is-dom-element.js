@@ -22,7 +22,6 @@
  * THE SOFTWARE.
  */
 
-
 /**
  * Check that a value is a DOM node element.
  *

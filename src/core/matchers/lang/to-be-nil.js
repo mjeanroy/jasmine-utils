@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNil} from '../../util/is-nil.js';
+import { isNil } from '../../util/is-nil';
 
 /**
  * Check that the tested object is nil (i.e `null` or `undefined`).
@@ -40,7 +40,7 @@ import {isNil} from '../../util/is-nil.js';
  * @return {Object} Test result.
  * @since 0.3.0
  */
-export function toBeNil({actual, pp}) {
+export function toBeNil({ actual, pp }) {
   return {
     pass: isNil(actual),
     message() {

@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from '../util/is-array.js';
-import {index} from '../util/index.js';
-import {has} from '../util/has.js';
-import {forEachWritableProperties} from './internal/for-each-writable-properties.js';
-import {spyIfAndCallThrough} from './internal/spy-if-and-call-through.js';
+import { isArray } from '../util/is-array';
+import { index } from '../util/index';
+import { has } from '../util/has';
+import { forEachWritableProperties } from './internal/for-each-writable-properties';
+import { spyIfAndCallThrough } from './internal/spy-if-and-call-through';
 
 /**
  * Spy all methods in object except specified methods.

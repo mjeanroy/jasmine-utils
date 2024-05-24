@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-import {isDOMElement} from '../../util/is-dom-element.js';
-import {isArray} from '../../util/is-array.js';
-import {map} from '../../util/map.js';
-import {filter} from '../../util/filter.js';
-import {isFalsy} from '../../util/is-falsy.js';
-import {every} from '../../util/every.js';
-import {contains} from '../../util/contains.js';
-import {trim} from '../../util/trim.js';
+import { isDOMElement } from '../../util/is-dom-element';
+import { isArray } from '../../util/is-array';
+import { map } from '../../util/map';
+import { filter } from '../../util/filter';
+import { isFalsy } from '../../util/is-falsy';
+import { every } from '../../util/every';
+import { contains } from '../../util/contains';
+import { trim } from '../../util/trim';
 
 /**
  * Check that the tested object is a DOM element with expected class names.
@@ -49,7 +49,7 @@ import {trim} from '../../util/trim.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElementWithClasses({actual, pp}, classes) {
+export function toBeDOMElementWithClasses({ actual, pp }, classes) {
   const isElement = isDOMElement(actual);
   const actualClassArray = isElement ? toClassArray(actual.className) : null;
   const classArray = toClassArray(classes);

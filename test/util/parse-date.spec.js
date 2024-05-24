@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {parseDate} from '../../src/core/util/parse-date.js';
+import { parseDate } from '../../src/core/util/parse-date';
 
 describe('parseDate', () => {
   it('should return a Date', () => {
@@ -51,15 +51,17 @@ describe('parseDate', () => {
     const result = parseDate(iso8601);
 
     const expectedDate = new Date();
-    expectedDate.setTime(Date.UTC(
+    expectedDate.setTime(
+      Date.UTC(
         Number(year),
         Number(month) - 1,
         Number(day),
         Number(hours),
         Number(minutes),
         Number(seconds),
-        Number(millis)
-    ));
+        Number(millis),
+      ),
+    );
 
     expect(result).toEqual(expectedDate);
   });
@@ -81,15 +83,17 @@ describe('parseDate', () => {
     const result = parseDate(iso8601);
 
     const expectedDate = new Date();
-    expectedDate.setTime(Date.UTC(
+    expectedDate.setTime(
+      Date.UTC(
         Number(year),
         Number(month) - 1,
         Number(day),
         Number(hours) - Number(hOffset),
         Number(minutes) - Number(mOffset),
         Number(seconds),
-        Number(millis)
-    ));
+        Number(millis),
+      ),
+    );
 
     expect(result).toEqual(expectedDate);
   });

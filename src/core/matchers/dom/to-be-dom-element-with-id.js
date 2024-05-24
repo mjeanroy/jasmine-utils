@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isDOMElement} from '../../util/is-dom-element.js';
+import { isDOMElement } from '../../util/is-dom-element';
 
 /**
  * Check that the tested object is a DOM element with an expected id (note that
@@ -39,7 +39,7 @@ import {isDOMElement} from '../../util/is-dom-element.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElementWithId({actual, pp}, id) {
+export function toBeDOMElementWithId({ actual, pp }, id) {
   const isElement = isDOMElement(actual);
   const actualId = isElement ? actual.getAttribute('id') : null;
   const ok = isElement && actualId === id;

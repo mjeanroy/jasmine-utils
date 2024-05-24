@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import './to-be-partially-equal-to.spec.js';
-import './to-have-functions.spec.js';
-import './to-have-keys.spec.js';
-import './to-have-same-size-as.spec.js';
-import './to-have-size.spec.js';
-import './to-have-values.spec.js';
+import './to-be-partially-equal-to.spec';
+import './to-have-functions.spec';
+import './to-have-keys.spec';
+import './to-have-same-size-as.spec';
+import './to-have-size.spec';
+import './to-have-values.spec';

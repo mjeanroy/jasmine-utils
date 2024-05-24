@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeDateAfterNow} from '../../../src/core/matchers/dates/to-be-date-after-now.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeDateAfterNow } from '../../../src/core/matchers/dates/to-be-date-after-now';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeDateAfterNow', () => {
   it('should check that object is a date after now', () => {
@@ -39,7 +39,7 @@ describe('toBeDateAfterNow', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be after now`
+      `Expect date ${ctx.pp(actual)} {{not}} to be after now`,
     );
   });
 
@@ -56,7 +56,7 @@ describe('toBeDateAfterNow', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be after now`
+      `Expect date ${ctx.pp(actual)} {{not}} to be after now`,
     );
   });
 });

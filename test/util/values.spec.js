@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../detect/assume-map.js';
-import {values} from '../../src/core/util/values.js';
+import { assumeMap } from '../detect/assume-map';
+import { values } from '../../src/core/util/values';
 
 describe('values', () => {
   it('should extract all object values', () => {

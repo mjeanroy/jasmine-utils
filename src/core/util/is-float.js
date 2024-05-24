@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {isNumeric} from './is-numeric.js';
-import {isInteger} from './is-integer.js';
+import { isNumeric } from './is-numeric';
+import { isInteger } from './is-integer';
 
 /**
  * Check that a given value is a float value.

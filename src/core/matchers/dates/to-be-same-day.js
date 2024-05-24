@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {parseDate} from '../../util/parse-date.js';
-import {isSameDay} from '../../util/is-same-day.js';
+import { parseDate } from '../../util/parse-date';
+import { isSameDay } from '../../util/is-same-day';
 
 /**
  * Check that the tested object is the same *day* as an other date.
@@ -49,7 +49,7 @@ import {isSameDay} from '../../util/is-same-day.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeSameDay({actual, pp}, day) {
+export function toBeSameDay({ actual, pp }, day) {
   const d1 = parseDate(actual);
   const d2 = parseDate(day);
   return {

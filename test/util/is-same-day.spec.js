@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isSameDay} from '../../src/core/util/is-same-day.js';
+import { isSameDay } from '../../src/core/util/is-same-day';
 
 describe('isSameDay', () => {
   it('should return true if both dates are the same day', () => {

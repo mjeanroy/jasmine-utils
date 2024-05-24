@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {is} from './is.js';
+import { is } from './is';
 
 const _isArray = Array.isArray || function _isArray(obj) {
   return is(obj, 'Array');

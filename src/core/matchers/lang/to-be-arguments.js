@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isArguments} from '../../util/is-arguments.js';
+import { isArguments } from '../../util/is-arguments';
 
 /**
  * Check that the tested object is an `arguments` object.
@@ -36,7 +36,7 @@ import {isArguments} from '../../util/is-arguments.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeArguments({actual, pp}) {
+export function toBeArguments({ actual, pp }) {
   return {
     pass: isArguments(actual),
     message() {

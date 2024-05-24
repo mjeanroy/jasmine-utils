@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {map} from '../../src/core/util/map.js';
+import { map } from '../../src/core/util/map';
 
 describe('map', () => {
   it('should iterate over array and returns new array', () => {
@@ -40,11 +40,11 @@ describe('map', () => {
 
   it('should iterate over array like object and returns new array', () => {
     const arrayLike = {
-      'length': 3,
+      length: 3,
 
-      '0': 1,
-      '1': 2,
-      '2': 3,
+      0: 1,
+      1: 2,
+      2: 3,
     };
 
     const iteratee = jasmine.createSpy('iteratee').and.callFake((a) => a + a);

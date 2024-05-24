@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toBeSorted', () => {
   it('should pass with an array of numbers', () => {
@@ -43,9 +43,9 @@ describe('toBeSorted', () => {
   it('should pass with an array of object sorted by id', () => {
     const comparator = (obj1, obj2) => obj1.id - obj2.id;
 
-    const obj1 = {id: 1};
-    const obj2 = {id: 2};
-    const obj3 = {id: 3};
+    const obj1 = { id: 1 };
+    const obj2 = { id: 2 };
+    const obj3 = { id: 3 };
 
     expect([obj1, obj2, obj3]).toBeSorted(comparator);
     expect([obj3, obj2, obj1]).not.toBeSorted(comparator);
@@ -54,10 +54,10 @@ describe('toBeSorted', () => {
   it('should pass with an array of object sorted by id with same ids', () => {
     const comparator = (obj1, obj2) => obj1.id - obj2.id;
 
-    const obj1 = {id: 1};
-    const obj21 = {id: 2, name: 'foo'};
-    const obj22 = {id: 2, name: 'bar'};
-    const obj3 = {id: 3};
+    const obj1 = { id: 1 };
+    const obj21 = { id: 2, name: 'foo' };
+    const obj22 = { id: 2, name: 'bar' };
+    const obj3 = { id: 3 };
 
     for (let i = 0; i < 100; ++i) {
       expect([obj1, obj21, obj22, obj3]).toBeSorted(comparator);

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {countIn} from '../../src/core/util/count-in.js';
+import { countIn } from '../../src/core/util/count-in';
 
 describe('countIn', () => {
   it('should return zero with an empty array', () => {
@@ -45,9 +45,9 @@ describe('countIn', () => {
 
   it('should return number of occurences of value with a custom equality function', () => {
     const array = [0, 1, -2, 3, 2, 3];
-    const equals = jasmine.createSpy('equals').and.callFake((a, b) => {
-      return Math.abs(a) === Math.abs(b);
-    });
+    const equals = jasmine.createSpy('equals').and.callFake((a, b) => (
+      Math.abs(a) === Math.abs(b)
+    ));
 
     const count = countIn(array, 2, 0, equals);
 

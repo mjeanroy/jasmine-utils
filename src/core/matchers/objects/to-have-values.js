@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {contains} from '../../util/contains.js';
-import {values} from '../../util/values.js';
+import { contains } from '../../util/contains';
+import { values } from '../../util/values';
 
 /**
  * Check that the tested object contains expected values (the key is not checked,
@@ -41,7 +41,7 @@ import {values} from '../../util/values.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toHaveValues({actual, equals, pp}, ...expectedValues) {
+export function toHaveValues({ actual, equals, pp }, ...expectedValues) {
   const actualValues = values(actual);
 
   let ok = true;

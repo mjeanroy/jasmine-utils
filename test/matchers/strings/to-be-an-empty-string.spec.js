@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeAnEmptyString} from '../../../src/core/matchers/strings/to-be-an-empty-string.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeAnEmptyString } from '../../../src/core/matchers/strings/to-be-an-empty-string';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeAnEmptyString', () => {
   it('should check that object is an empty string', () => {
@@ -37,7 +37,7 @@ describe('toBeAnEmptyString', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect '' {{not}} to be an empty string`);
+    expect(result.message()).toBe("Expect '' {{not}} to be an empty string");
   });
 
   it('should not pass without an empty string', () => {
@@ -51,6 +51,6 @@ describe('toBeAnEmptyString', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect 'test' {{not}} to be an empty string`);
+    expect(result.message()).toBe("Expect 'test' {{not}} to be an empty string");
   });
 });

@@ -31,5 +31,6 @@
  */
 export function isNumeric(n) {
   const f = parseFloat(n);
+  // eslint-disable-next-line no-restricted-globals
   return !isNaN(f) && isFinite(f);
 }

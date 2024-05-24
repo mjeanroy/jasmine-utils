@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 
-import {createMatcher} from './core/jasmine/matcher-factory.js';
-import {version} from './core/jasmine/version.js';
-import {keys} from './core/util/keys';
-import {forEach} from './core/util/for-each.js';
+import { createMatcher } from './core/jasmine/matcher-factory';
+import { version } from './core/jasmine/version';
+import { keys } from './core/util/keys';
+import { forEach } from './core/util/for-each';
 
-import * as matchers from './core/matchers/index.js';
-import * as spyUtilties from './core/spies/index.js';
+import * as matchers from './core/matchers/index';
+import * as spyUtilties from './core/spies/index';
 
 // Expose utility functions.
 forEach(keys(spyUtilties), (id) => {
@@ -51,7 +51,8 @@ forEach(keys(matchers), (id) => {
  * @return {function} The deprecated method.
  */
 function createDeprecated(name, alternative, func) {
-  return function(...args) {
+  // eslint-disable-next-line func-names
+  return function (...args) {
     console.warn(`Matcher "${name}" is deprecated and will be removed, please use "${alternative}" instead.`);
     return func(...args);
   };

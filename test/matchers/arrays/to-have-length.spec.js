@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toHaveLength} from '../../../src/core/matchers/arrays/to-have-length.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toHaveLength } from '../../../src/core/matchers/arrays/to-have-length';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveLength', () => {
   it('should check length of array', () => {
@@ -38,12 +38,12 @@ describe('toHaveLength', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect length of [ 1, 2, 3 ] {{not}} to be 3 but was 3`
+      'Expect length of [ 1, 2, 3 ] {{not}} to be 3 but was 3',
     );
   });
 
   it('should check length of array-like object', () => {
-    const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
+    const actual = { 0: 1, 1: 2, 2: 3, length: 3 };
     const ctx = createFakeContext(actual);
 
     const result = toHaveLength(ctx, 3);
@@ -54,7 +54,7 @@ describe('toHaveLength', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect length of Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be 3 but was 3`
+      'Expect length of Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to be 3 but was 3',
     );
   });
 
@@ -70,7 +70,7 @@ describe('toHaveLength', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect length of [  ] {{not}} to be 2 but was 0`
+      'Expect length of [  ] {{not}} to be 2 but was 0',
     );
   });
 });

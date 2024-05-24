@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {some} from '../../util/some.js';
-import {isFunction} from '../../util/is-function.js';
+import { some } from '../../util/some';
+import { isFunction } from '../../util/is-function';
 
 /**
  * Verifies that the tested object satisfies a predicate function for at
@@ -63,7 +63,7 @@ import {isFunction} from '../../util/is-function.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveSome({actual, pp}, msg, iterator) {
+export function toHaveSome({ actual, pp }, msg, iterator) {
   let _message;
   let _iterator;
 

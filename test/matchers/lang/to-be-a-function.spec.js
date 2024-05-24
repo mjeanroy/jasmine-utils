@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeAFunction} from '../../../src/core/matchers/lang/to-be-a-function.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeAFunction } from '../../../src/core/matchers/lang/to-be-a-function';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeAFunction', () => {
   it('should check that object is a function', () => {
@@ -38,7 +38,7 @@ describe('toBeAFunction', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Function {{not}} to be a function`
+      'Expect Function {{not}} to be a function',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeAFunction', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be a function`
+      'Expect null {{not}} to be a function',
     );
   });
 });

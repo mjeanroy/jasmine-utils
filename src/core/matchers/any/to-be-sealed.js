@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isSealed} from '../../util/is-sealed.js';
+import { isSealed } from '../../util/is-sealed';
 
 /**
  * Check that a given value is sealed: an object is sealed if it is not
@@ -54,7 +54,7 @@ import {isSealed} from '../../util/is-sealed.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeSealed({actual, pp}) {
+export function toBeSealed({ actual, pp }) {
   return {
     pass: isSealed(actual),
     message() {

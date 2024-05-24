@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from '../../util/is-array.js';
+import { isArray } from '../../util/is-array';
 
 /**
  * Check that the tested object is an array (a real array, not an array-like object).
@@ -42,7 +42,7 @@ import {isArray} from '../../util/is-array.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeAnArray({actual, pp}) {
+export function toBeAnArray({ actual, pp }) {
   return {
     pass: isArray(actual),
     message() {

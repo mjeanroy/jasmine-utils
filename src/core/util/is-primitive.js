@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {isBoolean} from './is-boolean.js';
-import {isNil} from './is-nil.js';
-import {isNumber} from './is-number.js';
-import {isString} from './is-string.js';
+import { isBoolean } from './is-boolean';
+import { isNil } from './is-nil';
+import { isNumber } from './is-number';
+import { isString } from './is-string';
 
 /**
  * Check that a given value is a primitive object:

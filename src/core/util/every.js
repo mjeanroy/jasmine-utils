@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {isArrayLike} from './is-array-like.js';
-import {isSet} from './is-set.js';
-import {isMap} from './is-map.js';
-import {isIterable} from './is-iterable.js';
+import { isArrayLike } from './is-array-like';
+import { isSet } from './is-set';
+import { isMap } from './is-map';
+import { isIterable } from './is-iterable';
 
 /**
  * Check that a predicate satisfies each elements in an array, or an
@@ -61,6 +61,7 @@ function arrayEvery(array, predicate) {
 function iterableEvery(iterable, predicate) {
   let i = 0;
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const value of iterable) {
     if (!predicate.call(undefined, value, i, iterable)) {
       return false;
@@ -83,10 +84,12 @@ function iterableEvery(iterable, predicate) {
 function mapOrSetEvery(mapOrSet, predicate) {
   let hasFalse = false;
 
-  mapOrSet.forEach(function(v, k) {
+  // eslint-disable-next-line func-names
+  mapOrSet.forEach((...args) => {
+    const [v, k] = args;
     // Be careful, `forEach` function on Safari miss the second parameter when
     // iterating over a `Set`...
-    hasFalse = hasFalse || !predicate.call(undefined, v, arguments.length === 1 ? v : k, mapOrSet);
+    hasFalse = hasFalse || !predicate.call(undefined, v, args.length === 1 ? v : k, mapOrSet);
   });
 
   return !hasFalse;

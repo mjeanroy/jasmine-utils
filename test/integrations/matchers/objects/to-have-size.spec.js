@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../../../detect/assume-set.js';
-import {assumeMap} from '../../../detect/assume-map.js';
-import {assumeSymbol} from '../../../detect/assume-symbol.js';
-import '../../../../src/index.js';
+import { assumeSet } from '../../../detect/assume-set';
+import { assumeMap } from '../../../detect/assume-map';
+import { assumeSymbol } from '../../../detect/assume-symbol';
+import '../../../../src/index';
 
 describe('toHaveSize', () => {
   it('should pass with an array', () => {
@@ -70,7 +70,7 @@ describe('toHaveSize', () => {
         let x = 0;
         return {
           next() {
-            return x === 2 ? {done: true} : {value: x++, done: false};
+            return x === 2 ? { done: true } : { value: x++, done: false };
           },
         };
       },
@@ -81,7 +81,7 @@ describe('toHaveSize', () => {
   });
 
   it('should pass with an object', () => {
-    const obj = {one: 1, two: 2, three: 3};
+    const obj = { one: 1, two: 2, three: 3 };
     expect(obj).toHaveSize(3);
     expect(obj).not.toHaveSize(1);
   });

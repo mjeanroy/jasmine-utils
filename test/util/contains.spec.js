@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {contains} from '../../src/core/util/contains.js';
+import { contains } from '../../src/core/util/contains';
 
 describe('contains', () => {
   it('should returns true if elements is in the array with default equality function', () => {
@@ -35,9 +35,9 @@ describe('contains', () => {
 
   it('should return true if value is in array with custom equality function', () => {
     const array = ['foo', 'bar'];
-    const equalsFn = jasmine.createSpy('equals').and.callFake((a, b) => {
-      return a.toLowerCase() === b.toLowerCase();
-    });
+    const equalsFn = jasmine.createSpy('equals').and.callFake((a, b) => (
+      a.toLowerCase() === b.toLowerCase()
+    ));
 
     expect(contains(array, 'foo', equalsFn)).toBe(true);
     expect(contains(array, 'FOO', equalsFn)).toBe(true);

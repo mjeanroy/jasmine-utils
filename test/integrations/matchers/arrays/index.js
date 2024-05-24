@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import './to-be-sorted.spec.js';
-import './to-contains-distinct-values.spec.js';
-import './to-contains-only-falsy-values.spec.js';
-import './to-contains-only-truthy-values.spec.js';
-import './to-have-length.spec.js';
-import './to-have-same-length-as.spec.js';
-import './to-have-some.spec.js';
-import './to-verify.spec.js';
+import './to-be-sorted.spec';
+import './to-contains-distinct-values.spec';
+import './to-contains-only-falsy-values.spec';
+import './to-contains-only-truthy-values.spec';
+import './to-have-length.spec';
+import './to-have-same-length-as.spec';
+import './to-have-some.spec';
+import './to-verify.spec';

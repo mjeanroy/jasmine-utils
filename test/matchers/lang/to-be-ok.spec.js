@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeOk} from '../../../src/core/matchers/lang/to-be-ok.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeOk } from '../../../src/core/matchers/lang/to-be-ok';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeOk', () => {
   it('should check that object is not null and not undefined', () => {
@@ -38,7 +38,7 @@ describe('toBeOk', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '' {{not}} to be ok (not null and not undefined)`
+      "Expect '' {{not}} to be ok (not null and not undefined)",
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeOk', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect undefined {{not}} to be ok (not null and not undefined)`
+      'Expect undefined {{not}} to be ok (not null and not undefined)',
     );
   });
 
@@ -70,7 +70,7 @@ describe('toBeOk', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be ok (not null and not undefined)`
+      'Expect null {{not}} to be ok (not null and not undefined)',
     );
   });
 });

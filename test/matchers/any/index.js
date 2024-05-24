@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import './to-be-empty.spec.js';
-import './to-be-extensible.spec.js';
-import './to-be-frozen.spec.js';
-import './to-be-instance-of.spec.js';
-import './to-be-one-of.spec.js';
-import './to-be-sealed.spec.js';
-import './to-equal-one-of.spec.js';
+import './to-be-empty.spec';
+import './to-be-extensible.spec';
+import './to-be-frozen.spec';
+import './to-be-instance-of.spec';
+import './to-be-one-of.spec';
+import './to-be-sealed.spec';
+import './to-equal-one-of.spec';

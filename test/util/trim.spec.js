@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {trim} from '../../src/core/util/trim.js';
+import { trim } from '../../src/core/util/trim';
 
 describe('trim', () => {
   it('should trim string', () => {

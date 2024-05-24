@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isExtensible} from '../../util/is-extensible.js';
+import { isExtensible } from '../../util/is-extensible';
 
 /**
  * Check that the tested object is extensible.
@@ -62,7 +62,7 @@ import {isExtensible} from '../../util/is-extensible.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeExtensible({actual, pp}) {
+export function toBeExtensible({ actual, pp }) {
   return {
     pass: isExtensible(actual),
     message() {

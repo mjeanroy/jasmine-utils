@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../../../detect/assume-map.js';
-import '../../../../src/index.js';
+import { assumeMap } from '../../../detect/assume-map';
+import '../../../../src/index';
 
 describe('toHaveValues', () => {
   it('should pass with object', () => {
@@ -36,9 +36,9 @@ describe('toHaveValues', () => {
       },
     };
 
-    expect(obj).toHaveValues(1, 'foo', [1, 2, 3], {id: 10});
+    expect(obj).toHaveValues(1, 'foo', [1, 2, 3], { id: 10 });
     expect(obj).not.toHaveValues(2, 'bar');
-    expect(obj).not.toHaveValues({id: 11});
+    expect(obj).not.toHaveValues({ id: 11 });
   });
 
   it('should pass with map', () => {
@@ -48,10 +48,10 @@ describe('toHaveValues', () => {
     map.set('id', 1);
     map.set('name', 'foo');
     map.set('array', [1, 2, 3]);
-    map.set('o', {id: 10});
+    map.set('o', { id: 10 });
 
-    expect(map).toHaveValues(1, 'foo', [1, 2, 3], {id: 10});
+    expect(map).toHaveValues(1, 'foo', [1, 2, 3], { id: 10 });
     expect(map).not.toHaveValues(2, 'bar');
-    expect(map).not.toHaveValues({id: 11});
+    expect(map).not.toHaveValues({ id: 11 });
   });
 });

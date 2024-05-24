@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import './jasmine/index.js';
-import './matchers/index.js';
-import './spies/index.js';
-import './util/index.js';
-import './integrations/index.js';
+import './jasmine/index';
+import './matchers/index';
+import './spies/index';
+import './util/index';
+import './integrations/index';

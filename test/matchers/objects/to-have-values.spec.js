@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../../detect/assume-map.js';
-import {toHaveValues} from '../../../src/core/matchers/objects/to-have-values.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeMap } from '../../detect/assume-map';
+import { toHaveValues } from '../../../src/core/matchers/objects/to-have-values';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveValues', () => {
   it('should check for object values', () => {
-    const actual = {foo: 'bar', quix: 'foo'};
+    const actual = { foo: 'bar', quix: 'foo' };
     const ctx = createFakeContext(actual);
 
     const result = toHaveValues(ctx, 'foo', 'bar');
@@ -39,7 +39,7 @@ describe('toHaveValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ foo: 'bar', quix: 'foo' }) {{not}} to have values [ 'foo', 'bar' ]`
+      "Expect Object({ foo: 'bar', quix: 'foo' }) {{not}} to have values [ 'foo', 'bar' ]",
     );
   });
 
@@ -60,12 +60,12 @@ describe('toHaveValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`
+      `Expect ${ctx.pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`,
     );
   });
 
   it('should fail with non expected values', () => {
-    const actual = {foo: 'bar'};
+    const actual = { foo: 'bar' };
     const ctx = createFakeContext(actual);
 
     const result = toHaveValues(ctx, 'foo', 'bar');
@@ -76,7 +76,7 @@ describe('toHaveValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ foo: 'bar' }) {{not}} to have values [ 'foo', 'bar' ]`
+      "Expect Object({ foo: 'bar' }) {{not}} to have values [ 'foo', 'bar' ]",
     );
   });
 
@@ -96,7 +96,7 @@ describe('toHaveValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`
+      `Expect ${ctx.pp(actual)} {{not}} to have values [ 'foo', 'bar' ]`,
     );
   });
 });

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {spyIf} from '../../src/core/spies/spy-if.js';
+import { spyIf } from '../../src/core/spies/spy-if';
 
 describe('spyIf', () => {
   it('should spy method', () => {
@@ -38,7 +38,7 @@ describe('spyIf', () => {
 
   it('should not re-spy method', () => {
     const spy = jasmine.createSpy('foo');
-    const obj = {foo: spy};
+    const obj = { foo: spy };
 
     const result = spyIf(obj, 'foo');
 

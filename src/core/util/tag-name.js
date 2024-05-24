@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {has} from './has.js';
-import {isNull} from './is-null.js';
-import {isUndefined} from './is-undefined.js';
+import { has } from './has';
+import { isNull } from './is-null';
+import { isUndefined } from './is-undefined';
 
 /**
  * Return the tag name of the object (a.k.a the result of `Object.prototype.toString`).
@@ -55,7 +55,8 @@ export function tagName(obj) {
     const src = typeof obj.constructor === 'function' ? toSource(obj.constructor) : '';
     if (typeof Map === 'function' && src === toSource(Map)) {
       return '[object Map]';
-    } else if (typeof Set === 'function' && src === toSource(Set)) {
+    }
+    if (typeof Set === 'function' && src === toSource(Set)) {
       return '[object Set]';
     }
 

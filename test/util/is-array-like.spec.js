@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isArrayLike} from '../../src/core/util/is-array-like.js';
+import { isArrayLike } from '../../src/core/util/is-array-like';
 
 describe('isArrayLike', () => {
   let fixtures;
@@ -54,10 +54,10 @@ describe('isArrayLike', () => {
 
   it('should return true with array like object', () => {
     const arrayLike = {
-      '0': 1,
-      '1': 2,
-      '2': 3,
-      'length': 3,
+      0: 1,
+      1: 2,
+      2: 3,
+      length: 3,
     };
 
     expect(isArrayLike(arrayLike)).toBe(true);
@@ -69,7 +69,7 @@ describe('isArrayLike', () => {
 
   it('should return false with invalid array like object', () => {
     const arrayLike = {
-      'length': 3,
+      length: 3,
     };
 
     expect(isArrayLike(arrayLike)).toBe(false);
@@ -77,7 +77,7 @@ describe('isArrayLike', () => {
 
   it('should return false with negative length', () => {
     const arrayLike = {
-      'length': -1,
+      length: -1,
     };
 
     expect(isArrayLike(arrayLike)).toBe(false);
@@ -85,10 +85,10 @@ describe('isArrayLike', () => {
 
   it('should return false with non-number length', () => {
     const arrayLike = {
-      '0': 1,
-      '1': 2,
-      '2': 3,
-      'length': '3',
+      0: 1,
+      1: 2,
+      2: 3,
+      length: '3',
     };
 
     expect(isArrayLike(arrayLike)).toBe(false);

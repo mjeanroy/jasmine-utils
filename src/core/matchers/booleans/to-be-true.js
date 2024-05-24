@@ -35,7 +35,7 @@
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeTrue({actual, pp}) {
+export function toBeTrue({ actual, pp }) {
   return {
     pass: actual === true,
     message() {

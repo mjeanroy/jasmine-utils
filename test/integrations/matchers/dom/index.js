@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import './to-be-dom-element-with-attributes.spec.js';
-import './to-be-dom-element-with-classes.spec.js';
-import './to-be-dom-element-with-id.spec.js';
-import './to-be-dom-element.spec.js';
+import './to-be-dom-element-with-attributes.spec';
+import './to-be-dom-element-with-classes.spec';
+import './to-be-dom-element-with-id.spec';
+import './to-be-dom-element.spec';

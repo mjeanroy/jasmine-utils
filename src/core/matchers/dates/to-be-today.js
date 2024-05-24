@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {now} from '../../util/now.js';
-import {parseDate} from '../../util/parse-date.js';
-import {isSameDay} from '../../util/is-same-day.js';
+import { now } from '../../util/now';
+import { parseDate } from '../../util/parse-date';
+import { isSameDay } from '../../util/is-same-day';
 
 /**
  * Check that the tested object is the same day as now (i.e `Date.now()`).
@@ -49,7 +49,7 @@ import {isSameDay} from '../../util/is-same-day.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeToday({actual, pp}) {
+export function toBeToday({ actual, pp }) {
   const d1 = parseDate(actual);
   const d2 = now();
   return {

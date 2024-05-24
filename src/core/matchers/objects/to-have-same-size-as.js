@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {sizeOf} from '../../util/size-of.js';
+import { sizeOf } from '../../util/size-of';
 
 /**
  * Check that tested object has the same size as an other one.
@@ -44,7 +44,7 @@ import {sizeOf} from '../../util/size-of.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveSameSizeAs({actual, pp}, expected) {
+export function toHaveSameSizeAs({ actual, pp }, expected) {
   const actualSize = sizeOf(actual);
   const expectedSize = sizeOf(expected);
   return {

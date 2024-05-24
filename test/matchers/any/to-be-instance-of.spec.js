@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {Klass} from '../../fixtures/klass.js';
-import {toBeInstanceOf} from '../../../src/core/matchers/any/to-be-instance-of.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { Klass } from '../../fixtures/klass';
+import { toBeInstanceOf } from '../../../src/core/matchers/any/to-be-instance-of';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeInstanceOf', () => {
   it('should pass if value is an instance of given class', () => {
@@ -39,7 +39,7 @@ describe('toBeInstanceOf', () => {
     });
 
     expect(result.message()).toBe(
-        'Expect Klass({ id: 0 }) {{not}} to be an instance of Function'
+      'Expect Klass({ id: 0 }) {{not}} to be an instance of Function',
     );
   });
 
@@ -55,7 +55,7 @@ describe('toBeInstanceOf', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '' {{not}} to be an instance of Function`
+      "Expect '' {{not}} to be an instance of Function",
     );
   });
 });

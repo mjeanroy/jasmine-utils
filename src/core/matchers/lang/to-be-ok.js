@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNil} from '../../util/is-nil.js';
+import { isNil } from '../../util/is-nil';
 
 /**
  * Check that the tested object is not nil (i.e not `null` and not `undefined`).
@@ -40,7 +40,7 @@ import {isNil} from '../../util/is-nil.js';
  * @return {Object} Test result.
  * @since 0.6.0
  */
-export function toBeOk({actual, pp}) {
+export function toBeOk({ actual, pp }) {
   return {
     pass: !isNil(actual),
     message() {

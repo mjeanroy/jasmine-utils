@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeDOMElementWithAttributes} from '../../../src/core/matchers/dom/to-be-dom-element-with-attributes.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeDOMElementWithAttributes } from '../../../src/core/matchers/dom/to-be-dom-element-with-attributes';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeDOMElementWithAttributes', () => {
   let div;
@@ -38,7 +38,7 @@ describe('toBeDOMElementWithAttributes', () => {
     const actual = div;
     const ctx = createFakeContext(actual);
 
-    const attrs = {foo: 'bar', bar: 'baz'};
+    const attrs = { foo: 'bar', bar: 'baz' };
     const result = toBeDOMElementWithAttributes(ctx, attrs);
 
     expect(ctx.equals).toHaveBeenCalled();
@@ -49,15 +49,18 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
-        `but was [object Object]`
+      'Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ' +
+        'but was [object Object]',
     );
   });
 
   it('should pass with a dom element with anything matcher', () => {
     const actual = div;
     const ctx = createFakeContext(actual);
-    const attrs = {foo: jasmine.anything(), bar: jasmine.anything()};
+    const attrs = {
+      foo: jasmine.anything(),
+      bar: jasmine.anything(),
+    };
 
     const result = toBeDOMElementWithAttributes(ctx, attrs);
 
@@ -69,8 +72,8 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
-        `but was [object Object]`
+      'Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ' +
+        'but was [object Object]',
     );
   });
 
@@ -78,7 +81,9 @@ describe('toBeDOMElementWithAttributes', () => {
     const actual = '<div></div>';
     const ctx = createFakeContext(actual);
 
-    const result = toBeDOMElementWithAttributes(ctx, {foo: 'bar'});
+    const result = toBeDOMElementWithAttributes(ctx, {
+      foo: 'bar',
+    });
 
     expect(ctx.equals).not.toHaveBeenCalled();
 
@@ -88,7 +93,7 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '<div></div>' {{not}} to be a DOM element`
+      "Expect '<div></div>' {{not}} to be a DOM element",
     );
   });
 
@@ -96,7 +101,10 @@ describe('toBeDOMElementWithAttributes', () => {
     const actual = div;
     const ctx = createFakeContext(actual);
 
-    const result = toBeDOMElementWithAttributes(ctx, {foo: 'baz', bar: 'baz'});
+    const result = toBeDOMElementWithAttributes(ctx, {
+      foo: 'baz',
+      bar: 'baz',
+    });
 
     expect(ctx.equals).toHaveBeenCalled();
     expect(result).toEqual({
@@ -105,8 +113,8 @@ describe('toBeDOMElementWithAttributes', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ` +
-        `but was [object Object]`
+      'Expect <div foo="bar" bar="baz"> {{not}} to be a DOM element with attributes [object Object] ' +
+      'but was [object Object]',
     );
   });
 });

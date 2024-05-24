@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {countIn} from './count-in.js';
-import {strictEquals} from './strict-equals.js';
-import {every} from './every.js';
+import { countIn } from './count-in';
+import { strictEquals } from './strict-equals';
+import { every } from './every';
 
 /**
  * Check that an array contains only distinct values.
@@ -34,7 +34,7 @@ import {every} from './every.js';
  * @return {boolean} `true` if `array` contains only distinct values, `false` otherwise.
  */
 export function containsDistinct(array, equalsFunction = strictEquals) {
-  return every(array, (item, idx) => {
-    return countIn(array, item, idx + 1, equalsFunction) === 0;
-  });
+  return every(array, (item, idx) => (
+    countIn(array, item, idx + 1, equalsFunction) === 0
+  ));
 }

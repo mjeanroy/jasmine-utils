@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {assumeSeal} from '../../detect/assume-seal.js';
-import {toBeSealed} from '../../../src/core/matchers/any/to-be-sealed.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeSeal } from '../../detect/assume-seal';
+import { toBeSealed } from '../../../src/core/matchers/any/to-be-sealed';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeSealed', () => {
   it('should check for null', () => {
@@ -39,7 +39,7 @@ describe('toBeSealed', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be sealed`
+      'Expect null {{not}} to be sealed',
     );
   });
 
@@ -55,7 +55,7 @@ describe('toBeSealed', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect undefined {{not}} to be sealed`
+      'Expect undefined {{not}} to be sealed',
     );
   });
 
@@ -71,7 +71,7 @@ describe('toBeSealed', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be sealed`
+      'Expect 1 {{not}} to be sealed',
     );
   });
 
@@ -87,7 +87,7 @@ describe('toBeSealed', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '' {{not}} to be sealed`
+      "Expect '' {{not}} to be sealed",
     );
   });
 
@@ -103,7 +103,7 @@ describe('toBeSealed', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect true {{not}} to be sealed`
+      'Expect true {{not}} to be sealed',
     );
   });
 
@@ -119,7 +119,7 @@ describe('toBeSealed', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({  }) {{not}} to be sealed`
+      'Expect Object({  }) {{not}} to be sealed',
     );
   });
 
@@ -135,7 +135,7 @@ describe('toBeSealed', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be sealed`
+      'Expect [  ] {{not}} to be sealed',
     );
   });
 
@@ -153,7 +153,7 @@ describe('toBeSealed', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({  }) {{not}} to be sealed`
+      'Expect Object({  }) {{not}} to be sealed',
     );
   });
 
@@ -171,7 +171,7 @@ describe('toBeSealed', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be sealed`
+      'Expect [  ] {{not}} to be sealed',
     );
   });
 });

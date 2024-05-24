@@ -27,7 +27,8 @@
  * preset.
  */
 
-export const nonLooseClassFactory = function() {
+// eslint-disable-next-line func-names
+export const nonLooseClassFactory = function () {
   /**
    * Define property on target object using native `Object.defineProperty`.
    *
@@ -56,12 +57,12 @@ export const nonLooseClassFactory = function() {
   }
 
   defineProperties(NonLooseClass.prototype, [
-    {key: 'methodOne', value: function methodOne() {}},
-    {key: 'methodTwo', value: function methodTwo() {}},
+    { key: 'methodOne', value: function methodOne() {} },
+    { key: 'methodTwo', value: function methodTwo() {} },
   ]);
 
   defineProperties(NonLooseClass, [
-    {key: 'staticMethodOne', value: function staticMethodOne() {}},
+    { key: 'staticMethodOne', value: function staticMethodOne() {} },
   ]);
 
   return NonLooseClass;

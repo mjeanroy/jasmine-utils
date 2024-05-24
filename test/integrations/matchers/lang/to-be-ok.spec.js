@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toBeOk', () => {
   it('should pass', () => {
@@ -31,8 +31,9 @@ describe('toBeOk', () => {
     expect('').toBeOk();
     expect(NaN).toBeOk();
 
+    // eslint-disable-next-line no-void
+    expect(void 0).not.toBeOk();
     expect(null).not.toBeOk();
     expect(undefined).not.toBeOk();
-    expect(void 0).not.toBeOk();
   });
 });

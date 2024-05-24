@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../detect/assume-set.js';
-import {assumeMap} from '../detect/assume-map.js';
-import {assumeSymbol} from '../detect/assume-symbol.js';
-import {isIterable} from '../../src/core/util/is-iterable.js';
+import { assumeSet } from '../detect/assume-set';
+import { assumeMap } from '../detect/assume-map';
+import { assumeSymbol } from '../detect/assume-symbol';
+import { isIterable } from '../../src/core/util/is-iterable';
 
 describe('isIterable', () => {
   it('should return false with null', () => {
@@ -65,7 +65,7 @@ describe('isIterable', () => {
       [Symbol.iterator]() {
         return {
           next() {
-            return {done: true};
+            return { done: true };
           },
         };
       },

@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeInRange} from '../../../src/core/matchers/numbers/to-be-in-range.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeInRange } from '../../../src/core/matchers/numbers/to-be-in-range';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeInRange', () => {
   it('should check that object is an greater than lower bound and less than upper bound', () => {
@@ -40,7 +40,7 @@ describe('toBeInRange', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be between 0 and 2`
+      'Expect 1 {{not}} to be between 0 and 2',
     );
   });
 
@@ -58,7 +58,7 @@ describe('toBeInRange', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be between 1 and 2`
+      'Expect 1 {{not}} to be between 1 and 2',
     );
   });
 
@@ -76,7 +76,7 @@ describe('toBeInRange', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be between 0 and 1`
+      'Expect 1 {{not}} to be between 0 and 1',
     );
   });
 });

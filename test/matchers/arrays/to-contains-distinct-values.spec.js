@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toContainsDistinctValues} from '../../../src/core/matchers/arrays/to-contains-distinct-values.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toContainsDistinctValues } from '../../../src/core/matchers/arrays/to-contains-distinct-values';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toContainsDistinctValues', () => {
   it('should check that array only contains distinct values', () => {
@@ -38,7 +38,7 @@ describe('toContainsDistinctValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`
+      'Expect [ -1, 0, 1 ] {{not}} to contains only distinct values',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toContainsDistinctValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 1, 0, 1 ] {{not}} to contains only distinct values`
+      'Expect [ 1, 0, 1 ] {{not}} to contains only distinct values',
     );
   });
 
@@ -73,7 +73,7 @@ describe('toContainsDistinctValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ -1, 0, 1 ] {{not}} to contains only distinct values`
+      'Expect [ -1, 0, 1 ] {{not}} to contains only distinct values',
     );
 
     expect(equals).toHaveBeenCalled();

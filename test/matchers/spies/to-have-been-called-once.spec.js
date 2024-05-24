@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toHaveBeenCalledOnce} from '../../../src/core/matchers/spies/to-have-been-called-once.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toHaveBeenCalledOnce } from '../../../src/core/matchers/spies/to-have-been-called-once';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveBeenCalledOnce', () => {
   it('should pass if spy has been called once', () => {

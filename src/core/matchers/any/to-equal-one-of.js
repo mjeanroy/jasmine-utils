@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {contains} from '../../util/contains.js';
+import { contains } from '../../util/contains';
 
 /**
  * Check that the tested object is equal to one of the values in an array.
@@ -40,7 +40,7 @@ import {contains} from '../../util/contains.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toEqualOneOf({actual, equals, pp}, array) {
+export function toEqualOneOf({ actual, equals, pp }, array) {
   return {
     pass: contains(array, actual, equals),
     message() {

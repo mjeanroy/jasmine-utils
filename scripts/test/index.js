@@ -22,8 +22,6 @@
  * THE SOFTWARE.
  */
 
-'use strict';
-
 const path = require('path');
 const karma = require('karma');
 const log = require('../log');
@@ -99,13 +97,13 @@ function startKarma(mode, done) {
   const configFilePath = path.join(__dirname, fileName);
 
   log.debug(`Parsing karma configuration from: ${configFilePath}`);
-  karma.config.parseConfig(configFilePath, null, {promiseConfig: true, throwErrors: true}).then((config) => {
+  karma.config.parseConfig(configFilePath, null, { promiseConfig: true, throwErrors: true }).then((config) => {
     const srv = new karma.Server(config, (err) => {
       log.debug('Calling done callback of Karma');
       done(err);
     });
 
-    log.debug(`Starting karma server`);
+    log.debug('Starting karma server');
     srv.start();
   });
 }

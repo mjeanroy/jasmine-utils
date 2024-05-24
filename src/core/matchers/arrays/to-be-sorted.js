@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from '../../util/is-array.js';
-import {isSorted} from '../../util/is-sorted.js';
+import { isArray } from '../../util/is-array';
+import { isSorted } from '../../util/is-sorted';
 
 /**
  * Check that the tested object is an array and is sorted (i.e for each elements in
@@ -49,7 +49,7 @@ import {isSorted} from '../../util/is-sorted.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeSorted({actual, pp}, comparator) {
+export function toBeSorted({ actual, pp }, comparator) {
   return {
     pass: isArray(actual) && isSorted(actual, comparator),
     message() {

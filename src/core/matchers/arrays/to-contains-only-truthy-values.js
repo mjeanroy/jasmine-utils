@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from '../../util/is-array.js';
-import {isTruthy} from '../../util/is-truthy.js';
-import {every} from '../../util/every.js';
+import { isArray } from '../../util/is-array';
+import { isTruthy } from '../../util/is-truthy';
+import { every } from '../../util/every';
 
 /**
  * Check that the tested object contains only truthy values.
@@ -45,7 +45,7 @@ import {every} from '../../util/every.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toContainsOnlyTruthyValues({actual, pp}) {
+export function toContainsOnlyTruthyValues({ actual, pp }) {
   return {
     pass: isArray(actual) && every(actual, isTruthy),
     message() {

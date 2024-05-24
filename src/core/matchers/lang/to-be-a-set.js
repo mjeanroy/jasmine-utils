@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isSet} from '../../util/is-set.js';
+import { isSet } from '../../util/is-set';
 
 /**
  * Check that the tested object is a `Set`.
@@ -37,7 +37,7 @@ import {isSet} from '../../util/is-set.js';
  * @return {Object} The test result.
  * @since 0.3.0
  */
-export function toBeASet({actual, pp}) {
+export function toBeASet({ actual, pp }) {
   return {
     pass: isSet(actual),
     message() {

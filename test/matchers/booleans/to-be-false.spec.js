@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeFalse} from '../../../src/core/matchers/booleans/to-be-false.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeFalse } from '../../../src/core/matchers/booleans/to-be-false';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeFalse', () => {
   it('should check that object is false', () => {
@@ -38,7 +38,7 @@ describe('toBeFalse', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect false {{not}} to be false`
+      'Expect false {{not}} to be false',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeFalse', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect true {{not}} to be false`
+      'Expect true {{not}} to be false',
     );
   });
 });

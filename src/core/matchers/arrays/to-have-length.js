@@ -37,7 +37,7 @@
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveLength({actual, pp}, expectedLength) {
+export function toHaveLength({ actual, pp }, expectedLength) {
   const actualLength = actual.length;
   return {
     pass: actualLength === expectedLength,

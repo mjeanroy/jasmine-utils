@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {negateMessage} from './negate-message.js';
-import {pp} from './pp.js';
+import { negateMessage } from './negate-message';
+import { pp } from './pp';
 
 /**
  * This factory will create a matcher supported by Jasmine 1.3.X.
@@ -45,20 +45,14 @@ export function jasmine1MatcherFactory(fn) {
     // The `this` object is equals to the current test context.
 
     // eslint-disable-next-line no-invalid-this
-    const env = this.env;
+    const { env, actual, isNot } = this;
 
     // eslint-disable-next-line no-invalid-this
-    const equals_ = this.env.equals_;
-
-    // eslint-disable-next-line no-invalid-this
-    const actual = this.actual;
-
-    // eslint-disable-next-line no-invalid-this
-    const isNot = this.isNot;
+    const { equals_ } = this.env;
 
     const ctx = {
-      actual: actual,
-      isNot: isNot,
+      actual,
+      isNot,
 
       // Adapter for `callCount`
       // https://jasmine.github.io/1.3/introduction#section-Spies
@@ -86,8 +80,8 @@ export function jasmine1MatcherFactory(fn) {
     const pass = isNot ? !result.pass : result.pass;
 
     if (!pass) {
-      // eslint-disable-next-line no-invalid-this
-      this.message = function() {
+      // eslint-disable-next-line no-invalid-this,func-names
+      this.message = function () {
         return negateMessage(isNot, result.message());
       };
     }

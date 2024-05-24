@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {isNull} from './is-null.js';
-import {isUndefined} from './is-undefined.js';
+import { isNull } from './is-null';
+import { isUndefined } from './is-undefined';
 
 /**
  * Check that a given value is `null` or `undefined`.

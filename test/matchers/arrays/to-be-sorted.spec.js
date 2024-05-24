@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeSorted} from '../../../src/core/matchers/arrays/to-be-sorted.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeSorted } from '../../../src/core/matchers/arrays/to-be-sorted';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeSorted', () => {
   it('should pass with a sorted array', () => {
@@ -38,16 +38,16 @@ describe('toBeSorted', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, 1, 2, 3 ] {{not}} to be sorted`
+      'Expect [ 0, 1, 2, 3 ] {{not}} to be sorted',
     );
   });
 
   it('should pass with a sorted array and a comparator function', () => {
     const actual = [0, -1, 2, -3];
     const ctx = createFakeContext(actual);
-    const comparator = jasmine.createSpy('comparator').and.callFake((a, b) => {
-      return Math.abs(a) - Math.abs(b);
-    });
+    const comparator = jasmine.createSpy('comparator').and.callFake((a, b) => (
+      Math.abs(a) - Math.abs(b)
+    ));
 
     const result = toBeSorted(ctx, comparator);
 
@@ -57,7 +57,7 @@ describe('toBeSorted', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`
+      'Expect [ 0, -1, 2, -3 ] {{not}} to be sorted',
     );
 
     expect(comparator).toHaveBeenCalled();
@@ -75,7 +75,7 @@ describe('toBeSorted', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, -1, 2, -3 ] {{not}} to be sorted`
+      'Expect [ 0, -1, 2, -3 ] {{not}} to be sorted',
     );
   });
 });

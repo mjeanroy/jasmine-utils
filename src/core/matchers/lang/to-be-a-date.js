@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isDate} from '../../util/is-date.js';
+import { isDate } from '../../util/is-date';
 
 /**
  * Check that the tested object is an instance of `Date`.
@@ -37,7 +37,7 @@ import {isDate} from '../../util/is-date.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeADate({actual, pp}) {
+export function toBeADate({ actual, pp }) {
   return {
     pass: isDate(actual),
     message() {

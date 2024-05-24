@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isPrimitive} from '../../src/core/util/is-primitive.js';
+import { isPrimitive } from '../../src/core/util/is-primitive';
 
 describe('isPrimitive', () => {
   it('should return true with null, undefined, a number, a string or a boolean', () => {

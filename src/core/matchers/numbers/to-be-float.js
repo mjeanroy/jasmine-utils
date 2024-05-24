@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isFloat} from '../../util/is-float.js';
+import { isFloat } from '../../util/is-float';
 
 /**
  * Check that the tested object is a `float` value.
@@ -44,7 +44,7 @@ import {isFloat} from '../../util/is-float.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeFloat({actual, pp}) {
+export function toBeFloat({ actual, pp }) {
   return {
     pass: isFloat(actual),
     message() {

@@ -22,13 +22,11 @@
  * THE SOFTWARE.
  */
 
-'use strict';
-
 const path = require('path');
 const fancyLog = require('fancy-log');
-const {ESLint} = require('eslint');
+const { ESLint } = require('eslint');
 const log = require('../log');
-const config = require('../config.js');
+const config = require('../config');
 
 /**
  * Get all potential sources to run against lint validator.

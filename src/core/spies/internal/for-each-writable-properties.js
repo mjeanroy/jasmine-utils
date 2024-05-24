@@ -22,10 +22,41 @@
  * THE SOFTWARE.
  */
 
-import {indexOf} from '../../util/index-of.js';
-import {isNil} from '../../util/is-nil.js';
-import {filter} from '../../util/filter.js';
-import {forEach} from '../../util/for-each.js';
+import { indexOf } from '../../util/index-of';
+import { isNil } from '../../util/is-nil';
+import { filter } from '../../util/filter';
+import { forEach } from '../../util/for-each';
+
+/**
+ * Fallback implementation for set ES6 datastructure.
+ */
+class ArraySet {
+  /**
+   * Create the new Set.
+   */
+  constructor() {
+    this.o = [];
+  }
+
+  /**
+   * Check that given value has been added to the set.
+   * @param {*} x Value to check.
+   * @return {boolean} `true` if `x` is in the set, false otherwise.
+   */
+  has(x) {
+    return indexOf(this.o, x) >= 0;
+  }
+
+  /**
+   * Add new value to the set.
+   * @param {*} x Value to add.
+   * @return {ArraySet} The current set.
+   */
+  add(x) {
+    this.o.push(x);
+    return this;
+  }
+}
 
 /**
  * Iterate over all entries in object and execute iterator function on it.
@@ -45,7 +76,7 @@ export function forEachWritableProperties(obj, iterator) {
 
     while (current) {
       // First, use the for .. in loop.
-      // eslint-disable-next-line guard-for-in
+      // eslint-disable-next-line guard-for-in,no-restricted-syntax
       for (const i in current) {
         const prop = current[i];
         if (!foundProps.has(prop)) {
@@ -59,9 +90,11 @@ export function forEachWritableProperties(obj, iterator) {
       if (Object.getOwnPropertyNames) {
         // Be careful, some browsers (like PhantomJS) may return restricted property
         // such as `arguments` or `caller` that cannot be read.
-        const props = filter(Object.getOwnPropertyNames(current), (name) => {
+        // eslint-disable-next-line no-loop-func
+        const props = filter(Object.getOwnPropertyNames(current), (_name) => {
           try {
-            current[name];
+            // eslint-disable-next-line no-unused-expressions
+            current[_name];
             return false;
           } catch (e) {
             return true;
@@ -105,36 +138,5 @@ export function forEachWritableProperties(obj, iterator) {
         current = null;
       }
     }
-  }
-}
-
-/**
- * Fallback implementation for set ES6 datastructure.
- */
-class ArraySet {
-  /**
-   * Create the new Set.
-   */
-  constructor() {
-    this.o = [];
-  }
-
-  /**
-   * Check that given value has been added to the set.
-   * @param {*} x Value to check.
-   * @return {boolean} `true` if `x` is in the set, false otherwise.
-   */
-  has(x) {
-    return indexOf(this.o, x) >= 0;
-  }
-
-  /**
-   * Add new value to the set.
-   * @param {*} x Value to add.
-   * @return {ArraySet} The current set.
-   */
-  add(x) {
-    this.o.push(x);
-    return this;
   }
 }

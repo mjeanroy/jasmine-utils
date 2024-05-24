@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {isFunction} from '../../util/is-function.js';
-import {every} from '../../util/every.js';
+import { isFunction } from '../../util/is-function';
+import { every } from '../../util/every';
 
 /**
  * Check that actual object contains all given expected functions.
@@ -42,7 +42,7 @@ import {every} from '../../util/every.js';
  * @return {Object} Matcher result.
  * @since 0.1.0
  */
-export function toHaveFunctions({actual, pp}, ...methods) {
+export function toHaveFunctions({ actual, pp }, ...methods) {
   const ok = every(methods, (method) => isFunction(actual[method]));
   return {
     pass: ok,

@@ -22,12 +22,12 @@
  * THE SOFTWARE.
  */
 
-import {isNil} from './is-nil.js';
-import {isArray} from './is-array.js';
-import {isString} from './is-string.js';
-import {isMap} from './is-map.js';
-import {isSet} from './is-set.js';
-import {isFunction} from './is-function.js';
+import { isNil } from './is-nil';
+import { isArray } from './is-array';
+import { isString } from './is-string';
+import { isMap } from './is-map';
+import { isSet } from './is-set';
+import { isFunction } from './is-function';
 
 const SUPPORT_SYMBOL = typeof Symbol !== 'undefined';
 

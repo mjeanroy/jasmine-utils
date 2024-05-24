@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isMap} from '../../util/is-map.js';
+import { isMap } from '../../util/is-map';
 
 /**
  * Check that the tested object is a `Map`.
@@ -36,7 +36,7 @@ import {isMap} from '../../util/is-map.js';
  * @return {Object} The test result.
  * @since 0.3.0
  */
-export function toBeAMap({actual, pp}) {
+export function toBeAMap({ actual, pp }) {
   return {
     pass: isMap(actual),
     message() {

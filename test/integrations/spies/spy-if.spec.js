@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import '../../../src/index.js';
+import '../../../src/index';
 
 describe('spyIf', () => {
   it('should spy a method that is not already a spy', () => {

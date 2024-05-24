@@ -22,5 +22,5 @@
  * THE SOFTWARE.
  */
 
-import './to-have-been-called-once-with.spec.js';
-import './to-have-been-called-once.spec.js';
+import './to-have-been-called-once-with.spec';
+import './to-have-been-called-once.spec';

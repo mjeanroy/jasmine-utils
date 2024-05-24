@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toContainsOnlyTruthyValues} from '../../../src/core/matchers/arrays/to-contains-only-truthy-values.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toContainsOnlyTruthyValues } from '../../../src/core/matchers/arrays/to-contains-only-truthy-values';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toContainsOnlyTruthyValues', () => {
   it('should check that array contains only truthy values', () => {
@@ -38,7 +38,7 @@ describe('toContainsOnlyTruthyValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 1, 'foo', true ] {{not}} to contains only truthy values`
+      "Expect [ 1, 'foo', true ] {{not}} to contains only truthy values",
     );
   });
 
@@ -54,7 +54,7 @@ describe('toContainsOnlyTruthyValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 1, 'foo', true, 0 ] {{not}} to contains only truthy values`
+      "Expect [ 1, 'foo', true, 0 ] {{not}} to contains only truthy values",
     );
   });
 });

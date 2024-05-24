@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {every} from '../../util/every.js';
-import {isFunction} from '../../util/is-function.js';
+import { every } from '../../util/every';
+import { isFunction } from '../../util/is-function';
 
 /**
  * Check that the tested object satisfies a given predicate.
@@ -61,7 +61,7 @@ import {isFunction} from '../../util/is-function.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toVerify({actual, pp}, msg, iterator) {
+export function toVerify({ actual, pp }, msg, iterator) {
   let _message;
   let _iterator;
 

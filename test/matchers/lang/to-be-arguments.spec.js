@@ -22,15 +22,16 @@
  * THE SOFTWARE.
  */
 
-import {toBeArguments} from '../../../src/core/matchers/lang/to-be-arguments.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeArguments } from '../../../src/core/matchers/lang/to-be-arguments';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeArguments', () => {
   it('should check that object is arguments', () => {
-    const actual = (function() {
+    // eslint-disable-next-line func-names
+    const actual = (function () {
       // eslint-disable-next-line prefer-rest-params
       return arguments;
-    })();
+    }());
 
     const ctx = createFakeContext(actual);
 
@@ -42,7 +43,7 @@ describe('toBeArguments', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be arguments`
+      `Expect ${ctx.pp(actual)} {{not}} to be arguments`,
     );
   });
 
@@ -58,7 +59,7 @@ describe('toBeArguments', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be arguments`
+      'Expect [  ] {{not}} to be arguments',
     );
   });
 });

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {dateDiff} from '../../util/date-diff.js';
+import { dateDiff } from '../../util/date-diff';
 
 /**
  * Check that the tested date object and an actual date object are close.
@@ -49,7 +49,7 @@ import {dateDiff} from '../../util/date-diff.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeDateCloseTo({actual, pp}, date, max = 1000) {
+export function toBeDateCloseTo({ actual, pp }, date, max = 1000) {
   const diff = Math.abs(dateDiff(actual, date));
   return {
     pass: diff <= max,

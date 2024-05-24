@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {isFunction} from './is-function.js';
-import {isPrimitive} from './is-primitive.js';
+import { isFunction } from './is-function';
+import { isPrimitive } from './is-primitive';
 
 /**
  * Check that a given value is extensible.

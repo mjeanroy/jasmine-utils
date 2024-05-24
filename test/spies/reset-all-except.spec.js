@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {resetAllExcept} from '../../src/core/spies/reset-all-except.js';
+import { resetAllExcept } from '../../src/core/spies/reset-all-except';
 
 describe('resetAllExcept', () => {
   it('should reset all spy of object except one', () => {

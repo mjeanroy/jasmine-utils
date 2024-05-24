@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeNil} from '../../../src/core/matchers/lang/to-be-nil.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeNil } from '../../../src/core/matchers/lang/to-be-nil';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeNil', () => {
   it('should check that object is null', () => {
@@ -38,7 +38,7 @@ describe('toBeNil', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be nil (null or undefined)`
+      'Expect null {{not}} to be nil (null or undefined)',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeNil', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect undefined {{not}} to be nil (null or undefined)`
+      'Expect undefined {{not}} to be nil (null or undefined)',
     );
   });
 
@@ -70,7 +70,7 @@ describe('toBeNil', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '' {{not}} to be nil (null or undefined)`
+      "Expect '' {{not}} to be nil (null or undefined)",
     );
   });
 });

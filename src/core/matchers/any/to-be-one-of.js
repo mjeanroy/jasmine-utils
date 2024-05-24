@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {contains} from '../../util/contains.js';
+import { contains } from '../../util/contains';
 
 /**
  * Check that the tested object is strictly equal to one of the values
@@ -39,7 +39,7 @@ import {contains} from '../../util/contains.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeOneOf({actual, pp}, array) {
+export function toBeOneOf({ actual, pp }, array) {
   return {
     pass: contains(array, actual),
     message() {

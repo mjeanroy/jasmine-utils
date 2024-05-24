@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {has} from './has.js';
-import {isMap} from './is-map.js';
+import { has } from './has';
+import { isMap } from './is-map';
 
 /**
  * Get all values of object.
@@ -45,6 +45,7 @@ export function values(obj) {
 function objectValues(obj) {
   const vals = [];
 
+  // eslint-disable-next-line no-restricted-syntax
   for (const i in obj) {
     if (has(obj, i)) {
       vals.push(obj[i]);

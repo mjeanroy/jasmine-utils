@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toBeEmpty', () => {
   it('should pass with an array', () => {
@@ -32,7 +32,7 @@ describe('toBeEmpty', () => {
 
   it('should pass with an object', () => {
     expect({}).toBeEmpty();
-    expect({'one': 1}).not.toBeEmpty();
+    expect({ one: 1 }).not.toBeEmpty();
   });
 
   it('should pass with an empty string', () => {

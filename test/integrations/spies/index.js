@@ -22,6 +22,6 @@
  * THE SOFTWARE.
  */
 
-import './reset.spec.js';
-import './spy-all.spec.js';
-import './spy-if.spec.js';
+import './reset.spec';
+import './spy-all.spec';
+import './spy-if.spec';

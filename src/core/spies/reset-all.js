@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {resetAllExcept} from './reset-all-except.js';
+import { resetAllExcept } from './reset-all-except';
 
 /**
  * Reset all spy methods in object.

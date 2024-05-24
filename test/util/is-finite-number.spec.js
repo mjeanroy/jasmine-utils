@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isFiniteNumber} from '../../src/core/util/is-finite-number.js';
+import { isFiniteNumber } from '../../src/core/util/is-finite-number';
 
 describe('isFiniteNumber', () => {
   it('should return true with a valid finite number', () => {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {skip} from './skip.js';
+import { skip } from './skip';
 
 /**
  * Mark test as pending if `Object.freeze` is not supported in the

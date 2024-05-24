@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toEqualOneOf} from '../../../src/core/matchers/any/to-equal-one-of.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toEqualOneOf } from '../../../src/core/matchers/any/to-equal-one-of';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toEqualOneOf', () => {
   it('should pass with integer values', () => {
@@ -39,7 +39,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to equal one of [ 1, 2, 3 ]`
+      'Expect 1 {{not}} to equal one of [ 1, 2, 3 ]',
     );
   });
 
@@ -56,7 +56,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 10 {{not}} to equal one of [ 1, 2, 3 ]`
+      'Expect 10 {{not}} to equal one of [ 1, 2, 3 ]',
     );
   });
 
@@ -73,7 +73,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect false {{not}} to equal one of [ true, false ]`
+      'Expect false {{not}} to equal one of [ true, false ]',
     );
   });
 
@@ -90,7 +90,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect false {{not}} to equal one of [ true, true ]`
+      'Expect false {{not}} to equal one of [ true, true ]',
     );
   });
 
@@ -107,7 +107,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 'bar' {{not}} to equal one of [ 'foo', 'bar', 'baz' ]`
+      "Expect 'bar' {{not}} to equal one of [ 'foo', 'bar', 'baz' ]",
     );
   });
 
@@ -124,12 +124,12 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 'baz' {{not}} to equal one of [ 'foo', 'bar' ]`
+      "Expect 'baz' {{not}} to equal one of [ 'foo', 'bar' ]",
     );
   });
 
   it('should pass with same object instances', () => {
-    const actual = {id: 1};
+    const actual = { id: 1 };
     const ctx = createFakeContext(actual);
     const array = [actual];
 
@@ -141,12 +141,12 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ id: 1 }) {{not}} to equal one of [ Object({ id: 1 }) ]`
+      'Expect Object({ id: 1 }) {{not}} to equal one of [ Object({ id: 1 }) ]',
     );
   });
 
   it('should pass with custom object equality', () => {
-    const actual = {id: 2};
+    const actual = { id: 2 };
     const ctx = createFakeContext(actual, {
       equals: jasmine.createSpy('equals').and.callFake((o1, o2) => (
         o1.id === o2.id
@@ -154,9 +154,9 @@ describe('toEqualOneOf', () => {
     });
 
     const array = [
-      {id: 1},
-      {id: 2},
-      {id: 3},
+      { id: 1 },
+      { id: 2 },
+      { id: 3 },
     ];
 
     const result = toEqualOneOf(ctx, array);
@@ -167,7 +167,7 @@ describe('toEqualOneOf', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ id: 2 }) {{not}} to equal one of [ Object({ id: 1 }), Object({ id: 2 }), Object({ id: 3 }) ]`
+      'Expect Object({ id: 2 }) {{not}} to equal one of [ Object({ id: 1 }), Object({ id: 2 }), Object({ id: 3 }) ]',
     );
   });
 });

@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {now} from '../../util/now.js';
-import {dateDiff} from '../../util/date-diff.js';
+import { now } from '../../util/now';
+import { dateDiff } from '../../util/date-diff';
 
 /**
  * Check that the tested date object is a date "after" `now`.
@@ -45,7 +45,7 @@ import {dateDiff} from '../../util/date-diff.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeDateAfterNow({actual, pp}) {
+export function toBeDateAfterNow({ actual, pp }) {
   const diff = dateDiff(actual, now());
   return {
     pass: diff >= 0,

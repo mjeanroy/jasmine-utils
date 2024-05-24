@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {Klass} from '../../../fixtures/klass.js';
-import '../../../../src/index.js';
+import { Klass } from '../../../fixtures/klass';
+import '../../../../src/index';
 
 describe('toBeInstanceOf', () => {
   it('should pass', () => {

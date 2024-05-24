@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeADate} from '../../../src/core/matchers/lang/to-be-a-date.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeADate } from '../../../src/core/matchers/lang/to-be-a-date';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeADate', () => {
   it('should check that object is a date', () => {
@@ -38,7 +38,7 @@ describe('toBeADate', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be a date`
+      `Expect ${ctx.pp(actual)} {{not}} to be a date`,
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeADate', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be a date`
+      'Expect null {{not}} to be a date',
     );
   });
 });

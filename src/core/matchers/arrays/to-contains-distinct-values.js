@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from '../../util/is-array.js';
-import {containsDistinct} from '../../util/contains-distinct.js';
+import { isArray } from '../../util/is-array';
+import { containsDistinct } from '../../util/contains-distinct';
 
 /**
  * Check that the tested object is an array containing only distinct values.
@@ -41,7 +41,7 @@ import {containsDistinct} from '../../util/contains-distinct.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toContainsDistinctValues({actual, equals, pp}) {
+export function toContainsDistinctValues({ actual, equals, pp }) {
   return {
     pass: isArray(actual) && containsDistinct(actual, equals),
     message() {

@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {version} from '../../jasmine/version.js';
-import {isFunction} from '../../util/is-function.js';
+import { version } from '../../jasmine/version';
+import { isFunction } from '../../util/is-function';
 
 /**
  * Spy a method on an object if and only if it is not already a spy.

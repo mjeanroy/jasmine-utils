@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 
-import './to-be-even-number.spec.js';
-import './to-be-finite-number.spec.js';
-import './to-be-float.spec.js';
-import './to-be-in-range.spec.js';
-import './to-be-integer.spec.js';
-import './to-be-negative.spec.js';
-import './to-be-numeric.spec.js';
-import './to-be-odd-number.spec.js';
-import './to-be-positive.spec.js';
-import './to-be-zero.spec.js';
+import './to-be-even-number.spec';
+import './to-be-finite-number.spec';
+import './to-be-float.spec';
+import './to-be-in-range.spec';
+import './to-be-integer.spec';
+import './to-be-negative.spec';
+import './to-be-numeric.spec';
+import './to-be-odd-number.spec';
+import './to-be-positive.spec';
+import './to-be-zero.spec';

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isInteger} from '../../src/core/util/is-integer.js';
+import { isInteger } from '../../src/core/util/is-integer';
 
 describe('isInteger', () => {
   it('should return true with an integer value', () => {

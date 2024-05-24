@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeDateAfter} from '../../../src/core/matchers/dates/to-be-date-after.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeDateAfter } from '../../../src/core/matchers/dates/to-be-date-after';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeDateAfter', () => {
   it('should check that object is a date after an other date', () => {
@@ -39,7 +39,7 @@ describe('toBeDateAfter', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be after ${ctx.pp(lower)}`
+      `Expect date ${ctx.pp(actual)} {{not}} to be after ${ctx.pp(lower)}`,
     );
   });
 
@@ -56,7 +56,7 @@ describe('toBeDateAfter', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be after ${ctx.pp(lower)}`
+      `Expect date ${ctx.pp(actual)} {{not}} to be after ${ctx.pp(lower)}`,
     );
   });
 });

@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../../detect/assume-set.js';
-import {assumeMap} from '../../detect/assume-map.js';
-import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {toBeIterable} from '../../../src/core/matchers/lang/to-be-iterable.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeSet } from '../../detect/assume-set';
+import { assumeMap } from '../../detect/assume-map';
+import { assumeSymbol } from '../../detect/assume-symbol';
+import { toBeIterable } from '../../../src/core/matchers/lang/to-be-iterable';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeIterable', () => {
   it('should check that null is not iterable', () => {
@@ -41,7 +41,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be iterable`
+      'Expect null {{not}} to be iterable',
     );
   });
 
@@ -57,7 +57,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect undefined {{not}} to be iterable`
+      'Expect undefined {{not}} to be iterable',
     );
   });
 
@@ -73,7 +73,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be iterable`
+      'Expect [  ] {{not}} to be iterable',
     );
   });
 
@@ -89,7 +89,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '' {{not}} to be iterable`
+      "Expect '' {{not}} to be iterable",
     );
   });
 
@@ -107,7 +107,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be iterable`
+      `Expect ${ctx.pp(actual)} {{not}} to be iterable`,
     );
   });
 
@@ -125,7 +125,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be iterable`
+      `Expect ${ctx.pp(actual)} {{not}} to be iterable`,
     );
   });
 
@@ -136,7 +136,7 @@ describe('toBeIterable', () => {
       [Symbol.iterator]() {
         return {
           next() {
-            return {done: true};
+            return { done: true };
           },
         };
       },
@@ -152,7 +152,7 @@ describe('toBeIterable', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be iterable`
+      `Expect ${ctx.pp(actual)} {{not}} to be iterable`,
     );
   });
 });

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {filter} from '../../src/core/util/filter.js';
+import { filter } from '../../src/core/util/filter';
 
 describe('filter', () => {
   it('should return filtered array', () => {
@@ -40,11 +40,11 @@ describe('filter', () => {
 
   it('should iterate over array like object and returns new filtered array', () => {
     const arrayLike = {
-      'length': 3,
+      length: 3,
 
-      '0': 1,
-      '1': 2,
-      '2': 3,
+      0: 1,
+      1: 2,
+      2: 3,
     };
 
     const iteratee = jasmine.createSpy('iteratee').and.callFake((a) => a % 2 === 0);

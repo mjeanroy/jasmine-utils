@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../../detect/assume-set.js';
-import {assumeMap} from '../../detect/assume-map.js';
-import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {toHaveSize} from '../../../src/core/matchers/objects/to-have-size.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeSet } from '../../detect/assume-set';
+import { assumeMap } from '../../detect/assume-map';
+import { assumeSymbol } from '../../detect/assume-symbol';
+import { toHaveSize } from '../../../src/core/matchers/objects/to-have-size';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveSize', () => {
   it('should check length of array', () => {
@@ -41,12 +41,12 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect size of [ 1, 2, 3 ] {{not}} to be 3 but was 3`
+      'Expect size of [ 1, 2, 3 ] {{not}} to be 3 but was 3',
     );
   });
 
   it('should check size of object', () => {
-    const actual = {foo: 'bar'};
+    const actual = { foo: 'bar' };
     const ctx = createFakeContext(actual);
 
     const result = toHaveSize(ctx, 1);
@@ -57,7 +57,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect size of Object({ foo: 'bar' }) {{not}} to be 1 but was 1`
+      "Expect size of Object({ foo: 'bar' }) {{not}} to be 1 but was 1",
     );
   });
 
@@ -77,7 +77,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect size of ${ctx.pp(actual)} {{not}} to be 1 but was 1`
+      `Expect size of ${ctx.pp(actual)} {{not}} to be 1 but was 1`,
     );
   });
 
@@ -97,7 +97,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect size of ${ctx.pp(actual)} {{not}} to be 1 but was 1`
+      `Expect size of ${ctx.pp(actual)} {{not}} to be 1 but was 1`,
     );
   });
 
@@ -109,7 +109,7 @@ describe('toHaveSize', () => {
         let x = 0;
         return {
           next() {
-            return x === 2 ? {done: true} : {value: x++, done: false};
+            return x === 2 ? { done: true } : { value: x++, done: false };
           },
         };
       },
@@ -125,12 +125,12 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect size of ${ctx.pp(actual)} {{not}} to be 2 but was 2`
+      `Expect size of ${ctx.pp(actual)} {{not}} to be 2 but was 2`,
     );
   });
 
   it('should fail with non expected length', () => {
-    const actual = {foo: 'bar'};
+    const actual = { foo: 'bar' };
     const ctx = createFakeContext(actual);
 
     const result = toHaveSize(ctx, 2);
@@ -141,7 +141,7 @@ describe('toHaveSize', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect size of Object({ foo: 'bar' }) {{not}} to be 2 but was 1`
+      "Expect size of Object({ foo: 'bar' }) {{not}} to be 2 but was 1",
     );
   });
 });

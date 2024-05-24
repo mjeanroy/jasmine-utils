@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {indexOf} from '../../src/core/util/index-of.js';
+import { indexOf } from '../../src/core/util/index-of';
 
 describe('indexOf', () => {
   it('should find index in array with default equality function', () => {
@@ -35,9 +35,9 @@ describe('indexOf', () => {
 
   it('should find index in array with custom equality function', () => {
     const array = ['foo', 'bar'];
-    const equalsFn = jasmine.createSpy('equals').and.callFake((a, b) => {
-      return a.toLowerCase() === b.toLowerCase();
-    });
+    const equalsFn = jasmine.createSpy('equals').and.callFake((a, b) => (
+      a.toLowerCase() === b.toLowerCase()
+    ));
 
     expect(indexOf(array, 'foo', equalsFn)).toBe(0);
     expect(indexOf(array, 'FOO', equalsFn)).toBe(0);

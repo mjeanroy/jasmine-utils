@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../detect/assume-map.js';
-import {assumeSet} from '../detect/assume-set.js';
-import {assumeSymbol} from '../detect/assume-symbol.js';
-import {some} from '../../src/core/util/some.js';
+import { assumeMap } from '../detect/assume-map';
+import { assumeSet } from '../detect/assume-set';
+import { assumeSymbol } from '../detect/assume-symbol';
+import { some } from '../../src/core/util/some';
 
 describe('some', () => {
   it('should return true if predicate always returns a truthy value for at least one element', () => {
@@ -79,7 +79,7 @@ describe('some', () => {
         let x = 1;
         return {
           next() {
-            return x < 3 ? {value: x++, done: false} : {done: true};
+            return x < 3 ? { value: x++, done: false } : { done: true };
           },
         };
       },
@@ -148,7 +148,7 @@ describe('some', () => {
         let x = 1;
         return {
           next() {
-            return x <= 3 ? {value: x++, done: false} : {done: true};
+            return x <= 3 ? { value: x++, done: false } : { done: true };
           },
         };
       },

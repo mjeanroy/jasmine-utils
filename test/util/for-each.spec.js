@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {forEach} from '../../src/core/util/for-each.js';
+import { forEach } from '../../src/core/util/for-each';
 
 describe('forEach', () => {
   it('should iterate over array', () => {
@@ -39,10 +39,10 @@ describe('forEach', () => {
 
   it('should iterate over array like object', () => {
     const arrayLike = {
-      'length': 3,
-      '0': 1,
-      '1': 2,
-      '2': 3,
+      length: 3,
+      0: 1,
+      1: 2,
+      2: 3,
     };
 
     const iteratee = jasmine.createSpy('iteratee');

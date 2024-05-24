@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeToday} from '../../../src/core/matchers/dates/to-be-today.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeToday } from '../../../src/core/matchers/dates/to-be-today';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeToday', () => {
   it('should check that a date is today', () => {
@@ -38,7 +38,7 @@ describe('toBeToday', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be today`
+      `Expect date ${ctx.pp(actual)} {{not}} to be today`,
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeToday', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be today`
+      `Expect date ${ctx.pp(actual)} {{not}} to be today`,
     );
   });
 });

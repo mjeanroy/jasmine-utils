@@ -35,7 +35,7 @@
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeZero({actual, pp}) {
+export function toBeZero({ actual, pp }) {
   return {
     pass: actual === 0,
     message() {

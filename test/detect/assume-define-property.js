@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {skip} from './skip.js';
+import { skip } from './skip';
 
 const SUPPORT_DEFINE_PROPERTY = (() => {
   if (!Object.defineProperty) {
@@ -31,7 +31,7 @@ const SUPPORT_DEFINE_PROPERTY = (() => {
 
   // On IE8, Object.defineProperty only works with DOM Node...
   try {
-    Object.defineProperty({}, 'foobar', {value: 'foobar'});
+    Object.defineProperty({}, 'foobar', { value: 'foobar' });
     return true;
   } catch (e) {
     return false;

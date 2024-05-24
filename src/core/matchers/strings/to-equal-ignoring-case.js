@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isString} from '../../util/is-string.js';
+import { isString } from '../../util/is-string';
 
 /**
  * Check that the tested object is a `string` equal to an other `string`: comparison is
@@ -39,7 +39,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toEqualIgnoringCase({actual, pp}, other) {
+export function toEqualIgnoringCase({ actual, pp }, other) {
   return {
     pass: isString(other) && isString(actual) && actual.toLowerCase() === other.toLowerCase(),
     message() {

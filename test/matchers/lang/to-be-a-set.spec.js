@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../../detect/assume-set.js';
-import {toBeASet} from '../../../src/core/matchers/lang/to-be-a-set.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeSet } from '../../detect/assume-set';
+import { toBeASet } from '../../../src/core/matchers/lang/to-be-a-set';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeASet', () => {
   it('should check that object is a set', () => {
@@ -41,7 +41,7 @@ describe('toBeASet', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be a Set`
+      `Expect ${ctx.pp(actual)} {{not}} to be a Set`,
     );
   });
 
@@ -57,7 +57,7 @@ describe('toBeASet', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be a Set`
+      'Expect [  ] {{not}} to be a Set',
     );
   });
 });

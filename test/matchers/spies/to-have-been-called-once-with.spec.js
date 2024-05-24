@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toHaveBeenCalledOnceWith} from '../../../src/core/matchers/spies/to-have-been-called-once-with.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toHaveBeenCalledOnceWith } from '../../../src/core/matchers/spies/to-have-been-called-once-with';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveBeenCalledOnceWith', () => {
   it('should pass if spy has been called once with expected arguments', () => {
@@ -132,7 +132,7 @@ describe('toHaveBeenCalledOnceWith', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have been called once but was called 1 time(s) with different arguments`
+      `Expect ${ctx.pp(actual)} {{not}} to have been called once but was called 1 time(s) with different arguments`,
     );
   });
 });

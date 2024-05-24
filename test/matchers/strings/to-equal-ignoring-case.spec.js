@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toEqualIgnoringCase} from '../../../src/core/matchers/strings/to-equal-ignoring-case.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toEqualIgnoringCase } from '../../../src/core/matchers/strings/to-equal-ignoring-case';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toEqualIgnoringCase', () => {
   it('should check that object is a string equal to an other (case insensitively)', () => {
@@ -38,7 +38,7 @@ describe('toEqualIgnoringCase', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect 'test' {{not}} to be equal to 'TEST' (case insensitive)`);
+    expect(result.message()).toBe("Expect 'test' {{not}} to be equal to 'TEST' (case insensitive)");
   });
 
   it('should not pass without a string', () => {
@@ -53,6 +53,6 @@ describe('toEqualIgnoringCase', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect 'test' {{not}} to be equal to 'foo' (case insensitive)`);
+    expect(result.message()).toBe("Expect 'test' {{not}} to be equal to 'foo' (case insensitive)");
   });
 });

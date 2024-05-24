@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toHaveSameLengthAs} from '../../../src/core/matchers/arrays/to-have-same-length-as.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toHaveSameLengthAs } from '../../../src/core/matchers/arrays/to-have-same-length-as';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveSameLengthAs', () => {
   it('should check length of array', () => {
@@ -39,14 +39,14 @@ describe('toHaveSameLengthAs', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 1, 2, 3 ] {{not}} to have same length as [ 4, 5, 6 ]`
+      'Expect [ 1, 2, 3 ] {{not}} to have same length as [ 4, 5, 6 ]',
     );
   });
 
   it('should check length of array-like object', () => {
-    const actual = {'0': 1, '1': 2, '2': 3, 'length': 3};
+    const actual = { 0: 1, 1: 2, 2: 3, length: 3 };
     const ctx = createFakeContext(actual);
-    const expected = {'0': 4, '1': 5, '2': 6, 'length': 3};
+    const expected = { 0: 4, 1: 5, 2: 6, length: 3 };
 
     const result = toHaveSameLengthAs(ctx, expected);
 
@@ -56,8 +56,8 @@ describe('toHaveSameLengthAs', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to have same ` +
-        `length as Object({ 0: 4, 1: 5, 2: 6, length: 3 })`
+      'Expect Object({ 0: 1, 1: 2, 2: 3, length: 3 }) {{not}} to have same ' +
+      'length as Object({ 0: 4, 1: 5, 2: 6, length: 3 })',
     );
   });
 
@@ -74,7 +74,7 @@ describe('toHaveSameLengthAs', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to have same length as [ 1, 2, 3 ]`
+      'Expect [  ] {{not}} to have same length as [ 1, 2, 3 ]',
     );
   });
 });

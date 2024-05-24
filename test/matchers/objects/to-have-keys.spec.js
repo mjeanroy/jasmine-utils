@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../../detect/assume-map.js';
-import {toHaveKeys} from '../../../src/core/matchers/objects/to-have-keys.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeMap } from '../../detect/assume-map';
+import { toHaveKeys } from '../../../src/core/matchers/objects/to-have-keys';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveKeys', () => {
   it('should check if object has key', () => {
-    const actual = {foo: 'bar', quix: 'quix'};
+    const actual = { foo: 'bar', quix: 'quix' };
     const ctx = createFakeContext(actual);
 
     const result = toHaveKeys(ctx, 'foo');
@@ -39,7 +39,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo' ]`
+      "Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo' ]",
     );
   });
 
@@ -60,12 +60,12 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'foo' ]`
+      `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'foo' ]`,
     );
   });
 
   it('should check if object has all keys', () => {
-    const actual = {foo: 'bar', quix: 'quix'};
+    const actual = { foo: 'bar', quix: 'quix' };
     const ctx = createFakeContext(actual);
 
     const result = toHaveKeys(ctx, 'foo', 'quix');
@@ -76,7 +76,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'quix' ]`
+      "Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'quix' ]",
     );
   });
 
@@ -97,12 +97,12 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`
+      `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'foo', 'quix' ]`,
     );
   });
 
   it('should fail if object does not have key', () => {
-    const actual = {foo: 'bar', quix: 'quix'};
+    const actual = { foo: 'bar', quix: 'quix' };
     const ctx = createFakeContext(actual);
 
     const result = toHaveKeys(ctx, 'bar');
@@ -113,7 +113,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'bar' ]`
+      "Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'bar' ]",
     );
   });
 
@@ -134,12 +134,12 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'bar' ]`
+      `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'bar' ]`,
     );
   });
 
   it('should fail if object does not have all keys', () => {
-    const actual = {foo: 'bar', quix: 'quix'};
+    const actual = { foo: 'bar', quix: 'quix' };
     const ctx = createFakeContext(actual);
 
     const result = toHaveKeys(ctx, 'foo', 'bar');
@@ -150,7 +150,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'bar' ]`
+      "Expect Object({ foo: 'bar', quix: 'quix' }) {{not}} to have keys [ 'foo', 'bar' ]",
     );
   });
 
@@ -171,7 +171,7 @@ describe('toHaveKeys', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`
+      `Expect ${ctx.pp(actual)} {{not}} to have keys [ 'foo', 'bar' ]`,
     );
   });
 });

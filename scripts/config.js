@@ -28,8 +28,8 @@ const root = path.join(__dirname, '..');
 const src = path.join(root, 'src');
 
 module.exports = {
-  root: root,
-  src: src,
+  root,
+  src,
   test: path.join(root, 'test'),
   entry: path.join(src, 'index.js'),
   dest: path.join(src, 'jasmine-utils.js'),

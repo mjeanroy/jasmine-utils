@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../../../detect/assume-set.js';
-import {assumeMap} from '../../../detect/assume-map.js';
-import '../../../../src/index.js';
+import { assumeSet } from '../../../detect/assume-set';
+import { assumeMap } from '../../../detect/assume-map';
+import '../../../../src/index';
 
 describe('toBeAMap', () => {
   it('should pass with a map', () => {

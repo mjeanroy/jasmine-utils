@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {version} from '../../jasmine/version.js';
+import { version } from '../../jasmine/version';
 
 /**
  * Reset a spy.

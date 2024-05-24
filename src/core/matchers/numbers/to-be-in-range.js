@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNumber} from '../../util/is-number.js';
+import { isNumber } from '../../util/is-number';
 
 /**
  * Check that the tested object is a `number` (strictly) greater than a lower bound
@@ -40,7 +40,7 @@ import {isNumber} from '../../util/is-number.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeInRange({actual, pp}, lower, upper) {
+export function toBeInRange({ actual, pp }, lower, upper) {
   return {
     pass: isNumber(actual) && actual > lower && actual < upper,
     message() {

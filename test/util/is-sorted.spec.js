@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isSorted} from '../../src/core/util/is-sorted.js';
+import { isSorted } from '../../src/core/util/is-sorted';
 
 describe('isSorted', () => {
   it('should return true for an empty array', () => {
@@ -42,9 +42,9 @@ describe('isSorted', () => {
   });
 
   it('should return true for a sorted array with a comparison function', () => {
-    const comparator = jasmine.createSpy('comparator').and.callFake((a, b) => {
-      return a.toLowerCase().localeCompare(b.toLowerCase());
-    });
+    const comparator = jasmine.createSpy('comparator').and.callFake((a, b) => (
+      a.toLowerCase().localeCompare(b.toLowerCase())
+    ));
 
     expect(isSorted(['bar', 'FOO', 'foo'], comparator)).toBe(true);
     expect(comparator).toHaveBeenCalled();

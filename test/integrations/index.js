@@ -22,5 +22,5 @@
  * THE SOFTWARE.
  */
 
-import './matchers/index.js';
-import './spies/index.js';
+import './matchers/index';
+import './spies/index';

@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeDateCloseTo} from '../../../src/core/matchers/dates/to-be-date-close-to.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeDateCloseTo } from '../../../src/core/matchers/dates/to-be-date-close-to';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeADateCloseTo', () => {
   it('should check that object is a date close to an other date', () => {
@@ -39,7 +39,7 @@ describe('toBeADateCloseTo', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be close to ${ctx.pp(other)}`
+      `Expect date ${ctx.pp(actual)} {{not}} to be close to ${ctx.pp(other)}`,
     );
   });
 
@@ -56,7 +56,7 @@ describe('toBeADateCloseTo', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be close to ${ctx.pp(other)}`
+      `Expect date ${ctx.pp(actual)} {{not}} to be close to ${ctx.pp(other)}`,
     );
   });
 
@@ -73,7 +73,7 @@ describe('toBeADateCloseTo', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be close to ${ctx.pp(other)}`
+      `Expect date ${ctx.pp(actual)} {{not}} to be close to ${ctx.pp(other)}`,
     );
   });
 });

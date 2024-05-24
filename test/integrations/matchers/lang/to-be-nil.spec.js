@@ -22,13 +22,14 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toBeNil', () => {
   it('should pass', () => {
+    // eslint-disable-next-line no-void
+    expect(void 0).toBeNil();
     expect(null).toBeNil();
     expect(undefined).toBeNil();
-    expect(void 0).toBeNil();
 
     expect(0).not.toBeNil();
     expect(false).not.toBeNil();

@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeEvenNumber} from '../../../src/core/matchers/numbers/to-be-even-number.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeEvenNumber } from '../../../src/core/matchers/numbers/to-be-even-number';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeEvenNumber', () => {
   it('should check that object is an even number', () => {
@@ -38,7 +38,7 @@ describe('toBeEvenNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 2 {{not}} to be an even number`
+      'Expect 2 {{not}} to be an even number',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeEvenNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be an even number`
+      'Expect 1 {{not}} to be an even number',
     );
   });
 });

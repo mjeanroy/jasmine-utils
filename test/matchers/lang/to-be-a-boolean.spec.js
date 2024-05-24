@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeABoolean} from '../../../src/core/matchers/lang/to-be-a-boolean.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeABoolean } from '../../../src/core/matchers/lang/to-be-a-boolean';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeABoolean', () => {
   it('should check that object is a boolean', () => {
@@ -38,7 +38,7 @@ describe('toBeABoolean', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect true {{not}} to be a boolean`
+      'Expect true {{not}} to be a boolean',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeABoolean', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be a boolean`
+      'Expect null {{not}} to be a boolean',
     );
   });
 });

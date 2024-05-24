@@ -22,6 +22,8 @@
  * THE SOFTWARE.
  */
 
+/* eslint-disable global-require */
+
 /**
  * Karma Configuration.
  */
@@ -29,8 +31,8 @@
 const path = require('path');
 const _ = require('lodash');
 const istanbul = require('rollup-plugin-istanbul');
-const commonConf = require('./karma.common.conf.js');
-const conf = require('../config.js');
+const commonConf = require('./karma.common.conf');
+const conf = require('../config');
 
 module.exports = (config) => {
   const baseConfig = commonConf(config);

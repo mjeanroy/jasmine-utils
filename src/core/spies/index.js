@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-export {spyIf} from './spy-if.js';
-export {resetAllExcept} from './reset-all-except.js';
-export {resetEach} from './reset-each.js';
-export {resetAll} from './reset-all.js';
-export {spyAllExcept} from './spy-all-except';
-export {spyEach} from './spy-each.js';
-export {spyAll} from './spy-all.js';
+export { spyIf } from './spy-if';
+export { resetAllExcept } from './reset-all-except';
+export { resetEach } from './reset-each';
+export { resetAll } from './reset-all';
+export { spyAllExcept } from './spy-all-except';
+export { spyEach } from './spy-each';
+export { spyAll } from './spy-all';

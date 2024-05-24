@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {assumeFreeze} from '../detect/assume-freeze.js';
-import {isFrozen} from '../../src/core/util/is-frozen.js';
+import { assumeFreeze } from '../detect/assume-freeze';
+import { isFrozen } from '../../src/core/util/is-frozen';
 
 describe('isFrozen', () => {
   it('should return true with a primitive value', () => {

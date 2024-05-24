@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {containsDistinct} from '../../src/core/util/contains-distinct.js';
+import { containsDistinct } from '../../src/core/util/contains-distinct';
 
 describe('containsDistinct', () => {
   it('should return true if array contains only distinct values', () => {
@@ -35,9 +35,9 @@ describe('containsDistinct', () => {
 
   it('should return false if array contains same values with comparison functions', () => {
     const array = [-1, 0, 1];
-    const equals = jasmine.createSpy('equals').and.callFake((a, b) => {
-      return Math.abs(a) === Math.abs(b);
-    });
+    const equals = jasmine.createSpy('equals').and.callFake((a, b) => (
+      Math.abs(a) === Math.abs(b)
+    ));
 
     expect(containsDistinct(array, equals)).toBe(false);
   });

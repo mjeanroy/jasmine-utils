@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toBePartiallyEqualTo', () => {
   it('should pass with objects', () => {
-    const a = {id: 1, foo: 'bar', bar: 'foo'};
-    const b = {id: 1, foo: 'bar'};
-    const c = {id: 2};
+    const a = { id: 1, foo: 'bar', bar: 'foo' };
+    const b = { id: 1, foo: 'bar' };
+    const c = { id: 2 };
 
     expect(a).toBePartiallyEqualTo(b);
     expect(a).not.toBePartiallyEqualTo(c);
@@ -43,14 +43,14 @@ describe('toBePartiallyEqualTo', () => {
   });
 
   it('should pass with arrays', () => {
-    const a1 = {id: 1, foo: 'bar'};
-    const a2 = {id: 2, foo: 'bar'};
+    const a1 = { id: 1, foo: 'bar' };
+    const a2 = { id: 2, foo: 'bar' };
 
-    const b1 = {id: 1};
-    const b2 = {id: 2};
+    const b1 = { id: 1 };
+    const b2 = { id: 2 };
 
-    const c1 = {id: 2};
-    const c2 = {id: 2};
+    const c1 = { id: 2 };
+    const c2 = { id: 2 };
 
     const array1 = [a1, a2];
     const array2 = [b1, b2];

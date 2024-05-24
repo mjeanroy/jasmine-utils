@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toHaveSameSizeAs} from '../../../src/core/matchers/objects/to-have-same-size-as.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toHaveSameSizeAs } from '../../../src/core/matchers/objects/to-have-same-size-as';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveSameSizeAs', () => {
   it('should check length of array', () => {
@@ -39,13 +39,13 @@ describe('toHaveSameSizeAs', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 1, 2, 3 ] {{not}} to have same size as [ 4, 5, 6 ]`
+      'Expect [ 1, 2, 3 ] {{not}} to have same size as [ 4, 5, 6 ]',
     );
   });
 
   it('should check size of object', () => {
-    const actual = {foo: 'bar'};
-    const expected = {bar: 'foo'};
+    const actual = { foo: 'bar' };
+    const expected = { bar: 'foo' };
     const ctx = createFakeContext(actual);
 
     const result = toHaveSameSizeAs(ctx, expected);
@@ -56,12 +56,12 @@ describe('toHaveSameSizeAs', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({ bar: 'foo' })`
+      "Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({ bar: 'foo' })",
     );
   });
 
   it('should fail with non expected length', () => {
-    const actual = {foo: 'bar'};
+    const actual = { foo: 'bar' };
     const expected = {};
     const ctx = createFakeContext(actual);
 
@@ -73,7 +73,7 @@ describe('toHaveSameSizeAs', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({  })`
+      "Expect Object({ foo: 'bar' }) {{not}} to have same size as Object({  })",
     );
   });
 });

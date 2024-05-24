@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {version} from './version.js';
-import {jasmine1MatcherFactory} from './j1-matcher-factory.js';
-import {jasmine2MatcherFactory} from './j2-matcher-factory.js';
-import {jasmine3MatcherFactory} from './j3-matcher-factory.js';
-import {jasmine4MatcherFactory} from './j4-matcher-factory.js';
+import { version } from './version';
+import { jasmine1MatcherFactory } from './j1-matcher-factory';
+import { jasmine2MatcherFactory } from './j2-matcher-factory';
+import { jasmine3MatcherFactory } from './j3-matcher-factory';
+import { jasmine4MatcherFactory } from './j4-matcher-factory';
 
 const factories = {
   1: jasmine1MatcherFactory,

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toContainsDistinctValues', () => {
   it('should pass with an array of integers', () => {
@@ -46,10 +46,10 @@ describe('toContainsDistinctValues', () => {
   });
 
   it('should pass with an array of objects', () => {
-    const obj1 = {id: 1};
-    const obj21 = {id: 2};
-    const obj22 = {id: 2};
-    const obj3 = {id: 3};
+    const obj1 = { id: 1 };
+    const obj21 = { id: 2 };
+    const obj22 = { id: 2 };
+    const obj3 = { id: 3 };
 
     expect([obj1, obj21, obj3]).toContainsDistinctValues();
     expect([obj1, obj21, obj3, obj22]).not.toContainsDistinctValues();

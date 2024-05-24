@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toHaveSameSizeAs', () => {
   it('should pass with an array', () => {
@@ -31,8 +31,8 @@ describe('toHaveSameSizeAs', () => {
   });
 
   it('should pass with an object', () => {
-    const obj = {one: 1, two: 2, three: 3};
-    const obj2 = {1: 'one', 2: 'two', 3: 'three'};
+    const obj = { one: 1, two: 2, three: 3 };
+    const obj2 = { 1: 'one', 2: 'two', 3: 'three' };
 
     expect(obj).toHaveSameSizeAs(obj2);
     expect(obj).not.toHaveSameSizeAs({

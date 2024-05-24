@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNumeric} from '../../util/is-numeric.js';
+import { isNumeric } from '../../util/is-numeric';
 
 /**
  * Check that the tested object is a numeric value.
@@ -41,7 +41,7 @@ import {isNumeric} from '../../util/is-numeric.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeNumeric({actual, pp}) {
+export function toBeNumeric({ actual, pp }) {
   return {
     pass: isNumeric(actual),
     message() {

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isString} from '../../util/is-string.js';
+import { isString } from '../../util/is-string';
 
 /**
  * Check that the tested object is a `string` and end with an expected suffix.
@@ -39,7 +39,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toEndWith({actual, pp}, suffix) {
+export function toEndWith({ actual, pp }, suffix) {
   const ok = isString(suffix) && isString(actual) &&
     actual.length >= suffix.length &&
     actual.indexOf(suffix, actual.length - suffix.length) !== -1;

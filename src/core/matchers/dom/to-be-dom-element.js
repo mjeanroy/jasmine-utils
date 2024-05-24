@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {isDOMElement} from '../../util/is-dom-element.js';
-import {isString} from '../../util/is-string.js';
-import {isNil} from '../../util/is-nil.js';
+import { isDOMElement } from '../../util/is-dom-element';
+import { isString } from '../../util/is-string';
+import { isNil } from '../../util/is-nil';
 
 /**
  * Check that the tested object is DOM element with an expected tag name.
@@ -47,7 +47,7 @@ import {isNil} from '../../util/is-nil.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeDOMElement({actual, pp}, tagName) {
+export function toBeDOMElement({ actual, pp }, tagName) {
   const isElement = isDOMElement(actual);
   const expectTagName = isString(tagName);
 

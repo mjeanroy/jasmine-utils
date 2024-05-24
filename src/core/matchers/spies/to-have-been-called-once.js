@@ -40,7 +40,7 @@
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveBeenCalledOnce({actual, callCount, pp}) {
+export function toHaveBeenCalledOnce({ actual, callCount, pp }) {
   const count = callCount(actual) || 0;
   return {
     pass: count === 1,

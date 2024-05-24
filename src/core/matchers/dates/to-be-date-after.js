@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {dateDiff} from '../../util/date-diff.js';
+import { dateDiff } from '../../util/date-diff';
 
 /**
  * Check that the tested date object is a date "after" an other date.
@@ -44,7 +44,7 @@ import {dateDiff} from '../../util/date-diff.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeDateAfter({actual, pp}, lower) {
+export function toBeDateAfter({ actual, pp }, lower) {
   const diff = dateDiff(actual, lower);
   return {
     pass: diff >= 0,

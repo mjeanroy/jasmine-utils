@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isString} from '../../util/is-string.js';
+import { isString } from '../../util/is-string';
 
 /**
  * Check that the tested object is an empty string (a `string` equals to `''`).
@@ -37,7 +37,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeAnEmptyString({actual, pp}) {
+export function toBeAnEmptyString({ actual, pp }) {
   return {
     pass: isString(actual) && actual === '',
     message() {

@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeNegative} from '../../../src/core/matchers/numbers/to-be-negative.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeNegative } from '../../../src/core/matchers/numbers/to-be-negative';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeNegative', () => {
   it('should check that object is strictly less than zero', () => {
@@ -38,7 +38,7 @@ describe('toBeNegative', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect -1 {{not}} to be a negative number`
+      'Expect -1 {{not}} to be a negative number',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeNegative', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 0 {{not}} to be a negative number`
+      'Expect 0 {{not}} to be a negative number',
     );
   });
 
@@ -70,7 +70,7 @@ describe('toBeNegative', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be a negative number`
+      'Expect 1 {{not}} to be a negative number',
     );
   });
 });

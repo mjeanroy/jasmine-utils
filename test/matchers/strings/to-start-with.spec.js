@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toStartWith} from '../../../src/core/matchers/strings/to-start-with.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toStartWith } from '../../../src/core/matchers/strings/to-start-with';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toStartWith', () => {
   it('should check that object is a string starting with given preifx', () => {
@@ -38,7 +38,7 @@ describe('toStartWith', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect 'foo' {{not}} to start with 'fo'`);
+    expect(result.message()).toBe("Expect 'foo' {{not}} to start with 'fo'");
   });
 
   it('should not pass without a string starting with an other prefix', () => {
@@ -53,6 +53,6 @@ describe('toStartWith', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect 'test' {{not}} to start with 'testtest'`);
+    expect(result.message()).toBe("Expect 'test' {{not}} to start with 'testtest'");
   });
 });

@@ -22,13 +22,14 @@
  * THE SOFTWARE.
  */
 
-import {isNil} from '../../src/core/util/is-nil.js';
+import { isNil } from '../../src/core/util/is-nil';
 
 describe('isNil', () => {
   it('should return true with undefined or null', () => {
+    // eslint-disable-next-line no-void
+    expect(isNil(void 0)).toBe(true);
     expect(isNil(null)).toBe(true);
     expect(isNil(undefined)).toBe(true);
-    expect(isNil(void 0)).toBe(true);
   });
 
   it('should return false without undefined', () => {

@@ -22,8 +22,6 @@
  * THE SOFTWARE.
  */
 
-'use strict';
-
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
@@ -33,21 +31,21 @@ const dox = require('dox');
 const Handlebars = require('handlebars');
 const glob = require('glob');
 const log = require('../log');
-const config = require('../config.js');
+const config = require('../config');
 
 module.exports = function docs(done) {
   listFiles(path.join(config.src, 'core', 'matchers'))
-      .then((files) => readJsDoc(files))
-      .then((comments) => generateMarkdown(comments))
-      .then((result) => writeMarkdown(result))
+    .then((files) => readJsDoc(files))
+    .then((comments) => generateMarkdown(comments))
+    .then((result) => writeMarkdown(result))
 
-      .catch((err) => {
-        log.error(`Error occured while generating documentation: ${err}`);
-      })
+    .catch((err) => {
+      log.error(`Error occured while generating documentation: ${err}`);
+    })
 
-      .finally(() => {
-        done();
-      });
+    .finally(() => {
+      done();
+    });
 };
 
 /**
@@ -57,13 +55,15 @@ module.exports = function docs(done) {
  * @return {Promise<Array<Object>>} The promise, resolved with JS Doc comments.
  */
 function readJsDoc(files) {
-  return Q.all(_.map(files, (file) => (
-    readFile(file).then((content) => {
-      const jsdoc = dox.parseComments(content, {raw: true});
-      const api = keepFunctions(jsdoc);
-      return parseComments(api);
-    })
-  )));
+  return Q.all(
+    _.map(files, (file) => (
+      readFile(file).then((content) => {
+        const jsdoc = dox.parseComments(content, { raw: true });
+        const api = keepFunctions(jsdoc);
+        return parseComments(api);
+      })
+    )),
+  );
 }
 
 /**
@@ -74,12 +74,12 @@ function readJsDoc(files) {
  */
 function generateMarkdown(comments) {
   return readFile(path.join(__dirname, 'readme-template.txt'))
-      .then((template) => Handlebars.compile(template))
-      .then((templateFn) => {
-        return templateFn({
-          matchers: _.map(comments, (comment) => comment[0]),
-        });
-      });
+    .then((template) => Handlebars.compile(template))
+    .then((templateFn) => (
+      templateFn({
+        matchers: _.map(comments, (comment) => comment[0]),
+      })
+    ));
 }
 
 /**
@@ -108,9 +108,9 @@ function listFiles(dir) {
       deferred.reject(err);
     } else {
       deferred.resolve(_.chain(files)
-          .reject((f) => path.basename(f) === 'index.js')
-          .sortBy((f) => path.basename(f))
-          .value());
+        .reject((f) => path.basename(f) === 'index.js')
+        .sortBy((f) => path.basename(f))
+        .value());
     }
   });
 
@@ -159,9 +159,9 @@ function writeFile(file, content) {
     if (err) {
       deferred.reject(err);
     } else {
-      fs.writeFile(file, content, 'utf-8', (err) => {
+      fs.writeFile(file, content, 'utf-8', (writeErr) => {
         if (err) {
-          deferred.reject(err);
+          deferred.reject(writeErr);
         } else {
           deferred.resolve();
         }
@@ -210,24 +210,24 @@ function parseComments(comments) {
       code: comment.code,
 
       since: _(tags.since)
-          .map('string')
-          .map(trimAll)
-          .value()[0],
+        .map('string')
+        .map(trimAll)
+        .value()[0],
 
       messages: _(tags.message)
-          .map('string')
-          .map(trimAll)
-          .value(),
+        .map('string')
+        .map(trimAll)
+        .value(),
 
       examples: _(tags.example)
-          .map('string')
-          .map(trimAll)
-          .value(),
+        .map('string')
+        .map(trimAll)
+        .value(),
 
       params: _(tags.param)
-          .slice(1)
-          .map((param) => _.assign(param, {types: _.isEmpty(param.types) ? ['*'] : param.types}))
-          .value(),
+        .slice(1)
+        .map((param) => _.assign(param, { types: _.isEmpty(param.types) ? ['*'] : param.types }))
+        .value(),
     };
   });
 }

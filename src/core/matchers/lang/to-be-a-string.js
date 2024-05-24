@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isString} from '../../util/is-string.js';
+import { isString } from '../../util/is-string';
 
 /**
  * Check that the tested object is a string.
@@ -39,7 +39,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeAString({actual, pp}) {
+export function toBeAString({ actual, pp }) {
   return {
     pass: isString(actual),
     message() {

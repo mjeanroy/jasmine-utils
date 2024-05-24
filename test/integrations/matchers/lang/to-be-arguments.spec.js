@@ -22,14 +22,15 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toBeArguments', () => {
   it('should pass', () => {
-    const actual = (function() {
+    // eslint-disable-next-line func-names
+    const actual = (function () {
       // eslint-disable-next-line prefer-rest-params
       return arguments;
-    })();
+    }());
 
     expect(actual).toBeArguments();
     expect([]).not.toBeArguments();

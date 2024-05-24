@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../detect/assume-map.js';
-import {assumeSet} from '../detect/assume-set.js';
-import {pp} from '../../src/core/jasmine/pp.js';
+import { assumeMap } from '../detect/assume-map';
+import { assumeSet } from '../detect/assume-set';
+import { pp } from '../../src/core/jasmine/pp';
 
 describe('pp', () => {
   beforeEach(() => {

@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeDOMElement} from '../../../src/core/matchers/dom/to-be-dom-element.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeDOMElement } from '../../../src/core/matchers/dom/to-be-dom-element';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeDOMElement', () => {
   it('should pass with a dom element', () => {
@@ -38,7 +38,7 @@ describe('toBeDOMElement', () => {
     });
 
     expect(result.message()).toBe(
-        'Expect <div> {{not}} to be a DOM element'
+      'Expect <div> {{not}} to be a DOM element',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeDOMElement', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect <div> {{not}} to be 'DIV' element but was 'DIV'`
+      "Expect <div> {{not}} to be 'DIV' element but was 'DIV'",
     );
   });
 
@@ -70,7 +70,7 @@ describe('toBeDOMElement', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '<div></div>' {{not}} to be a DOM element`
+      "Expect '<div></div>' {{not}} to be a DOM element",
     );
   });
 
@@ -86,7 +86,7 @@ describe('toBeDOMElement', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect <div> {{not}} to be 'SPAN' element but was 'DIV'`
+      "Expect <div> {{not}} to be 'SPAN' element but was 'DIV'",
     );
   });
 });

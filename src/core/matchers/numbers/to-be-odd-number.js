@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNumber} from '../../util/is-number.js';
+import { isNumber } from '../../util/is-number';
 
 /**
  * Check that the tested object is an odd number.
@@ -37,7 +37,7 @@ import {isNumber} from '../../util/is-number.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeOddNumber({actual, pp}) {
+export function toBeOddNumber({ actual, pp }) {
   return {
     pass: isNumber(actual) && actual % 2 !== 0,
     message() {

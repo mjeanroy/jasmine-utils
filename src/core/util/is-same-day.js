@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {parseDate} from './parse-date.js';
+import { parseDate } from './parse-date';
 
 /**
  * Check that both dates are the same day (do not compare hours, minutes, etc.).

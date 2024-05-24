@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-import {strictEquals} from './strict-equals.js';
+import { strictEquals } from './strict-equals';
 
 /**
  * Count the number of occurences of a value inside an array.
  *
  * @param {Array<*>} array Array to traverse.
  * @param {*} occ Value to count.
- * @param {number} from Index to start (default is zero).
+ * @param {number } from Index to start (default is zero).
  * @param {function} equalsFunction The comparison function (defaults is the strict equality).
  * @return {number} The number of time `occ` is in the array.
  */

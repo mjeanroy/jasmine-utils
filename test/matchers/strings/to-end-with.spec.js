@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toEndWith} from '../../../src/core/matchers/strings/to-end-with.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toEndWith } from '../../../src/core/matchers/strings/to-end-with';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toEndWith', () => {
   it('should check that object is a string ending with given suffix', () => {
@@ -38,7 +38,7 @@ describe('toEndWith', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect 'foo' {{not}} to end with 'oo'`);
+    expect(result.message()).toBe("Expect 'foo' {{not}} to end with 'oo'");
   });
 
   it('should not pass without a string starting with an other prefix', () => {
@@ -53,6 +53,6 @@ describe('toEndWith', () => {
       message: jasmine.any(Function),
     });
 
-    expect(result.message()).toBe(`Expect 'test' {{not}} to end with 'testtest'`);
+    expect(result.message()).toBe("Expect 'test' {{not}} to end with 'testtest'");
   });
 });

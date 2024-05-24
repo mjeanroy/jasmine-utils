@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../../detect/assume-set.js';
-import {assumeMap} from '../../detect/assume-map.js';
-import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {toBeEmpty} from '../../../src/core/matchers/any/to-be-empty.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeSet } from '../../detect/assume-set';
+import { assumeMap } from '../../detect/assume-map';
+import { assumeSymbol } from '../../detect/assume-symbol';
+import { toBeEmpty } from '../../../src/core/matchers/any/to-be-empty';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeEmpty', () => {
   it('should check for empty array', () => {
@@ -41,7 +41,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be empty`
+      'Expect [  ] {{not}} to be empty',
     );
   });
 
@@ -59,7 +59,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be empty`
+      `Expect ${ctx.pp(actual)} {{not}} to be empty`,
     );
   });
 
@@ -77,7 +77,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be empty`
+      `Expect ${ctx.pp(actual)} {{not}} to be empty`,
     );
   });
 
@@ -88,7 +88,7 @@ describe('toBeEmpty', () => {
       [Symbol.iterator]() {
         return {
           next() {
-            return {done: true};
+            return { done: true };
           },
         };
       },
@@ -104,7 +104,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be empty`
+      `Expect ${ctx.pp(actual)} {{not}} to be empty`,
     );
   });
 
@@ -120,7 +120,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({  }) {{not}} to be empty`
+      'Expect Object({  }) {{not}} to be empty',
     );
   });
 
@@ -136,12 +136,12 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 1, 2, 3 ] {{not}} to be empty`
+      'Expect [ 1, 2, 3 ] {{not}} to be empty',
     );
   });
 
   it('should fail with non empty object', () => {
-    const actual = {foo: 'bar'};
+    const actual = { foo: 'bar' };
     const ctx = createFakeContext(actual);
 
     const result = toBeEmpty(ctx);
@@ -152,7 +152,7 @@ describe('toBeEmpty', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({ foo: 'bar' }) {{not}} to be empty`
+      "Expect Object({ foo: 'bar' }) {{not}} to be empty",
     );
   });
 });

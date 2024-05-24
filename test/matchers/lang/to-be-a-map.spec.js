@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../../detect/assume-map.js';
-import {toBeAMap} from '../../../src/core/matchers/lang/to-be-a-map.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeMap } from '../../detect/assume-map';
+import { toBeAMap } from '../../../src/core/matchers/lang/to-be-a-map';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeAMap', () => {
   it('should check that object is a map', () => {
@@ -41,7 +41,7 @@ describe('toBeAMap', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to be a Map`
+      `Expect ${ctx.pp(actual)} {{not}} to be a Map`,
     );
   });
 
@@ -57,7 +57,7 @@ describe('toBeAMap', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be a Map`
+      'Expect [  ] {{not}} to be a Map',
     );
   });
 });

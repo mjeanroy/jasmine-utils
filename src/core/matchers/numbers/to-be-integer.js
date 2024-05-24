@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isInteger} from '../../util/is-integer.js';
+import { isInteger } from '../../util/is-integer';
 
 /**
  * Check that the tested object is an `integer` value.
@@ -45,7 +45,7 @@ import {isInteger} from '../../util/is-integer.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeInteger({actual, pp}) {
+export function toBeInteger({ actual, pp }) {
   return {
     pass: isInteger(actual),
     message() {

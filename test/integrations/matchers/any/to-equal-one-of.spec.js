@@ -22,20 +22,20 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toBeOneOf', () => {
   it('should pass', () => {
     expect(2).toEqualOneOf([1, 2, 3]);
     expect(true).toEqualOneOf([false, true]);
     expect('bar').toEqualOneOf(['foo', 'bar', 'baz']);
-    expect({id: 1}).toEqualOneOf([{id: 1}]);
+    expect({ id: 1 }).toEqualOneOf([{ id: 1 }]);
   });
 
   it('should not pass', () => {
     expect(10).not.toEqualOneOf([1, 2, 3]);
     expect(true).not.toEqualOneOf([false, false]);
     expect('baz').not.toEqualOneOf(['foo', 'bar']);
-    expect({id: 10}).not.toEqualOneOf([{id: 1}]);
+    expect({ id: 10 }).not.toEqualOneOf([{ id: 1 }]);
   });
 });

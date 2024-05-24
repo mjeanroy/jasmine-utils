@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {assumeFreeze} from '../../../detect/assume-freeze.js';
-import {assumePreventExtensions} from '../../../detect/assume-prevent-extensions.js';
-import {assumeSeal} from '../../../detect/assume-seal.js';
-import '../../../../src/index.js';
+import { assumeFreeze } from '../../../detect/assume-freeze';
+import { assumePreventExtensions } from '../../../detect/assume-prevent-extensions';
+import { assumeSeal } from '../../../detect/assume-seal';
+import '../../../../src/index';
 
 describe('toBeExtensible', () => {
   it('should not pass with primitive values', () => {

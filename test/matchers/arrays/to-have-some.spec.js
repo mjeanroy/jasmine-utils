@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../../detect/assume-set.js';
-import {assumeMap} from '../../detect/assume-map.js';
-import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {toHaveSome} from '../../../src/core/matchers/arrays/to-have-some.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeSet } from '../../detect/assume-set';
+import { assumeMap } from '../../detect/assume-map';
+import { assumeSymbol } from '../../detect/assume-symbol';
+import { toHaveSome } from '../../../src/core/matchers/arrays/to-have-some';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveSome', () => {
   it('should pass if array satisfies predicate function for at least one element', () => {
@@ -42,7 +42,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`
+      'Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition',
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -69,7 +69,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
+      `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`,
     );
 
     expect(predicate).toHaveBeenCalled();
@@ -94,7 +94,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
+      `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`,
     );
 
     expect(predicate).toHaveBeenCalled();
@@ -108,7 +108,7 @@ describe('toHaveSome', () => {
         let x = 1;
         return {
           next() {
-            return x <= 3 ? {value: x++, done: false} : {done: true};
+            return x <= 3 ? { value: x++, done: false } : { done: true };
           },
         };
       },
@@ -125,7 +125,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
+      `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`,
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);
@@ -146,7 +146,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify "test message"`
+      'Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify "test message"',
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -167,7 +167,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition`
+      'Expect [ 0, 1, 2 ] {{not}} to have at least one element that verify condition',
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -194,7 +194,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
+      `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`,
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -221,7 +221,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
+      `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`,
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 'zero', actual);
@@ -237,7 +237,7 @@ describe('toHaveSome', () => {
         let x = 1;
         return {
           next() {
-            return x <= 3 ? {value: x++, done: false} : {done: true};
+            return x <= 3 ? { value: x++, done: false } : { done: true };
           },
         };
       },
@@ -254,7 +254,7 @@ describe('toHaveSome', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`
+      `Expect ${ctx.pp(actual)} {{not}} to have at least one element that verify condition`,
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);

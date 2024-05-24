@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeFiniteNumber} from '../../../src/core/matchers/numbers/to-be-finite-number.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeFiniteNumber } from '../../../src/core/matchers/numbers/to-be-finite-number';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeFiniteNumber', () => {
   it('should check that object is a finite number', () => {
@@ -38,7 +38,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be finite number`
+      'Expect 1 {{not}} to be finite number',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '1' {{not}} to be finite number`
+      "Expect '1' {{not}} to be finite number",
     );
   });
 
@@ -70,7 +70,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect NaN {{not}} to be finite number`
+      'Expect NaN {{not}} to be finite number',
     );
   });
 
@@ -86,7 +86,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Infinity {{not}} to be finite number`
+      'Expect Infinity {{not}} to be finite number',
     );
   });
 
@@ -102,7 +102,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect -Infinity {{not}} to be finite number`
+      'Expect -Infinity {{not}} to be finite number',
     );
   });
 
@@ -118,7 +118,7 @@ describe('toBeFiniteNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be finite number`
+      'Expect null {{not}} to be finite number',
     );
   });
 });

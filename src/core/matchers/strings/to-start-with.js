@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isString} from '../../util/is-string.js';
+import { isString } from '../../util/is-string';
 
 /**
  * Check that the tested object is a string and start with an expected prefix.
@@ -39,7 +39,7 @@ import {isString} from '../../util/is-string.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toStartWith({actual, pp}, prefix) {
+export function toStartWith({ actual, pp }, prefix) {
   return {
     pass: isString(prefix) && isString(actual) && actual.indexOf(prefix) === 0,
     message() {

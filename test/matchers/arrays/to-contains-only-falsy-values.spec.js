@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toContainsOnlyFalsyValues} from '../../../src/core/matchers/arrays/to-contains-only-falsy-values.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toContainsOnlyFalsyValues } from '../../../src/core/matchers/arrays/to-contains-only-falsy-values';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toContainsOnlyFalstValues', () => {
   it('should check that array contains only falsy values', () => {
@@ -38,7 +38,7 @@ describe('toContainsOnlyFalstValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, false, '', null, NaN, undefined ] {{not}} to contains only falsy values`
+      "Expect [ 0, false, '', null, NaN, undefined ] {{not}} to contains only falsy values",
     );
   });
 
@@ -54,7 +54,7 @@ describe('toContainsOnlyFalstValues', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, false, '', null, NaN, undefined, true ] {{not}} to contains only falsy values`
+      "Expect [ 0, false, '', null, NaN, undefined, true ] {{not}} to contains only falsy values",
     );
   });
 });

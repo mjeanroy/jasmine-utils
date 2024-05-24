@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {indexOf} from './index-of.js';
+import { indexOf } from './index-of';
 
 /**
  * Check that a given value is inside an array (also supports array-like objects).

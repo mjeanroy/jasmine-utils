@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {assumeFreeze} from '../../detect/assume-freeze.js';
-import {toBeFrozen} from '../../../src/core/matchers/any/to-be-frozen.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeFreeze } from '../../detect/assume-freeze';
+import { toBeFrozen } from '../../../src/core/matchers/any/to-be-frozen';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeFrozen', () => {
   it('should check for null', () => {
@@ -39,7 +39,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be frozen`
+      'Expect null {{not}} to be frozen',
     );
   });
 
@@ -55,7 +55,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect undefined {{not}} to be frozen`
+      'Expect undefined {{not}} to be frozen',
     );
   });
 
@@ -71,7 +71,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be frozen`
+      'Expect 1 {{not}} to be frozen',
     );
   });
 
@@ -87,7 +87,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '' {{not}} to be frozen`
+      "Expect '' {{not}} to be frozen",
     );
   });
 
@@ -103,7 +103,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect true {{not}} to be frozen`
+      'Expect true {{not}} to be frozen',
     );
   });
 
@@ -119,7 +119,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({  }) {{not}} to be frozen`
+      'Expect Object({  }) {{not}} to be frozen',
     );
   });
 
@@ -135,7 +135,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be frozen`
+      'Expect [  ] {{not}} to be frozen',
     );
   });
 
@@ -153,7 +153,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({  }) {{not}} to be frozen`
+      'Expect Object({  }) {{not}} to be frozen',
     );
   });
 
@@ -171,7 +171,7 @@ describe('toBeFrozen', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be frozen`
+      'Expect [  ] {{not}} to be frozen',
     );
   });
 });

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNumeric} from '../../src/core/util/is-numeric.js';
+import { isNumeric } from '../../src/core/util/is-numeric';
 
 describe('isNumeric', () => {
   it('should return true with a numeric value', () => {

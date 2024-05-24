@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-import {keys} from './keys.js';
-import {isArrayLike} from './is-array-like.js';
-import {isString} from './is-string.js';
-import {isSet} from './is-set.js';
-import {isMap} from './is-map.js';
-import {isIterable} from './is-iterable.js';
-import {isNil} from './is-nil.js';
-import {isObject} from './is-object.js';
+import { keys } from './keys';
+import { isArrayLike } from './is-array-like';
+import { isString } from './is-string';
+import { isSet } from './is-set';
+import { isMap } from './is-map';
+import { isIterable } from './is-iterable';
+import { isNil } from './is-nil';
+import { isObject } from './is-object';
 
 /**
  * Get the `size` of a given value:
@@ -58,7 +58,7 @@ export function sizeOf(obj) {
   if (isIterable(obj)) {
     let size = 0;
 
-    // eslint-disable-next-line no-unused-vars
+    // eslint-disable-next-line no-unused-vars,no-restricted-syntax
     for (const x of obj) {
       size++;
     }

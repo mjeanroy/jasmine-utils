@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNumber} from '../../util/is-number.js';
+import { isNumber } from '../../util/is-number';
 
 /**
  * Check that the tested object is a `number`.
@@ -39,7 +39,7 @@ import {isNumber} from '../../util/is-number.js';
  * @return {Object} The test result.
  * @since 0.1.0
  */
-export function toBeANumber({actual, pp}) {
+export function toBeANumber({ actual, pp }) {
   return {
     pass: isNumber(actual),
     message() {

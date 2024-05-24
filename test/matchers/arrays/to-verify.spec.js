@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../../detect/assume-set.js';
-import {assumeMap} from '../../detect/assume-map.js';
-import {assumeSymbol} from '../../detect/assume-symbol.js';
-import {toVerify} from '../../../src/core/matchers/arrays/to-verify.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeSet } from '../../detect/assume-set';
+import { assumeMap } from '../../detect/assume-map';
+import { assumeSymbol } from '../../detect/assume-symbol';
+import { toVerify } from '../../../src/core/matchers/arrays/to-verify';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toVerify', () => {
   it('should pass if array satisfies predicate function', () => {
@@ -42,7 +42,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, 1, 2 ] {{not}} to verify condition`
+      'Expect [ 0, 1, 2 ] {{not}} to verify condition',
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -69,7 +69,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to verify condition`
+      `Expect ${ctx.pp(actual)} {{not}} to verify condition`,
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -96,7 +96,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to verify condition`
+      `Expect ${ctx.pp(actual)} {{not}} to verify condition`,
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 'one', actual);
@@ -112,7 +112,7 @@ describe('toVerify', () => {
         let x = 1;
         return {
           next() {
-            return x <= 3 ? {value: x++, done: false} : {done: true};
+            return x <= 3 ? { value: x++, done: false } : { done: true };
           },
         };
       },
@@ -129,7 +129,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect ${ctx.pp(actual)} {{not}} to verify condition`
+      `Expect ${ctx.pp(actual)} {{not}} to verify condition`,
     );
 
     expect(predicate).toHaveBeenCalledWith(1, 0, actual);
@@ -150,7 +150,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, 1, 2 ] {{not}} to verify "test message"`
+      'Expect [ 0, 1, 2 ] {{not}} to verify "test message"',
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);
@@ -171,7 +171,7 @@ describe('toVerify', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [ 0, 1, 2 ] {{not}} to verify condition`
+      'Expect [ 0, 1, 2 ] {{not}} to verify condition',
     );
 
     expect(predicate).toHaveBeenCalledWith(0, 0, actual);

@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNull} from '../../util/is-null.js';
+import { isNull } from '../../util/is-null';
 
 /**
  * Check that tested object is `null`.
@@ -37,7 +37,7 @@ import {isNull} from '../../util/is-null.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeNull({actual, pp}) {
+export function toBeNull({ actual, pp }) {
   return {
     pass: isNull(actual),
     message() {

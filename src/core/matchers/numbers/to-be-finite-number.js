@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isFiniteNumber} from '../../util/is-finite-number.js';
+import { isFiniteNumber } from '../../util/is-finite-number';
 
 /**
  * Check that the tested object is a finite number.
@@ -46,7 +46,7 @@ import {isFiniteNumber} from '../../util/is-finite-number.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeFiniteNumber({actual, pp}) {
+export function toBeFiniteNumber({ actual, pp }) {
   return {
     pass: isFiniteNumber(actual),
     message() {

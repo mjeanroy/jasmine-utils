@@ -38,7 +38,7 @@
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeInstanceOf({actual, pp}, ctor) {
+export function toBeInstanceOf({ actual, pp }, ctor) {
   return {
     pass: (actual instanceof ctor),
     message() {

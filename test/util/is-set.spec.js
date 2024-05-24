@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../detect/assume-set.js';
-import {isSet} from '../../src/core/util/is-set.js';
+import { assumeSet } from '../detect/assume-set';
+import { isSet } from '../../src/core/util/is-set';
 
 describe('isSet', () => {
   it('should return true with a set', () => {

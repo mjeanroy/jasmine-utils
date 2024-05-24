@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {is} from './is.js';
+import { is } from './is';
 
 /**
  * Check that given object is a date instance.

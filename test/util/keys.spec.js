@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../detect/assume-map.js';
-import {keys} from '../../src/core/util/keys.js';
+import { assumeMap } from '../detect/assume-map';
+import { keys } from '../../src/core/util/keys';
 
 describe('keys', () => {
   it('should return all own keys of object', () => {

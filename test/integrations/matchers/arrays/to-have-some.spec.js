@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../../../detect/assume-set.js';
-import {assumeMap} from '../../../detect/assume-map.js';
-import {assumeSymbol} from '../../../detect/assume-symbol.js';
-import '../../../../src/index.js';
+import { assumeSet } from '../../../detect/assume-set';
+import { assumeMap } from '../../../detect/assume-map';
+import { assumeSymbol } from '../../../detect/assume-symbol';
+import '../../../../src/index';
 
 describe('toHaveSome', () => {
   it('should pass', () => {
@@ -79,7 +79,7 @@ describe('toHaveSome', () => {
         let x = 0;
         return {
           next() {
-            return x < 3 ? {value: x++, done: false} : {done: true};
+            return x < 3 ? { value: x++, done: false } : { done: true };
           },
         };
       },

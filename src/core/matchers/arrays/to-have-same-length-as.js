@@ -38,7 +38,7 @@
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveSameLengthAs({actual, pp}, expected) {
+export function toHaveSameLengthAs({ actual, pp }, expected) {
   const actualLength = actual.length;
   const expectedLength = expected.length;
   return {

@@ -22,15 +22,13 @@
  * THE SOFTWARE.
  */
 
-'use strict';
-
 const rollup = require('rollup');
-const rollupConf = require('./rollup.conf.js');
+const rollupConf = require('./rollup.conf');
 
 module.exports = function build() {
   return rollup
-      .rollup(rollupConf)
-      .then((bundle) => (
-        bundle.write(rollupConf.output)
-      ));
+    .rollup(rollupConf)
+    .then((bundle) => (
+      bundle.write(rollupConf.output)
+    ));
 };

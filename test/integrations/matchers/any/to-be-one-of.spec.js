@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import '../../../../src/index.js';
+import '../../../../src/index';
 
 describe('toBeOneOf', () => {
   it('should pass', () => {
@@ -35,6 +35,6 @@ describe('toBeOneOf', () => {
     expect(10).not.toBeOneOf([1, 2, 3]);
     expect(true).not.toBeOneOf([false, false]);
     expect('baz').not.toBeOneOf(['foo', 'bar']);
-    expect({id: 1}).not.toBeOneOf([{id: 1}]);
+    expect({ id: 1 }).not.toBeOneOf([{ id: 1 }]);
   });
 });

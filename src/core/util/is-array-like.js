@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from './is-array.js';
-import {isFunction} from './is-function.js';
-import {isNumber} from './is-number.js';
-import {isNodeList} from './is-node-list.js';
-import {isDOMElement} from './is-dom-element.js';
+import { isArray } from './is-array';
+import { isFunction } from './is-function';
+import { isNumber } from './is-number';
+import { isNodeList } from './is-node-list';
+import { isDOMElement } from './is-dom-element';
 
 /**
  * Check that a given value is an array or an array-like object.
@@ -57,6 +57,6 @@ export function isArrayLike(obj) {
     return true;
   }
 
-  const length = obj.length;
-  return length === 0 || isNumber(length) && length > 0 && (length - 1) in obj;
+  const { length } = obj;
+  return length === 0 || (isNumber(length) && length > 0 && (length - 1) in obj);
 }

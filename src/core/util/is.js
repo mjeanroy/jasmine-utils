@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {tagName} from './tag-name.js';
+import { tagName } from './tag-name';
 
 /**
  * Check that a given value is of a given type.

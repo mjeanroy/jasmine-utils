@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeNull} from '../../../src/core/matchers/lang/to-be-null.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeNull } from '../../../src/core/matchers/lang/to-be-null';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeNull', () => {
   it('should check that object is null', () => {
@@ -38,12 +38,12 @@ describe('toBeNull', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be null`
+      'Expect null {{not}} to be null',
     );
   });
 
   it('should not pass without null', () => {
-    const actual = void 0;
+    const actual = undefined;
     const ctx = createFakeContext(actual);
 
     const result = toBeNull(ctx);
@@ -54,7 +54,7 @@ describe('toBeNull', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect undefined {{not}} to be null`
+      'Expect undefined {{not}} to be null',
     );
   });
 });

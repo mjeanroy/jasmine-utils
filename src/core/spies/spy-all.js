@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {spyAllExcept} from './spy-all-except.js';
+import { spyAllExcept } from './spy-all-except';
 
 /**
  * Spy methods in object.

@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {assumeSet} from '../detect/assume-set.js';
-import {assumeMap} from '../detect/assume-map.js';
-import {assumeSymbol} from '../detect/assume-symbol.js';
-import {every} from '../../src/core/util/every.js';
+import { assumeSet } from '../detect/assume-set';
+import { assumeMap } from '../detect/assume-map';
+import { assumeSymbol } from '../detect/assume-symbol';
+import { every } from '../../src/core/util/every';
 
 describe('every', () => {
   it('should return true if predicate always returns a truthy value', () => {
@@ -84,7 +84,7 @@ describe('every', () => {
         let x = 1;
         return {
           next() {
-            return x <= 3 ? {value: x++, done: false} : {done: true};
+            return x <= 3 ? { value: x++, done: false } : { done: true };
           },
         };
       },
@@ -102,9 +102,9 @@ describe('every', () => {
 
   it('should return false if predicate returns a falsy value', () => {
     const array = [1, 2, 3];
-    const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
-      return x < 3;
-    });
+    const predicate = jasmine.createSpy('predicate').and.callFake((x) => (
+      x < 3
+    ));
 
     const result = every(array, predicate);
 
@@ -122,9 +122,9 @@ describe('every', () => {
     set.add(2);
     set.add(3);
 
-    const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
-      return x < 3;
-    });
+    const predicate = jasmine.createSpy('predicate').and.callFake((x) => (
+      x < 3
+    ));
 
     const result = every(set, predicate);
 
@@ -140,9 +140,9 @@ describe('every', () => {
     map.set('two', 2);
     map.set('three', 3);
 
-    const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
-      return x[1] < 3;
-    });
+    const predicate = jasmine.createSpy('predicate').and.callFake((x) => (
+      x[1] < 3
+    ));
 
     const result = every(map, predicate);
 
@@ -158,15 +158,15 @@ describe('every', () => {
         let x = 1;
         return {
           next() {
-            return x <= 3 ? {value: x++, done: false} : {done: true};
+            return x <= 3 ? { value: x++, done: false } : { done: true };
           },
         };
       },
     };
 
-    const predicate = jasmine.createSpy('predicate').and.callFake((x) => {
-      return x < 3;
-    });
+    const predicate = jasmine.createSpy('predicate').and.callFake((x) => (
+      x < 3
+    ));
 
     const result = every(iterable, predicate);
 

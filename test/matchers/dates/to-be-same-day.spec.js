@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeSameDay} from '../../../src/core/matchers/dates/to-be-same-day.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeSameDay } from '../../../src/core/matchers/dates/to-be-same-day';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeSameDay', () => {
   it('should check that both dates are the same day', () => {
@@ -39,7 +39,7 @@ describe('toBeSameDay', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be same day as ${ctx.pp(other)}`
+      `Expect date ${ctx.pp(actual)} {{not}} to be same day as ${ctx.pp(other)}`,
     );
   });
 
@@ -56,7 +56,7 @@ describe('toBeSameDay', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be same day as ${ctx.pp(other)}`
+      `Expect date ${ctx.pp(actual)} {{not}} to be same day as ${ctx.pp(other)}`,
     );
   });
 });

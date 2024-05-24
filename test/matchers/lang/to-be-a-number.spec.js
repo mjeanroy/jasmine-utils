@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeANumber} from '../../../src/core/matchers/lang/to-be-a-number.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeANumber } from '../../../src/core/matchers/lang/to-be-a-number';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeANumber', () => {
   it('should check that object is a number', () => {
@@ -38,7 +38,7 @@ describe('toBeANumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 0 {{not}} to be a number`
+      'Expect 0 {{not}} to be a number',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeANumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be a number`
+      'Expect null {{not}} to be a number',
     );
   });
 });

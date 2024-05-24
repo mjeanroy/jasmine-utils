@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeDateBeforeNow} from '../../../src/core/matchers/dates/to-be-date-before-now.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeDateBeforeNow } from '../../../src/core/matchers/dates/to-be-date-before-now';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeDateBeforeNow', () => {
   it('should check that object is a date before now', () => {
@@ -39,7 +39,7 @@ describe('toBeDateBeforeNow', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be before now`
+      `Expect date ${ctx.pp(actual)} {{not}} to be before now`,
     );
   });
 
@@ -56,7 +56,7 @@ describe('toBeDateBeforeNow', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect date ${ctx.pp(actual)} {{not}} to be before now`
+      `Expect date ${ctx.pp(actual)} {{not}} to be before now`,
     );
   });
 });

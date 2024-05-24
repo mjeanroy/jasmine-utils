@@ -22,6 +22,6 @@
  * THE SOFTWARE.
  */
 
-import './for-each-writable-properties.spec.js';
-import './reset.spec.js';
-import './spy-if-and-call-through.spec.js';
+import './for-each-writable-properties.spec';
+import './reset.spec';
+import './spy-if-and-call-through.spec';

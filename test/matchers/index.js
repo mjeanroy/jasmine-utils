@@ -22,13 +22,13 @@
  * THE SOFTWARE.
  */
 
-import './any/index.js';
-import './arrays/index.js';
-import './booleans/index.js';
-import './dates/index.js';
-import './dom/index.js';
-import './lang/index.js';
-import './numbers/index.js';
-import './objects/index.js';
-import './spies/index.js';
-import './strings/index.js';
+import './any/index';
+import './arrays/index';
+import './booleans/index';
+import './dates/index';
+import './dom/index';
+import './lang/index';
+import './numbers/index';
+import './objects/index';
+import './spies/index';
+import './strings/index';

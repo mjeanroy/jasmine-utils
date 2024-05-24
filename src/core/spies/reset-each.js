@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from '../util/is-array.js';
-import {index} from '../util/index.js';
-import {has} from '../util/has.js';
-import {forEachWritableProperties} from './internal/for-each-writable-properties.js';
-import {reset} from './internal/reset.js';
+import { isArray } from '../util/is-array';
+import { index } from '../util/index';
+import { has } from '../util/has';
+import { forEachWritableProperties } from './internal/for-each-writable-properties';
+import { reset } from './internal/reset';
 
 /**
  * Reset the specified spy methods in the object.

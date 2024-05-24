@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {assumeDefineProperty} from '../../detect/assume-define-property.js';
-import {assumeGetOwnPropertyNames} from '../../detect/assume-get-own-property-names.js';
-import {Klass} from '../../fixtures/klass.js';
-import {nonLooseClassFactory} from '../../fixtures/non-loose-class-generator';
-import '../../../src/index.js';
+import { assumeDefineProperty } from '../../detect/assume-define-property';
+import { assumeGetOwnPropertyNames } from '../../detect/assume-get-own-property-names';
+import { Klass } from '../../fixtures/klass';
+import { nonLooseClassFactory } from '../../fixtures/non-loose-class-generator';
+import '../../../src/index';
 
 describe('spyAll and spyAllExcept', () => {
   it('should spy all methods', () => {

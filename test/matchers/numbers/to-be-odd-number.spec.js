@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeOddNumber} from '../../../src/core/matchers/numbers/to-be-odd-number.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeOddNumber } from '../../../src/core/matchers/numbers/to-be-odd-number';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeOddNumber', () => {
   it('should check that object is an odd number', () => {
@@ -38,7 +38,7 @@ describe('toBeOddNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be an odd number`
+      'Expect 1 {{not}} to be an odd number',
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeOddNumber', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 2 {{not}} to be an odd number`
+      'Expect 2 {{not}} to be an odd number',
     );
   });
 });

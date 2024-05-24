@@ -22,5 +22,5 @@
  * THE SOFTWARE.
  */
 
-import './to-be-false.spec.js';
-import './to-be-true.spec.js';
+import './to-be-false.spec';
+import './to-be-true.spec';

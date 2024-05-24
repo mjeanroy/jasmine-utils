@@ -22,13 +22,16 @@
  * THE SOFTWARE.
  */
 
+/* eslint-disable global-require */
+
 /**
  * Karma Configuration.
  */
 
 const path = require('path');
 const babel = require('@rollup/plugin-babel').default;
-const conf = require('../config.js');
+const conf = require('../config');
+
 const entryPoint = path.join(conf.test, 'index.js');
 
 module.exports = (config) => ({

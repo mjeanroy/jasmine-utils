@@ -43,7 +43,7 @@
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toHaveBeenCalledOnceWith({actual, callCount, equals, argsFor, pp}, ...args) {
+export function toHaveBeenCalledOnceWith({ actual, callCount, equals, argsFor, pp }, ...args) {
   const count = callCount(actual) || 0;
   const wasCalledOnce = count === 1;
   const ok = wasCalledOnce && equals(argsFor(actual, 0), args);

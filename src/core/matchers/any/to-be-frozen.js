@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isFrozen} from '../../util/is-frozen.js';
+import { isFrozen } from '../../util/is-frozen';
 
 /**
  * Check that the tested object is frozen: an object is frozen if and only if it
@@ -55,7 +55,7 @@ import {isFrozen} from '../../util/is-frozen.js';
  * @return {Object} The test result.
  * @since 0.5.0
  */
-export function toBeFrozen({actual, pp}) {
+export function toBeFrozen({ actual, pp }) {
   return {
     pass: isFrozen(actual),
     message() {

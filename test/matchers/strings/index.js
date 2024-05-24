@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import './to-be-an-empty-string.spec.js';
-import './to-end-with.spec.js';
-import './to-equal-ignoring-case.spec.js';
-import './to-start-with.spec.js';
+import './to-be-an-empty-string.spec';
+import './to-end-with.spec';
+import './to-equal-ignoring-case.spec';
+import './to-start-with.spec';

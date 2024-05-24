@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isDOMElement} from '../../src/core/util/is-dom-element.js';
+import { isDOMElement } from '../../src/core/util/is-dom-element';
 
 describe('isDOMElement', () => {
   let fixtures;

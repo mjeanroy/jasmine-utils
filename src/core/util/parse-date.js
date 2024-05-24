@@ -22,23 +22,23 @@
  * THE SOFTWARE.
  */
 
-import {isDate} from './is-date.js';
-import {isNumber} from './is-number.js';
-import {isString} from './is-string.js';
-import {now} from './now.js';
+import { isDate } from './is-date';
+import { isNumber } from './is-number';
+import { isString } from './is-string';
+import { now } from './now';
 
 const _dateParse = Date.parse;
 
-const SUPPORT_ISO_8601 = (() => {
-  return !!_dateParse &&
+const SUPPORT_ISO_8601 = (() => (
+  !!_dateParse &&
     !!_dateParse('2017') &&
     !!_dateParse('2017-01') &&
     !!_dateParse('2017-01-01') &&
     !!_dateParse('2017-01-01T10:00') &&
     !!_dateParse('2017-01-01T10:00:00') &&
     !!_dateParse('2017-01-01T10:00:00.000') &&
-    !!_dateParse('2017-01-01T10:00:00.000Z');
-})();
+    !!_dateParse('2017-01-01T10:00:00.000Z')
+))();
 
 const _parse = SUPPORT_ISO_8601 ? _dateParse : (() => {
   // eslint-disable-next-line max-len
@@ -48,7 +48,8 @@ const _parse = SUPPORT_ISO_8601 ? _dateParse : (() => {
   const H_OFFSET = Math.floor(TZ_OFFSET / 60);
   const M_OFFSET = TZ_OFFSET % 60;
 
-  return function(v) {
+  // eslint-disable-next-line func-names
+  return function (v) {
     const m = REGEX_ISO8601.exec(v);
 
     if (m) {
@@ -68,7 +69,7 @@ const _parse = SUPPORT_ISO_8601 ? _dateParse : (() => {
       const hours = Number(m[4] || 0) - hoursOffset;
       const minutes = Number(m[5] || 0) - minutesOffset;
       const seconds = Number(m[6] || 0);
-      const millis = Number(((m[7] || 0) + '00').slice(0, 3));
+      const millis = Number((`${m[7] || 0}00`).slice(0, 3));
       return Date.UTC(year, month, day, hours, minutes, seconds, millis);
     }
 

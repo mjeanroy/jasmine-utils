@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {resetEach} from '../../src/core/spies/reset-each.js';
+import { resetEach } from '../../src/core/spies/reset-each';
 
 describe('resetEach', () => {
   it('should reset specified spy of object', () => {

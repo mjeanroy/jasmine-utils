@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isNumeric} from './is-numeric.js';
+import { isNumeric } from './is-numeric';
 
 /**
  * Check that a given value is an integer value.

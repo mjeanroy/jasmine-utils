@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import './internal/index.js';
-import './reset-all-except.spec.js';
-import './reset-all.spec.js';
-import './reset-each.spec.js';
-import './spy-all-except.spec.js';
-import './spy-all.spec.js';
-import './spy-each.spec.js';
-import './spy-if.spec.js';
+import './internal/index';
+import './reset-all-except.spec';
+import './reset-all.spec';
+import './reset-each.spec';
+import './spy-all-except.spec';
+import './spy-all.spec';
+import './spy-each.spec';
+import './spy-if.spec';

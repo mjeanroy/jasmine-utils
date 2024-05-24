@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {every} from './every.js';
+import { every } from './every';
 
 /**
  * Check that a predicate satisfies at least one element in a collection (array,

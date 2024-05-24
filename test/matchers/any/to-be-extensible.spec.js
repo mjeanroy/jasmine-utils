@@ -22,11 +22,11 @@
  * THE SOFTWARE.
  */
 
-import {assumeFreeze} from '../../detect/assume-freeze.js';
-import {assumePreventExtensions} from '../../detect/assume-prevent-extensions.js';
-import {assumeSeal} from '../../detect/assume-seal.js';
-import {toBeExtensible} from '../../../src/core/matchers/any/to-be-extensible.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { assumeFreeze } from '../../detect/assume-freeze';
+import { assumePreventExtensions } from '../../detect/assume-prevent-extensions';
+import { assumeSeal } from '../../detect/assume-seal';
+import { toBeExtensible } from '../../../src/core/matchers/any/to-be-extensible';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeExtensible', () => {
   it('should check for null', () => {
@@ -41,7 +41,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be extensible`
+      'Expect null {{not}} to be extensible',
     );
   });
 
@@ -57,7 +57,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect undefined {{not}} to be extensible`
+      'Expect undefined {{not}} to be extensible',
     );
   });
 
@@ -73,7 +73,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 1 {{not}} to be extensible`
+      'Expect 1 {{not}} to be extensible',
     );
   });
 
@@ -89,7 +89,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect '' {{not}} to be extensible`
+      "Expect '' {{not}} to be extensible",
     );
   });
 
@@ -105,7 +105,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect true {{not}} to be extensible`
+      'Expect true {{not}} to be extensible',
     );
   });
 
@@ -121,7 +121,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({  }) {{not}} to be extensible`
+      'Expect Object({  }) {{not}} to be extensible',
     );
   });
 
@@ -137,7 +137,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be extensible`
+      'Expect [  ] {{not}} to be extensible',
     );
   });
 
@@ -155,7 +155,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({  }) {{not}} to be extensible`
+      'Expect Object({  }) {{not}} to be extensible',
     );
   });
 
@@ -173,7 +173,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be extensible`
+      'Expect [  ] {{not}} to be extensible',
     );
   });
 
@@ -191,7 +191,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({  }) {{not}} to be extensible`
+      'Expect Object({  }) {{not}} to be extensible',
     );
   });
 
@@ -209,7 +209,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be extensible`
+      'Expect [  ] {{not}} to be extensible',
     );
   });
 
@@ -227,7 +227,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect Object({  }) {{not}} to be extensible`
+      'Expect Object({  }) {{not}} to be extensible',
     );
   });
 
@@ -245,7 +245,7 @@ describe('toBeExtensible', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect [  ] {{not}} to be extensible`
+      'Expect [  ] {{not}} to be extensible',
     );
   });
 });

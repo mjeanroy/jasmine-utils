@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {isFunction} from '../../util/is-function.js';
+import { isFunction } from '../../util/is-function';
 
 /**
  * Check that the tested object is a `function`.
@@ -38,7 +38,7 @@ import {isFunction} from '../../util/is-function.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBeAFunction({actual, pp}) {
+export function toBeAFunction({ actual, pp }) {
   return {
     pass: isFunction(actual),
     message() {

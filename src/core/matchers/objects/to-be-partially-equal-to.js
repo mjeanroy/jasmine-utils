@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {isArray} from '../../util/is-array.js';
-import {isObject} from '../../util/is-object.js';
-import {every} from '../../util/every.js';
+import { isArray } from '../../util/is-array';
+import { isObject } from '../../util/is-object';
+import { every } from '../../util/every';
 
 /**
  * Check that the tested object is partially equals to a second one.
@@ -52,7 +52,7 @@ import {every} from '../../util/every.js';
  * @return {Object} Test result.
  * @since 0.1.0
  */
-export function toBePartiallyEqualTo({actual, equals, pp}, other) {
+export function toBePartiallyEqualTo({ actual, equals, pp }, other) {
   let pass = false;
 
   if (isArray(other) && isArray(actual)) {
@@ -62,7 +62,7 @@ export function toBePartiallyEqualTo({actual, equals, pp}, other) {
   }
 
   return {
-    pass: pass,
+    pass,
     message() {
       return `Expect ${pp(actual)} {{not}} to be partially equal to ${pp(other)}`;
     },
@@ -83,9 +83,9 @@ function checkArray(a, b, equalsFunction) {
     return false;
   }
 
-  return every(b, function(current, i) {
-    return equalsFunction(a[i], jasmine.objectContaining(current));
-  });
+  return every(b, (current, i) => (
+    equalsFunction(a[i], jasmine.objectContaining(current))
+  ));
 }
 
 /**

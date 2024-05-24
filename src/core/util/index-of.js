@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {strictEquals} from './strict-equals.js';
+import { strictEquals } from './strict-equals';
 
 /**
  * Get the (first) index of given value inside an array (also supports array-like objects).

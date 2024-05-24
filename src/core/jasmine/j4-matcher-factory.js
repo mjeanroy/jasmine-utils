@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {negateMessage} from './negate-message.js';
-import {pp} from './pp.js';
+import { negateMessage } from './negate-message';
+import { pp } from './pp';
 
 /**
  * This factory will create a matcher supported by Jasmine 3.X.X.

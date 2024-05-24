@@ -22,10 +22,10 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../detect/assume-map.js';
-import {assumeSet} from '../detect/assume-set.js';
-import {assumeSymbol} from '../detect/assume-symbol.js';
-import {sizeOf} from '../../src/core/util/size-of.js';
+import { assumeMap } from '../detect/assume-map';
+import { assumeSet } from '../detect/assume-set';
+import { assumeSymbol } from '../detect/assume-symbol';
+import { sizeOf } from '../../src/core/util/size-of';
 
 describe('sizeOf', () => {
   it('should return 0 with nil value', () => {
@@ -39,12 +39,12 @@ describe('sizeOf', () => {
   });
 
   it('should return length of array-like object', () => {
-    const arrayLike = {'0': 1, '1': 2, '2': 3, 'length': 3};
+    const arrayLike = { 0: 1, 1: 2, 2: 3, length: 3 };
     expect(sizeOf(arrayLike)).toBe(3);
   });
 
   it('should return number of properties of objects', () => {
-    const obj = {foo: 'bar', quix: 'bar'};
+    const obj = { foo: 'bar', quix: 'bar' };
     expect(sizeOf(obj)).toBe(2);
   });
 
@@ -76,7 +76,7 @@ describe('sizeOf', () => {
         let x = 0;
         return {
           next() {
-            return x === 2 ? {done: true} : {value: x++, done: false};
+            return x === 2 ? { done: true } : { value: x++, done: false };
           },
         };
       },
@@ -92,7 +92,7 @@ describe('sizeOf', () => {
       [Symbol.iterator]() {
         return {
           next() {
-            return {done: true};
+            return { done: true };
           },
         };
       },

@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import {assumeMap} from '../detect/assume-map.js';
-import {assumeSet} from '../detect/assume-set.js';
-import {tagName} from '../../src/core/util/tag-name.js';
+import { assumeMap } from '../detect/assume-map';
+import { assumeSet } from '../detect/assume-set';
+import { tagName } from '../../src/core/util/tag-name';
 
 describe('tagName', () => {
   it('should get [object Null] with null', () => {

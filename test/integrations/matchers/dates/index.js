@@ -22,9 +22,9 @@
  * THE SOFTWARE.
  */
 
-import './to-be-date-after.spec.js';
-import './to-be-date-before.spec.js';
-import './to-be-date-close-to-now.spec.js';
-import './to-be-date-close-to.spec.js';
-import './to-be-same-day.spec.js';
-import './to-be-today.spec.js';
+import './to-be-date-after.spec';
+import './to-be-date-before.spec';
+import './to-be-date-close-to-now.spec';
+import './to-be-date-close-to.spec';
+import './to-be-same-day.spec';
+import './to-be-today.spec';

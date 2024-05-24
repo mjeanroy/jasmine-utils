@@ -22,14 +22,14 @@
  * THE SOFTWARE.
  */
 
-import {toHaveFunctions} from '../../../src/core/matchers/objects/to-have-functions.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toHaveFunctions } from '../../../src/core/matchers/objects/to-have-functions';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toHaveFunctions', () => {
   it('should check if object has expected functions', () => {
     const f1 = jasmine.createSpy('f1');
     const f2 = jasmine.createSpy('f2');
-    const actual = {f1, f2};
+    const actual = { f1, f2 };
     const isNot = false;
     const ctx = createFakeContext(actual, {
       isNot,
@@ -43,7 +43,7 @@ describe('toHaveFunctions', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect object Object({ f1: spy on f1, f2: spy on f2 }) {{not}} to contain functions [ 'f1', 'f2' ]`
+      "Expect object Object({ f1: spy on f1, f2: spy on f2 }) {{not}} to contain functions [ 'f1', 'f2' ]",
     );
   });
 
@@ -73,13 +73,13 @@ describe('toHaveFunctions', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect object TestClass({  }) {{not}} to contain functions [ 'f1', 'f2' ]`
+      "Expect object TestClass({  }) {{not}} to contain functions [ 'f1', 'f2' ]",
     );
   });
 
   it('should fail if object does not have all expected functions', () => {
     const f1 = jasmine.createSpy('f1');
-    const actual = {f1};
+    const actual = { f1 };
     const isNot = false;
     const ctx = createFakeContext(actual, {
       isNot,
@@ -93,7 +93,7 @@ describe('toHaveFunctions', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect object Object({ f1: spy on f1 }) {{not}} to contain functions [ 'f1', 'f2' ]`
+      "Expect object Object({ f1: spy on f1 }) {{not}} to contain functions [ 'f1', 'f2' ]",
     );
   });
 });

@@ -22,8 +22,8 @@
  * THE SOFTWARE.
  */
 
-import {toBeAString} from '../../../src/core/matchers/lang/to-be-a-string.js';
-import {createFakeContext} from '../../testing/create-fake-context.js';
+import { toBeAString } from '../../../src/core/matchers/lang/to-be-a-string';
+import { createFakeContext } from '../../testing/create-fake-context';
 
 describe('toBeAString', () => {
   it('should check that object is a string', () => {
@@ -38,7 +38,7 @@ describe('toBeAString', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect 'test' {{not}} to be a string`
+      "Expect 'test' {{not}} to be a string",
     );
   });
 
@@ -54,7 +54,7 @@ describe('toBeAString', () => {
     });
 
     expect(result.message()).toBe(
-        `Expect null {{not}} to be a string`
+      'Expect null {{not}} to be a string',
     );
   });
 });

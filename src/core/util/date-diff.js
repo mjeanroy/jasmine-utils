@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-import {parseDate} from './parse-date.js';
+import { parseDate } from './parse-date';
 
 /**
  * Get the difference in milliseconds between two dates.
