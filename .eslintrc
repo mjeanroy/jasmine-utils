@@ -85,11 +85,9 @@
         "@typescript-eslint"
       ],
       "rules": {
-        "indent": "off",
         "linebreak-style": ["error", "unix"],
         "quotes": ["error", "single"],
         "comma-dangle": ["error", "always-multiline"],
-        "@typescript-eslint/indent": ["error", 2],
         "@typescript-eslint/no-explicit-any": "off"
       }
     }
