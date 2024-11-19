@@ -50,7 +50,7 @@
     "phantomjs-prebuilt": "2.1.16",
     "q": "1.5.1",
     "rimraf": "6.0.1",
-    "rollup": "4.27.2",
+    "rollup": "4.27.3",
     "rollup-plugin-esformatter": "3.1.0",
     "rollup-plugin-istanbul": "5.0.0",
     "rollup-plugin-license": "3.5.3",
