@@ -89,7 +89,6 @@ module.exports = (config) => {
       require('karma-jasmine'),
       require('karma-rollup-preprocessor'),
       require('karma-sauce-launcher'),
-      require('karma-phantomjs-launcher'),
       require('karma-chrome-launcher'),
     ],
 
@@ -103,7 +102,6 @@ module.exports = (config) => {
 
     browsers: _.keys(browsers).concat([
       'CustomHeadlessChrome',
-      'PhantomJS',
     ]),
 
     concurrency: 1,

@@ -88,7 +88,6 @@ module.exports = (config) => ({
   // - Firefox
   // - Opera
   // - Safari (only Mac)
-  // - PhantomJS
   // - IE (only Windows)
   // CLI --browsers Chrome,Firefox,Safari
   browsers: [

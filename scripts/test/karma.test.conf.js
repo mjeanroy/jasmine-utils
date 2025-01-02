@@ -40,13 +40,11 @@ module.exports = (config) => {
     plugins: [
       require('karma-jasmine'),
       require('karma-rollup-preprocessor'),
-      require('karma-phantomjs-launcher'),
       require('karma-chrome-launcher'),
     ],
 
     browsers: [
       'CustomHeadlessChrome',
-      'PhantomJS',
     ],
 
     reporters: [
