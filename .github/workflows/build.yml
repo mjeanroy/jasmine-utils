@@ -32,7 +32,7 @@ jobs:
         os: [ ubuntu-latest ]
         node: [ 20 ]
     steps:
-      - uses: actions/checkout@v4.1.2
+      - uses: actions/checkout@v4.2.2
       - uses: actions/setup-node@v4.0.2
         name: Set up NodeJS
         with:
