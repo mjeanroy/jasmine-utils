@@ -32,25 +32,32 @@ const _ = require('lodash');
 const conf = require('./karma.common.conf');
 
 const browsers = {
-  SL_safari_8: {
+  SL_safari_14: {
     base: 'SauceLabs',
     browserName: 'safari',
-    version: '8.0',
-    platform: 'OS X 10.10',
+    version: '14',
+    platform: 'macOS 11.00',
   },
 
-  SL_safari_9: {
+  SL_safari_15: {
     base: 'SauceLabs',
     browserName: 'safari',
-    version: '9.0',
-    platform: 'OS X 10.11',
+    version: '15',
+    platform: 'macOS 12',
   },
 
-  SL_safari_10: {
+  SL_safari_16: {
     base: 'SauceLabs',
     browserName: 'safari',
-    version: '10.0',
-    platform: 'OS X 10.11',
+    version: '16',
+    platform: 'macOS 12',
+  },
+
+  SL_safari_17: {
+    base: 'SauceLabs',
+    browserName: 'safari',
+    version: '17',
+    platform: 'macOS 13',
   },
 
   SL_Win10_edge: {
