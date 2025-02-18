@@ -51,7 +51,7 @@
     "rollup": "4.34.7",
     "rollup-plugin-esformatter": "3.1.0",
     "rollup-plugin-istanbul": "5.0.0",
-    "rollup-plugin-license": "3.5.3",
+    "rollup-plugin-license": "3.6.0",
     "rollup-plugin-strip-banner": "3.1.0",
     "touch": "3.1.1",
     "typescript": "5.7.3"
