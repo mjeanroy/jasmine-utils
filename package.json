@@ -54,7 +54,7 @@
     "rollup-plugin-license": "3.6.0",
     "rollup-plugin-strip-banner": "3.1.0",
     "touch": "3.1.1",
-    "typescript": "5.7.3"
+    "typescript": "5.8.2"
   },
   "engines": {
     "node": ">=4"
