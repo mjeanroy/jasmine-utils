@@ -48,7 +48,7 @@
     "lodash": "4.17.21",
     "q": "1.5.1",
     "rimraf": "6.0.1",
-    "rollup": "4.34.9",
+    "rollup": "4.35.0",
     "rollup-plugin-esformatter": "3.1.0",
     "rollup-plugin-istanbul": "5.0.0",
     "rollup-plugin-license": "3.6.0",
