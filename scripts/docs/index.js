@@ -29,7 +29,7 @@ const Q = require('q');
 const touch = require('touch');
 const dox = require('dox');
 const Handlebars = require('handlebars');
-const glob = require('glob');
+const { glob } = require('glob');
 const log = require('../log');
 const config = require('../config');
 
@@ -101,20 +101,12 @@ function writeMarkdown(result) {
  * @returns {Promise} The promise.
  */
 function listFiles(dir) {
-  const deferred = Q.defer();
-
-  glob(path.join(dir, '**', '*.js'), (err, files) => {
-    if (err) {
-      deferred.reject(err);
-    } else {
-      deferred.resolve(_.chain(files)
-        .reject((f) => path.basename(f) === 'index.js')
-        .sortBy((f) => path.basename(f))
-        .value());
-    }
-  });
-
-  return deferred.promise;
+  return glob(path.join(dir, '**', '*.js')).then((files) => (
+    _.chain(files)
+      .reject((f) => path.basename(f) === 'index.js')
+      .sortBy((f) => path.basename(f))
+      .value()
+  ));
 }
 
 /**
