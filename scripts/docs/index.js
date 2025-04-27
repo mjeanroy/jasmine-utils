@@ -22,7 +22,7 @@
  * THE SOFTWARE.
  */
 
-const fs = require('fs');
+const fs = require('fs/promises');
 const path = require('path');
 const _ = require('lodash');
 const touch = require('touch');
@@ -117,17 +117,8 @@ function listFiles(dir) {
  * @return {Promise} The promise.
  */
 function readFile(file) {
-  return new Promise((resolve, reject) => {
-    log.debug(`Reading: ${file}`);
-
-    fs.readFile(file, 'utf-8', (err, data) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
-  });
+  log.debug(`Reading: ${file}`);
+  return fs.readFile(file, 'utf-8');
 }
 
 /**
@@ -141,27 +132,8 @@ function readFile(file) {
  */
 function writeFile(file, content) {
   return touch(file).then(() => (
-    writeFileContent(file, content)
+    fs.writeFile(file, content, 'utf-8')
   ));
-}
-
-/**
- * Write a file asynchronously.
- *
- * @param {string} file The full path.
- * @param {string} content File content.
- * @returns {Promise<void>} The promise, resolved when the file is written.
- */
-function writeFileContent(file, content) {
-  return new Promise((resolve, reject) => {
-    fs.writeFile(file, content, 'utf-8', (err) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve();
-      }
-    });
-  });
 }
 
 /**
