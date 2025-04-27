@@ -46,7 +46,6 @@
     "karma-safari-launcher": "1.0.0",
     "karma-sauce-launcher": "4.3.6",
     "lodash": "4.17.21",
-    "q": "1.5.1",
     "rimraf": "6.0.1",
     "rollup": "4.40.0",
     "rollup-plugin-esformatter": "3.1.0",

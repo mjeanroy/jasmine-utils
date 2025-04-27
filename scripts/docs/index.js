@@ -25,7 +25,6 @@
 const fs = require('fs');
 const path = require('path');
 const _ = require('lodash');
-const Q = require('q');
 const touch = require('touch');
 const dox = require('dox');
 const Handlebars = require('handlebars');
@@ -55,7 +54,7 @@ module.exports = function docs(done) {
  * @return {Promise<Array<Object>>} The promise, resolved with JS Doc comments.
  */
 function readJsDoc(files) {
-  return Q.all(
+  return Promise.all(
     _.map(files, (file) => (
       readFile(file).then((content) => {
         const jsdoc = dox.parseComments(content, { raw: true });
@@ -118,19 +117,17 @@ function listFiles(dir) {
  * @return {Promise} The promise.
  */
 function readFile(file) {
-  const deferred = Q.defer();
+  return new Promise((resolve, reject) => {
+    log.debug(`Reading: ${file}`);
 
-  log.debug(`Reading: ${file}`);
-
-  fs.readFile(file, 'utf-8', (err, data) => {
-    if (err) {
-      deferred.reject(err);
-    } else {
-      deferred.resolve(data);
-    }
+    fs.readFile(file, 'utf-8', (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
   });
-
-  return deferred.promise;
 }
 
 /**
@@ -143,25 +140,28 @@ function readFile(file) {
  * @return {Promise} The promise.
  */
 function writeFile(file, content) {
-  const deferred = Q.defer();
+  return touch(file).then(() => (
+    writeFileContent(file, content)
+  ));
+}
 
-  log.debug(`Writing: ${file}`);
-
-  touch(file, (err) => {
-    if (err) {
-      deferred.reject(err);
-    } else {
-      fs.writeFile(file, content, 'utf-8', (writeErr) => {
-        if (err) {
-          deferred.reject(writeErr);
-        } else {
-          deferred.resolve();
-        }
-      });
-    }
+/**
+ * Write a file asynchronously.
+ *
+ * @param {string} file The full path.
+ * @param {string} content File content.
+ * @returns {Promise<void>} The promise, resolved when the file is written.
+ */
+function writeFileContent(file, content) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(file, content, 'utf-8', (err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    });
   });
-
-  return deferred.promise;
 }
 
 /**
