@@ -24,7 +24,6 @@
 
 const fs = require('fs/promises');
 const path = require('path');
-const touch = require('touch');
 const dox = require('dox');
 const Handlebars = require('handlebars');
 const { glob } = require('glob');
@@ -129,9 +128,7 @@ function readFile(file) {
  * @return {Promise} The promise.
  */
 function writeFile(file, content) {
-  return touch(file).then(() => (
-    fs.writeFile(file, content, 'utf-8')
-  ));
+  return fs.writeFile(file, content, 'utf-8');
 }
 
 /**
