@@ -28,11 +28,10 @@
  * Karma Configuration.
  */
 
-const _ = require('lodash');
 const conf = require('./karma.common.conf');
 
 module.exports = (config) => {
-  config.set(_.extend(conf(config), {
+  config.set(Object.assign(conf(config), {
     plugins: [
       require('karma-jasmine'),
       require('karma-rollup-preprocessor'),

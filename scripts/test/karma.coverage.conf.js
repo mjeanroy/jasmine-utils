@@ -29,7 +29,6 @@
  */
 
 const path = require('path');
-const _ = require('lodash');
 const istanbul = require('rollup-plugin-istanbul');
 const commonConf = require('./karma.common.conf');
 const conf = require('../config');
@@ -44,7 +43,7 @@ module.exports = (config) => {
     ],
   }));
 
-  config.set(_.extend(baseConfig, {
+  config.set(Object.assign(baseConfig, {
     plugins: [
       require('karma-jasmine'),
       require('karma-rollup-preprocessor'),

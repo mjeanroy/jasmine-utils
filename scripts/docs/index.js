@@ -24,7 +24,6 @@
 
 const fs = require('fs/promises');
 const path = require('path');
-const _ = require('lodash');
 const touch = require('touch');
 const dox = require('dox');
 const Handlebars = require('handlebars');
@@ -55,7 +54,7 @@ module.exports = function docs(done) {
  */
 function readJsDoc(files) {
   return Promise.all(
-    _.map(files, (file) => (
+    files.map((file) => (
       readFile(file).then((content) => {
         const jsdoc = dox.parseComments(content, { raw: true });
         const api = keepFunctions(jsdoc);
@@ -76,7 +75,7 @@ function generateMarkdown(comments) {
     .then((template) => Handlebars.compile(template))
     .then((templateFn) => (
       templateFn({
-        matchers: _.map(comments, (comment) => comment[0]),
+        matchers: comments.map((comment) => comment[0]),
       })
     ));
 }
@@ -101,10 +100,9 @@ function writeMarkdown(result) {
  */
 function listFiles(dir) {
   return glob(path.join(dir, '**', '*.js')).then((files) => (
-    _.chain(files)
-      .reject((f) => path.basename(f) === 'index.js')
-      .sortBy((f) => path.basename(f))
-      .value()
+    files.filter((f) => path.basename(f) !== 'index.js').sort((f1, f2) => (
+      path.basename(f1).localeCompare(path.basename(f2))
+    ))
   ));
 }
 
@@ -143,7 +141,19 @@ function writeFile(file, content) {
  * @returns {Array<Object>} The array containing only jsdoc of functions.
  */
 function keepFunctions(comments) {
-  return _.filter(comments, (comment) => !!comment.ctx && comment.ctx.type === 'function');
+  return comments.filter((comment) => (
+    !!comment.ctx && comment.ctx.type === 'function'
+  ));
+}
+
+/**
+ * Trim value (null safe).
+ *
+ * @param {string|null|undefined} value Value to trim, may be `null`.
+ * @returns {string|null|undefined} Trimmed value.
+ */
+function trim(value) {
+  return value ? value.trim() : value;
 }
 
 /**
@@ -153,9 +163,31 @@ function keepFunctions(comments) {
  * @return {string} The same text with all lines trimmed.
  */
 function trimAll(txt) {
-  const lines = txt.split('\n');
-  const trimmedLines = _.map(lines, _.trim);
-  return trimmedLines.join('\n');
+  return txt.split('\n').map((line) => trim(line)).join('\n');
+}
+
+/**
+ * Group all values in an array, where the key is retrieved through the `valueFn` function.
+ *
+ * @param {Array<any>} array Given array.
+ * @param {function} valueFn Value mapper, use to get the grouping key.
+ * @return {Map<any,any>} Map where values are grouped per keys.
+ */
+function groupBy(array, valueFn) {
+  const output = new Map();
+
+  for (let i = 0; i < array.length; ++i) {
+    const v = array[i];
+    const k = valueFn(v);
+
+    if (!output.has(k)) {
+      output.set(k, []);
+    }
+
+    output.get(k).push(v);
+  }
+
+  return output;
 }
 
 /**
@@ -166,32 +198,31 @@ function trimAll(txt) {
  * @returns {Array<Object>} The new comments.
  */
 function parseComments(comments) {
-  return _.map(comments, (comment) => {
-    const tags = _.groupBy(comment.tags, 'type');
+  return comments.map((comment) => {
+    const tags = groupBy(comment.tags, (t) => t.type);
     return {
       name: comment.ctx.name,
-      description: _.trim(comment.description.full),
+      description: trim(comment.description.full),
       code: comment.code,
 
-      since: _(tags.since)
-        .map('string')
-        .map(trimAll)
-        .value()[0],
+      since: (tags.get('since') || [])
+        .map((node) => node.string)
+        .map((txt) => trimAll(txt))
+        .at(0),
 
-      messages: _(tags.message)
-        .map('string')
-        .map(trimAll)
-        .value(),
+      messages: (tags.get('message') || [])
+        .map((node) => node.string)
+        .map((txt) => trimAll(txt)),
 
-      examples: _(tags.example)
-        .map('string')
-        .map(trimAll)
-        .value(),
+      examples: (tags.get('example') || [])
+        .map((node) => node.string)
+        .map((txt) => trimAll(txt)),
 
-      params: _(tags.param)
+      params: (tags.get('param') || [])
         .slice(1)
-        .map((param) => _.assign(param, { types: _.isEmpty(param.types) ? ['*'] : param.types }))
-        .value(),
+        .map((param) => Object.assign(param, {
+          types: param.types.length === 0 ? ['*'] : param.types,
+        })),
     };
   });
 }
