@@ -25,7 +25,7 @@
 /**
  * Index all elements in the array and return the result.
  *
- * @param {Array<*>} array Array to index.
+ * @param {Array<any>} array Array to index.
  * @param {function} iteratee The predicate that return the index value.
  * @return {Object} The result as a map object.
  */

@@ -29,7 +29,7 @@ import { every } from './every';
 /**
  * Check that an array contains only distinct values.
  *
- * @param {Array<*>} array Array to traverse.
+ * @param {Array<any>} array Array to traverse.
  * @param {function} equalsFunction The equality function (default is the strict equality).
  * @return {boolean} `true` if `array` contains only distinct values, `false` otherwise.
  */

@@ -75,7 +75,7 @@ export function jasmine2MatcherFactory(fn) {
        *  `expect(value).toCustomMatcher(...)`.
        *
        * @param {*} actual Object being tested (the object being given in `expect` call).
-       * @param {Array<*>} args The matcher arguments (arguments being given to `toCustomMatcher` call).
+       * @param {Array<any>} args The matcher arguments (arguments being given to `toCustomMatcher` call).
        * @return {Object} The test result.
        */
       compare(actual, ...args) {
@@ -96,7 +96,7 @@ export function jasmine2MatcherFactory(fn) {
        *  `expect(value).not.toCustomMatcher(...)`.
        *
        * @param {*} actual Object being tested (the object being given in `expect` call).
-       * @param {Array<*>} args The matcher arguments (arguments being given to `toCustomMatcher` call).
+       * @param {Array<any>} args The matcher arguments (arguments being given to `toCustomMatcher` call).
        * @return {void}
        */
       negativeCompare(actual, ...args) {

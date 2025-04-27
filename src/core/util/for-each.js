@@ -31,7 +31,7 @@
  *  - `index` The index of the value being iterated.
  *  - `array` The array being traversed.
  *
- * @param {Array<*>} array The array to iterate.
+ * @param {Array<any>} array The array to iterate.
  * @param {function} iteratee The iteratee function.
  * @return {void}
  */

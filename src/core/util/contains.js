@@ -31,7 +31,7 @@ import { indexOf } from './index-of';
  * compare values in the array with the value to look for. If not specified, the
  * strict equality will be used (i.e result of `===`).
  *
- * @param {Array<*>} array Array to check.
+ * @param {Array<any>} array Array to check.
  * @param {*} obj Value to look for in the array.
  * @param {function} equalsFunction A custom equality function used to compare values.
  * @return {boolean} `true` if value is in the array, `false` otherwise.

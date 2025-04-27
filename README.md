@@ -672,7 +672,7 @@ Check that the tested object is a DOM element with expected class names.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `classes` | `Array.<string>,string` | Expected class names. |
+| `classes` | `Array<string>,string` | Expected class names. |
 
 #### Message
 
@@ -1020,7 +1020,7 @@ Check that the tested object is an instance of a given `constructor`.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `ctor` | `*` | Expected constructor. |
+| `ctor` | `[object Object]` | Expected constructor. |
 
 #### Message
 
@@ -1087,9 +1087,7 @@ An iterable value may be:
 
 #### Parameters
 
-| Name | Type | Description |
-|------|------|-------------|
-| `Klass` | `*` | Expected class. |
+*No parameters*
 
 #### Message
 
@@ -1297,7 +1295,7 @@ Note that this matcher works fine with custom equality matchers.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `other` | `Array.<*>,Object` | The second object to use for equality. |
+| `other` | `Array<any>,Object` | The second object to use for equality. |
 
 #### Message
 
@@ -1725,7 +1723,7 @@ once) with expected arguments.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `args` | `...*` | Expected call arguments. |
+| `args` | `...[object Object]` | Expected call arguments. |
 
 #### Message
 
@@ -1867,7 +1865,7 @@ property.
 
 | Name | Type | Description |
 |------|------|-------------|
-| `expected` | `Array.<*>` | The other array. |
+| `expected` | `Array<any>` | The other array. |
 
 #### Message
 
@@ -1900,7 +1898,7 @@ A size may be computed from:
 
 | Name | Type | Description |
 |------|------|-------------|
-| `expected` | `*` | The other object (or array, or array-like object). |
+| `expected` | `[object Object]` | The other object (or array, or array-like object). |
 
 #### Message
 
@@ -2008,7 +2006,7 @@ only the value).
 
 | Name | Type | Description |
 |------|------|-------------|
-| `expectedValues` | `...*` | The values to look for. |
+| `expectedValues` | `...[object Object]` | The values to look for. |
 
 #### Message
 

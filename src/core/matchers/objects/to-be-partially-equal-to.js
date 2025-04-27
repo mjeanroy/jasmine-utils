@@ -48,7 +48,7 @@ import { every } from '../../util/every';
  *   expect(array1).not.toBePartiallyEqualTo(array3);
  *
  * @param {Object} ctx Test context.
- * @param {Array<*>|Object} other The second object to use for equality.
+ * @param {Array<any>|Object} other The second object to use for equality.
  * @return {Object} Test result.
  * @since 0.1.0
  */
@@ -73,8 +73,8 @@ export function toBePartiallyEqualTo({ actual, equals, pp }, other) {
  * Check that two array are equals, using a partial comparison between
  * values in array.
  *
- * @param {Array<*>} a First array.
- * @param {Array<*>} b Second array.
+ * @param {Array<any>} a First array.
+ * @param {Array<any>} b Second array.
  * @param {function} equalsFunction The equality function.
  * @return {boolean} `true` if first array is partially equals to second array.
  */
@@ -92,8 +92,8 @@ function checkArray(a, b, equalsFunction) {
  * Check that two objects are equals, using a partial comparison between
  * objects.
  *
- * @param {Array<*>} a First object.
- * @param {Array<*>} b Second object.
+ * @param {Array<any>} a First object.
+ * @param {Array<any>} b Second object.
  * @param {function} equalsFunction The equality function.
  * @return {boolean} `true` if first object is partially equals to second object.
  */

@@ -51,7 +51,7 @@ function defaultComparator(a, b) {
  *
  * The comparator function is optional: the default is the default comparison in JS.
  *
- * @param {Array<*>} array Array to check.
+ * @param {Array<any>} array Array to check.
  * @param {function} comparator Comparator function.
  * @return {boolean} `true` if `array` is sorted, `false` otherwise.
  */

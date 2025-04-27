@@ -30,7 +30,7 @@ import { isMap } from './is-map';
  * This function also support `Map` instances.
  *
  * @param {Map|Object} obj The object.
- * @return {Array<*>} Array of all values.
+ * @return {Array<any>} Array of all values.
  */
 export function values(obj) {
   return isMap(obj) ? mapValues(obj) : objectValues(obj);
@@ -40,7 +40,7 @@ export function values(obj) {
  * Get all object values.
  *
  * @param {Object} obj Object.
- * @return {Array<*>} Object values.
+ * @return {Array<any>} Object values.
  */
 function objectValues(obj) {
   const vals = [];
@@ -59,7 +59,7 @@ function objectValues(obj) {
  * Get all map values.
  *
  * @param {Map} map Map instance.
- * @return {Array<*>} Map values.
+ * @return {Array<any>} Map values.
  */
 function mapValues(map) {
   // IE11 on Win10 does not support `keys` function, so

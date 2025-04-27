@@ -34,7 +34,7 @@
  *   expect('foo').toHaveSameLengthAs(['f', 'o', 'o']);
  *
  * @param {Object} ctx Test context.
- * @param {Array<*>} expected The other array.
+ * @param {Array<any>} expected The other array.
  * @return {Object} Test result.
  * @since 0.1.0
  */

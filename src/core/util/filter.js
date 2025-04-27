@@ -31,9 +31,9 @@
  *  - `index` The index of the value being iterated.
  *  - `array` The array being traversed.
  *
- * @param {Array<*>} array The array to iterate.
+ * @param {Array<any>} array The array to iterate.
  * @param {function} predicate The filter function.
- * @return {Array<*>} Array without filtered elements.
+ * @return {Array<any>} Array without filtered elements.
  */
 export function filter(array, predicate) {
   const results = [];
