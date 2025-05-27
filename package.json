@@ -14,7 +14,7 @@
     "jasmine-core": ">=1.3.0"
   },
   "devDependencies": {
-    "@babel/core": "7.27.1",
+    "@babel/core": "7.27.3",
     "@babel/preset-env": "7.27.2",
     "@rollup/plugin-babel": "^6.0.2",
     "@types/jasmine": "4.3.6",
