@@ -27,7 +27,7 @@
     "eslint-plugin-import": "2.31.0",
     "fancy-log": "2.0.0",
     "glob": "11.0.2",
-    "gulp": "5.0.0",
+    "gulp": "5.0.1",
     "gulp-bump": "3.2.0",
     "gulp-git": "2.11.0",
     "gulp-rename": "2.0.0",
