@@ -51,7 +51,7 @@
     "rollup-plugin-istanbul": "5.0.0",
     "rollup-plugin-license": "3.6.0",
     "rollup-plugin-strip-banner": "3.1.0",
-    "typescript": "5.8.3"
+    "typescript": "5.9.2"
   },
   "engines": {
     "node": ">=4"
