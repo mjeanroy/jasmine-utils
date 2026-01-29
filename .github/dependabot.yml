@@ -26,15 +26,19 @@
 
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-  groups:
-    typescript-eslint:
-      patterns:
-        - "@typescript-eslint/*"
-    babel:
-      patterns:
-        - "@babel/*"
+  - package-ecosystem: npm
+    directory: "/"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+    groups:
+      typescript-eslint:
+        patterns:
+          - "@typescript-eslint/*"
+      babel:
+        patterns:
+          - "@babel/*"
+    ignore:
+      # karma-jasmine-html-reporter requires jasmine >= 4
+      - dependency-name: karma-jasmine-html-reporter
+        update-types: ["version-update:semver-major"]
