@@ -26,20 +26,20 @@ name: CI
 on: [push]
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ ubuntu-latest ]
-        node: [ 24 ]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6.0.1
         name: Checkout
       - uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6.0.1
         name: Set up NodeJS
         with:
-          node-version: ${{ matrix.node }}
+          node-version: 24
+      - uses: pnpm/action-setup@fc06bc1257f339d1d5d8b3a19a8cae5388b55320 # v5.0.0
+        name: Set up PNPM
+        with:
+          version: 10.33.0
       - name: Install
-        run: npm install
+        run: pnpm install
       - uses: saucelabs/sauce-connect-action@v2.3.6
         name: Setup saucelabs
         with:
@@ -51,6 +51,6 @@ jobs:
         env:
           SAUCE_USERNAME: ${{ secrets.SAUCE_USERNAME }}
           SAUCE_ACCESS_KEY: ${{ secrets.SAUCE_ACCESS_KEY }}
-        run: npm test
+        run: pnpm test
 concurrency:
   group: jasmine-utils
