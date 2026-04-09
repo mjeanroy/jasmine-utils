@@ -39,6 +39,8 @@
 /scripts
 /coverage
 /gulpfile.js
+/pnpm-workspace.yaml
+/pnpm-lock.yaml
 
 # Ignore dev source files
 /src/core
