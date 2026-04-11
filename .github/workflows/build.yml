@@ -42,7 +42,7 @@ jobs:
           version: 10.33.0
       - name: Install
         run: pnpm install
-      - uses: saucelabs/sauce-connect-action@98f61ece0eaf9d5f39c162c746839f955315708a # v2.3.6
+      - uses: saucelabs/sauce-connect-action@0ca0e6ce3a5513d6bec2a54044a536c3da3a53fb # v2.3.8
         name: Setup saucelabs
         with:
           username: ${{ secrets.SAUCE_USERNAME }}
