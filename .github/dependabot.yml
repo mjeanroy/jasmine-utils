@@ -44,3 +44,7 @@ updates:
       # karma-jasmine-html-reporter requires jasmine >= 4
       - dependency-name: karma-jasmine-html-reporter
         update-types: ["version-update:semver-major"]
+      # eslint@^9.0.0 requires a rewrite of the config to a new format.
+      # Did not have time to upgrade yet.
+      - dependency-name: eslint
+        update-types: ["version-update:semver-major"]
