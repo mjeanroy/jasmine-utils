@@ -8,7 +8,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-The package manager is pnpm (see `pnpm-workspace.yaml`; CI uses pnpm 10 and Node 26, and `.nvmrc` pins the local Node version). All scripts are gulp tasks defined in `gulpfile.js`, with their code in `scripts/`.
+The package manager is pnpm (see `pnpm-workspace.yaml`; CI uses pnpm 11 via `pnpm/setup` and Node 26 via `actions/setup-node`, and `.nvmrc` pins the local Node version). All scripts are gulp tasks defined in `gulpfile.js`, with their code in `scripts/`.
 
 - `pnpm lint`: ESLint (airbnb-base) over root, `scripts/`, `src/` and `test/` (`.js` and `.ts`). Any warning fails the task. To lint only some paths, use `pnpm lint --file <path>`, which can be repeated and accepts files, directories or globs. The lint step that `test`, `build` and `release` run first always covers the whole project.
 - `pnpm test`: clean, then lint, then Karma single run in headless Chrome. If `SAUCE_USERNAME` and `SAUCE_ACCESS_KEY` are set, it runs on SauceLabs instead.
@@ -54,7 +54,7 @@ Tests that need features missing from some browsers (Symbol, Map, Set, freeze, �
 - Every source file starts with the MIT license header. Rollup strips per-module banners and prepends `LICENSE`.
 - ESLint's `valid-jsdoc` rule is enforced. Every function, including those in `scripts/` and tests, needs JSDoc with described `@param`s and a described `@return`, even when it returns `void`. Lint fails without it.
 - ESLint stays on v8 with the legacy `.eslintrc` format. Dependabot ignores ESLint major updates until the config is migrated to flat config. It also ignores major updates to `karma-jasmine-html-reporter`, whose next major requires Jasmine 4 or later.
-- Installs are restricted by `pnpm-workspace.yaml`: a package version must be at least 2 days old (`minimumReleaseAge`), and `trustPolicy: no-downgrade` rejects packages whose publish trust level dropped. When an install fails on the trust policy, the existing fix is to add that exact version to `trustPolicyExclude`, in its own commit (e.g. `chore: trust chromium-bidi@…`). `.npmrc` sets `save-exact`.
+- Installs are restricted by `pnpm-workspace.yaml`: a package version must be at least 2 days old (`minimumReleaseAge`), and `trustPolicy: no-downgrade` rejects packages whose publish trust level dropped. When an install fails on the trust policy, the existing fix is to add that exact version to `trustPolicyExclude`, in its own commit (e.g. `chore: trust chromium-bidi@…`). `.npmrc` sets `save-exact`, and `pnpm-workspace.yaml` repeats it as `saveExact` because pnpm 11 ignores non-auth settings in `.npmrc`.
 - GitHub Actions are pinned to commit SHAs with the version as a trailing comment (`uses: actions/checkout@<sha> # v7.0.1`). The workflow runs with `permissions: {}` and `persist-credentials: false`.
 - Commit messages follow Conventional Commits, for example `chore(ci): …`, `chore(deps-dev): …` and `chore: …`. `CHANGELOG.md` has not been updated since 0.5.0, so don't add entries to it.
 - Releases use `pnpm release:patch|minor|major`. The task runs lint, build, test and docs, then bumps `package.json`/`bower.json`. It force-adds the built `src/jasmine-utils.js` and commits, tags the release, and finally commits the bundle's removal ("prepare next release"). The bundle therefore exists only in tagged release commits.

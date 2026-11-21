@@ -23,9 +23,13 @@
 ##
 
 minimumReleaseAge: 2880
+saveExact: true
+lockfile: false
 blockExoticSubdeps: true
 trustPolicy: no-downgrade
 trustPolicyExclude:
   - 'ua-parser-js@0.7.41'
   - 'semver@6.3.1 || 5.7.2'
   - 'chromium-bidi@157.0.8090-0'
+allowBuilds:
+  core-js: false
