@@ -25,6 +25,7 @@
 const path = require('path');
 const karma = require('karma');
 const log = require('../log');
+const config = require('../config');
 
 /**
  * Run unit tests and exit.
@@ -86,6 +87,62 @@ function auto(done) {
 }
 
 /**
+ * Read all values of a CLI option, supporting both `--name value` and `--name=value`.
+ *
+ * @param {Array<string>} argv The CLI arguments.
+ * @param {string} name The option name (without leading dashes).
+ * @return {Array<string>} The option values.
+ */
+function readOption(argv, name) {
+  const flag = `--${name}`;
+  const values = [];
+
+  for (let i = 0; i < argv.length; ++i) {
+    const arg = argv[i];
+    if (arg === flag && i + 1 < argv.length) {
+      values.push(argv[i + 1]);
+      i += 1;
+    } else if (arg.startsWith(`${flag}=`)) {
+      values.push(arg.slice(flag.length + 1));
+    }
+  }
+
+  return values;
+}
+
+/**
+ * Build Karma options overriding the configuration file, from CLI arguments:
+ * - `--file <path>` (repeatable, globs allowed): run only these spec files instead of `test/index.js`.
+ * - `--filter <pattern>`: run only specs whose full name matches the pattern (`/regex/flags` is supported).
+ *
+ * @param {Array<string>} argv The CLI arguments.
+ * @return {Object} The Karma CLI options.
+ */
+function readCliOptions(argv) {
+  const cliOptions = {};
+
+  const specs = readOption(argv, 'file').map((spec) => path.resolve(config.root, spec));
+  if (specs.length > 0) {
+    log.debug(`Running spec files: ${specs.join(', ')}`);
+    cliOptions.files = specs;
+    cliOptions.preprocessors = {};
+    specs.forEach((spec) => {
+      cliOptions.preprocessors[spec] = ['rollup'];
+    });
+  }
+
+  const filter = readOption(argv, 'filter');
+  if (filter.length > 0) {
+    log.debug(`Running specs matching: ${filter[0]}`);
+    cliOptions.client = {
+      args: ['--grep', filter[0]],
+    };
+  }
+
+  return cliOptions;
+}
+
+/**
  * Start Karma Server and run unit tests.
  *
  * @param {string} mode The test mode (test or tdd).
@@ -95,10 +152,12 @@ function auto(done) {
 function startKarma(mode, done) {
   const fileName = `karma.${mode}.conf.js`;
   const configFilePath = path.join(__dirname, fileName);
+  const cliOptions = readCliOptions(process.argv.slice(2));
 
   log.debug(`Parsing karma configuration from: ${configFilePath}`);
-  karma.config.parseConfig(configFilePath, null, { promiseConfig: true, throwErrors: true }).then((config) => {
-    const srv = new karma.Server(config, (err) => {
+  const parseOptions = { promiseConfig: true, throwErrors: true };
+  karma.config.parseConfig(configFilePath, cliOptions, parseOptions).then((karmaConfig) => {
+    const srv = new karma.Server(karmaConfig, (err) => {
       log.debug('Calling done callback of Karma');
       done(err);
     });
