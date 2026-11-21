@@ -64,3 +64,5 @@ jobs:
         run: pnpm test
 concurrency:
   group: jasmine-utils
+  cancel-in-progress: false
+  queue: max
