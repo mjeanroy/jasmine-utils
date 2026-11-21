@@ -27,6 +27,7 @@ const fancyLog = require('fancy-log');
 const { ESLint } = require('eslint');
 const log = require('../log');
 const config = require('../config');
+const { readCliOptions } = require('../cli');
 
 /**
  * Get all potential sources to run against lint validator.
@@ -44,16 +45,35 @@ function getSources(ext) {
 }
 
 /**
- * Run ESLint against JS source files.
+ * Lint the whole project.
  *
- * @return {WritableStream} The stream pipeline.
+ * @return {Promise<void>} A promise resolved when lint succeeds, rejected otherwise.
  */
-module.exports = function lint() {
-  const inputs = [
-    ...getSources('js'),
-    ...getSources('ts'),
-  ];
+function lint() {
+  return runEslint([...getSources('js'), ...getSources('ts')], false);
+}
 
+/**
+ * Lint the files given with `--file <path>` (repeatable, may be a directory or a glob),
+ * or the whole project if none is given, e.g:
+ *
+ *   pnpm lint --file src/index.js --file test/index.js
+ *
+ * @return {Promise<void>} A promise resolved when lint succeeds, rejected otherwise.
+ */
+function lintCli() {
+  const { files } = readCliOptions();
+  return files.length > 0 ? runEslint(files, true) : lint();
+}
+
+/**
+ * Run ESLint on given inputs, and fail if any warning or error is reported.
+ *
+ * @param {Array<string>} inputs Files, directories or globs to lint.
+ * @param {boolean} errorOnUnmatchedPattern Fail if an input does not match any file.
+ * @return {Promise<void>} A promise resolved when lint succeeds, rejected otherwise.
+ */
+function runEslint(inputs, errorOnUnmatchedPattern) {
   log.debug('Linting files: ');
 
   inputs.forEach((input) => (
@@ -61,7 +81,7 @@ module.exports = function lint() {
   ));
 
   const eslint = new ESLint({
-    errorOnUnmatchedPattern: false,
+    errorOnUnmatchedPattern,
   });
 
   const lintFiles = eslint.lintFiles(inputs);
@@ -76,4 +96,9 @@ module.exports = function lint() {
       }
     }
   });
+}
+
+module.exports = {
+  lint,
+  lintCli,
 };
