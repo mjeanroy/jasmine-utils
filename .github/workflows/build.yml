@@ -38,12 +38,14 @@ jobs:
         name: Set up NodeJS
         with:
           node-version: 26
+          package-manager-cache: false
       - uses: pnpm/setup@731dfb6463bbd11c11fd0ee11fe00ed0e36d48a1 # v3.2.0
         name: Set up PNPM
         with:
           version: 11.28.12
           node-version-file: false
           install: false
+          cache: false
       - name: Install
         run: pnpm install
       - uses: saucelabs/sauce-connect-action@fc54c8b087f2b4b6d4ccc42a2d4bbc64795dfde2 # v3.0.0
