@@ -28,3 +28,4 @@ trustPolicy: no-downgrade
 trustPolicyExclude:
   - 'ua-parser-js@0.7.41'
   - 'semver@6.3.1 || 5.7.2'
+  - 'chromium-bidi@157.0.8090-0'
